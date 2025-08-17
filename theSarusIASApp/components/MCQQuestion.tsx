@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   optionButton: {
-    // flex: 1,
+    //flex: 1,
     flexDirection: "row",
     alignItems: "center",
     paddingVertical: 16,
@@ -113,6 +113,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: Colors.border,
     backgroundColor: Colors.background,
+    // backgroundColor: 'red',
     minHeight: 56,
   },
   optionButtonSelected: {

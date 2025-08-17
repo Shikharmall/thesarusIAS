@@ -41,7 +41,7 @@ export default function ExamScreen() {
                 currentSection={currentSection}
                 onSectionSelect={handleChangeSection}
                 currentQuestion={currentQuestion}
-                onQuestionSelect={(index) => {
+                onQuestionSelect={(index: number) => {
                   setCurrentQuestion(index)
                   setShowNavigator(false) // Auto-close on mobile after selection
                 }}

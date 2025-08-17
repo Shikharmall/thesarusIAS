@@ -10,7 +10,11 @@ export default function QuestionNavigator({
     onQuestionSelect,
     currentSection,
 }: QuestionNavigatorProps) {
-    
+
+    const getFirstQuestionFormIndex = (index: number): number => {
+        return sections?.[index]?.questions?.[0]?.id;
+    };
+
     return (
         <View className="m-5">
             {
@@ -27,6 +31,7 @@ export default function QuestionNavigator({
                                     }}
                                     onPress={() => {
                                         onSectionSelect(index + 1);
+                                        onQuestionSelect(getFirstQuestionFormIndex(index) - 1);
                                     }}
                                 >
                                     <Text className="font-bold" style={{ color: currentSection === section?.id ? Colors?.background : themeColor?.primary }}>Part-{index + 1}</Text>
@@ -48,42 +53,52 @@ export default function QuestionNavigator({
                 {sections
                     ?.find(section => section?.id === currentSection)
                     ?.questions
-                    ?.map((question, index) => (
-                        <Button
-                            key={index}
-                            variant={currentQuestion === question?.id ? "default" : "outline"}
-                            size="sm"
-                            className="h-8 w-8 p-0 text-xs"
-                        // className={`h-8 w-8 p-0 text-xs ${question?.answered
-                        //         ? "bg-green-100 text-green-800 border-green-300"
-                        //         : question?.flagged
-                        //             ? "bg-orange-100 text-orange-800 border-orange-300"
-                        //             : ""
-                        //     }`}
+                    ?.map((question) => (
+                        <TouchableOpacity
+                            key={question?.id}
+                            className="flex flex-row items-center justify-center rounded rounded-md m-3"
+                            style={{
+                                backgroundColor: currentQuestion + 1 === question?.id ? themeColor?.primary : "white",
+                                width: 50,
+                                height: 50,
+                                borderWidth: currentQuestion + 1 === question?.id ? 0 : 0.3,
+                            }}
+                            onPress={() => {
+                                onQuestionSelect(question?.id - 1)
+                            }}
                         >
-                            <Text>{question?.id}</Text>
-                        </Button>
+                            <Text
+                                className={`text-md font-medium ${currentQuestion + 1 === question?.id ? "text-white" : themeColor?.secondary
+                                    }`}
+                            >
+                                {question?.id}
+                            </Text>
+                        </TouchableOpacity>
                     ))}
             </View>
 
-
-            <View className="space-y-2 text-xs text-sidebar-foreground border-t pt-4">
-                <View className="flex-row flex-wrap justify-between gap-4 m-3">
+            <View className="space-y-2 text-xs text-sidebar-foreground border-t-1 border-gray-300 pt-4"
+                style={{
+                    borderTopWidth: 0.3,
+                    borderTopColor: 'gray'
+                }}
+            >
+                <View className="m-3"> {/* flex-row flex-wrap justify-between gap-4 */}
                     <View className="flex flex-row items-center gap-2 m-3">
                         <View className="h-6 w-6 bg-green-100 border border-green-300 rounded text-green-800 flex items-center justify-center text-xs"></View>
-                        <Text>Answered</Text>
+                        <Text>Answered (0)</Text>
                     </View>
                     <View className="flex flex-row items-center gap-2 m-3">
                         <View className="h-6 w-6 bg-red-400 border border-red-500 rounded flex items-center justify-center text-xs"></View>
-                        <Text>Not Answered</Text>
+                        <Text>Not Answered (25)</Text>
                     </View>
                     <View className="flex flex-row items-center gap-2 m-3">
                         <View className="h-6 w-6 bg-orange-100 border border-orange-300 rounded text-orange-800 flex items-center justify-center text-xs"></View>
-                        <Text>Mark for Review</Text>
+                        <Text>Mark for Review (0)</Text>
                     </View>
                     <View className="flex flex-row items-center gap-2 m-3">
                         <View className="h-6 w-6 bg-background border rounded flex items-center justify-center text-xs"></View>
-                        <Text>Not Visited</Text>
+                        <Text>Not Visited (24)</Text>
                     </View>
 
                 </View>
@@ -96,6 +111,7 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
         flexWrap: "wrap",
+        padding: 10
     },
     item: {
         width: "20%", // 5 columns → 100% / 5 = 20%

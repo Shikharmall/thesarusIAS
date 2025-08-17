@@ -35,6 +35,106 @@ export const examData: ExamData = {
           question: "If FRIEND is coded as HUMJTK, then CANDLE will be coded as:",
           options: ["EDRIRL", "ECQOKF", "ECRPKF", "ECOQKF"],
         },
+        {
+          id: 6,
+          question: "If CAT is coded as DBU, then DOG will be coded as:",
+          options: ["EPH", "EPI", "FQH", "FPI"],
+        },
+        {
+          id: 7,
+          question: "Find the missing number: 7, 14, 28, 56, ?",
+          options: ["84", "100", "112", "120"],
+        },
+        {
+          id: 8,
+          question: "Which word does not belong to the group?",
+          options: ["Apple", "Banana", "Orange", "Potato"],
+        },
+        {
+          id: 9,
+          question: "If CLOCK is coded as DMPDL, how is WATCH coded?",
+          options: ["XBUJI", "XBVJI", "XBUKI", "XAUJI"],
+        },
+        {
+          id: 10,
+          question: "What comes next in the series: A, C, F, J, O, ?",
+          options: ["S", "T", "U", "V"],
+        },
+        {
+          id: 11,
+          question: "If 12 × 12 = 144 and 23 × 23 = 529, then 34 × 34 = ?",
+          options: ["1124", "1156", "1189", "1196"],
+        },
+        {
+          id: 12,
+          question: "Pointing to a man, a woman says, 'His mother is the only daughter of my father'. How is the man related to the woman?",
+          options: ["Son", "Brother", "Nephew", "Cousin"],
+        },
+        {
+          id: 13,
+          question: "If A = 1, B = 2, C = 3, …, Z = 26, then the code for 'DOG' is:",
+          options: ["26", "22", "24", "23"],
+        },
+        {
+          id: 14,
+          question: "Find the missing number: 1, 4, 9, 16, 25, ?",
+          options: ["36", "30", "40", "49"],
+        },
+        {
+          id: 15,
+          question: "Which is the odd one out?",
+          options: ["Pen", "Pencil", "Eraser", "Book"],
+        },
+        {
+          id: 16,
+          question: "If 3 × 4 = 25, 5 × 2 = 29, then 6 × 1 = ?",
+          options: ["30", "31", "32", "33"],
+        },
+        {
+          id: 17,
+          question: "What comes next in the series: 5, 11, 17, 23, ?",
+          options: ["29", "30", "31", "33"],
+        },
+        {
+          id: 18,
+          question: "If Delhi is coded as EFKMJ, then Mumbai will be coded as:",
+          options: ["NVOJCB", "NVOJBD", "MVOJCB", "NUPJCB"],
+        },
+        {
+          id: 19,
+          question: "Which of the following is different?",
+          options: ["Car", "Bus", "Train", "Road"],
+        },
+        {
+          id: 20,
+          question: "Find the odd one: 2, 4, 8, 16, 34",
+          options: ["2", "4", "16", "34"],
+        },
+        {
+          id: 21,
+          question: "If LION is coded as MJPO, then TIGER is coded as:",
+          options: ["UJHFS", "UJHFR", "UJIGS", "UJHGS"],
+        },
+        {
+          id: 22,
+          question: "Complete the series: 3, 9, 27, 81, ?",
+          options: ["121", "243", "225", "256"],
+        },
+        {
+          id: 23,
+          question: "Find the missing letter: A, C, F, J, O, ?",
+          options: ["S", "T", "U", "V"],
+        },
+        {
+          id: 24,
+          question: "If 8 + 2 = 36, 6 + 4 = 40, then 7 + 3 = ?",
+          options: ["45", "46", "47", "50"],
+        },
+        {
+          id: 25,
+          question: "Which of the following does not belong to the group?",
+          options: ["Paris", "London", "Tokyo", "River"],
+        },
       ],
     },
     {
