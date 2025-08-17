@@ -16,7 +16,7 @@ export default function QuestionNavigator({
         return sections?.[index]?.questions?.[0]?.id;
     };
 
-    console.log(questionStatuses);
+    // console.log(questionStatuses);
 
     const visitedCount = Object.values(questionStatuses).filter(q => q.visited).length;
     const flaggedCount = Object.values(questionStatuses).filter(q => q.flagged).length;
