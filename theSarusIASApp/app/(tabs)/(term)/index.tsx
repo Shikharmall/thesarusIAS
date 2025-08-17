@@ -1,7 +1,7 @@
 import React from "react";
 import { ScrollView, Text, View } from "react-native";
-import { Button } from "../../components/ui/Button";
-import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/Card";
+import { Button } from "../../../components/ui/Button";
+import { Card, CardContent, CardHeader, CardTitle } from "../../../components/ui/Card";
 
 export default function TermsPage() {
   return (
