@@ -95,8 +95,6 @@ export default function ExamScreen() {
               onAnswerSelect={handleAnswerSelect}
               onFlagSelect={handleFlagQuestion}
               onClearSelect={handleClearResponse}
-
-            // onQuestionStatusesChange={setQuestionStatuses}
             />
             <ExamNavigation
               currentQuestion={currentQuestion}
