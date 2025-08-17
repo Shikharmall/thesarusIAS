@@ -1,41 +1,42 @@
 export interface Question {
-  id: number
-  question: string
-  options: string[]
-  correctAnswer?: number
+  id: number,
+  question: string,
+  options: string[],
+  correctAnswer?: number,
 }
 
 export interface Section {
   id: number,
-  name: string
-  questions: Question[]
-  timeLimit?: number
+  name: string,
+  questions: Question[],
+  timeLimit?: number,
 }
 
 export interface ExamData {
-  title: string
-  duration: number
-  sections: Section[]
+  title: string,
+  duration: number,
+  sections: Section[],
 }
 
 export interface QuestionStatus {
-  answered: boolean
-  flagged: boolean
-  visited: boolean
-  selectedAnswer?: number
+  answered: boolean,
+  flagged: boolean,
+  visited: boolean,
+  selectedAnswer?: number,
 }
 
 export interface QuestionNavigatorProps {
-  sections: Section[]
-  currentQuestion: number
-  onSectionSelect: (sectionId: number) => void
-  onQuestionSelect: (questionId: number) => void
-  currentSection?: number
+  sections: Section[],
+  currentQuestion: number,
+  onSectionSelect: (sectionId: number) => void,
+  onQuestionSelect: (questionId: number) => void,
+  currentSection?: number,
+  questionStatuses: Record<number, QuestionStatus>
 }
 
 export interface InstructionModalProps {
-  isVisible: boolean
-  onStartExam: () => void
+  isVisible: boolean,
+  onStartExam: () => void,
 }
 
 export interface ExamNavigationProps {
@@ -48,5 +49,17 @@ export interface ExamNavigationProps {
 export interface QuestionDisplayProps {
   currentQuestion: number,
   currentSection: number,
-  sections: Section[]
+  sections: Section[],
+  onAnswerSelect: (questionId: number, selectedAnswer: number) => void,
+  onFlagSelect: (questionId: number) => void,
+  onClearSelect: (questionId: number) => void,
+  questionStatuses: Record<number, QuestionStatus>
+}
+
+export interface MCQQuestionProps {
+  question: Question,
+  questionStatus?: QuestionStatus,
+  onAnswerSelect: (questionId: number, selectedAnswer: number) => void,
+  onFlagQuestion: (questionId: number) => void,
+  onClearResponse: (questionId: number) => void,
 }

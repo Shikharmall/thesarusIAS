@@ -1,16 +1,8 @@
-import { View, Text, StyleSheet } from "react-native"
-import { Ionicons } from "@expo/vector-icons"
-import TouchableScale from "./TouchableScale"
-import { Colors } from "../constants/Colors"
-import type { Question, QuestionStatus } from "../types/exam"
-
-interface MCQQuestionProps {
-  question: Question
-  questionStatus?: QuestionStatus
-  onAnswerSelect: (questionId: number, selectedAnswer: number) => void
-  onFlagQuestion: (questionId: number) => void
-  onClearResponse: (questionId: number) => void
-}
+import { View, Text, StyleSheet } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import TouchableScale from "./TouchableScale";
+import { Colors } from "../constants/Colors";
+import type { MCQQuestionProps } from "../types/exam";
 
 export default function MCQQuestion({
   question,

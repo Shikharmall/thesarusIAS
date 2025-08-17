@@ -1,7 +1,5 @@
-import { useState, useEffect } from "react"
-// import { Clock } from "lucide-react"
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import { Text, View } from "react-native"
+import { useState, useEffect } from "react";
+import { Text, View } from "react-native";
 import { themeColor } from "@/constants/Colors";
 
 interface ExamTimerProps {
@@ -35,8 +33,6 @@ export function ExamTimer({ initialTime, duration, onTimeUp }: ExamTimerProps) {
             className="flex items-center gap-2 px-5 py-1 rounded-full font-semibold"
             style={{ backgroundColor: isLowTime ? "red" : themeColor?.primary }}
         >
-            {/* <Clock className="h-5 w-5" /> */}
-            {/* <MaterialIcons name="timer" size={16} color="#ed8936" /> */}
             <Text className="text-md font-mono text-white font-bold">
                 {String(minutes).padStart(2, "0")}:{String(seconds).padStart(2, "0")}
             </Text>

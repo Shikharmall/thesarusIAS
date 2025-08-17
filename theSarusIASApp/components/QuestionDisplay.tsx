@@ -4,12 +4,13 @@ import MCQQuestion from "./MCQQuestion"
 import { Colors } from "../constants/Colors"
 import type { Question, QuestionDisplayProps, QuestionStatus } from "../types/exam"
 
-export default function QuestionDisplay({ currentQuestion, currentSection, sections }: QuestionDisplayProps) {
-  const [questionStatuses, setQuestionStatuses] = useState<Record<number, QuestionStatus>>({})
+export default function QuestionDisplay({ currentQuestion, currentSection, sections, questionStatuses, onAnswerSelect, onFlagSelect,
+  onClearSelect, }: QuestionDisplayProps) {
+  // const [questionStatuses, setQuestionStatuses] = useState<Record<number, QuestionStatus>>({});
 
   // Get all questions from all sections
-  const allQuestions: Question[] = sections.flatMap((section) => section.questions)
-  const question = allQuestions[currentQuestion]
+  const allQuestions: Question[] = sections.flatMap((section) => section.questions);
+  const question = allQuestions[currentQuestion];
 
   if (!question) {
     return (
@@ -19,40 +20,42 @@ export default function QuestionDisplay({ currentQuestion, currentSection, secti
     )
   }
 
-  const handleAnswerSelect = (questionId: number, selectedAnswer: number) => {
-    setQuestionStatuses((prev) => ({
-      ...prev,
-      [questionId]: {
-        ...prev[questionId],
-        answered: true,
-        visited: true,
-        selectedAnswer,
-      },
-    }))
-  }
+  // const handleAnswerSelect = (questionId: number, selectedAnswer: number) => {
+  //   onQuestionStatusesChange((prev) => ({
+  //     ...prev,
+  //     [questionId]: {
+  //       ...prev[questionId],
+  //       answered: true,
+  //       visited: true,
+  //       selectedAnswer,
+  //     },
+  //   }))
+  // }
 
-  const handleFlagQuestion = (questionId: number) => {
-    setQuestionStatuses((prev) => ({
-      ...prev,
-      [questionId]: {
-        ...prev[questionId],
-        flagged: !prev[questionId]?.flagged,
-        visited: true,
-      },
-    }))
-  }
+  // const handleFlagQuestion = (questionId: number) => {
+  //   setQuestionStatuses((prev) => ({
+  //     ...prev,
+  //     [questionId]: {
+  //       ...prev[questionId],
+  //       flagged: !prev[questionId]?.flagged,
+  //       visited: true,
+  //     },
+  //   }))
+  // }
 
-  const handleClearResponse = (questionId: number) => {
-    setQuestionStatuses((prev) => ({
-      ...prev,
-      [questionId]: {
-        ...prev[questionId],
-        answered: false,
-        selectedAnswer: undefined,
-        visited: true,
-      },
-    }))
-  }
+  // const handleClearResponse = (questionId: number) => {
+  //   setQuestionStatuses((prev) => ({
+  //     ...prev,
+  //     [questionId]: {
+  //       ...prev[questionId],
+  //       answered: false,
+  //       selectedAnswer: undefined,
+  //       visited: true,
+  //     },
+  //   }))
+  // }
+
+  // console.log(questionStatuses);
 
   return (
     <View style={styles.container}>
@@ -73,9 +76,9 @@ export default function QuestionDisplay({ currentQuestion, currentSection, secti
         <MCQQuestion
           question={question}
           questionStatus={questionStatuses[question.id]}
-          onAnswerSelect={handleAnswerSelect}
-          onFlagQuestion={handleFlagQuestion}
-          onClearResponse={handleClearResponse}
+          onAnswerSelect={onAnswerSelect}
+          onFlagQuestion={onFlagSelect}
+          onClearResponse={onClearSelect}
         />
       </ScrollView>
     </View>

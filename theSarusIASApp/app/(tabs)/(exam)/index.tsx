@@ -8,6 +8,7 @@ import InstructionModal from "../../../components/InstructionModal";
 import ResponsiveLayout from "../../../components/ResponsiveLayout";
 import { Colors } from "../../../constants/Colors";
 import { examData } from "../../../data/examData";
+import { QuestionStatus } from "@/types/exam";
 
 export default function ExamScreen() {
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
@@ -15,6 +16,7 @@ export default function ExamScreen() {
   const [currentSection, setCurrentSection] = useState<number>(1);
   const [showInstructions, setShowInstructions] = useState(true);
   const [examStarted, setExamStarted] = useState<boolean>(false);
+  const [questionStatuses, setQuestionStatuses] = useState<Record<number, QuestionStatus>>({})
 
   const handleStartExam = () => {
     setShowInstructions(false)
@@ -23,6 +25,40 @@ export default function ExamScreen() {
 
   const handleChangeSection = (sectionId: number) => {
     setCurrentSection(sectionId)
+  }
+  const handleAnswerSelect = (questionId: number, selectedAnswer: number) => {
+    setQuestionStatuses((prev) => ({
+      ...prev,
+      [questionId]: {
+        ...prev[questionId],
+        answered: true,
+        visited: true,
+        selectedAnswer,
+      },
+    }))
+  }
+
+  const handleFlagQuestion = (questionId: number) => {
+    setQuestionStatuses((prev) => ({
+      ...prev,
+      [questionId]: {
+        ...prev[questionId],
+        flagged: !prev[questionId]?.flagged,
+        visited: true,
+      },
+    }))
+  }
+
+  const handleClearResponse = (questionId: number) => {
+    setQuestionStatuses((prev) => ({
+      ...prev,
+      [questionId]: {
+        ...prev[questionId],
+        answered: false,
+        selectedAnswer: undefined,
+        visited: true,
+      },
+    }))
   }
 
   return (
@@ -45,6 +81,7 @@ export default function ExamScreen() {
                   setCurrentQuestion(index)
                   setShowNavigator(false) // Auto-close on mobile after selection
                 }}
+                questionStatuses={questionStatuses}
               />
             }
           >
@@ -52,6 +89,12 @@ export default function ExamScreen() {
               currentQuestion={currentQuestion}
               currentSection={currentSection}
               sections={examData?.sections}
+              questionStatuses={questionStatuses}
+              onAnswerSelect={handleAnswerSelect}
+              onFlagSelect={handleFlagQuestion}
+              onClearSelect={handleClearResponse}
+
+            // onQuestionStatusesChange={setQuestionStatuses}
             />
             <ExamNavigation
               currentQuestion={currentQuestion}

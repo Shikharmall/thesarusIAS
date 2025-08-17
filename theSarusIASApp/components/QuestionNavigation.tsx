@@ -1,7 +1,7 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
-import { Button } from "../components/ui/Button"
-import { QuestionNavigatorProps } from "@/types/exam"
-import { Colors, themeColor } from "@/constants/Colors"
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { QuestionNavigatorProps } from "@/types/exam";
+import { Colors, themeColor } from "@/constants/Colors";
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 export default function QuestionNavigator({
     sections,
@@ -9,11 +9,18 @@ export default function QuestionNavigator({
     onSectionSelect,
     onQuestionSelect,
     currentSection,
+    questionStatuses
 }: QuestionNavigatorProps) {
 
     const getFirstQuestionFormIndex = (index: number): number => {
         return sections?.[index]?.questions?.[0]?.id;
     };
+
+    console.log(questionStatuses);
+
+    const visitedCount = Object.values(questionStatuses).filter(q => q.visited).length;
+    const flaggedCount = Object.values(questionStatuses).filter(q => q.flagged).length;
+    const answeredCount = Object.values(questionStatuses).filter(q => q.answered).length;
 
     return (
         <View className="m-5">
@@ -83,22 +90,23 @@ export default function QuestionNavigator({
                     borderTopColor: 'gray'
                 }}
             >
-                <View className="m-3"> {/* flex-row flex-wrap justify-between gap-4 */}
+                <View className="m-3">
                     <View className="flex flex-row items-center gap-2 m-3">
-                        <View className="h-6 w-6 bg-green-100 border border-green-300 rounded text-green-800 flex items-center justify-center text-xs"></View>
-                        <Text>Answered (0)</Text>
+                        <MaterialIcons name="check-circle" size={25} color="green" />
+                        <Text style={{ color: themeColor?.primary }}>Answered <Text style={{ color: themeColor?.secondary }}>({answeredCount})</Text></Text>
                     </View>
                     <View className="flex flex-row items-center gap-2 m-3">
-                        <View className="h-6 w-6 bg-red-400 border border-red-500 rounded flex items-center justify-center text-xs"></View>
-                        <Text>Not Answered (25)</Text>
+                        <MaterialIcons name="check-circle" size={25} color="red" />
+                        <Text style={{ color: themeColor?.primary }}>Not Answered <Text style={{ color: themeColor?.secondary }}>(
+                            {((sections?.find(section => section?.id === currentSection)?.questions?.length || 0) - answeredCount)})</Text></Text>
                     </View>
                     <View className="flex flex-row items-center gap-2 m-3">
-                        <View className="h-6 w-6 bg-orange-100 border border-orange-300 rounded text-orange-800 flex items-center justify-center text-xs"></View>
-                        <Text>Mark for Review (0)</Text>
+                        <MaterialIcons name="check-circle" size={25} color="orange" />
+                        <Text style={{ color: themeColor?.primary }}>Mark for Review <Text style={{ color: themeColor?.secondary }}>({flaggedCount})</Text></Text>
                     </View>
                     <View className="flex flex-row items-center gap-2 m-3">
-                        <View className="h-6 w-6 bg-background border rounded flex items-center justify-center text-xs"></View>
-                        <Text>Not Visited (24)</Text>
+                        <MaterialIcons name="check-circle" size={25} color="gray" />
+                        <Text style={{ color: themeColor?.primary }}>Not Visited <Text style={{ color: themeColor?.secondary }}>({visitedCount})</Text></Text>
                     </View>
 
                 </View>
