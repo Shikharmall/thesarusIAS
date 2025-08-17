@@ -9,8 +9,10 @@ import ResponsiveLayout from "../../../components/ResponsiveLayout";
 import { Colors } from "../../../constants/Colors";
 import { examData } from "../../../data/examData";
 import { QuestionStatus } from "@/types/exam";
+import { useLocalSearchParams } from "expo-router";
 
 export default function ExamScreen() {
+  const { rollNumber, userName } = useLocalSearchParams();
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [showNavigator, setShowNavigator] = useState<boolean>(false);
   const [currentSection, setCurrentSection] = useState<number>(1);

@@ -22,6 +22,7 @@ export default function RootLayout() {
       <SafeAreaView style={styles.container}>
         <StatusBar style='auto' />
         <Stack>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />
         </Stack >

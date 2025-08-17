@@ -4,19 +4,8 @@ import { Colors, themeColor } from "../constants/Colors"
 import { ExamNavigationProps } from "@/types/exam"
 
 export default function ExamNavigation({ currentQuestion, onQuestionChange, onSectionChange, sections }: ExamNavigationProps) {
-  const allQuestions = sections.flatMap((section) => section?.questions)
-  const totalQuestions = allQuestions?.length
-
-  // const getCurrentSection = () => {
-  //   let questionCount = 0
-  //   for (const section of sections) {
-  //     if (currentQuestion < questionCount + section.questions.length) {
-  //       return section.name
-  //     }
-  //     questionCount += section.questions.length
-  //   }
-  //   return sections[0].name
-  // }
+  const allQuestions = sections.flatMap((section) => section?.questions);
+  const totalQuestions = allQuestions?.length;
 
   const getCurrentSectionForIndex = (index: number): number => {
     let questionCount = 0
