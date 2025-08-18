@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from "react-native"
 import { Colors } from "../../../constants/Colors"
-// import { useLocalSearchParams } from "expo-router"
+import { useLocalSearchParams } from "expo-router"
+import { useEffect, useState } from "react";
 
 // interface EndScreenProps {
 //   rollNumber?: string
@@ -19,7 +20,6 @@ import { Colors } from "../../../constants/Colors"
 // }
 
 export default function EndScreen() {
-  //const { totalQuestions, answered, flagged, timeSpent, sections } = examData
   const { totalQuestions, answered, flagged, timeSpent, sections } = {
     totalQuestions: 2,
     answered: 3,
@@ -27,7 +27,18 @@ export default function EndScreen() {
     timeSpent: 5,
     sections: 6
   };
-  //const { rollNumber, userName } = useLocalSearchParams();
+  const { rollNum, userName } = useLocalSearchParams();
+  const [rollNumber, setRollNumber] = useState("");
+  const [name, setName] = useState("");
+
+  useEffect(() => {
+    if (rollNum) {
+      setRollNumber(Array.isArray(rollNum) ? rollNum[0] : rollNum);
+    }
+    if (userName) {
+      setName(Array.isArray(userName) ? userName[0] : userName);
+    }
+  }, [rollNum, userName]);
 
   return (
     <ScrollView style={styles.container}>
@@ -35,7 +46,8 @@ export default function EndScreen() {
       <View style={styles.header}>
         <Text style={styles.title}>SSC Combined Graduate Level Examination</Text>
         <Text style={styles.subtitle}>Examination Completed</Text>
-        {/* {rollNumber && <Text style={styles.rollNumber}>Roll Number: {rollNumber}</Text>} */}
+        {name && <Text style={styles.rollNumber}>Name: {name}</Text>}
+        {rollNumber && <Text style={styles.rollNumber}>Roll Number: {rollNumber}</Text>}
       </View>
 
       {/* Submission Confirmation */}
@@ -124,7 +136,7 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: Colors.primary,
-    padding: 20,
+    padding: 50,
     alignItems: "center",
   },
   title: {
@@ -280,5 +292,6 @@ const styles = StyleSheet.create({
     color: "#6c757d",
     textAlign: "center",
     lineHeight: 16,
+    paddingBottom: 30
   },
 })
