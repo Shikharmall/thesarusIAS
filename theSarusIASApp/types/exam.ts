@@ -46,6 +46,7 @@ export interface ExamNavigationProps {
   sections: Section[],
   userName: string,
   rollNum: string,
+  questionStatuses: Record<number, QuestionStatus>
 }
 
 export interface QuestionDisplayProps {

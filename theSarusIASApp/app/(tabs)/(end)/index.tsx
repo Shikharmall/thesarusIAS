@@ -1,35 +1,26 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from "react-native"
-import { Colors } from "../../../constants/Colors"
-import { useLocalSearchParams } from "expo-router"
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
-
-// interface EndScreenProps {
-//   rollNumber?: string
-//   examData: {
-//     totalQuestions: number
-//     answered: number
-//     flagged: number
-//     timeSpent: string
-//     sections: Array<{
-//       name: string
-//       answered: number
-//       total: number
-//     }>
-//   }
-//   onRestart?: () => void
-// }
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Colors } from "../../../constants/Colors";
 
 export default function EndScreen() {
-  const { totalQuestions, answered, flagged, timeSpent, sections } = {
-    totalQuestions: 2,
-    answered: 3,
-    flagged: 4,
-    timeSpent: 5,
-    sections: 6
+  const { timeSpent } = {
+    timeSpent: 50,
   };
-  const { rollNum, userName } = useLocalSearchParams();
-  const [rollNumber, setRollNumber] = useState("");
-  const [name, setName] = useState("");
+
+  const { rollNum, userName, totalQuestions, answeredCount, flaggedCount, notAnsweredCount } = useLocalSearchParams();
+  const [rollNumber, setRollNumber] = useState<string>("");
+  const [name, setName] = useState<string>("");
+  const [totalQues, setTotalQues] = useState<number>(0);
+  const [answered, setAnswered] = useState<number>(0);
+  const [flagged, setFlagged] = useState<number>(0);
+  const router = useRouter();
+
+  const onRestart = () => {
+    router.push({
+      pathname: "/"
+    });
+  }
 
   useEffect(() => {
     if (rollNum) {
@@ -38,7 +29,19 @@ export default function EndScreen() {
     if (userName) {
       setName(Array.isArray(userName) ? userName[0] : userName);
     }
-  }, [rollNum, userName]);
+    if (totalQuestions) {
+      const value = Array.isArray(totalQuestions) ? totalQuestions[0] : totalQuestions;
+      setTotalQues(Number(value)); // convert string → number
+    }
+    if (answeredCount) {
+      const value = Array.isArray(answeredCount) ? answeredCount[0] : answeredCount;
+      setAnswered(Number(value)); // convert string → number
+    }
+    if (flaggedCount) {
+      const value = Array.isArray(flaggedCount) ? flaggedCount[0] : flaggedCount;
+      setFlagged(Number(value)); // convert string → number
+    }
+  }, [rollNum, userName, totalQuestions, answeredCount, flaggedCount]);
 
   return (
     <ScrollView style={styles.container}>
@@ -63,7 +66,7 @@ export default function EndScreen() {
 
         <View style={styles.summaryRow}>
           <Text style={styles.summaryLabel}>Total Questions:</Text>
-          <Text style={styles.summaryValue}>{totalQuestions}</Text>
+          <Text style={styles.summaryValue}>{totalQues}</Text>
         </View>
 
         <View style={styles.summaryRow}>
@@ -78,7 +81,7 @@ export default function EndScreen() {
 
         <View style={styles.summaryRow}>
           <Text style={styles.summaryLabel}>Not Attempted:</Text>
-          <Text style={[styles.summaryValue, styles.notAttemptedText]}>{totalQuestions - answered}</Text>
+          <Text style={[styles.summaryValue, styles.notAttemptedText]}>{totalQues - answered}</Text>
         </View>
 
         <View style={styles.summaryRow}>
@@ -88,10 +91,10 @@ export default function EndScreen() {
       </View>
 
       {/* Section-wise Summary */}
-      <View style={styles.summaryCard}>
-        <Text style={styles.cardTitle}>Section-wise Summary</Text>
+      {/* <View style={styles.summaryCard}>
+        <Text style={styles.cardTitle}>Section-wise Summary</Text> */}
 
-        {/* {sections.map((section, index) => (
+      {/* {sections.map((section, index) => (
           <View key={index} style={styles.sectionRow}>
             <Text style={styles.sectionName}>{section.name}</Text>
             <Text style={styles.sectionStats}>
@@ -99,7 +102,7 @@ export default function EndScreen() {
             </Text>
           </View>
         ))} */}
-      </View>
+      {/* </View> */}
 
       {/* Important Notice */}
       <View style={styles.noticeCard}>
@@ -112,11 +115,10 @@ export default function EndScreen() {
       </View>
 
       {/* Action Button */}
-      {/* {onRestart && (
-        <TouchableOpacity style={styles.restartButton} onPress={onRestart}>
-          <Text style={styles.restartButtonText}>Take Another Test</Text>
-        </TouchableOpacity>
-      )} */}
+
+      <TouchableOpacity style={styles.restartButton} onPress={onRestart}>
+        <Text style={styles.restartButtonText}>Take Another Test</Text>
+      </TouchableOpacity>
 
       {/* Footer */}
       <View style={styles.footer}>

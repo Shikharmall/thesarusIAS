@@ -1,10 +1,18 @@
-import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native"
-import { Ionicons } from "@expo/vector-icons"
-import { Colors, themeColor } from "../constants/Colors"
-import { ExamNavigationProps } from "@/types/exam"
+import { ExamNavigationProps } from "@/types/exam";
+import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Colors, themeColor } from "../constants/Colors";
+import { useEffect, useState } from "react";
 
-export default function ExamNavigation({ currentQuestion, onQuestionChange, onSectionChange, sections, userName, rollNum }: ExamNavigationProps) {
+export default function ExamNavigation({ currentQuestion, onQuestionChange, onSectionChange, sections, userName, rollNum,
+  questionStatuses }: ExamNavigationProps) {
+
+  const [answeredCount, setAnsweredCount] = useState<number>(0);
+  const [notAnsweredCount, setNotAnsweredCount] = useState<number>(0);
+  const [flaggedCount, setFlaggedCount] = useState<number>(0);
+  const [visitedCount, setVisitedCount] = useState<number>(0);
+  const [notVisitedCount, setNotVisitedCount] = useState<number>(0);
   const router = useRouter();
   const allQuestions = sections.flatMap((section) => section?.questions);
   const totalQuestions = allQuestions?.length;
@@ -53,13 +61,27 @@ export default function ExamNavigation({ currentQuestion, onQuestionChange, onSe
             // Alert.alert("Submitted", "Your examination has been submitted successfully!")
             router.push({
               pathname: "/(tabs)/(end)",
-              params: { userName, rollNum },
+              params: { userName, rollNum, totalQuestions, answeredCount, flaggedCount },
             });
           },
         },
       ],
     )
   }
+
+  useEffect(() => {
+
+    if (allQuestions?.length > 0) {
+
+      const answered = allQuestions?.filter(q => questionStatuses[q.id]?.answered)?.length || 0;
+      const flagged = allQuestions?.filter(q => questionStatuses[q.id]?.flagged)?.length || 0;
+
+      setAnsweredCount(answered);
+      setFlaggedCount(flagged);
+
+    }
+
+  }, [allQuestions]);
 
   return (
     <View style={styles.container}>

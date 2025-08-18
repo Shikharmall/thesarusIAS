@@ -1,23 +1,23 @@
+import { QuestionStatus } from "@/types/exam";
+import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { StyleSheet, View } from "react-native";
 import ExamHeader from "../../../components/ExamHeader";
-import QuestionNavigator from "../../../components/QuestionNavigation";
-import QuestionDisplay from "../../../components/QuestionDisplay";
 import ExamNavigation from "../../../components/ExamNavigation";
 import InstructionModal from "../../../components/InstructionModal";
+import QuestionDisplay from "../../../components/QuestionDisplay";
+import QuestionNavigator from "../../../components/QuestionNavigation";
 import ResponsiveLayout from "../../../components/ResponsiveLayout";
 import { Colors } from "../../../constants/Colors";
 import { examData } from "../../../data/examData";
-import { QuestionStatus } from "@/types/exam";
-import { useLocalSearchParams } from "expo-router";
 
 export default function ExamScreen() {
   const { name, rollNumber } = useLocalSearchParams<{
     rollNumber?: string | string[];
     name?: string | string[];
   }>();
-  const [rollNum, setRollNum] = useState("");
-  const [userName, setUserName] = useState("");
+  const [rollNum, setRollNum] = useState<string>("");
+  const [userName, setUserName] = useState<string>("");
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [showNavigator, setShowNavigator] = useState<boolean>(false);
   const [currentSection, setCurrentSection] = useState<number>(1);
@@ -85,8 +85,6 @@ export default function ExamScreen() {
         <>
           <ExamHeader onToggleNavigator={() => setShowNavigator(!showNavigator)} showNavigator={showNavigator} />
 
-          {/* <Text>{rollNum}-{name}</Text> */}
-
           <ResponsiveLayout
             showSidebar={showNavigator}
             sidebar={
@@ -119,6 +117,7 @@ export default function ExamScreen() {
               sections={examData?.sections}
               userName={userName}
               rollNum={rollNum}
+              questionStatuses={questionStatuses}
             />
           </ResponsiveLayout>
         </>
