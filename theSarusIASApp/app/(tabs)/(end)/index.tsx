@@ -8,7 +8,7 @@ export default function EndScreen() {
     timeSpent: 50,
   };
 
-  const { rollNum, userName, totalQuestions, answeredCount, flaggedCount, notAnsweredCount } = useLocalSearchParams();
+  const { rollNum, userName, totalQuestions, answeredCount, flaggedCount } = useLocalSearchParams();
   const [rollNumber, setRollNumber] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [totalQues, setTotalQues] = useState<number>(0);
