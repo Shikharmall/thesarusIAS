@@ -2,8 +2,10 @@ import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 import { Colors, themeColor } from "../constants/Colors"
 import { ExamNavigationProps } from "@/types/exam"
+import { useRouter } from "expo-router";
 
-export default function ExamNavigation({ currentQuestion, onQuestionChange, onSectionChange, sections }: ExamNavigationProps) {
+export default function ExamNavigation({ currentQuestion, onQuestionChange, onSectionChange, sections, userName, rollNum }: ExamNavigationProps) {
+  const router = useRouter();
   const allQuestions = sections.flatMap((section) => section?.questions);
   const totalQuestions = allQuestions?.length;
 
@@ -48,7 +50,11 @@ export default function ExamNavigation({ currentQuestion, onQuestionChange, onSe
           style: "destructive",
           onPress: () => {
             // Handle exam submission
-            Alert.alert("Submitted", "Your examination has been submitted successfully!")
+            // Alert.alert("Submitted", "Your examination has been submitted successfully!")
+            router.push({
+              pathname: "/(tabs)/(end)",
+              params: { userName, rollNum },
+            });
           },
         },
       ],

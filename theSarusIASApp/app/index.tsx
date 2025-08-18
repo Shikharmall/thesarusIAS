@@ -36,19 +36,12 @@ export default function LoginScreen() {
             return
         }
 
-        setLoading(true)
+        setLoading(true);
 
-        // router.replace("/(tabs)/(exam)");
         router.replace({
             pathname: "/(tabs)/(exam)",
             params: { name, rollNumber },
         });
-
-        // Simulate API call
-        // setTimeout(() => {
-        //     setLoading(false)
-        //     onLogin(rollNumber, password)
-        // }, 1500)
     }
 
     return (

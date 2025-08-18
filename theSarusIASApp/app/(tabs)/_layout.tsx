@@ -5,7 +5,7 @@ export default function TabLayout() {
   return (
     <Stack>
       <Stack.Screen name="(exam)/index" options={{ headerShown: false }} />
-      {/* <Stack.Screen name="+not-found" /> */}
+      <Stack.Screen name="(end)/index" options={{ headerShown: false }} />
     </Stack>
   );
 }

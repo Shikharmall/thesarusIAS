@@ -43,7 +43,9 @@ export interface ExamNavigationProps {
   currentQuestion: number,
   onQuestionChange: (questionIndex: number) => void,
   onSectionChange: (sectionId: number) => void,
-  sections: Section[]
+  sections: Section[],
+  userName: string,
+  rollNum: string,
 }
 
 export interface QuestionDisplayProps {
