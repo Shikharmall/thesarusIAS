@@ -31,15 +31,15 @@ export default function EndScreen() {
     }
     if (totalQuestions) {
       const value = Array.isArray(totalQuestions) ? totalQuestions[0] : totalQuestions;
-      setTotalQues(Number(value)); // convert string → number
+      setTotalQues(Number(value));
     }
     if (answeredCount) {
       const value = Array.isArray(answeredCount) ? answeredCount[0] : answeredCount;
-      setAnswered(Number(value)); // convert string → number
+      setAnswered(Number(value));
     }
     if (flaggedCount) {
       const value = Array.isArray(flaggedCount) ? flaggedCount[0] : flaggedCount;
-      setFlagged(Number(value)); // convert string → number
+      setFlagged(Number(value));
     }
   }, [rollNum, userName, totalQuestions, answeredCount, flaggedCount]);
 
