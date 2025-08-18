@@ -17,10 +17,8 @@ export default function EndScreen() {
   const router = useRouter();
 
   const onRestart = () => {
-    router.push({
-      pathname: "/"
-    });
-  }
+    router.dismissAll(); // clears the whole stack and goes to root (index)
+  };
 
   useEffect(() => {
     if (rollNum) {
