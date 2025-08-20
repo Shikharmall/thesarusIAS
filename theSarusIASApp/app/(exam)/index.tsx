@@ -2,14 +2,14 @@ import { QuestionStatus } from "@/types/exam";
 import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import ExamHeader from "../../../components/ExamHeader";
-import ExamNavigation from "../../../components/ExamNavigation";
-import InstructionModal from "../../../components/InstructionModal";
-import QuestionDisplay from "../../../components/QuestionDisplay";
-import QuestionNavigator from "../../../components/QuestionNavigation";
-import ResponsiveLayout from "../../../components/ResponsiveLayout";
-import { Colors } from "../../../constants/Colors";
-import { examData } from "../../../data/examData";
+import ExamHeader from "../../components/ExamHeader";
+import ExamNavigation from "../../components/ExamNavigation";
+import InstructionModal from "../../components/InstructionModal";
+import QuestionDisplay from "../../components/QuestionDisplay";
+import QuestionNavigator from "../../components/QuestionNavigation";
+import ResponsiveLayout from "../../components/ResponsiveLayout";
+import { Colors } from "../../constants/Colors";
+import { examData } from "../../data/examData";
 
 export default function ExamScreen() {
   const { name, rollNumber } = useLocalSearchParams<{
@@ -23,7 +23,7 @@ export default function ExamScreen() {
   const [currentSection, setCurrentSection] = useState<number>(1);
   const [showInstructions, setShowInstructions] = useState(true);
   const [examStarted, setExamStarted] = useState<boolean>(false);
-  const [questionStatuses, setQuestionStatuses] = useState<Record<number, QuestionStatus>>({})
+  const [questionStatuses, setQuestionStatuses] = useState<Record<number, QuestionStatus>>({});
 
   const handleStartExam = () => {
     setShowInstructions(false)
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.background,
-    paddingTop: 20,
+    paddingTop: 30,
     paddingBottom: 40
   },
 })

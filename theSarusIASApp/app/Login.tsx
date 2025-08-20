@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useCallback, useState } from "react"
 import {
     View,
     Text,
@@ -9,9 +9,10 @@ import {
     KeyboardAvoidingView,
     Platform,
     ScrollView,
+    BackHandler,
 } from "react-native"
 import { Colors } from "../constants/Colors"
-import { useRouter } from "expo-router";
+import { useFocusEffect, useRouter } from "expo-router";
 
 export default function LoginScreen() {
     const [name, setName] = useState<string>("");
@@ -36,13 +37,36 @@ export default function LoginScreen() {
             return
         }
 
-        setLoading(true);
+        // setLoading(true);
 
-        router.replace({
-            pathname: "/(tabs)/(exam)",
+        router.push({
+            pathname: "/(exam)",
             params: { name, rollNumber },
         });
     }
+
+    const backAction = () => {
+        Alert.alert("Hold on!", "Are you sure you want to exit app?", [
+            {
+                text: "Cancel",
+                onPress: () => null,
+                style: "cancel",
+            },
+            { text: "YES", onPress: () => BackHandler.exitApp() },
+        ]);
+        return true;
+    };
+
+    useFocusEffect(
+        useCallback(() => {
+            const backHandler = BackHandler.addEventListener(
+                "hardwareBackPress",
+                backAction
+            );
+
+            return () => backHandler.remove();
+        }, [])
+    );
 
     return (
         <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === "ios" ? "padding" : "height"}>
@@ -231,7 +255,7 @@ const styles = StyleSheet.create({
     footer: {
         alignItems: "center",
         marginTop: "auto",
-        paddingTop: 20,
+        paddingTop: 10,
     },
     footerText: {
         fontSize: 12,

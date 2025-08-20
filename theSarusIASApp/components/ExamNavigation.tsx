@@ -9,10 +9,7 @@ export default function ExamNavigation({ currentQuestion, onQuestionChange, onSe
   questionStatuses }: ExamNavigationProps) {
 
   const [answeredCount, setAnsweredCount] = useState<number>(0);
-  const [notAnsweredCount, setNotAnsweredCount] = useState<number>(0);
   const [flaggedCount, setFlaggedCount] = useState<number>(0);
-  const [visitedCount, setVisitedCount] = useState<number>(0);
-  const [notVisitedCount, setNotVisitedCount] = useState<number>(0);
   const router = useRouter();
   const allQuestions = sections.flatMap((section) => section?.questions);
   const totalQuestions = allQuestions?.length;
@@ -60,7 +57,7 @@ export default function ExamNavigation({ currentQuestion, onQuestionChange, onSe
             // Handle exam submission
             // Alert.alert("Submitted", "Your examination has been submitted successfully!")
             router.push({
-              pathname: "/(tabs)/(end)",
+              pathname: "/(end)",
               params: { userName, rollNum, totalQuestions, answeredCount, flaggedCount },
             });
           },
@@ -75,7 +72,6 @@ export default function ExamNavigation({ currentQuestion, onQuestionChange, onSe
 
       const answered = allQuestions?.filter(q => questionStatuses[q.id]?.answered)?.length || 0;
       const flagged = allQuestions?.filter(q => questionStatuses[q.id]?.flagged)?.length || 0;
-
       setAnsweredCount(answered);
       setFlaggedCount(flagged);
 

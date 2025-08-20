@@ -1,7 +1,7 @@
-import { useLocalSearchParams, useRouter } from "expo-router";
-import { useEffect, useState } from "react";
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { Colors } from "../../../constants/Colors";
+import { useFocusEffect, useLocalSearchParams, useRouter } from "expo-router";
+import { useCallback, useEffect, useState } from "react";
+import { BackHandler, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Colors } from "../../constants/Colors";
 
 export default function EndScreen() {
   const { timeSpent } = {
@@ -15,10 +15,6 @@ export default function EndScreen() {
   const [answered, setAnswered] = useState<number>(0);
   const [flagged, setFlagged] = useState<number>(0);
   const router = useRouter();
-
-  const onRestart = () => {
-    router.dismissAll(); // clears the whole stack and goes to root (index)
-  };
 
   useEffect(() => {
     if (rollNum) {
@@ -40,6 +36,23 @@ export default function EndScreen() {
       setFlagged(Number(value));
     }
   }, [rollNum, userName, totalQuestions, answeredCount, flaggedCount]);
+
+  const backAction = () => {
+    router.dismissAll();   // close all routes
+    router.replace("/Login");  // go to home
+    return true;
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      const backHandler = BackHandler.addEventListener(
+        "hardwareBackPress",
+        backAction
+      );
+
+      return () => backHandler.remove();
+    }, [])
+  );
 
   return (
     <ScrollView style={styles.container}>
@@ -114,7 +127,7 @@ export default function EndScreen() {
 
       {/* Action Button */}
 
-      <TouchableOpacity style={styles.restartButton} onPress={onRestart}>
+      <TouchableOpacity style={styles.restartButton} onPress={backAction}>
         <Text style={styles.restartButtonText}>Take Another Test</Text>
       </TouchableOpacity>
 
@@ -136,7 +149,7 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: Colors.primary,
-    padding: 50,
+    padding: 40,
     alignItems: "center",
   },
   title: {

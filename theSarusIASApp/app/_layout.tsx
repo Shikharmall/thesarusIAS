@@ -21,9 +21,10 @@ export default function RootLayout() {
       <SafeAreaView style={styles.container}>
         <StatusBar style='auto' />
         <Stack>
-          <Stack.Screen name="index" options={{ headerShown: false }} />
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" />
+          <Stack.Screen name="LoginWithOTP" options={{ headerShown: false }} />
+          <Stack.Screen name="(exam)" options={{ headerShown: false }} />
+          <Stack.Screen name="(end)" options={{ headerShown: false }} />
+          <Stack.Screen name="+not-found" options={{ headerShown: false }} />
         </Stack >
       </SafeAreaView>
     </SafeAreaProvider>

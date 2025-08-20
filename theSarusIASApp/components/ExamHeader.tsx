@@ -1,8 +1,7 @@
-"use client"
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
-import { Ionicons } from "@expo/vector-icons"
 import { ExamTimer } from "./ExamTimer"
 import { Colors, themeColor } from "../constants/Colors"
+import AnimatedHamburger from "./ui/AnimatedHamburger"
 
 interface ExamHeaderProps {
     onToggleNavigator: () => void
@@ -23,9 +22,12 @@ export default function ExamHeader({ onToggleNavigator, showNavigator }: ExamHea
 
             <View style={styles.rightSection}>
                 <ExamTimer initialTime={3600} duration={50} onTimeUp={handleTimeUp} />
-                <TouchableOpacity onPress={onToggleNavigator} style={styles.menuButton}>
-                    <Ionicons name={showNavigator ? "close" : "menu"} size={30} color={themeColor?.primary} />
-                </TouchableOpacity>
+                <AnimatedHamburger
+                    isOpen={showNavigator}
+                    onPress={onToggleNavigator}
+                    size={28}
+                    color={themeColor?.primary}
+                />
             </View>
         </View>
     )
