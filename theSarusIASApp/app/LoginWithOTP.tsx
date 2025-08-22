@@ -10,40 +10,40 @@ import {
     Platform,
     ScrollView,
     BackHandler,
+    Image
 } from "react-native"
-import { Colors } from "../constants/Colors"
+import { Colors, themeColor } from "../constants/Colors"
 import { useFocusEffect, useRouter } from "expo-router";
 
 export default function LoginWithOTP() {
-    const [name, setName] = useState<string>("");
-    const [rollNumber, setRollNumber] = useState<string>("");
-    // const [password, setPassword] = useState("");
+    const [phone, setPhone] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
     const router = useRouter();
 
-    const handleLogin = async () => {
-        // if (!rollNumber.trim() || !password.trim()) {
-        //     Alert.alert("Error", "Please enter both Roll Number and Password")
-        //     return
-        // }
 
-        if (!rollNumber.trim() || !name.trim()) {
-            Alert.alert("Error", "Please enter both Name and Roll Number")
-            return
+    const handleLogin = async () => {
+        const phoneNumber = Number(phone);
+
+        // Check if phone is empty or too short
+        if (!phone.trim() || phone.length < 8) {
+            Alert.alert("Error", "Please enter a valid Phone Number");
+            return;
         }
 
-        if (rollNumber.length < 8) {
-            Alert.alert("Error", "Please enter a valid Roll Number")
-            return
+        // You could also validate strictly numeric input here
+        if (isNaN(phoneNumber)) {
+            Alert.alert("Error", "Phone number must be numeric");
+            return;
         }
 
         // setLoading(true);
 
         router.push({
             pathname: "/(exam)",
-            params: { name, rollNumber },
+            params: { phone }, // send as string
         });
-    }
+    };
+
 
     const backAction = () => {
         Alert.alert("Hold on!", "Are you sure you want to exit app?", [
@@ -72,36 +72,40 @@ export default function LoginWithOTP() {
         <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === "ios" ? "padding" : "height"}>
             <ScrollView contentContainerStyle={styles.scrollContainer}>
                 <View style={styles.header}>
-                    <Text style={styles.title}>SSC CGL Examination</Text>
-                    <Text style={styles.subtitle}>Staff Selection Commission</Text>
-                    <Text style={styles.examTitle}>Combined Graduate Level Examination</Text>
+                    <Image
+                        source={require("../assets/images/thesaruslogo.jpg")}
+                        style={styles.image}
+                        resizeMode="contain" // contain | cover | stretch | center
+                    />
+                    <Text style={styles.title}>The Sarus Learning App</Text>
+                    <Text style={styles.subtitle}>Learning within you</Text>
+                    {/* <Text style={styles.examTitle}>Combined Graduate Level Examination</Text> */}
                 </View>
 
                 <View style={styles.loginCard}>
                     <Text style={styles.loginTitle}>Login with OTP</Text>
 
-                    <View className="flex flex-row">
-                        {/* <Text style={styles.label}>Roll Number</Text> */}
+                    <View style={{ flexDirection: "row", alignItems: "center" }}>
+                        {/* Country code input (fixed) */}
                         <TextInput
-                            style={styles.input}
-                            // value={rollNumber}
-                            onChangeText={setRollNumber}
-                            placeholder="+91"
-                            aria-disabled={true}
+                            style={[styles.input, { width: 60, textAlign: "center", marginRight: 8 }]}
+                            value="+91"
+                            editable={false}
                             placeholderTextColor={Colors.textSecondary}
-                        // autoCapitalize="characters"
-                        // maxLength={12}
                         />
+
+                        {/* Phone number input */}
                         <TextInput
-                            style={styles.input}
-                            value={rollNumber}
-                            onChangeText={setRollNumber}
-                            placeholder="Enter your Roll Number"
+                            style={[styles.input, { flex: 1 }]}
+                            value={phone}
+                            onChangeText={setPhone}
+                            keyboardType="numeric"
+                            maxLength={10} // typical for Indian numbers
+                            placeholder="Enter your Phone Number"
                             placeholderTextColor={Colors.textSecondary}
-                            autoCapitalize="characters"
-                            maxLength={12}
                         />
                     </View>
+
 
                     <TouchableOpacity
                         style={[styles.loginButton, loading && styles.loginButtonDisabled]}
@@ -121,10 +125,10 @@ export default function LoginWithOTP() {
                     </View>
                 </View>
 
-                <View style={styles.footer}>
-                    <Text style={styles.footerText}>© 2025 Staff Selection Commission</Text>
+                {/* <View style={styles.footer}>
+                    <Text style={styles.footerText}>© 2025 thesarus.com</Text>
                     <Text style={styles.footerText}>Government of India</Text>
-                </View>
+                </View> */}
             </ScrollView>
         </KeyboardAvoidingView>
     )
@@ -138,21 +142,31 @@ const styles = StyleSheet.create({
     scrollContainer: {
         flexGrow: 1,
         padding: 20,
+        // paddingBottom: 10
     },
     header: {
         alignItems: "center",
-        marginBottom: 40,
-        paddingTop: 20,
+        // marginBottom: 40,
+        // paddingTop: 20,
+        marginVertical: 40
     },
     title: {
-        fontSize: 28,
-        fontWeight: "bold",
-        color: Colors.primary,
+        fontSize: 20,
+        fontWeight: "semibold",
+        color: themeColor?.secondary,
         textAlign: "center",
         marginBottom: 8,
     },
+    image: {
+        borderRadius: 5,
+        borderColor: '#000',
+        borderWidth: 0.2,
+        width: 100,
+        height: 100,
+        marginVertical: 30
+    },
     subtitle: {
-        fontSize: 18,
+        fontSize: 16,
         color: Colors.textSecondary,
         textAlign: "center",
         marginBottom: 4,
@@ -178,8 +192,8 @@ const styles = StyleSheet.create({
         elevation: 3,
     },
     loginTitle: {
-        fontSize: 24,
-        fontWeight: "bold",
+        fontSize: 18,
+        fontWeight: "semibold",
         color: Colors.text,
         textAlign: "center",
         marginBottom: 24,
@@ -203,12 +217,12 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.background,
     },
     loginButton: {
-        backgroundColor: Colors.primary,
+        backgroundColor: themeColor?.secondary,
         borderRadius: 8,
         padding: 16,
         alignItems: "center",
-        marginTop: 10,
-        marginBottom: 20,
+        marginTop: 30,
+        marginBottom: 40,
     },
     loginButtonDisabled: {
         backgroundColor: Colors.textSecondary,

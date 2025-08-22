@@ -1,30 +1,31 @@
 import React, { useState } from 'react'
 import { colors, themeColor } from '../utils/Color'
+import { Link } from 'react-router-dom'
 
 export default function Navbar() {
-    const [isContactOpen, setIsContactOpen] = useState(false)
-    const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const [isContactOpen, setIsContactOpen] = useState<boolean>(false)
+    const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
     return (
         <nav className="relative z-10 flex items-center justify-between p-6 mx-40">
             <div className="flex items-center gap-4">
-                <button className="px-6 py-2 rounded-md font-semibold" style={{ color: colors?.white, backgroundColor: themeColor?.secondary }}>
+                <button className="px-6 py-2 rounded-md font-semibold text-sm" style={{ color: colors?.white, backgroundColor: themeColor?.secondary }}>
                     ASMITA SCHEME 2025
                 </button>
             </div>
 
             <div className="flex items-center gap-4">
-                <div className="flex items-center gap-3">
+                <Link to={'/'} className="flex items-center gap-3">
                     {/* <div className="w-12 h-12 bg-black rounded-lg flex items-center justify-center">
                         <span className="text-white font-bold text-xl">d</span>
                     </div>
                     <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center">
                         <span className="text-red-600 font-bold text-sm">दृष्टि</span>
                     </div> */}
-                    <img src="../../images/thesaruslogo.jpg" className='w-15 h-15 rounded' />
-                </div>
+                    <img src="../../images/thesaruslogo.jpg" className='w-10 h-10 rounded' />
+                </Link>
 
                 <div className="flex items-center gap-4 text-slate-800">
-                    <span className="font-semibold">+91-87501-87501</span>
+                    <span className="font-semibold">+91-XXXXX-XXXXX</span>
                     <button
                         //variant="ghost" 
                         className="text-slate-800 hover:text-slate-900">

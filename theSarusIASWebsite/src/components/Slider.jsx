@@ -19,9 +19,9 @@ import { useState } from "react";
 // import Footer from "@/components/footer";
 
 export default function Slider() {
-  const [isContactOpen, setIsContactOpen] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isContactOpen, setIsContactOpen] = useState < boolean > (false);
+  const [isMenuOpen, setIsMenuOpen] = useState < boolean > (false);
+  const [currentSlide, setCurrentSlide] = useState < number > (0);
 
   const programmes = [
     {
@@ -176,19 +176,16 @@ export default function Slider() {
             >
               <div className="w-6 h-6 flex flex-col justify-center items-center">
                 <div
-                  className={`w-full h-0.5 bg-white rounded-full transition-all duration-300 ${
-                    isMenuOpen ? "rotate-45 translate-y-1" : ""
-                  }`}
+                  className={`w-full h-0.5 bg-white rounded-full transition-all duration-300 ${isMenuOpen ? "rotate-45 translate-y-1" : ""
+                    }`}
                 ></div>
                 <div
-                  className={`w-full h-0.5 bg-white rounded-full my-1 transition-all duration-300 ${
-                    isMenuOpen ? "opacity-0" : "opacity-100"
-                  }`}
+                  className={`w-full h-0.5 bg-white rounded-full my-1 transition-all duration-300 ${isMenuOpen ? "opacity-0" : "opacity-100"
+                    }`}
                 ></div>
                 <div
-                  className={`w-full h-0.5 bg-white rounded-full transition-all duration-300 ${
-                    isMenuOpen ? "-rotate-45 -translate-y-1" : ""
-                  }`}
+                  className={`w-full h-0.5 bg-white rounded-full transition-all duration-300 ${isMenuOpen ? "-rotate-45 -translate-y-1" : ""
+                    }`}
                 ></div>
               </div>
             </button>
@@ -500,11 +497,10 @@ export default function Slider() {
                 <button
                   key={index}
                   onClick={() => setCurrentSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-200 ${
-                    index === currentSlide
+                  className={`w-3 h-3 rounded-full transition-all duration-200 ${index === currentSlide
                       ? "bg-gradient-to-r from-cyan-400 to-cyan-500 shadow-lg"
                       : "bg-gray-300 hover:bg-gray-400"
-                  }`}
+                    }`}
                 />
               ))}
             </div>

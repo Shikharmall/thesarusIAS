@@ -166,15 +166,15 @@ export default function Footer() {
                     <div>
                         <h4 className="text-xl font-bold mb-6 text-cyan-400">Contact Us</h4>
                         <div className="space-y-4">
-                            <div className="flex items-start gap-3">
+                            <div className="flex items-center gap-3">
                                 <div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-cyan-500 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
                                     <MapPin className="w-4 h-4 text-white" />
                                 </div>
                                 <div>
                                     <p className="text-gray-300 text-sm leading-relaxed">
-                                        641, First Floor, Dr. Mukherjee Nagar,
-                                        <br />
-                                        Delhi - 110009, India
+                                        {/* 641, First Floor, Dr. Mukherjee Nagar,
+                                        <br /> */}
+                                        Uttar Pradesh, India
                                     </p>
                                 </div>
                             </div>
@@ -184,7 +184,7 @@ export default function Footer() {
                                     <Phone className="w-4 h-4 text-white" />
                                 </div>
                                 <div>
-                                    <p className="text-gray-300 text-sm">+91-87501-87501</p>
+                                    <p className="text-gray-300 text-sm">+91-XXXXX-XXXXX</p>
                                     {/* <p className="text-gray-300 text-sm">+91-11-43532333</p> */}
                                 </div>
                             </div>
@@ -202,7 +202,7 @@ export default function Footer() {
 
                         {/* App Download buttons */}
                         <div className="mt-6 space-y-3">
-                            <button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white py-3 px-4 rounded-xl text-sm font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
+                            <button className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white py-3 px-4 rounded-xl text-sm font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 flex flex-row items-center cursor-pointer">
                                 <ExternalLink className="w-4 h-4 mr-2" />
                                 Download Mobile App
                             </button>
@@ -223,7 +223,7 @@ export default function Footer() {
                                 placeholder="Enter your email address"
                                 className="flex-1 px-4 py-3 bg-slate-800 border border-slate-600 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-cyan-500 focus:border-transparent outline-none transition-all duration-200"
                             />
-                            <button className="bg-gradient-to-r from-cyan-400 to-cyan-500 hover:from-cyan-500 hover:to-cyan-600 text-white px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
+                            <button className="bg-gradient-to-r from-cyan-400 to-cyan-500 hover:from-cyan-500 hover:to-cyan-600 text-white px-8 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 cursor-pointer">
                                 Subscribe
                             </button>
                         </div>

@@ -66,3 +66,16 @@ export interface MCQQuestionProps {
   onFlagQuestion: (questionId: number) => void,
   onClearResponse: (questionId: number) => void,
 }
+
+
+export interface AnimatedCircleProgressProps {
+  progress: number
+  size?: number
+  strokeWidth?: number
+  className?: string
+  duration?: number
+  color?: string
+  backgroundColor?: string
+  showPercentage?: boolean
+  label: string
+}

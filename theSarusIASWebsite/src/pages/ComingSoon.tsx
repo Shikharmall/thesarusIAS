@@ -1,15 +1,13 @@
-import type React from "react"
-
-// import { button } from "@/components/ui/button"
-import { Clock, Mail, Bell, Calendar, ArrowRight, CheckCircle } from "lucide-react"
-import { useState } from "react"
-import { Link } from "react-router-dom"
+import type React from "react";
+import { Clock, Mail, Bell, Calendar, ArrowRight, CheckCircle } from "lucide-react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function ComingSoon() {
-    const [email, setEmail] = useState("")
-    const [isSubscribed, setIsSubscribed] = useState(false)
+    const [email, setEmail] = useState<string>("");
+    const [isSubscribed, setIsSubscribed] = useState<boolean>(false);
 
-    const handleSubscribe = (e: React.FormEvent) => {
+    const handleSubscribe = (e: React.FormEvent): void => {
         e.preventDefault()
         if (email) {
             setIsSubscribed(true)

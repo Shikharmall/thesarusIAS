@@ -5,6 +5,13 @@ export interface themeColorType {
     lightSecondary: string
 }
 
+export interface ProgrammeItem {
+    id: number,
+    name: string,
+    nameHindi: string,
+    url: string
+}
+
 export interface Section {
     id: number,
     name: string;

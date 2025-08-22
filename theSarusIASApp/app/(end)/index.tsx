@@ -39,7 +39,7 @@ export default function EndScreen() {
 
   const backAction = () => {
     router.dismissAll();   // close all routes
-    router.replace("/Login");  // go to home
+    router.replace("/LoginWithOTP");  // go to home
     return true;
   };
 

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import ComingSoon from "./pages/ComingSoon";
 // import Slider from "./components/Slider";
-// import Home from "./pages/Home";
+import Home from "./pages/Home";
 import ExaminationScreen from "./pages/ExaminationScreen";
 import InstructionsPage from "./pages/Instruction";
 import TermsPage from "./pages/Term";
@@ -19,9 +19,9 @@ function App() {
 
   return (
     <Routes>
-      {/* <Route exact path="/" element={<Home />} /> */}
+      <Route exact path="/" element={<Home />} />
       {/* <Route exact path="/slider" element={<Slider />} /> */}
-      <Route exact path="/" element={<InstructionsPage />} />
+      <Route exact path="/instructionPage" element={<InstructionsPage />} />
       {/* <Route exact path="/" element={<InstructionPopup />} /> */}
       <Route exact path="/terms" element={<TermsPage />} />
       <Route exact path="/exam" element={<ExaminationScreen />} />

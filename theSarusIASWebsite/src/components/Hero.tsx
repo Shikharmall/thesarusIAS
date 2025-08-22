@@ -1,4 +1,3 @@
-
 import {
     Apple,
     Smartphone,
@@ -20,107 +19,10 @@ import {
 import { themeColor } from "../utils/Color"
 import Navbar from "./Navbar"
 import { useState } from "react";
-
+import SliderContent from "./SliderContent";
+import ChatBot from "./ChatBot";
 
 export default function Hero() {
-    const [currentSlide, setCurrentSlide] = useState(0);
-    const programmes = [
-        {
-            id: 1,
-            title: "UPSC CSE Foundation Course 2025",
-            description:
-                "Comprehensive foundation course for UPSC Civil Services Examination with expert faculty and structured curriculum.",
-            duration: "12 Months",
-            students: "2,500+",
-            subjects: "All Subjects",
-            price: "₹45,000",
-            image: "/placeholder-apfpk.png",
-            features: [
-                "Live Classes",
-                "Test Series",
-                "Study Material",
-                "Doubt Clearing",
-            ],
-        },
-        {
-            id: 2,
-            title: "State PCS Comprehensive Program",
-            description:
-                "Complete preparation program for State Public Service Commission examinations across all states.",
-            duration: "10 Months",
-            students: "1,800+",
-            subjects: "State Specific",
-            price: "₹35,000",
-            image: "/indian-government-building.png",
-            features: [
-                "State-wise Syllabus",
-                "Mock Tests",
-                "Current Affairs",
-                "Interview Prep",
-            ],
-        },
-        {
-            id: 3,
-            title: "Prelims Test Series 2025",
-            description:
-                "Intensive test series designed to crack UPSC Prelims with detailed analysis and performance tracking.",
-            duration: "6 Months",
-            students: "5,000+",
-            subjects: "GS & CSAT",
-            price: "₹15,000",
-            image: "/placeholder-v4ppg.png",
-            features: [
-                "50+ Tests",
-                "All India Ranking",
-                "Detailed Solutions",
-                "Performance Analytics",
-            ],
-        },
-        {
-            id: 4,
-            title: "Mains Answer Writing Program",
-            description:
-                "Specialized program to master answer writing skills for UPSC Mains examination with expert evaluation.",
-            duration: "8 Months",
-            students: "3,200+",
-            subjects: "All GS Papers",
-            price: "₹25,000",
-            image: "/writing-pen-notebook-essays.png",
-            features: [
-                "Daily Practice",
-                "Expert Evaluation",
-                "Model Answers",
-                "Writing Techniques",
-            ],
-        },
-        {
-            id: 5,
-            title: "Current Affairs Mastery Course",
-            description:
-                "Stay updated with comprehensive current affairs coverage for all competitive examinations.",
-            duration: "12 Months",
-            students: "8,000+",
-            subjects: "Current Affairs",
-            price: "₹12,000",
-            image: "/newspaper-digital-news.png",
-            features: [
-                "Daily Updates",
-                "Monthly Magazines",
-                "Video Analysis",
-                "MCQ Practice",
-            ],
-        },
-    ];
-
-    const nextSlide = () => {
-        setCurrentSlide((prev) => (prev + 1) % programmes.length);
-    };
-
-    const prevSlide = () => {
-        setCurrentSlide(
-            (prev) => (prev - 1 + programmes.length) % programmes.length
-        );
-    };
 
     return (
         <div className={`min-h-screen bg-gradient-to-br from-[${themeColor?.primary}] via-cyan-500 to-[${themeColor?.secondary}] relative overflow-hidden`}>
@@ -147,6 +49,7 @@ export default function Hero() {
 
             {/* Hero Content */}
             <main className="relative z-10 flex flex-col items-center justify-center px-6 py-16">
+
                 <div className="text-center mb-12">
                     <h1 className="text-6xl md:text-5xl font-bold text-white mb-4">Think IAS Think Drishti</h1>
                     <p className="text-2xl text-white/90 font-light">Think - Connect - Express</p>
@@ -154,7 +57,7 @@ export default function Hero() {
 
                 {/* App Download buttons */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 w-full max-w-4xl">
-                    <button className="bg-slate-800 hover:bg-slate-900 text-white py-6 px-6 rounded-lg flex items-center gap-3 text-xs font-semibold cursor-pointer flex justify-center transition-all transform hover:scale-105">
+                    <button className="bg-slate-800 hover:bg-slate-900 text-white py-6 px-6 rounded-lg flex items-center gap-3 text-xs font-semibold cursor-pointer flex justify-center transition-all transform hover:scale-105" style={{ backgroundColor: themeColor?.secondary }}>
                         <Apple className="w-3 h-3" />
                         The SARUS LEARNING APP (IOS)
                     </button>
@@ -183,139 +86,13 @@ export default function Hero() {
                     </button>
                 </div>
 
-                {/* Bottom Section */}
-                <div className="bg-white rounded-2xl p-8 w-full max-w-6xl shadow-2xl">
+                {/* Bottom Section Slider */}
+                <SliderContent />
 
-                    <div className="flex items-center gap-2">
-                        <button
-                            onClick={prevSlide}
-                            className="bg-gradient-to-r from-cyan-400 to-cyan-500 hover:from-cyan-500 hover:to-cyan-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
-                        >
-                            <ChevronLeft className="w-5 h-5" />
-                        </button>
-                        <button
-                            onClick={nextSlide}
-                            className="bg-gradient-to-r from-cyan-400 to-cyan-500 hover:from-cyan-500 hover:to-cyan-600 text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
-                        >
-                            <ChevronRight className="w-5 h-5" />
-                        </button>
-                    </div>
-
-                    <div className="overflow-hidden rounded-2xl">
-                        <div
-                            className="flex transition-transform duration-500 ease-in-out"
-                            style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-                        >
-                            {programmes.map((programme) => (
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                                    {/* English Section */}
-                                    <div className="text-center">
-                                        <div className="w-16 h-16 bg-black rounded-lg flex items-center justify-center mx-auto mb-6">
-                                            <span className="text-white font-bold text-2xl">d</span>
-                                        </div>
-
-                                        <div className="grid grid-cols-3 gap-3 mb-6">
-                                            <button className="bg-cyan-400 hover:bg-cyan-500 text-white py-3 px-4 rounded-lg font-semibold">
-                                                News & Editorials
-                                            </button>
-                                            <button className="bg-cyan-400 hover:bg-cyan-500 text-white py-3 px-4 rounded-lg font-semibold">
-                                                Drishti Media
-                                            </button>
-                                            <button className="bg-cyan-400 hover:bg-cyan-500 text-white py-3 px-4 rounded-lg font-semibold">
-                                                Optional Subjects
-                                            </button>
-                                            <button className="bg-cyan-400 hover:bg-cyan-500 text-white py-3 px-4 rounded-lg font-semibold">
-                                                Classroom Prog.
-                                            </button>
-                                            <button className="bg-cyan-400 hover:bg-cyan-500 text-white py-3 px-4 rounded-lg font-semibold">
-                                                Mains Test Series
-                                            </button>
-                                            <button className="bg-cyan-400 hover:bg-cyan-500 text-white py-3 px-4 rounded-lg font-semibold">
-                                                Daily MCQs
-                                            </button>
-                                        </div>
-
-                                        <button className="bg-red-500 hover:bg-red-600 text-white py-3 px-8 rounded-lg font-bold text-lg">
-                                            VISIT ENGLISH WEBSITE
-                                        </button>
-                                    </div>
-                                </div>
-
-                            ))}
-
-                        </div>
-
-                    </div>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        {/* English Section */}
-                        <div className="text-center">
-                            <div className="w-16 h-16 bg-black rounded-lg flex items-center justify-center mx-auto mb-6">
-                                <span className="text-white font-bold text-2xl">d</span>
-                            </div>
-
-                            <div className="grid grid-cols-3 gap-3 mb-6">
-                                <button className="bg-cyan-400 hover:bg-cyan-500 text-white py-3 px-4 rounded-lg font-semibold">
-                                    News & Editorials
-                                </button>
-                                <button className="bg-cyan-400 hover:bg-cyan-500 text-white py-3 px-4 rounded-lg font-semibold">
-                                    Drishti Media
-                                </button>
-                                <button className="bg-cyan-400 hover:bg-cyan-500 text-white py-3 px-4 rounded-lg font-semibold">
-                                    Optional Subjects
-                                </button>
-                                <button className="bg-cyan-400 hover:bg-cyan-500 text-white py-3 px-4 rounded-lg font-semibold">
-                                    Classroom Prog.
-                                </button>
-                                <button className="bg-cyan-400 hover:bg-cyan-500 text-white py-3 px-4 rounded-lg font-semibold">
-                                    Mains Test Series
-                                </button>
-                                <button className="bg-cyan-400 hover:bg-cyan-500 text-white py-3 px-4 rounded-lg font-semibold">
-                                    Daily MCQs
-                                </button>
-                            </div>
-
-                            <button className="bg-red-500 hover:bg-red-600 text-white py-3 px-8 rounded-lg font-bold text-lg">
-                                VISIT ENGLISH WEBSITE
-                            </button>
-                        </div>
-
-                        {/* Hindi Section */}
-                        <div className="text-center">
-                            <div className="w-16 h-16 bg-white border-2 border-red-500 rounded-lg flex items-center justify-center mx-auto mb-6">
-                                <span className="text-red-600 font-bold text-lg">दृष्टि</span>
-                            </div>
-
-                            <div className="grid grid-cols-3 gap-3 mb-6">
-                                <button className="bg-cyan-400 hover:bg-cyan-500 text-white py-3 px-4 rounded-lg font-semibold">
-                                    दृष्टि मीडिया
-                                </button>
-                                <button className="bg-cyan-400 hover:bg-cyan-500 text-white py-3 px-4 rounded-lg font-semibold">
-                                    कथा कार्यक्रम
-                                </button>
-                                <button className="bg-cyan-400 hover:bg-cyan-500 text-white py-3 px-4 rounded-lg font-semibold">
-                                    प्रिलिम्स टेस्ट सीरीज
-                                </button>
-                                <button className="bg-cyan-400 hover:bg-cyan-500 text-white py-3 px-4 rounded-lg font-semibold">
-                                    मेन्स एप्रोच पेपर
-                                </button>
-                                <button className="bg-cyan-400 hover:bg-cyan-500 text-white py-3 px-4 rounded-lg font-semibold">
-                                    करेंट अफेयर्स
-                                </button>
-                                <button className="bg-cyan-400 hover:bg-cyan-500 text-white py-3 px-4 rounded-lg font-semibold">
-                                    एप्रोच टेस्ट
-                                </button>
-                            </div>
-
-                            <button className="bg-red-500 hover:bg-red-600 text-white py-3 px-8 rounded-lg font-bold text-lg">
-                                हिंदी वेबसाइट पर जाएँ
-                            </button>
-                        </div>
-                    </div>
-                </div>
             </main>
 
             {/* Latest Programme Slider Section */}
-            <section className="w-full max-w-7xl mt-20 mb-16">
+            {/* <section className="w-full max-w-7xl mt-20 mb-16">
                 <div className="text-center mb-12">
                     <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
                         Latest Programmes
@@ -327,7 +104,6 @@ export default function Hero() {
                 </div>
 
                 <div className="relative bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">
-                    {/* Slider Navigation */}
                     <div className="flex items-center justify-between mb-8">
                         <div className="flex items-center gap-4">
                             <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
@@ -359,16 +135,15 @@ export default function Hero() {
                         </div>
                     </div>
 
-                    {/* Slider Content */}
                     <div className="overflow-hidden rounded-2xl">
                         <div
                             className="flex transition-transform duration-500 ease-in-out"
                             style={{ transform: `translateX(-${currentSlide * 100}%)` }}
                         >
-                            {programmes.map((programme) => (
+                            {programmes?.map((programme) => (
                                 <div key={programme.id} className="w-full flex-shrink-0">
                                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-6">
-                                        {/* Programme Image */}
+
                                         <div className="relative">
                                             <img
                                                 src={programme.image || "/placeholder.svg"}
@@ -380,7 +155,7 @@ export default function Hero() {
                                             </div>
                                         </div>
 
-                                        {/* Programme Details */}
+
                                         <div className="flex flex-col justify-between">
                                             <div>
                                                 <h4 className="text-3xl font-bold text-gray-800 mb-4">
@@ -390,7 +165,7 @@ export default function Hero() {
                                                     {programme.description}
                                                 </p>
 
-                                                {/* Programme Stats */}
+
                                                 <div className="grid grid-cols-3 gap-4 mb-6">
                                                     <div className="text-center p-4 bg-gradient-to-br from-cyan-50 to-cyan-100 rounded-xl border border-cyan-200">
                                                         <Calendar className="w-6 h-6 text-cyan-600 mx-auto mb-2" />
@@ -421,7 +196,7 @@ export default function Hero() {
                                                     </div>
                                                 </div>
 
-                                                {/* Programme Features */}
+
                                                 <div className="mb-6">
                                                     <h5 className="font-bold text-gray-800 mb-3">
                                                         Key Features:
@@ -442,7 +217,7 @@ export default function Hero() {
                                                 </div>
                                             </div>
 
-                                            {/* Action buttons */}
+
                                             <div className="flex gap-4">
                                                 <button className="flex-1 bg-gradient-to-r from-cyan-400 to-cyan-500 hover:from-cyan-500 hover:to-cyan-600 text-white py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200">
                                                     Enroll Now
@@ -458,7 +233,6 @@ export default function Hero() {
                         </div>
                     </div>
 
-                    {/* Slider Indicators */}
                     <div className="flex justify-center gap-2 mt-8">
                         {programmes.map((_, index) => (
                             <button
@@ -472,17 +246,10 @@ export default function Hero() {
                         ))}
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             {/* Contact button */}
-            {/* <div className="fixed bottom-6 right-6 z-20">
-                <button className="bg-black hover:bg-gray-800 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-lg">
-                    <div className="text-center flex justify-center">
-                        <div className="w-3 h-3 mx-auto mb-1">📞</div>
-                        <span className="text-xs">Contact Us</span>
-                    </div>
-                </button>
-            </div> */}
+            {/* <ChatBot /> */}
         </div>
     )
 }

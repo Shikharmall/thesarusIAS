@@ -16,8 +16,8 @@ export default function ExamScreen() {
     rollNumber?: string | string[];
     name?: string | string[];
   }>();
-  const [rollNum, setRollNum] = useState<string>("");
-  const [userName, setUserName] = useState<string>("");
+  const [rollNum, setRollNum] = useState<string>("2025123456");
+  const [userName, setUserName] = useState<string>("Shivam Singh");
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [showNavigator, setShowNavigator] = useState<boolean>(false);
   const [currentSection, setCurrentSection] = useState<number>(1);

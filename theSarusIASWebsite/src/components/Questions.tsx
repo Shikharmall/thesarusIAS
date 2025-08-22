@@ -1,5 +1,3 @@
-"use client"
-
 import { useState } from "react"
 import { Card } from "../components/ui/Card"
 // import { Textarea } from "@/components/ui/textarea"
@@ -30,10 +28,10 @@ export function CodingQuestion({ question, onCodeChange }: CodingQuestionProps) 
     <Card className="p-6 bg-card border-border">
       <div className="space-y-6">
         <div className="space-y-4">
-          <h3 className="text-xl font-bold text-card-foreground font-serif">{question.title}</h3>
+          <h3 className="text-xl font-bold text-card-foreground font-serif">{question?.title}</h3>
 
           <div className="prose prose-sm max-w-none">
-            <p className="text-card-foreground leading-relaxed">{question.description}</p>
+            <p className="text-card-foreground leading-relaxed">{question?.description}</p>
           </div>
 
           <div className="space-y-3">
