@@ -35,7 +35,7 @@ export default function RootLayout() {
       size={60}
       strokeWidth={4}
       color={themeColor.secondary}
-      label="Done"
+      label="Start"
       showPercentage={false}
     />
   );
@@ -71,7 +71,7 @@ export default function RootLayout() {
 
   if (showSlider) {
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: "#fff", marginBottom: 50 }}>
         <StatusBar style="auto" />
         <AppIntroSlider
           data={slides}
@@ -105,15 +105,16 @@ export default function RootLayout() {
 
   return (
     <SafeAreaProvider>
-        <SafeAreaView style={styles.container}>
-          <StatusBar style="auto" />
-          <Stack>
-            <Stack.Screen name="LoginWithOTP" options={{ headerShown: false }} />
-            <Stack.Screen name="(exam)" options={{ headerShown: false }} />
-            <Stack.Screen name="(end)" options={{ headerShown: false }} />
-            <Stack.Screen name="+not-found" options={{ headerShown: false }} />
-          </Stack>
-        </SafeAreaView>
+      <SafeAreaView style={styles.container}>
+        <StatusBar style="auto" />
+        <Stack>
+          <Stack.Screen name="LoginWithOTP" options={{ headerShown: false }} />
+          <Stack.Screen name="OtpVerify" options={{ headerShown: false }} />
+          <Stack.Screen name="(exam)" options={{ headerShown: false }} />
+          <Stack.Screen name="(end)" options={{ headerShown: false }} />
+          <Stack.Screen name="+not-found" options={{ headerShown: false }} />
+        </Stack>
+      </SafeAreaView>
     </SafeAreaProvider>
   );
 }

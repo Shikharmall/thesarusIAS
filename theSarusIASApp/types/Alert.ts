@@ -7,8 +7,3 @@ export interface AlertProps {
     onConfirm?: () => void;
     onCancel?: () => void;
 }
-
-export interface AlertContent {
-    title: string;
-    message: string;
-}

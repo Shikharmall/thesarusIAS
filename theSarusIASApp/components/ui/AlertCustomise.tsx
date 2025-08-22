@@ -105,9 +105,9 @@ const styles = StyleSheet.create({
     },
     cancelButton: {
         paddingVertical: 10,
-        paddingHorizontal: 16,
+        paddingHorizontal: 30,
         marginRight: 10,
-        borderRadius: 8,
+        borderRadius: 100,
         backgroundColor: "#e0e0e0",
     },
     cancelText: {
@@ -116,8 +116,8 @@ const styles = StyleSheet.create({
     },
     confirmButton: {
         paddingVertical: 10,
-        paddingHorizontal: 16,
-        borderRadius: 8,
+        paddingHorizontal: 30,
+        borderRadius: 100,
         backgroundColor: themeColor?.secondary,
     },
     confirmText: {

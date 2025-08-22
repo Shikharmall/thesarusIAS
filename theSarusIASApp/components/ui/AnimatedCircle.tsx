@@ -1,4 +1,6 @@
+import { themeColor } from "@/constants/Colors";
 import { AnimatedCircleProgressProps } from "@/types/exam";
+import { MaterialIcons } from "@expo/vector-icons";
 import React, { useEffect, useRef } from "react";
 import { View, Animated, Text, TouchableOpacity } from "react-native";
 import Svg, { Circle } from "react-native-svg";
@@ -56,31 +58,19 @@ export default function AnimatedCircleProgress({
                 />
             </Svg>
 
-            {showPercentage && (
-                <View
-                    style={{
-                        position: "absolute",
-                        justifyContent: "center",
-                        alignItems: "center",
-                    }}
-                >
-                    <TouchableOpacity>
-                        <Text
-                            style={{
-                                fontSize: 12,
-                                fontWeight: "bold",
-                                color: "#fff",
-                                backgroundColor: color,
-                                paddingHorizontal: 10,
-                                paddingVertical: 5,
-                                borderRadius: 100,
-                            }}
-                        >
-                            {label}
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-            )}
+            <View
+                style={{
+                    position: "absolute",
+                    justifyContent: "center",
+                    alignItems: "center",
+                }}
+            >
+                <TouchableOpacity>
+                    {/* <MaterialIcons name="arrow-circle-right" size={60} color={themeColor?.secondary} /> */}
+                    <Text>{label}</Text>
+                </TouchableOpacity>
+            </View>
+
         </View>
     );
 }

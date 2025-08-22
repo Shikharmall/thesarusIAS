@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import {
     View,
     Text,
@@ -10,41 +10,60 @@ import {
     ScrollView,
     BackHandler,
     Image,
-    Alert
+    Alert,
+    Keyboard
 } from "react-native"
 import { Colors, themeColor } from "../constants/Colors"
 import AlertCustomise from "../components/ui/AlertCustomise"
 import { useFocusEffect, useRouter } from "expo-router";
-import { AlertContent } from "@/types/Alert";
+import { AlertProps } from "@/types/Alert";
 
 export default function LoginWithOTP() {
     const [phone, setPhone] = useState<string>("");
-    const [alertContent, setAlertContent] = useState<AlertContent>({
+    const [alertContent, setAlertContent] = useState<AlertProps>({
+        visible: false,
         title: "",
-        message: ""
+        message: "",
+        confirmLabel: "",
+        cancelLabel: ""
     });
     const [loading, setLoading] = useState<boolean>(false);
-    const [visible, setVisible] = useState<boolean>(false);
     const router = useRouter();
+    const [kbBehavior, setKbBehavior] = useState<"padding" | "height" | undefined>(
+        Platform.OS === 'ios' ? 'padding' : 'height'
+    );
 
+    const showAlert = (props: Partial<AlertProps>) => {
+        setAlertContent({
+            visible: true,
+            title: props.title ?? "",
+            message: props.message ?? "",
+            confirmLabel: props.confirmLabel ?? "Ok",
+            cancelLabel: props.cancelLabel ?? "",
+            onConfirm: props.onConfirm,
+            onCancel: props.onCancel,
+        })
+    }
 
     const handleLogin = async () => {
         const phoneNumber = Number(phone);
 
         // Check if phone is empty or too short
         if (!phone.trim() || phone.length < 8) {
-            setAlertContent({
+            showAlert({
                 title: "Error",
-                message: "Please enter a valid Phone Number"
+                message: "Please enter a valid Phone Number",
             })
-            setVisible(true);
             // Alert.alert("Error", "Please enter a valid Phone Number");
             return;
         }
 
         // You could also validate strictly numeric input here
         if (isNaN(phoneNumber)) {
-            setVisible(true);
+            showAlert({
+                title: "Error",
+                message: "Please enter a valid Phone Number",
+            })
             //Alert.alert("Error", "Phone number must be numeric");
             return;
         }
@@ -52,21 +71,19 @@ export default function LoginWithOTP() {
         // setLoading(true);
 
         router.push({
-            pathname: "/(exam)",
+            pathname: "/OtpVerify",
             params: { phone }, // send as string
         });
     };
 
-
     const backAction = () => {
-        // Alert.alert("Hold on!", "Are you sure you want to exit app?", [
-        //     {
-        //         text: "Cancel",
-        //         onPress: () => null,
-        //         style: "cancel",
-        //     },
-        //     { text: "YES", onPress: () => BackHandler.exitApp() },
-        // ]);
+        showAlert({
+            title: "Exit",
+            message: "Are you sure you want to exit app?",
+            confirmLabel: "Yes",
+            cancelLabel: "Cancel",
+            onConfirm: () => BackHandler.exitApp(),
+        })
         return true;
     };
 
@@ -81,8 +98,22 @@ export default function LoginWithOTP() {
         }, [])
     );
 
+    useEffect(() => {
+        const showSub = Keyboard.addListener('keyboardDidShow', () => {
+            setKbBehavior(Platform.OS === 'ios' ? 'padding' : 'height');
+        });
+        const hideSub = Keyboard.addListener('keyboardDidHide', () => {
+            setKbBehavior(undefined); // reset so no padding remains
+        });
+
+        return () => {
+            showSub.remove();
+            hideSub.remove();
+        };
+    }, []);
+
     return (
-        <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === "ios" ? "padding" : "height"}>
+        <KeyboardAvoidingView style={styles.container} behavior={kbBehavior}>
             <ScrollView contentContainerStyle={styles.scrollContainer}>
                 <View style={styles.header}>
                     <Image
@@ -129,26 +160,33 @@ export default function LoginWithOTP() {
 
                     <View style={styles.instructions}>
                         <Text style={styles.instructionTitle}>Important Instructions:</Text>
-                        <Text style={styles.instructionText}>• Use your registered Roll Number</Text>
+                        <Text style={styles.instructionText}>• Use your registered Phone Number</Text>
                         {/* <Text style={styles.instructionText}>• Use your registered Roll Number and Password</Text> */}
                         <Text style={styles.instructionText}>• Ensure stable internet connection</Text>
-                        <Text style={styles.instructionText}>• Do not refresh or close the browser</Text>
+                        <Text style={styles.instructionText}>• Do not refresh or close the App</Text>
                         <Text style={styles.instructionText}>• Contact helpdesk for technical issues</Text>
                     </View>
                 </View>
 
-                {/* <View style={styles.footer}>
-                    <Text style={styles.footerText}>© 2025 thesarus.com</Text>
-                    <Text style={styles.footerText}>Government of India</Text>
-                </View> */}
+                <View style={styles.footer}>
+                    <Text style={styles.footerText}>© 2025 thesarus.in</Text>
+                    {/* <Text style={styles.footerText}>Government of India</Text> */}
+                </View>
 
                 <AlertCustomise
-                    visible={visible}
+                    visible={alertContent?.visible}
                     title={alertContent?.title}
                     message={alertContent?.message}
-                    confirmLabel="Ok"
-                    onConfirm={() => setVisible(false)}
-                    onCancel={() => setVisible(false)}
+                    confirmLabel={alertContent?.confirmLabel}
+                    cancelLabel={alertContent?.cancelLabel}
+                    onConfirm={() => {
+                        if (alertContent.onConfirm) alertContent.onConfirm()
+                        setAlertContent((prev) => ({ ...prev, visible: false }))
+                    }}
+                    onCancel={() => {
+                        if (alertContent.onCancel) alertContent.onCancel()
+                        setAlertContent((prev) => ({ ...prev, visible: false }))
+                    }}
                 />
             </ScrollView>
         </KeyboardAvoidingView>
@@ -163,7 +201,7 @@ const styles = StyleSheet.create({
     scrollContainer: {
         flexGrow: 1,
         padding: 20,
-        // paddingBottom: 10
+        marginBottom: 30
     },
     header: {
         alignItems: "center",
