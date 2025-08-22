@@ -8,6 +8,7 @@ import { Colors, themeColor } from "@/constants/Colors";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { SIZES } from "@/constants/Size";
 import AnimatedCircleProgress from "@/components/ui/AnimatedCircle";
+import { Slide } from "@/types/AppIntroSlider";
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -39,7 +40,7 @@ export default function RootLayout() {
     />
   );
 
-  const slides = [
+  const slides: Slide[] = [
     {
       id: 1,
       title: "Get things done.",
@@ -104,15 +105,15 @@ export default function RootLayout() {
 
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={styles.container}>
-        <StatusBar style="auto" />
-        <Stack>
-          <Stack.Screen name="LoginWithOTP" options={{ headerShown: false }} />
-          <Stack.Screen name="(exam)" options={{ headerShown: false }} />
-          <Stack.Screen name="(end)" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" options={{ headerShown: false }} />
-        </Stack>
-      </SafeAreaView>
+        <SafeAreaView style={styles.container}>
+          <StatusBar style="auto" />
+          <Stack>
+            <Stack.Screen name="LoginWithOTP" options={{ headerShown: false }} />
+            <Stack.Screen name="(exam)" options={{ headerShown: false }} />
+            <Stack.Screen name="(end)" options={{ headerShown: false }} />
+            <Stack.Screen name="+not-found" options={{ headerShown: false }} />
+          </Stack>
+        </SafeAreaView>
     </SafeAreaProvider>
   );
 }

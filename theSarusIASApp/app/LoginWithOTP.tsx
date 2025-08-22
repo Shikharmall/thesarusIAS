@@ -5,19 +5,26 @@ import {
     TextInput,
     TouchableOpacity,
     StyleSheet,
-    Alert,
     KeyboardAvoidingView,
     Platform,
     ScrollView,
     BackHandler,
-    Image
+    Image,
+    Alert
 } from "react-native"
 import { Colors, themeColor } from "../constants/Colors"
+import AlertCustomise from "../components/ui/AlertCustomise"
 import { useFocusEffect, useRouter } from "expo-router";
+import { AlertContent } from "@/types/Alert";
 
 export default function LoginWithOTP() {
     const [phone, setPhone] = useState<string>("");
+    const [alertContent, setAlertContent] = useState<AlertContent>({
+        title: "",
+        message: ""
+    });
     const [loading, setLoading] = useState<boolean>(false);
+    const [visible, setVisible] = useState<boolean>(false);
     const router = useRouter();
 
 
@@ -26,13 +33,19 @@ export default function LoginWithOTP() {
 
         // Check if phone is empty or too short
         if (!phone.trim() || phone.length < 8) {
-            Alert.alert("Error", "Please enter a valid Phone Number");
+            setAlertContent({
+                title: "Error",
+                message: "Please enter a valid Phone Number"
+            })
+            setVisible(true);
+            // Alert.alert("Error", "Please enter a valid Phone Number");
             return;
         }
 
         // You could also validate strictly numeric input here
         if (isNaN(phoneNumber)) {
-            Alert.alert("Error", "Phone number must be numeric");
+            setVisible(true);
+            //Alert.alert("Error", "Phone number must be numeric");
             return;
         }
 
@@ -46,14 +59,14 @@ export default function LoginWithOTP() {
 
 
     const backAction = () => {
-        Alert.alert("Hold on!", "Are you sure you want to exit app?", [
-            {
-                text: "Cancel",
-                onPress: () => null,
-                style: "cancel",
-            },
-            { text: "YES", onPress: () => BackHandler.exitApp() },
-        ]);
+        // Alert.alert("Hold on!", "Are you sure you want to exit app?", [
+        //     {
+        //         text: "Cancel",
+        //         onPress: () => null,
+        //         style: "cancel",
+        //     },
+        //     { text: "YES", onPress: () => BackHandler.exitApp() },
+        // ]);
         return true;
     };
 
@@ -106,7 +119,6 @@ export default function LoginWithOTP() {
                         />
                     </View>
 
-
                     <TouchableOpacity
                         style={[styles.loginButton, loading && styles.loginButtonDisabled]}
                         onPress={handleLogin}
@@ -129,6 +141,15 @@ export default function LoginWithOTP() {
                     <Text style={styles.footerText}>© 2025 thesarus.com</Text>
                     <Text style={styles.footerText}>Government of India</Text>
                 </View> */}
+
+                <AlertCustomise
+                    visible={visible}
+                    title={alertContent?.title}
+                    message={alertContent?.message}
+                    confirmLabel="Ok"
+                    onConfirm={() => setVisible(false)}
+                    onCancel={() => setVisible(false)}
+                />
             </ScrollView>
         </KeyboardAvoidingView>
     )
@@ -151,7 +172,7 @@ const styles = StyleSheet.create({
         marginVertical: 40
     },
     title: {
-        fontSize: 20,
+        fontSize: 24,
         fontWeight: "semibold",
         color: themeColor?.secondary,
         textAlign: "center",
@@ -166,7 +187,7 @@ const styles = StyleSheet.create({
         marginVertical: 30
     },
     subtitle: {
-        fontSize: 16,
+        fontSize: 17,
         color: Colors.textSecondary,
         textAlign: "center",
         marginBottom: 4,
