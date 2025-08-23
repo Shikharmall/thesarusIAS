@@ -67,7 +67,6 @@ export interface MCQQuestionProps {
   onClearResponse: (questionId: number) => void,
 }
 
-
 export interface AnimatedCircleProgressProps {
   progress: number
   size?: number
@@ -78,4 +77,9 @@ export interface AnimatedCircleProgressProps {
   backgroundColor?: string
   showPercentage?: boolean
   label: string
+}
+
+export interface HeaderProps {
+    onToggleNavigator: () => void
+    showNavigator: boolean
 }

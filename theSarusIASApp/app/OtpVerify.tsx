@@ -79,7 +79,7 @@ export default function OtpVerify() {
         // Simulate OTP verification
         setTimeout(() => {
             setLoading(false)
-            router.push("/(exam)")
+            router.push("/(home)")
         }, 1000)
     }
 

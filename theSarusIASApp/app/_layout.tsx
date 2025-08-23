@@ -109,8 +109,11 @@ export default function RootLayout() {
         <StatusBar style="auto" />
         <Stack>
           <Stack.Screen name="LoginWithOTP" options={{ headerShown: false }} />
+          {/* <Stack.Screen name="Loading" options={{ headerShown: false }} /> */}
           <Stack.Screen name="OtpVerify" options={{ headerShown: false }} />
+          <Stack.Screen name="(home)" options={{ headerShown: false }} />
           <Stack.Screen name="(exam)" options={{ headerShown: false }} />
+          <Stack.Screen name="Notification" options={{ headerShown: false }} />
           <Stack.Screen name="(end)" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" options={{ headerShown: false }} />
         </Stack>
