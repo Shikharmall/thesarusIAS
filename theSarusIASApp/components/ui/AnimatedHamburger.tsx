@@ -122,6 +122,8 @@ export default function AnimatedHamburger({
     )
 }
 
+// grid-outline
+
 const styles = StyleSheet.create({
     container: {
         justifyContent: "center",

@@ -6,9 +6,10 @@ import AnimatedHamburger from "../ui/AnimatedHamburger"
 interface ExamHeaderProps {
     onToggleNavigator: () => void
     showNavigator: boolean
+    examName: string
 }
 
-export default function ExamHeader({ onToggleNavigator, showNavigator }: ExamHeaderProps) {
+export default function ExamHeader({ onToggleNavigator, showNavigator, examName }: ExamHeaderProps) {
     const handleTimeUp = () => {
         // Handle exam submission when time is up
         console.log("[v0] Exam time completed - auto submitting")
@@ -17,7 +18,7 @@ export default function ExamHeader({ onToggleNavigator, showNavigator }: ExamHea
     return (
         <View style={styles.header}>
             <View style={styles.leftSection}>
-                <Text style={styles.title}>SSC CGL Examination 2024</Text>
+                <Text style={styles.title}>{examName}</Text>
             </View>
 
             <View style={styles.rightSection}>

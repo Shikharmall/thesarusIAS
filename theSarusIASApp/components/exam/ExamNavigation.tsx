@@ -6,7 +6,7 @@ import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Colors, themeColor } from "../../constants/Colors";
 
 export default function ExamNavigation({ currentQuestion, onQuestionChange, onSectionChange, sections, userName, rollNum,
-  questionStatuses }: ExamNavigationProps) {
+  questionStatuses, examName }: ExamNavigationProps) {
 
   const [answeredCount, setAnsweredCount] = useState<number>(0);
   const [flaggedCount, setFlaggedCount] = useState<number>(0);
@@ -58,7 +58,7 @@ export default function ExamNavigation({ currentQuestion, onQuestionChange, onSe
             // Alert.alert("Submitted", "Your examination has been submitted successfully!")
             router.push({
               pathname: "/(exam)/end",
-              params: { userName, rollNum, totalQuestions, answeredCount, flaggedCount },
+              params: { userName, rollNum, totalQuestions, answeredCount, flaggedCount, examName },
             });
           },
         },

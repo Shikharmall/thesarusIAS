@@ -8,8 +8,9 @@ export default function EndScreen() {
     timeSpent: 50,
   };
 
-  const { rollNum, userName, totalQuestions, answeredCount, flaggedCount } = useLocalSearchParams();
+  const { rollNum, userName, totalQuestions, answeredCount, flaggedCount, examName } = useLocalSearchParams();
   const [rollNumber, setRollNumber] = useState<string>("");
+  const [exam, setExam] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [totalQues, setTotalQues] = useState<number>(0);
   const [answered, setAnswered] = useState<number>(0);
@@ -23,6 +24,9 @@ export default function EndScreen() {
     if (userName) {
       setName(Array.isArray(userName) ? userName[0] : userName);
     }
+    if (examName) {
+      setExam(Array.isArray(examName) ? examName[0] : examName);
+    }
     if (totalQuestions) {
       const value = Array.isArray(totalQuestions) ? totalQuestions[0] : totalQuestions;
       setTotalQues(Number(value));
@@ -35,7 +39,7 @@ export default function EndScreen() {
       const value = Array.isArray(flaggedCount) ? flaggedCount[0] : flaggedCount;
       setFlagged(Number(value));
     }
-  }, [rollNum, userName, totalQuestions, answeredCount, flaggedCount]);
+  }, [rollNum, userName, totalQuestions, answeredCount, flaggedCount, examName]);
 
   const backAction = () => {
     //router.dismissAll();   // close all routes
@@ -58,7 +62,7 @@ export default function EndScreen() {
     <ScrollView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
-        <Text style={styles.title}>SSC Combined Graduate Level Examination</Text>
+        <Text style={styles.title}>{exam}</Text>
         <Text style={styles.subtitle}>Examination Completed</Text>
         {name && <Text style={styles.rollNumber}>Name: {name}</Text>}
         {rollNumber && <Text style={styles.rollNumber}>Roll Number: {rollNumber}</Text>}
@@ -149,6 +153,7 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: Colors.primary,
+    paddingTop: 60,
     padding: 40,
     alignItems: "center",
   },

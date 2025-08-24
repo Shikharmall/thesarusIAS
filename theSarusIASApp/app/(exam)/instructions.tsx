@@ -1,12 +1,22 @@
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native"
-import Modal from "react-native-modal"
-import { Ionicons } from "@expo/vector-icons"
-import { InstructionModalProps } from "@/types/exam"
-import { Colors } from "@/constants/Colors"
-import { useRouter } from "expo-router"
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { Colors } from "@/constants/Colors";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import { useEffect, useState } from "react";
 
 export default function InstructionScreen() {
     const router = useRouter();
+    const { title } = useLocalSearchParams<{
+        title?: string | string[];
+    }>();
+    const [examName, setExamName] = useState<string>("");
+
+    useEffect(() => {
+        if (title) {
+            setExamName(Array.isArray(title) ? title[0] : title);
+        }
+    }, [title]);
+
     return (
         <View
             style={styles.modal}
@@ -14,7 +24,8 @@ export default function InstructionScreen() {
             <View style={styles.container}>
                 {/* Header */}
                 <View style={styles.header}>
-                    <Text style={styles.title}>SSC CGL Examination Instructions</Text>
+                    {/* <Text style={styles.title}>SSC CGL Examination Instructions</Text> */}
+                    <Text style={styles.title}>{examName} Instructions</Text>
                     <Text style={styles.subtitle}>Please read carefully before starting</Text>
                 </View>
 
@@ -125,6 +136,7 @@ export default function InstructionScreen() {
                     <TouchableOpacity style={styles.startButton} onPress={() => {
                         router.push({
                             pathname: "/(exam)",
+                            params: { title: examName }
                         });
                     }}>
                         <Ionicons name="play-circle" size={24} color={Colors.background} />

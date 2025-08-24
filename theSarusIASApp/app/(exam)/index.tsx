@@ -11,23 +11,18 @@ import { Colors } from "../../constants/Colors";
 import { examData } from "../../data/examData";
 
 export default function ExamScreen() {
-  const { name, rollNumber } = useLocalSearchParams<{
+  const { name, rollNumber, title } = useLocalSearchParams<{
     rollNumber?: string | string[];
     name?: string | string[];
+    title?: string | string[];
   }>();
+  const [examName, setExamName] = useState<string>("");
   const [rollNum, setRollNum] = useState<string>("2025123456");
   const [userName, setUserName] = useState<string>("Shivam Singh");
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [showNavigator, setShowNavigator] = useState<boolean>(false);
   const [currentSection, setCurrentSection] = useState<number>(1);
-  const [showInstructions, setShowInstructions] = useState(true);
-  const [examStarted, setExamStarted] = useState<boolean>(false);
   const [questionStatuses, setQuestionStatuses] = useState<Record<number, QuestionStatus>>({});
-
-  const handleStartExam = () => {
-    setShowInstructions(false)
-    setExamStarted(true)
-  }
 
   const handleChangeSection = (sectionId: number) => {
     setCurrentSection(sectionId)
@@ -74,54 +69,51 @@ export default function ExamScreen() {
     if (name) {
       setUserName(Array.isArray(name) ? name[0] : name);
     }
-  }, [rollNumber, name]);
+    if (title) {
+      setExamName(Array.isArray(title) ? title[0] : title);
+    }
+  }, [rollNumber, name, title]);
 
   return (
     <View style={styles.container}>
-      {/* <InstructionModal isVisible={showInstructions} onStartExam={handleStartExam} /> */}
+      <ExamHeader onToggleNavigator={() => setShowNavigator(!showNavigator)} showNavigator={showNavigator} examName={examName} />
 
-      {true && (
-        <>
-          <ExamHeader onToggleNavigator={() => setShowNavigator(!showNavigator)} showNavigator={showNavigator} />
-
-          <ResponsiveLayout
-            showSidebar={showNavigator}
-            sidebar={
-              <QuestionNavigator
-                sections={examData?.sections}
-                currentSection={currentSection}
-                onSectionSelect={handleChangeSection}
-                currentQuestion={currentQuestion}
-                onQuestionSelect={(index: number) => {
-                  setCurrentQuestion(index)
-                  setShowNavigator(false) // Auto-close on mobile after selection
-                }}
-                questionStatuses={questionStatuses}
-              />
-            }
-          >
-            <QuestionDisplay
-              currentQuestion={currentQuestion}
-              currentSection={currentSection}
-              sections={examData?.sections}
-              questionStatuses={questionStatuses}
-              onAnswerSelect={handleAnswerSelect}
-              onFlagSelect={handleFlagQuestion}
-              onClearSelect={handleClearResponse}
-            />
-            <ExamNavigation
-              currentQuestion={currentQuestion}
-              onQuestionChange={setCurrentQuestion}
-              onSectionChange={setCurrentSection}
-              sections={examData?.sections}
-              userName={userName}
-              rollNum={rollNum}
-              questionStatuses={questionStatuses}
-            />
-          </ResponsiveLayout>
-        </>
-      )}
-
+      <ResponsiveLayout
+        showSidebar={showNavigator}
+        sidebar={
+          <QuestionNavigator
+            sections={examData?.sections}
+            currentSection={currentSection}
+            onSectionSelect={handleChangeSection}
+            currentQuestion={currentQuestion}
+            onQuestionSelect={(index: number) => {
+              setCurrentQuestion(index)
+              setShowNavigator(false) // Auto-close on mobile after selection
+            }}
+            questionStatuses={questionStatuses}
+          />
+        }
+      >
+        <QuestionDisplay
+          currentQuestion={currentQuestion}
+          currentSection={currentSection}
+          sections={examData?.sections}
+          questionStatuses={questionStatuses}
+          onAnswerSelect={handleAnswerSelect}
+          onFlagSelect={handleFlagQuestion}
+          onClearSelect={handleClearResponse}
+        />
+        <ExamNavigation
+          currentQuestion={currentQuestion}
+          onQuestionChange={setCurrentQuestion}
+          onSectionChange={setCurrentSection}
+          sections={examData?.sections}
+          userName={userName}
+          rollNum={rollNum}
+          questionStatuses={questionStatuses}
+          examName={examName}
+        />
+      </ResponsiveLayout>
     </View>
   )
 }

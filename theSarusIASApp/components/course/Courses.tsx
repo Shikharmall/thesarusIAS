@@ -2,12 +2,12 @@ import { Course, CoursesProps } from "@/types/courses";
 import { useRouter } from "expo-router";
 import React from "react";
 import {
-    View,
-    Text,
-    StyleSheet,
     FlatList,
     Image,
+    StyleSheet,
+    Text,
     TouchableOpacity,
+    View,
 } from "react-native";
 
 export default function Courses({ courses }: CoursesProps) {
@@ -57,14 +57,33 @@ export default function Courses({ courses }: CoursesProps) {
 
     return (
         <View style={styles.container}>
+            {/* Courses list */}
 
-            {/* Courses List */}
-            <FlatList
-                data={courses}
-                keyExtractor={(item) => item.id}
-                renderItem={renderCourse}
-                contentContainerStyle={{ padding: 10 }}
-            />
+            {
+                courses?.length === 0 ?
+                    (
+                        <View style={styles.emptyContainer}>
+                            <Image
+                                source={{ uri: "https://cdn-icons-png.flaticon.com/512/7486/7486744.png" }} // replace with your own illustration
+                                style={styles.emptyImage}
+                                resizeMode="contain"
+                            />
+                            <Text style={styles.emptyTitle}>No Courses Found</Text>
+                            <Text style={styles.emptySubtitle}>
+                                We couldn't find any courses right now. Please check back later!
+                            </Text>
+                        </View>
+                    ) : (
+
+                        <FlatList
+                            data={courses}
+                            keyExtractor={(item) => item.id}
+                            renderItem={renderCourse}
+                            contentContainerStyle={{ padding: 10 }}
+                        />
+                    )
+            }
+
 
         </View>
     );
@@ -117,4 +136,32 @@ const styles = StyleSheet.create({
         color: "red",
         fontWeight: "bold",
     },
+
+    // items not found
+
+    emptyContainer: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        padding: 20,
+    },
+    emptyImage: {
+        width: 150,
+        height: 150,
+        marginBottom: 20,
+        opacity: 0.9,
+    },
+    emptyTitle: {
+        fontSize: 18,
+        fontWeight: "bold",
+        color: "#333",
+        marginBottom: 6,
+    },
+    emptySubtitle: {
+        fontSize: 14,
+        color: "#666",
+        textAlign: "center",
+        lineHeight: 20,
+    },
+
 });

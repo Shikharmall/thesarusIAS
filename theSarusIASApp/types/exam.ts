@@ -46,6 +46,7 @@ export interface ExamNavigationProps {
   sections: Section[],
   userName: string,
   rollNum: string,
+  examName: string
   questionStatuses: Record<number, QuestionStatus>
 }
 
@@ -80,6 +81,6 @@ export interface AnimatedCircleProgressProps {
 }
 
 export interface HeaderProps {
-    onToggleNavigator: () => void
-    showNavigator: boolean
+  onToggleNavigator: () => void
+  showNavigator: boolean
 }
