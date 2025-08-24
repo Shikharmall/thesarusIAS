@@ -8,8 +8,8 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import TestSeries from "./TestSeries";
-
+import TestSeriesComponent from "./TestSeriesComponent";
+import { TestSeries } from "@/types/testseries";
 const { width } = Dimensions.get("window");
 
 const TabSwitcherTestSeries = () => {
@@ -18,6 +18,83 @@ const TabSwitcherTestSeries = () => {
 
   const tabWidth = width / tabs.length - 20; // adjust for margin
   const translateX = useRef(new Animated.Value(0)).current;
+
+  const testseries: TestSeries[] = [
+    {
+      id: "1",
+      title: "UPSC Prelims Test Series 2026 (General Studies)",
+      price: "₹60",
+      oldPrice: "₹500",
+      discount: "50% OFF",
+      tags: ["FULL LENGTH", "PDF SOLUTIONS"],
+      image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756030769/upsc_pzkoyq.png",
+    },
+    {
+      id: "2",
+      title: "CSAT Practice Test Series (Aptitude & Reasoning)",
+      price: "₹40",
+      tags: ["SECTIONAL TESTS", "SOLUTION PDFs"],
+      image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756030769/upsc_pzkoyq.png",
+    },
+    {
+      id: "3",
+      title: "SSC CGL Test Series",
+      price: "₹50",
+      oldPrice: "₹5,00",
+      discount: "90% OFF",
+      tags: ["ESSAY", "ANSWER REVIEW", "EVALUATION"],
+      image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756030769/ssccgl_rknj1o.png",
+    },
+    {
+      id: "4",
+      title: "SSC CHSL Test Series",
+      price: "₹50",
+      tags: ["MCQs", "EXPLANATIONS", "PDF NOTES"],
+      image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756030769/sscchsl_fwfdka.png",
+    },
+    {
+      id: "5",
+      title: "SSC MTS Test Series",
+      price: "₹50",
+      tags: ["MCQs", "EXPLANATIONS", "PDF NOTES"],
+      image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756030769/sscmts_j31n5a.png",
+    },
+    {
+      id: "6",
+      title: "Railway NTPC Test Series",
+      price: "₹50",
+      tags: ["MCQs", "EXPLANATIONS", "PDF NOTES"],
+      image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756031617/railwayblue_tjaeud.jpg",
+    }
+  ];
+
+  const mytestseries: TestSeries[] = [
+    {
+      id: "1",
+      title: "UPSC Prelims Test Series 2026 (General Studies)",
+      price: "₹60",
+      oldPrice: "₹500",
+      discount: "50% OFF",
+      tags: ["FULL LENGTH", "PDF SOLUTIONS"],
+      image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756030769/upsc_pzkoyq.png",
+    },
+    {
+      id: "2",
+      title: "SSC CGL Test Series",
+      price: "₹50",
+      oldPrice: "₹5,00",
+      discount: "90% OFF",
+      tags: ["ESSAY", "ANSWER REVIEW", "EVALUATION"],
+      image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756030769/ssccgl_rknj1o.png",
+    },
+    {
+      id: "3",
+      title: "Railway NTPC Test Series",
+      price: "₹50",
+      tags: ["MCQs", "EXPLANATIONS", "PDF NOTES"],
+      image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756031617/railwayblue_tjaeud.jpg",
+    }
+  ];
 
   // animate indicator on tab change
   useEffect(() => {
@@ -62,7 +139,7 @@ const TabSwitcherTestSeries = () => {
       </View>
 
       {/* Content */}
-      {activeTab === "Test Series" ? <TestSeries /> : <TestSeries />}
+      {activeTab === "Test Series" ? <TestSeriesComponent testseries={testseries} /> : <TestSeriesComponent testseries={mytestseries} />}
     </View>
   );
 };
