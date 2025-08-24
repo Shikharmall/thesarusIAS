@@ -15,7 +15,7 @@ export default function RootLayout() {
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
 
-  const [showSlider, setShowSlider] = useState(true);
+  const [showSlider, setShowSlider] = useState(false); //
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   const renderNextButton = () => (
@@ -108,10 +108,10 @@ export default function RootLayout() {
       <SafeAreaView style={styles.container}>
         <StatusBar style="auto" />
         <Stack>
+          <Stack.Screen name="(home)" options={{ headerShown: false }} />
           <Stack.Screen name="LoginWithOTP" options={{ headerShown: false }} />
           {/* <Stack.Screen name="Loading" options={{ headerShown: false }} /> */}
           <Stack.Screen name="OtpVerify" options={{ headerShown: false }} />
-          <Stack.Screen name="(home)" options={{ headerShown: false }} />
           <Stack.Screen name="(exam)" options={{ headerShown: false }} />
           <Stack.Screen name="Notification" options={{ headerShown: false }} />
           <Stack.Screen name="(end)" options={{ headerShown: false }} />

@@ -1,9 +1,9 @@
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { HeaderProps } from "@/types/exam";
+import { MaterialIcons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { Colors, themeColor } from "../constants/Colors";
 import AnimatedHamburger from "./ui/AnimatedHamburger";
-import { MaterialIcons } from "@expo/vector-icons";
-import { HeaderProps } from "@/types/exam";
-import { useRouter } from "expo-router";
 
 export default function HomeHeader({ onToggleNavigator, showNavigator }: HeaderProps) {
     const router = useRouter();
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
         position: "absolute",
         right: -4,
         top: -4,
-        backgroundColor: "red",
+        backgroundColor: themeColor?.primary,
         borderRadius: 10,
         paddingHorizontal: 5,
         minWidth: 18,

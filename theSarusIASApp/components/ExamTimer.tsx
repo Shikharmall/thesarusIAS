@@ -1,41 +1,61 @@
 import { useState, useEffect } from "react";
-import { Text, View } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 import { themeColor } from "@/constants/Colors";
 
 interface ExamTimerProps {
-    initialTime: number,
-    duration: number, // duration in minutes
-    onTimeUp: () => void
+    initialTime: number;
+    duration: number; // duration in minutes
+    onTimeUp: () => void;
 }
 
 export function ExamTimer({ initialTime, duration, onTimeUp }: ExamTimerProps) {
-    const [timeLeft, setTimeLeft] = useState(duration * 60) // convert to seconds
+    const [timeLeft, setTimeLeft] = useState(duration * 60); // convert to seconds
 
     useEffect(() => {
         if (timeLeft <= 0) {
-            onTimeUp()
-            return
+            onTimeUp();
+            return;
         }
 
         const timer = setInterval(() => {
-            setTimeLeft((prev) => prev - 1)
-        }, 1000)
+            setTimeLeft((prev) => prev - 1);
+        }, 1000);
 
-        return () => clearInterval(timer)
-    }, [timeLeft, onTimeUp])
+        return () => clearInterval(timer);
+    }, [timeLeft, onTimeUp]);
 
-    const minutes = Math.floor(timeLeft / 60)
-    const seconds = timeLeft % 60
-    const isLowTime = timeLeft <= 300 // 5 minutes
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    const isLowTime = timeLeft <= 300; // 5 minutes
 
     return (
         <View
-            className="flex items-center gap-2 px-5 py-1 rounded-full font-semibold"
-            style={{ backgroundColor: isLowTime ? "red" : themeColor?.primary }}
+            style={[
+                styles.container,
+                { backgroundColor: isLowTime ? "red" : themeColor?.primary },
+            ]}
         >
-            <Text className="text-md font-mono text-white font-bold">
+            <Text style={styles.timerText}>
                 {String(minutes).padStart(2, "0")}:{String(seconds).padStart(2, "0")}
             </Text>
         </View>
-    )
+    );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        paddingVertical: 4,
+        paddingHorizontal: 20,
+        borderRadius: 50,
+        fontWeight: "600",
+    },
+    timerText: {
+        fontSize: 16,
+        fontFamily: "monospace",
+        color: "white",
+        fontWeight: "bold",
+    },
+});

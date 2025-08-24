@@ -1,7 +1,4 @@
-import Banner from "@/components/Banner";
 import HomeHeader from "@/components/HomeHeader";
-import SlidableCards from "@/components/SlidableCards";
-import SlidableCards2 from "@/components/SlidableCards2";
 import { QuestionStatus } from "@/types/exam";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
@@ -9,6 +6,7 @@ import QuestionNavigator from "../../components/QuestionNavigation";
 import ResponsiveLayout from "../../components/ResponsiveLayout";
 import { Colors } from "../../constants/Colors";
 import { examData } from "../../data/examData";
+import MyCourse from "@/components/MyCourse";
 
 export default function HomeScreen() {
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
@@ -39,10 +37,7 @@ export default function HomeScreen() {
           />
         }
       >
-        <Banner />
-        <SlidableCards />
-        <SlidableCards2 />
-        {/* <Pagee /> */}
+        <MyCourse />
       </ResponsiveLayout>
     </View>
   )

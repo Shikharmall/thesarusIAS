@@ -1,7 +1,5 @@
-import Banner from "@/components/Banner";
 import HomeHeader from "@/components/HomeHeader";
-import SlidableCards from "@/components/SlidableCards";
-import SlidableCards2 from "@/components/SlidableCards2";
+import Profile from "@/components/Profile";
 import { QuestionStatus } from "@/types/exam";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
@@ -39,10 +37,7 @@ export default function HomeScreen() {
           />
         }
       >
-        <Banner />
-        <SlidableCards />
-        <SlidableCards2 />
-        {/* <Pagee /> */}
+        <Profile  />
       </ResponsiveLayout>
     </View>
   )

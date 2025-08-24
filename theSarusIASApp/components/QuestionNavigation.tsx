@@ -40,68 +40,42 @@ export default function QuestionNavigator({
     }, [questionStatuses, currentSection, sections]);
 
     return (
-        <View className="m-5">
-            {
-                sections?.length > 1 && (
-                    <View className="flex flex-row justify-between">
-                        {
-                            sections?.map((section, index) => (
-                                <TouchableOpacity
-                                    key={index}
-                                    className="py-2 px-5 rounded-full border border-1"
-                                    style={{
-                                        borderColor: currentSection === section?.id ? themeColor?.secondary : themeColor?.primary,
-                                        backgroundColor: currentSection === section?.id ? themeColor?.secondary : Colors?.background,
-                                    }}
-                                    onPress={() => {
-                                        onSectionSelect(index + 1);
-                                        onQuestionSelect(getFirstQuestionFormIndex(index) - 1);
-                                    }}
-                                >
-                                    <Text className="font-bold" style={{ color: currentSection === section?.id ? Colors?.background : themeColor?.primary }}>Part-{index + 1}</Text>
-                                </TouchableOpacity>
-                            ))
-                        }
-                    </View>
-                )
-            }
+        <View style={styles.wrapper}>
+            {/* Section Selector */}
+            {sections?.length > 1 && (
+                <View style={styles.sectionRow}>
+                    {sections?.map((section, index) => {
+                        const isActive = currentSection === section?.id;
+                        return (
+                            <TouchableOpacity
+                                key={index}
+                                style={[
+                                    styles.sectionButton,
+                                    isActive ? styles.sectionActive : styles.sectionInactive,
+                                ]}
+                                onPress={() => {
+                                    onSectionSelect(index + 1);
+                                    onQuestionSelect(getFirstQuestionFormIndex(index) - 1);
+                                }}
+                            >
+                                <Text style={[styles.sectionText, isActive && styles.sectionTextActive]}>
+                                    Part-{index + 1}
+                                </Text>
+                            </TouchableOpacity>
+                        );
+                    })}
+                </View>
+            )}
 
-            <View className="flex items-center justify-center m-5">
-                <Text className="font-semibold text-lg"
-                    style={{ color: themeColor?.primary }}>
+            {/* Section Name */}
+            <View style={styles.sectionTitleContainer}>
+                <Text style={styles.sectionTitle}>
                     {sections?.find(section => section?.id === currentSection)?.name}
                 </Text>
             </View>
 
-            {/* <View style={styles.container}>
-                {sections
-                    ?.find(section => section?.id === currentSection)
-                    ?.questions
-                    ?.map((question) => (
-                        <TouchableOpacity
-                            key={question?.id}
-                            className="flex flex-row items-center justify-center rounded rounded-md m-3"
-                            style={{
-                                backgroundColor: currentQuestion + 1 === question?.id ? themeColor?.primary : "white",
-                                width: 50,
-                                height: 50,
-                                borderWidth: currentQuestion + 1 === question?.id ? 0 : 0.3,
-                            }}
-                            onPress={() => {
-                                onQuestionSelect(question?.id - 1)
-                            }}
-                        >
-                            <Text
-                                className={`text-md font-medium ${currentQuestion + 1 === question?.id ? "text-white" : themeColor?.secondary
-                                    }`}
-                            >
-                                {question?.id}
-                            </Text>
-                        </TouchableOpacity>
-                    ))}
-            </View> */}
-
-            <View style={styles.container}>
+            {/* Questions Grid */}
+            <View style={styles.questionsContainer}>
                 {sections
                     ?.find(section => section?.id === currentSection)
                     ?.questions
@@ -119,40 +93,40 @@ export default function QuestionNavigator({
                             backgroundColor = themeColor?.primary;
                             textColor = "white";
                         } else if (status?.answered) {
-                            backgroundColor = "#dcfce7"; // green-100
-                            borderColor = "#86efac";     // green-300
-                            textColor = "#065f46";       // green-800
+                            backgroundColor = "#dcfce7";
+                            borderColor = "#86efac";
+                            textColor = "#065f46";
                             icon = "check-circle";
                             iconColor = "green";
                         } else if (status?.flagged) {
-                            backgroundColor = "#ffedd5"; // orange-100
-                            borderColor = "#fdba74";     // orange-300
-                            textColor = "#92400e";       // orange-800
+                            backgroundColor = "#ffedd5";
+                            borderColor = "#fdba74";
+                            textColor = "#92400e";
                             icon = "flag";
                             iconColor = "orange";
                         } else if (status?.visited) {
-                            backgroundColor = "#f3f4f6"; // gray-100
-                            borderColor = "#d1d5db";     // gray-300
-                            textColor = "#374151";       // gray-700
+                            backgroundColor = "#f3f4f6";
+                            borderColor = "#d1d5db";
+                            textColor = "#374151";
                         }
 
                         return (
                             <TouchableOpacity
                                 key={question?.id}
-                                className="flex flex-row items-center justify-center rounded-md m-3"
-                                style={{
-                                    backgroundColor,
-                                    borderColor,
-                                    width: 50,
-                                    height: 50,
-                                    borderWidth: isActive ? 0 : 1,
-                                }}
+                                style={[
+                                    styles.questionButton,
+                                    {
+                                        backgroundColor,
+                                        borderColor,
+                                        borderWidth: isActive ? 0 : 1,
+                                    }
+                                ]}
                                 onPress={() => onQuestionSelect(question?.id - 1)}
                             >
                                 {icon ? (
                                     <MaterialIcons name={icon} size={18} color={iconColor} />
                                 ) : (
-                                    <Text className="text-md font-medium" style={{ color: textColor }}>
+                                    <Text style={[styles.questionText, { color: textColor }]}>
                                         {question?.id}
                                     </Text>
                                 )}
@@ -161,74 +135,102 @@ export default function QuestionNavigator({
                     })}
             </View>
 
-
-            <View className="space-y-2 text-xs text-sidebar-foreground border-t-1 border-gray-300 pt-4"
-                style={{
-                    borderTopWidth: 0.3,
-                    borderTopColor: 'gray'
-                }}
-            >
-                <View className="m-3">
-                    <View className="flex flex-row items-center gap-2 m-3">
-                        <MaterialIcons name="check-circle" size={25} color="green" />
-                        <Text style={{ color: themeColor?.primary }}>Answered <Text style={{ color: themeColor?.secondary }}>({answeredCount})</Text></Text>
-                    </View>
-                    <View className="flex flex-row items-center gap-2 m-3">
-                        <MaterialIcons name="check-circle" size={25} color="red" />
-                        <Text style={{ color: themeColor?.primary }}>Not Answered <Text style={{ color: themeColor?.secondary }}>(
-                            {notAnsweredCount})</Text></Text>
-                    </View>
-                    <View className="flex flex-row items-center gap-2 m-3">
-                        <MaterialIcons name="check-circle" size={25} color="orange" />
-                        <Text style={{ color: themeColor?.primary }}>Mark for Review <Text style={{ color: themeColor?.secondary }}>({flaggedCount})</Text></Text>
-                    </View>
-                    <View className="flex flex-row items-center gap-2 m-3">
-                        <MaterialIcons name="check-circle" size={25} color="gray" />
-                        <Text style={{ color: themeColor?.primary }}>Not Visited <Text style={{ color: themeColor?.secondary }}>({(notVisitedCount || 1) - 1})</Text></Text>
-                    </View>
-
+            {/* Legend */}
+            <View style={styles.legendContainer}>
+                <View style={styles.legendItem}>
+                    <MaterialIcons name="check-circle" size={25} color="green" />
+                    <Text style={styles.legendText}>Answered (<Text style={styles.legendCount}>{answeredCount}</Text>)</Text>
+                </View>
+                <View style={styles.legendItem}>
+                    <MaterialIcons name="check-circle" size={25} color="red" />
+                    <Text style={styles.legendText}>Not Answered (<Text style={styles.legendCount}>{notAnsweredCount}</Text>)</Text>
+                </View>
+                <View style={styles.legendItem}>
+                    <MaterialIcons name="check-circle" size={25} color="orange" />
+                    <Text style={styles.legendText}>Mark for Review (<Text style={styles.legendCount}>{flaggedCount}</Text>)</Text>
+                </View>
+                <View style={styles.legendItem}>
+                    <MaterialIcons name="check-circle" size={25} color="gray" />
+                    <Text style={styles.legendText}>Not Visited (<Text style={styles.legendCount}>{notVisitedCount}</Text>)</Text>
                 </View>
             </View>
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
-    container: {
+    wrapper: {
+        margin: 20,
+    },
+    sectionRow: {
         flexDirection: "row",
-        flexWrap: "wrap",
-        padding: 10
+        justifyContent: "space-between",
     },
-    item: {
-        width: "20%", // 5 columns → 100% / 5 = 20%
-        padding: 4,
-    },
-    button: {
-        height: 32,
-        justifyContent: "center",
-        alignItems: "center",
-        borderRadius: 6,
+    sectionButton: {
+        paddingVertical: 8,
+        paddingHorizontal: 20,
+        borderRadius: 50,
         borderWidth: 1,
     },
-    activeButton: {
-        backgroundColor: "#2563eb", // blue for active
-        borderColor: "#2563eb",
+    sectionActive: {
+        backgroundColor: themeColor?.secondary,
+        borderColor: themeColor?.secondary,
     },
-    inactiveButton: {
-        backgroundColor: "transparent",
-        borderColor: "#d1d5db", // gray border
+    sectionInactive: {
+        backgroundColor: Colors?.background,
+        borderColor: themeColor?.primary,
     },
-    answered: {
-        backgroundColor: "#dcfce7", // green-100
-        borderColor: "#86efac", // green-300
+    sectionText: {
+        fontWeight: "bold",
+        color: themeColor?.primary,
     },
-    flagged: {
-        backgroundColor: "#ffedd5", // orange-100
-        borderColor: "#fdba74", // orange-300
+    sectionTextActive: {
+        color: Colors?.background,
     },
-    buttonText: {
-        fontSize: 12,
+    sectionTitleContainer: {
+        alignItems: "center",
+        justifyContent: "center",
+        marginVertical: 20,
+    },
+    sectionTitle: {
         fontWeight: "600",
-        color: "#1f2937",
+        fontSize: 18,
+        color: themeColor?.primary,
+    },
+    questionsContainer: {
+        flexDirection: "row",
+        flexWrap: "wrap",
+        padding: 10,
+    },
+    questionButton: {
+        width: 50,
+        height: 50,
+        borderRadius: 8,
+        justifyContent: "center",
+        alignItems: "center",
+        margin: 5,
+    },
+    questionText: {
+        fontSize: 14,
+        fontWeight: "500",
+    },
+    legendContainer: {
+        borderTopWidth: 0.3,
+        borderTopColor: 'gray',
+        paddingTop: 10,
+        marginTop: 20,
+    },
+    legendItem: {
+        flexDirection: "row",
+        alignItems: "center",
+        marginVertical: 5,
+        gap: 10,
+    },
+    legendText: {
+        fontSize: 14,
+        color: themeColor?.primary,
+    },
+    legendCount: {
+        color: themeColor?.secondary,
     },
 });
