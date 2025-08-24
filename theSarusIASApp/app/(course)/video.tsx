@@ -154,7 +154,7 @@ export default function VideoScreen() {
                             >
                                 <View style={styles.thumbnailWrapper}>
                                     <Image
-                                        source={require("../assets/images/thumbnail.png")}
+                                        source={require("../../assets/images/thumbnail.png")}
                                         style={styles.thumbnail}
                                         resizeMode="cover"
                                     />

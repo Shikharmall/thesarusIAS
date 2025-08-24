@@ -5,552 +5,77 @@ import { StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-nati
 export default function Profile() {
 
     return (
-        <>
-            {/* Header */}
-            {/* <View style={styles.header}>
-                <TouchableOpacity style={styles.backButton}>
-                    <Ionicons name="menu" size={24} color="#666" />
-                </TouchableOpacity>
-                <Text style={styles.headerTitle}>My Profile</Text>
-                <TouchableOpacity>
-                    <Ionicons name="notifications-outline" size={24} color="#666" />
-                </TouchableOpacity>
-            </View> */}
+        <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
+            {/* Profile Info */}
+            <View style={styles.profileContainer}>
+                <View style={styles.profileHeader}>
+                    <View style={styles.profileAvatar}>
+                        <Ionicons name="person" size={32} color="#4A90E2" />
+                    </View>
+                    <View style={styles.profileInfo}>
+                        <Text style={styles.profileName}>Student</Text>
+                        <Text style={styles.profileId}>9659XXXX</Text>
+                        <Text style={styles.profileEmail}>abcxxxx23@gmail.com</Text>
+                    </View>
+                    <TouchableOpacity style={styles.editButton}>
+                        <Ionicons name="create-outline" size={20} color="#4A90E2" />
+                        <Text style={styles.editText}>Edit Profile</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
 
-            <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
-                {/* Profile Info */}
-                <View style={styles.profileContainer}>
-                    <View style={styles.profileHeader}>
-                        <View style={styles.profileAvatar}>
-                            <Ionicons name="person" size={32} color="#4A90E2" />
-                        </View>
-                        <View style={styles.profileInfo}>
-                            <Text style={styles.profileName}>Student</Text>
-                            <Text style={styles.profileId}>9659XXXX</Text>
-                            <Text style={styles.profileEmail}>abcxxxx23@gmail.com</Text>
-                        </View>
-                        <TouchableOpacity style={styles.editButton}>
-                            <Ionicons name="create-outline" size={20} color="#4A90E2" />
-                            <Text style={styles.editText}>Edit Profile</Text>
-                        </TouchableOpacity>
+            {/* Progress Section */}
+            <View style={styles.progressContainer}>
+                <View style={styles.progressHeader}>
+                    <Text style={styles.progressTitle}>My Progress</Text>
+                    <Ionicons name="trending-up" size={20} color="#4A90E2" />
+                </View>
+
+                <View style={styles.progressCircleContainer}>
+                    <View style={styles.progressCircle}>
+                        <Text style={styles.progressPercentage}>75%</Text>
+                        <Text style={styles.progressLabel}>Overall</Text>
                     </View>
                 </View>
 
-                {/* Progress Section */}
-                <View style={styles.progressContainer}>
-                    <View style={styles.progressHeader}>
-                        <Text style={styles.progressTitle}>My Progress</Text>
-                        <Ionicons name="trending-up" size={20} color="#4A90E2" />
-                    </View>
+                <Text style={styles.progressSubtext}>Monitor your course completion</Text>
+            </View>
 
-                    <View style={styles.progressCircleContainer}>
-                        <View style={styles.progressCircle}>
-                            <Text style={styles.progressPercentage}>75%</Text>
-                            <Text style={styles.progressLabel}>Overall</Text>
-                        </View>
-                    </View>
-
-                    <Text style={styles.progressSubtext}>Monitor your course completion</Text>
+            {/* Stats Grid */}
+            <View style={styles.statsGrid}>
+                <View style={styles.statCard}>
+                    <Text style={styles.statNumber}>1/09</Text>
+                    <Text style={styles.statLabel}>Test Series</Text>
+                    <Text style={styles.statSubtext}>Test your mettle</Text>
                 </View>
-
-                {/* Stats Grid */}
-                <View style={styles.statsGrid}>
-                    <View style={styles.statCard}>
-                        <Text style={styles.statNumber}>1/09</Text>
-                        <Text style={styles.statLabel}>Test Series</Text>
-                        <Text style={styles.statSubtext}>Test your mettle</Text>
-                    </View>
-                    <View style={styles.statCard}>
-                        <Text style={styles.statNumber}>21/22</Text>
-                        <Text style={styles.statLabel}>Class Videos</Text>
-                        <Text style={styles.statSubtext}>Learn from the best</Text>
-                    </View>
+                <View style={styles.statCard}>
+                    <Text style={styles.statNumber}>21/22</Text>
+                    <Text style={styles.statLabel}>Class Videos</Text>
+                    <Text style={styles.statSubtext}>Learn from the best</Text>
                 </View>
+            </View>
 
-                <View style={styles.statsGrid}>
-                    <View style={styles.statCard}>
-                        <Text style={styles.statNumber}>05/500</Text>
-                        <Text style={styles.statLabel}>AWM</Text>
-                        <Text style={styles.statSubtext}>Answer Writing</Text>
-                    </View>
-                    <View style={styles.statCard}>
-                        <Text style={styles.statNumber}>09/11</Text>
-                        <Text style={styles.statLabel}>Notes</Text>
-                        <Text style={styles.statSubtext}>Additional content for</Text>
-                    </View>
+            <View style={styles.statsGrid}>
+                <View style={styles.statCard}>
+                    <Text style={styles.statNumber}>05/500</Text>
+                    <Text style={styles.statLabel}>AWM</Text>
+                    <Text style={styles.statSubtext}>Answer Writing</Text>
                 </View>
-            </ScrollView>
-        </>
+                <View style={styles.statCard}>
+                    <Text style={styles.statNumber}>09/11</Text>
+                    <Text style={styles.statLabel}>Notes</Text>
+                    <Text style={styles.statSubtext}>Additional content for</Text>
+                </View>
+            </View>
+        </ScrollView>
     )
 
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "#F8F9FA",
-    },
-    header: {
-        flexDirection: "row",
-        alignItems: "center",
-        paddingHorizontal: 16,
-        paddingVertical: 12,
-        backgroundColor: "#F8F9FA",
-    },
-    backButton: {
-        marginRight: 12,
-    },
-    headerTitle: {
-        fontSize: 18,
-        fontWeight: "600",
-        color: "#8B5CF6",
-    },
     content: {
         flex: 1,
         paddingHorizontal: 16,
-    },
-    //   courseCard: {
-    //     backgroundColor: "#87CEEB",
-    //     borderRadius: 12,
-    //     padding: 16,
-    //     marginBottom: 24,
-    //   },
-    courseHeader: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "flex-start",
-        marginBottom: 12,
-    },
-    courseInfo: {
-        flex: 1,
-    },
-    courseTitle: {
-        fontSize: 20,
-        fontWeight: "bold",
-        color: "#2C3E50",
-        marginBottom: 4,
-    },
-    courseBatch: {
-        fontSize: 14,
-        color: "#34495E",
-    },
-    liveIndicator: {
-        backgroundColor: "white",
-        paddingHorizontal: 8,
-        paddingVertical: 4,
-        borderRadius: 6,
-    },
-    liveText: {
-        fontSize: 12,
-        color: "#E74C3C",
-        fontWeight: "600",
-    },
-    courseTags: {
-        flexDirection: "row",
-        marginBottom: 16,
-    },
-    liveTag: {
-        backgroundColor: "#E74C3C",
-        paddingHorizontal: 8,
-        paddingVertical: 4,
-        borderRadius: 4,
-        marginRight: 8,
-    },
-    liveTagText: {
-        color: "white",
-        fontSize: 12,
-        fontWeight: "600",
-    },
-    englishTag: {
-        backgroundColor: "#27AE60",
-        paddingHorizontal: 8,
-        paddingVertical: 4,
-        borderRadius: 4,
-    },
-    englishTagText: {
-        color: "white",
-        fontSize: 12,
-        fontWeight: "600",
-    },
-    courseDetails: {
-        backgroundColor: "rgba(255, 255, 255, 0.3)",
-        borderRadius: 8,
-        padding: 12,
-    },
-    detailRow: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        marginBottom: 4,
-    },
-    detailLabel: {
-        fontSize: 14,
-        color: "#2C3E50",
-    },
-    detailValue: {
-        fontSize: 14,
-        color: "#2C3E50",
-        fontWeight: "600",
-    },
-    featuresGrid: {
-        flexDirection: "row",
-        flexWrap: "wrap",
-        justifyContent: "space-between",
-        marginBottom: 24,
-    },
-    bottomGrid: {
-        flexDirection: "row",
-        justifyContent: "space-around",
-        marginBottom: 24,
-    },
-    featureCard: {
-        backgroundColor: "white",
-        borderRadius: 12,
-        padding: 16,
-        alignItems: "center",
-        width: "30%",
-        marginBottom: 16,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.1,
-        shadowRadius: 3.84,
-        elevation: 5,
-    },
-    iconContainer: {
-        width: 48,
-        height: 48,
-        borderRadius: 24,
-        justifyContent: "center",
-        alignItems: "center",
-        marginBottom: 8,
-    },
-    tab: {
-        flex: 1,
-        paddingVertical: 12,
-        alignItems: "center",
-    },
-    activeTab: {
-        backgroundColor: "#4A90E2",
-        borderRadius: 6,
-    },
-    tabText: {
-        fontSize: 14,
-        color: "#666",
-    },
-    activeTabText: {
-        color: "white",
-        fontWeight: "600",
-    },
-    testDetailsContainer: {
-        backgroundColor: "white",
-        borderRadius: 12,
-        padding: 16,
-        marginBottom: 20,
-    },
-    testDetailRow: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        marginBottom: 16,
-    },
-    testDetailItem: {
-        flex: 1,
-        alignItems: "center",
-    },
-    testDetailLabel: {
-        fontSize: 12,
-        color: "#666",
-        marginTop: 4,
-    },
-    testDetailValue: {
-        fontSize: 12,
-        color: "#333",
-        fontWeight: "600",
-        marginTop: 2,
-    },
-    testStatsRow: {
-        flexDirection: "row",
-        justifyContent: "space-around",
-    },
-    testStat: {
-        alignItems: "center",
-    },
-    testStatNumber: {
-        fontSize: 18,
-        fontWeight: "bold",
-        color: "#333",
-        marginTop: 4,
-    },
-    testStatLabel: {
-        fontSize: 12,
-        color: "#666",
-        marginTop: 2,
-    },
-    languageContainer: {
-        flexDirection: "row",
-        marginBottom: 20,
-    },
-    languageButtonActive: {
-        backgroundColor: "#4A90E2",
-        paddingHorizontal: 24,
-        paddingVertical: 12,
-        borderRadius: 8,
-        marginRight: 12,
-    },
-    languageButton: {
-        backgroundColor: "#E5E5E5",
-        paddingHorizontal: 24,
-        paddingVertical: 12,
-        borderRadius: 8,
-    },
-    languageTextActive: {
-        color: "white",
-        fontWeight: "600",
-    },
-    languageText: {
-        color: "#666",
-    },
-    instructionsContainer: {
-        backgroundColor: "white",
-        borderRadius: 12,
-        padding: 16,
-        marginBottom: 20,
-    },
-    instructionsTitle: {
-        fontSize: 16,
-        fontWeight: "bold",
-        color: "#333",
-        marginBottom: 12,
-    },
-    instructionsText: {
-        fontSize: 14,
-        color: "#666",
-        lineHeight: 20,
-    },
-    startButton: {
-        backgroundColor: "#4A90E2",
-        borderRadius: 12,
-        paddingVertical: 16,
-        alignItems: "center",
-        marginBottom: 20,
-    },
-    startButtonText: {
-        color: "white",
-        fontSize: 16,
-        fontWeight: "600",
-    },
-    homeHeader: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        paddingHorizontal: 16,
-        paddingVertical: 12,
-    },
-    headerCenter: {
-        flexDirection: "row",
-        alignItems: "center",
-    },
-    headerCenterText: {
-        fontSize: 18,
-        fontWeight: "600",
-        marginRight: 4,
-    },
-    notificationBadge: {
-        position: "relative",
-    },
-    badge: {
-        position: "absolute",
-        top: -4,
-        right: -4,
-        backgroundColor: "#E74C3C",
-        borderRadius: 8,
-        width: 16,
-        height: 16,
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    badgeText: {
-        color: "white",
-        fontSize: 10,
-        fontWeight: "bold",
-    },
-    greetingContainer: {
-        flexDirection: "row",
-        alignItems: "center",
-        paddingHorizontal: 16,
-        paddingVertical: 12,
-        backgroundColor: "#F0F4FF",
-        marginHorizontal: 16,
-        borderRadius: 12,
-        marginBottom: 16,
-    },
-    profileIcon: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
-        backgroundColor: "white",
-        justifyContent: "center",
-        alignItems: "center",
-        marginRight: 12,
-    },
-    greetingText: {
-        fontSize: 14,
-        color: "#666",
-    },
-    studentText: {
-        fontSize: 16,
-        fontWeight: "600",
-        color: "#333",
-    },
-    searchContainer: {
-        flexDirection: "row",
-        alignItems: "center",
-        backgroundColor: "white",
-        marginHorizontal: 16,
-        paddingHorizontal: 16,
-        paddingVertical: 12,
-        borderRadius: 12,
-        marginBottom: 20,
-    },
-    searchPlaceholder: {
-        marginLeft: 8,
-        color: "#999",
-        fontSize: 14,
-    },
-    featuredScroll: {
-        marginBottom: 24,
-    },
-    featuredCard: {
-        width: 280,
-        padding: 16,
-        borderRadius: 12,
-        marginRight: 16,
-        marginLeft: 16,
-    },
-    featuredTitle: {
-        fontSize: 18,
-        fontWeight: "bold",
-        color: "white",
-        marginBottom: 4,
-    },
-    featuredSubtitle: {
-        fontSize: 14,
-        color: "white",
-        opacity: 0.9,
-        marginBottom: 8,
-    },
-    featuredBatch: {
-        fontSize: 12,
-        color: "white",
-        opacity: 0.8,
-        marginBottom: 12,
-    },
-    featuredTags: {
-        flexDirection: "row",
-    },
-    languageTag: {
-        backgroundColor: "rgba(255, 255, 255, 0.2)",
-        paddingHorizontal: 8,
-        paddingVertical: 4,
-        borderRadius: 4,
-        marginLeft: 8,
-    },
-    languageTagText: {
-        color: "white",
-        fontSize: 12,
-    },
-    sectionHeader: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        paddingHorizontal: 16,
-        marginBottom: 16,
-    },
-    sectionTitle: {
-        fontSize: 16,
-        fontWeight: "600",
-        color: "#333",
-    },
-    viewAll: {
-        fontSize: 14,
-        color: "#4A90E2",
-    },
-    courseCard: {
-        backgroundColor: "white",
-        width: 160,
-        padding: 12,
-        borderRadius: 12,
-        marginRight: 12,
-        marginLeft: 16,
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        elevation: 3,
-    },
-    courseCardTitle: {
-        fontSize: 14,
-        fontWeight: "600",
-        color: "#333",
-        marginBottom: 4,
-    },
-    courseCardSubtitle: {
-        fontSize: 12,
-        color: "#666",
-        marginBottom: 8,
-    },
-    courseCardBatch: {
-        fontSize: 11,
-        color: "#999",
-        marginBottom: 8,
-    },
-    courseCardTags: {
-        flexDirection: "row",
-        flexWrap: "wrap",
-    },
-    courseTag: {
-        paddingHorizontal: 6,
-        paddingVertical: 2,
-        borderRadius: 4,
-        marginRight: 4,
-        marginBottom: 4,
-    },
-    hindiTag: {
-        backgroundColor: "#E8F5E8",
-    },
-    courseTagText: {
-        fontSize: 10,
-        fontWeight: "500",
-    },
-    bottomNav: {
-        flexDirection: "row",
-        backgroundColor: "white",
-        paddingVertical: 12,
-        paddingHorizontal: 16,
-        borderTopWidth: 1,
-        borderTopColor: "#E5E5E5",
-    },
-    navItem: {
-        flex: 1,
-        alignItems: "center",
-    },
-    navItemCenter: {
-        flex: 1,
-        alignItems: "center",
-    },
-    exploreButton: {
-        backgroundColor: "#4A90E2",
-        width: 40,
-        height: 40,
-        borderRadius: 20,
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    navText: {
-        fontSize: 10,
-        color: "#999",
-        marginTop: 4,
     },
     profileContainer: {
         backgroundColor: "#F0F4FF",

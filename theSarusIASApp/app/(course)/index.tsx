@@ -1,24 +1,30 @@
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
+import { themeColor } from "@/constants/Colors"
+import { useRouter } from "expo-router";
 
 const CourseDetailsScreen = () => {
+    const router = useRouter();
     const featureItems = [
-        { id: 1, title: "Features", icon: "document-text-outline", color: "#4A90E2" },
-        { id: 2, title: "Demo Class", icon: "play-outline", color: "#50C878" },
-        { id: 3, title: "FAQs", icon: "help-circle-outline", color: "#FFB347" },
-        { id: 4, title: "Submit Feedback", icon: "star-outline", color: "#FF6B6B" },
-        { id: 5, title: "Schedule & Syllabus", icon: "calendar-outline", color: "#4ECDC4" },
-        { id: 6, title: "My Class", icon: "folder-outline", color: "#95A5A6" },
+        { id: 1, title: "Features", icon: "document-text-outline", color: "#4A90E2", url: "/(course)/video" },
+        { id: 2, title: "Demo Class", icon: "play-outline", color: "#50C878", url: "/(course)/video" },
+        { id: 3, title: "FAQs", icon: "help-circle-outline", color: "#FFB347", url: "/(course)/video" },
+        { id: 4, title: "Submit Feedback", icon: "star-outline", color: "#FF6B6B", url: "/(course)/video" },
+        { id: 5, title: "Schedule & Syllabus", icon: "calendar-outline", color: "#4ECDC4", url: "/(course)/video" },
+        { id: 6, title: "My Class", icon: "folder-outline", color: "#95A5A6", url: "/(course)/video" },
+        { id: 7, title: "Test Series", icon: "library-outline", color: "#E67E22", url: "/(course)/video" },
+        { id: 8, title: "Submit Answer", icon: "checkmark-circle-outline", color: "#9B59B6", url: "/(course)/video" },
+        { id: 9, title: "Class Test", icon: "clipboard-outline", color: "#3498DB", url: "/(course)/video" },
     ]
 
-    const bottomItems = [
-        { id: 1, title: "Test Series", icon: "library-outline", color: "#E67E22" },
-        { id: 2, title: "Submit Answer", icon: "checkmark-circle-outline", color: "#9B59B6" },
-        { id: 3, title: "Class Test", icon: "clipboard-outline", color: "#3498DB" },
-    ]
+    // const bottomItems = [
+    //     { id: 1, title: "Test Series", icon: "library-outline", color: "#E67E22" },
+    //     { id: 2, title: "Submit Answer", icon: "checkmark-circle-outline", color: "#9B59B6" },
+    //     { id: 3, title: "Class Test", icon: "clipboard-outline", color: "#3498DB" },
+    // ]
 
     const FeatureCard = ({ item }: { item: any }) => (
-        <TouchableOpacity style={styles.featureCard}>
+        <TouchableOpacity style={styles.featureCard} onPress={() => router.push(item.url)} >
             <View style={[styles.iconContainer, { backgroundColor: `${item.color}20` }]}>
                 <Ionicons name={item.icon as any} size={24} color={item.color} />
             </View>
@@ -30,8 +36,8 @@ const CourseDetailsScreen = () => {
         <>
             {/* Header */}
             <View style={styles.header}>
-                <TouchableOpacity style={styles.backButton}>
-                    <Ionicons name="chevron-back" size={24} color="#666" />
+                <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
+                    <Ionicons name="chevron-back" size={24} color={themeColor?.secondary} />
                 </TouchableOpacity>
                 <Text style={styles.headerTitle}>Course Details</Text>
             </View>
@@ -72,17 +78,17 @@ const CourseDetailsScreen = () => {
 
                 {/* Features Grid */}
                 <View style={styles.featuresGrid}>
-                    {featureItems.map((item) => (
+                    {featureItems?.map((item) => (
                         <FeatureCard key={item.id} item={item} />
                     ))}
                 </View>
 
                 {/* Bottom Items */}
-                <View style={styles.bottomGrid}>
+                {/* <View style={styles.bottomGrid}>
                     {bottomItems.map((item) => (
                         <FeatureCard key={item.id} item={item} />
                     ))}
-                </View>
+                </View> */}
             </ScrollView>
         </>
     )
@@ -107,7 +113,7 @@ const styles = StyleSheet.create({
     headerTitle: {
         fontSize: 18,
         fontWeight: "600",
-        color: "#8B5CF6",
+        color: themeColor?.secondary,
     },
     content: {
         flex: 1,
