@@ -1,7 +1,7 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
+import { StyleSheet, Text, View } from "react-native"
+import { Colors, themeColor } from "../../constants/Colors"
 import { ExamTimer } from "./ExamTimer"
-import { Colors, themeColor } from "../constants/Colors"
-import AnimatedHamburger from "./ui/AnimatedHamburger"
+import AnimatedHamburger from "../ui/AnimatedHamburger"
 
 interface ExamHeaderProps {
     onToggleNavigator: () => void

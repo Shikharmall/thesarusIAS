@@ -2,8 +2,8 @@ import { HeaderProps } from "@/types/exam";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { Colors, themeColor } from "../constants/Colors";
-import AnimatedHamburger from "./ui/AnimatedHamburger";
+import { Colors, themeColor } from "../../constants/Colors";
+import AnimatedHamburger from "../ui/AnimatedHamburger";
 
 export default function HomeHeader({ onToggleNavigator, showNavigator }: HeaderProps) {
     const router = useRouter();

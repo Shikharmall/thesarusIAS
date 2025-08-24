@@ -18,7 +18,7 @@ export default function Banner() {
 
             {/* Right Image */}
             <Image
-                source={require("../assets/images/thesaruslogo.jpg")}
+                source={require("../../assets/images/thesaruslogo.jpg")}
                 style={styles.image}
                 resizeMode="cover"
             />

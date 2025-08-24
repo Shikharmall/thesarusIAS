@@ -16,14 +16,14 @@ export default function TabLayout() {
                     }}
                 />
                 <Tabs.Screen
-                    name="mycourse"
+                    name="courses"
                     options={{
-                        title: 'My Course',
+                        title: 'Courses',
                         tabBarIcon: ({ color }) => <FontAwesome size={28} name="graduation-cap" color={color} />,
                     }}
                 />
                 <Tabs.Screen
-                    name="test"
+                    name="testseries"
                     options={{
                         title: 'Test Series',
                         tabBarIcon: ({ color }) => <FontAwesome size={28} name="tasks" color={color} />,

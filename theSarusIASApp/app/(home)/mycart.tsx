@@ -1,11 +1,13 @@
-import LectureVideoPlayer from '@/components/Video'
-import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import Courses from '@/components/course/Courses'
+import React from 'react'
 
 export default function mycart() {
 
     return (
-        <LectureVideoPlayer />
+        <>
+            {/* <LectureVideoPlayer /> */}
+            <Courses />
+        </>
     )
 
 }

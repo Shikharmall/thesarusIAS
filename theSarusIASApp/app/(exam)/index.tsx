@@ -2,11 +2,10 @@ import { QuestionStatus } from "@/types/exam";
 import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import ExamHeader from "../../components/ExamHeader";
-import ExamNavigation from "../../components/ExamNavigation";
-import InstructionModal from "../../components/InstructionModal";
-import QuestionDisplay from "../../components/QuestionDisplay";
-import QuestionNavigator from "../../components/QuestionNavigation";
+import ExamHeader from "../../components/exam/ExamHeader";
+import ExamNavigation from "../../components/exam/ExamNavigation";
+import QuestionDisplay from "../../components/exam/QuestionDisplay";
+import QuestionNavigator from "../../components/exam/QuestionNavigation";
 import ResponsiveLayout from "../../components/ResponsiveLayout";
 import { Colors } from "../../constants/Colors";
 import { examData } from "../../data/examData";
@@ -79,9 +78,9 @@ export default function ExamScreen() {
 
   return (
     <View style={styles.container}>
-      <InstructionModal isVisible={showInstructions} onStartExam={handleStartExam} />
+      {/* <InstructionModal isVisible={showInstructions} onStartExam={handleStartExam} /> */}
 
-      {examStarted && (
+      {true && (
         <>
           <ExamHeader onToggleNavigator={() => setShowNavigator(!showNavigator)} showNavigator={showNavigator} />
 

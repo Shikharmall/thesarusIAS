@@ -1,8 +1,8 @@
-import { View, Text, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import TouchableScale from "./TouchableScale";
-import { Colors } from "../constants/Colors";
-import type { MCQQuestionProps } from "../types/exam";
+import { StyleSheet, Text, View } from "react-native";
+import { Colors } from "../../constants/Colors";
+import type { MCQQuestionProps } from "../../types/exam";
+import TouchableScale from "../TouchableScale";
 
 export default function MCQQuestion({
   question,

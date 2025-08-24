@@ -38,8 +38,8 @@ export default function EndScreen() {
   }, [rollNum, userName, totalQuestions, answeredCount, flaggedCount]);
 
   const backAction = () => {
-    router.dismissAll();   // close all routes
-    router.replace("/LoginWithOTP");  // go to home
+    //router.dismissAll();   // close all routes
+    router.replace("/(home)");  // go to home
     return true;
   };
 

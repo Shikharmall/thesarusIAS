@@ -1,11 +1,11 @@
-import Banner from "@/components/Banner";
-import HomeHeader from "@/components/HomeHeader";
+import Banner from "@/components/home/Banner";
+import HomeHeader from "@/components/home/HomeHeader";
 import SlidableCards from "@/components/SlidableCards";
 import SlidableCards2 from "@/components/SlidableCards2";
 import { QuestionStatus } from "@/types/exam";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import QuestionNavigator from "../../components/QuestionNavigation";
+import QuestionNavigator from "../../components/exam/QuestionNavigation";
 import ResponsiveLayout from "../../components/ResponsiveLayout";
 import { Colors } from "../../constants/Colors";
 import { examData } from "../../data/examData";

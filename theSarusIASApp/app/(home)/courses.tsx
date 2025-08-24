@@ -1,19 +1,18 @@
-import HomeHeader from "@/components/HomeHeader";
+import HomeHeader from "@/components/home/HomeHeader";
 import { QuestionStatus } from "@/types/exam";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import QuestionNavigator from "../../components/QuestionNavigation";
+import QuestionNavigator from "../../components/exam/QuestionNavigation";
 import ResponsiveLayout from "../../components/ResponsiveLayout";
-import { Colors } from "../../constants/Colors";
+import { Colors, themeColor } from "../../constants/Colors";
 import { examData } from "../../data/examData";
-import MyCourse from "@/components/MyCourse";
+import TabSwitcherCourses from "@/components/course/TabSwitcherCourses";
 
 export default function HomeScreen() {
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [showNavigator, setShowNavigator] = useState<boolean>(false);
   const [currentSection, setCurrentSection] = useState<number>(1);
   const [questionStatuses, setQuestionStatuses] = useState<Record<number, QuestionStatus>>({});
-
   const handleChangeSection = (sectionId: number) => {
     setCurrentSection(sectionId)
   }
@@ -37,7 +36,7 @@ export default function HomeScreen() {
           />
         }
       >
-        <MyCourse />
+        <TabSwitcherCourses />
       </ResponsiveLayout>
     </View>
   )
@@ -49,5 +48,5 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.background,
     paddingTop: 50,
     paddingBottom: 40
-  },
+  }
 })

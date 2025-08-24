@@ -1,8 +1,7 @@
-import { useState } from "react"
-import { View, Text, StyleSheet, ScrollView } from "react-native"
-import MCQQuestion from "./MCQQuestion"
-import { Colors } from "../constants/Colors"
-import type { Question, QuestionDisplayProps, QuestionStatus } from "../types/exam"
+import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { Colors } from "../../constants/Colors";
+import type { Question, QuestionDisplayProps } from "../../types/exam";
+import MCQQuestion from "./MCQQuestion";
 
 export default function QuestionDisplay({ currentQuestion, currentSection, sections, questionStatuses, onAnswerSelect, onFlagSelect,
   onClearSelect, }: QuestionDisplayProps) {
