@@ -1,25 +1,32 @@
 import { HeaderProps } from "@/types/exam";
-import { MaterialIcons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { useRouter, useNavigation } from "expo-router";
+import { Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Colors, themeColor } from "../../constants/Colors";
-import AnimatedHamburger from "../ui/AnimatedHamburger";
+import { DrawerActions } from "@react-navigation/native";
+// import AnimatedHamburger from "../ui/AnimatedHamburger";
 
 export default function HomeHeader({ onToggleNavigator, showNavigator }: HeaderProps) {
     const router = useRouter();
+    const navigation = useNavigation();
     // Example badge count (you can pass this as prop or from state)
     const notificationCount = 3;
 
     return (
         <View style={styles.header}>
-            <View>
-                <AnimatedHamburger
+            <TouchableOpacity
+                onPress={() => {
+                    navigation.dispatch(DrawerActions.toggleDrawer());
+                }}
+            >
+                {/* <AnimatedHamburger
                     isOpen={showNavigator}
                     onPress={onToggleNavigator}
                     size={28}
                     color={themeColor?.secondary}
-                />
-            </View>
+                /> */}
+                <Ionicons name="menu" size={28} color={themeColor?.secondary} />
+            </TouchableOpacity>
 
             <View>
                 <Text style={styles.title}>The SARUS</Text>

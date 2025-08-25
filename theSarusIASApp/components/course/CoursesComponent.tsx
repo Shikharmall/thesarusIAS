@@ -10,7 +10,7 @@ import {
     View,
 } from "react-native";
 
-export default function Courses({ courses }: CoursesProps) {
+export default function CoursesComponent({ courses }: CoursesProps) {
 
     const router = useRouter();
 

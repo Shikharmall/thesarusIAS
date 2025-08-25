@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import Courses from "./Courses";
+import Courses from "./CoursesComponent";
 import { Course } from "@/types/courses";
 
 const { width } = Dimensions.get("window");

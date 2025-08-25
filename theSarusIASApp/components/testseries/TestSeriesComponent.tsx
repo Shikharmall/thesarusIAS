@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         shadowOffset: { width: 0, height: 2 },
     },
-    row: { flexDirection: "row", padding: 10 },
+    row: { flexDirection: "row", padding: 10, alignItems: 'center' },
     image: {
         width: 90,
         height: 70,
