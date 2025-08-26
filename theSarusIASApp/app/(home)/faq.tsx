@@ -7,22 +7,10 @@ import {
     ScrollView,
     TouchableOpacity,
     LayoutAnimation,
-    Platform,
-    UIManager,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-
-// enable animation on Android
-// if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental) {
-//     UIManager.setLayoutAnimationEnabledExperimental(true);
-// }
-
-const themeColor = {
-    primary: "#0ab7f3",
-    secondary: "#072c73",
-    lightPrimary: "#5dc5f129",
-    lightSecondary: "#eef3faff",
-};
+import { themeColor } from "@/constants/Colors";
+import { useRouter } from "expo-router";
 
 const faqs = [
     {
@@ -58,6 +46,7 @@ const categories = [
 export default function HelpScreen() {
     const [expanded, setExpanded] = useState<string | null>(null);
     const [activeCategory, setActiveCategory] = useState("all");
+    const router = useRouter();
 
     const toggleExpand = (q: string) => {
         LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
@@ -67,6 +56,13 @@ export default function HelpScreen() {
     return (
         <View style={styles.container}>
             {/* Header */}
+            <View style={styles.header}>
+                <TouchableOpacity onPress={() => router.back()}>
+                    <Ionicons name="arrow-back" size={24} color={themeColor.secondary} />
+                </TouchableOpacity>
+                <Text style={styles.headerTitle}>Help & Support</Text>
+                <View style={{ width: 24 }} />
+            </View>
             <Text style={styles.header}>How can we help you?</Text>
 
             {/* Search */}
@@ -136,11 +132,22 @@ export default function HelpScreen() {
 const styles = StyleSheet.create({
     container: { flex: 1, backgroundColor: "#fff", padding: 16, paddingTop: 50 },
     header: {
-        fontSize: 22,
-        fontWeight: "bold",
-        color: themeColor.secondary,
-        marginBottom: 16,
+        flexDirection: "row",
+        alignItems: "center",
+        paddingVertical: 12,
+        justifyContent: "space-between",
     },
+    headerTitle: {
+        fontSize: 18,
+        fontWeight: "600",
+        color: themeColor.secondary,
+    },
+    // header: {
+    //     fontSize: 22,
+    //     fontWeight: "bold",
+    //     color: themeColor.secondary,
+    //     marginBottom: 16,
+    // },
     searchBox: {
         flexDirection: "row",
         alignItems: "center",

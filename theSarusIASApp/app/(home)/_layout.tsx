@@ -48,7 +48,7 @@ function CustomDrawerContent(props: any) {
                             <Ionicons name="chevron-forward" size={20} color="#777" />
                         </View>
                     )}
-                    onPress={() => props.navigation.navigate("settings")}
+                    onPress={() => props.navigation.navigate("freecontent")}
                     icon={({ color, size }) => (
                         <Ionicons name="folder-open" color={color} size={size} />
                     )}

@@ -27,7 +27,7 @@ export default function LaunchingSoonScreen() {
             {/* Notify Button */}
             <TouchableOpacity style={styles.button} onPress={() => {
                 router.push({
-                    pathname: "/(home)",
+                    pathname: "/(home)/(tabs)",
                 });
             }}>
                 <Text style={styles.buttonText}>Notify Me</Text>

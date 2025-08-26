@@ -1,7 +1,6 @@
 import { TestSeries, TestSeriesProps } from "@/types/testseries";
 import { useRouter } from "expo-router";
 import React from "react";
-
 import {
     FlatList,
     Image,
@@ -80,7 +79,7 @@ export default function TestSeriesComponent({ testseries }: TestSeriesProps) {
                             data={testseries}
                             keyExtractor={(item) => item.id}
                             renderItem={renderSeries}
-                            contentContainerStyle={{ padding: 10 }}
+                            // contentContainerStyle={{ padding: 10 }}
                         />
 
                     )
@@ -94,13 +93,15 @@ const styles = StyleSheet.create({
     // Card
     card: {
         backgroundColor: "#fff",
-        marginBottom: 12,
-        borderRadius: 10,
-        elevation: 3,
-        shadowColor: "#000",
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        shadowOffset: { width: 0, height: 2 },
+        // marginBottom: 12,
+        // borderRadius: 10,
+        borderColor: '#eee',
+        borderBottomWidth: 1,
+        // elevation: 3,
+        // shadowColor: "#000",
+        // shadowOpacity: 0.1,
+        // shadowRadius: 4,
+        // shadowOffset: { width: 0, height: 2 },
     },
     row: { flexDirection: "row", padding: 10, alignItems: 'center' },
     image: {

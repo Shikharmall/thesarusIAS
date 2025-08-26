@@ -79,7 +79,7 @@ export default function CoursesComponent({ courses }: CoursesProps) {
                             data={courses}
                             keyExtractor={(item) => item.id}
                             renderItem={renderCourse}
-                            contentContainerStyle={{ padding: 10 }}
+                        // contentContainerStyle={{ padding: 10 }}
                         />
                     )
             }
@@ -95,13 +95,17 @@ const styles = StyleSheet.create({
     // Card
     card: {
         backgroundColor: "#fff",
-        marginBottom: 12,
-        borderRadius: 10,
-        elevation: 3,
-        shadowColor: "#000",
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        shadowOffset: { width: 0, height: 2 },
+        //marginBottom: 12,
+        //borderRadius: 10,
+        borderColor: '#eee',
+        borderBottomWidth: 1,
+        // borderColor: '#000',
+        // borderWidth: 1,
+        // elevation: 3,
+        // shadowColor: "#000",
+        // shadowOpacity: 0.1,
+        // shadowRadius: 4,
+        // shadowOffset: { width: 0, height: 2 },
     },
     row: { flexDirection: "row", padding: 10 },
     image: {

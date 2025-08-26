@@ -1,12 +1,23 @@
+import { themeColor } from "@/constants/Colors";
+import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 import React from "react";
-import { View, Text, StyleSheet, Switch } from "react-native";
+import { View, Text, StyleSheet, Switch, TouchableOpacity } from "react-native";
 
 export default function SettingsScreen() {
+    const router = useRouter();
     const [notificationsEnabled, setNotificationsEnabled] = React.useState(true);
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Settings</Text>
+            {/* Header */}
+            <View style={styles.header}>
+                <TouchableOpacity onPress={() => router.back()}>
+                    <Ionicons name="arrow-back" size={24} color={themeColor.secondary} />
+                </TouchableOpacity>
+                <Text style={styles.headerTitle}>Settings</Text>
+                <View style={{ width: 24 }} />
+            </View>
 
             <View style={styles.option}>
                 <Text style={styles.optionText}>Enable Notifications</Text>
@@ -27,8 +38,20 @@ export default function SettingsScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20,
         backgroundColor: "#fff",
+        paddingHorizontal: 12,
+        paddingTop: 50
+    },
+    header: {
+        flexDirection: "row",
+        alignItems: "center",
+        paddingVertical: 12,
+        justifyContent: "space-between",
+    },
+    headerTitle: {
+        fontSize: 18,
+        fontWeight: "600",
+        color: themeColor.secondary,
     },
     title: {
         fontSize: 24,

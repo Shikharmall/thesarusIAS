@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
+import { themeColor } from "@/constants/Colors";
 
 export default function NotificationsScreen() {
     const router = useRouter();
@@ -112,7 +113,7 @@ export default function NotificationsScreen() {
             {/* Header */}
             <View style={styles.header}>
                 <TouchableOpacity onPress={() => router.back()}>
-                    <Ionicons name="arrow-back" size={24} color="#000" />
+                    <Ionicons name="arrow-back" size={24} color={themeColor.secondary} />
                 </TouchableOpacity>
                 <Text style={styles.headerTitle}>Notifications</Text>
                 <View style={{ width: 24 }} />
@@ -162,7 +163,7 @@ const styles = StyleSheet.create({
     headerTitle: {
         fontSize: 18,
         fontWeight: "600",
-        color: "#000",
+        color: themeColor.secondary,
     },
     sectionTitle: {
         fontSize: 14,

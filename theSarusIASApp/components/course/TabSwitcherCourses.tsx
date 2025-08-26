@@ -58,27 +58,6 @@ const TabSwitcherCourses = () => {
 
   const mycourses: Course[] = [];
 
-  // const mycourses: Course[] = [
-  //   {
-  //     id: "1",
-  //     title: "NCERT Geography (6th to 12th)",
-  //     price: "₹1,400",
-  //     oldPrice: "₹3,000",
-  //     discount: "53% OFF",
-  //     tags: ["FREE CONTENT", "TESTS", "VIDEOS"],
-  //     image:
-  //       "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756027561/thumbnail_coefxn.png",
-  //   },
-  //   {
-  //     id: "2",
-  //     title: "COMBINED NCERT (HISTORY + POLITY + GEOGRAPHY + ECONOMICS)",
-  //     price: "₹10,000",
-  //     tags: ["FREE CONTENT", "TESTS", "VIDEOS"],
-  //     image:
-  //       "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756027561/thumbnail_coefxn.png",
-  //   },
-  // ];
-
   const tabWidth = width / tabs.length - 20; // adjust for margin
   const translateX = useRef(new Animated.Value(0)).current;
 

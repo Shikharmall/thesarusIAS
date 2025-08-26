@@ -18,9 +18,9 @@ import { AlertProps } from "@/types/Alert"
 
 export default function OtpVerify() {
     const { phone } = useLocalSearchParams<{ phone: string }>();
-    const [otp, setOtp] = useState(["", "", "", ""]);
+    const [otp, setOtp] = useState<string[]>(["", "", "", ""]);
     const inputs = useRef<TextInput[]>([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState<boolean>(false);
     const [alertContent, setAlertContent] = useState<AlertProps>({
         visible: false,
         title: "",
@@ -79,7 +79,7 @@ export default function OtpVerify() {
         // Simulate OTP verification
         setTimeout(() => {
             setLoading(false)
-            router.push("/(home)")
+            router.push("/(home)/(tabs)")
         }, 1000)
     }
 
