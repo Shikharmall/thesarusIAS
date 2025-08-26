@@ -42,8 +42,7 @@ export default function EndScreen() {
   }, [rollNum, userName, totalQuestions, answeredCount, flaggedCount, examName]);
 
   const backAction = () => {
-    //router.dismissAll();   // close all routes
-    router.replace("/(home)");  // go to home
+    router.replace("/(home)/(tabs)");  // go to home
     return true;
   };
 

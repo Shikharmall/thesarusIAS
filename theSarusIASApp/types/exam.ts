@@ -79,8 +79,3 @@ export interface AnimatedCircleProgressProps {
   showPercentage?: boolean
   label: string
 }
-
-export interface HeaderProps {
-  onToggleNavigator: () => void
-  showNavigator: boolean
-}

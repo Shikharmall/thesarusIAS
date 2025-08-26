@@ -1,120 +1,219 @@
 import React from "react";
-import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity } from "react-native";
-import { Colors, themeColor } from "../constants/Colors"; // adjust paths if needed
+import {
+    View,
+    Text,
+    StyleSheet,
+    Image,
+    TouchableOpacity,
+    ScrollView,
+    FlatList,
+} from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
-import { MaterialIcons } from "@expo/vector-icons";
 
-// Mock notifications
-const notifications = [
-    {
-        id: "1",
-        title: "New Message",
-        description: "You have a new message from Aarushi",
-        time: "2m ago",
-        image: "https://i.pravatar.cc/100?img=1",
-    },
-    {
-        id: "2",
-        title: "Update Available",
-        description: "Version 2.0 is now live. Update the app!",
-        time: "10m ago",
-        image: "https://i.pravatar.cc/100?img=2",
-    },
-    {
-        id: "3",
-        title: "Friend Request",
-        description: "Rohan sent you a friend request",
-        time: "1h ago",
-        image: "https://i.pravatar.cc/100?img=3",
-    },
-];
-
-export default function NotificationScreen() {
+export default function NotificationsScreen() {
     const router = useRouter();
-    const renderItem = ({ item }: { item: typeof notifications[0] }) => (
-        <TouchableOpacity style={styles.card} activeOpacity={0.8}>
-            <Image source={{ uri: item.image }} style={styles.avatar} />
+    const todayData = [
+        {
+            id: "1",
+            type: "accepted",
+            user: "jiya_g_1",
+            text: "accepted your follow request.",
+            time: "7h",
+            avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+        },
+        {
+            id: "2",
+            type: "invite",
+            user: "ashnoorkaur",
+            text: "rajanyaofficial and 4 others invited you to join their channels.",
+            time: "8h",
+            avatar: "https://randomuser.me/api/portraits/women/45.jpg",
+        },
+    ];
+
+    const yesterdayData = [
+        {
+            id: "3",
+            type: "post",
+            user: "priya.maggo.1",
+            verified: true,
+            text: "posted a thread that you might like: 💗💗💗",
+            time: "1d",
+            avatar: "https://randomuser.me/api/portraits/women/46.jpg",
+        },
+    ];
+
+    const lastMonthData = [
+        {
+            id: "4",
+            type: "reels",
+            text: "160K people created reels using audio that you saved, Tera Ghata by Gajendra Verma.",
+            time: "1w",
+            thumbnail: "https://picsum.photos/200/300",
+        },
+        {
+            id: "5",
+            type: "threads",
+            user: "satwick_vr",
+            text: "and 9 others are on Threads, an Instagram app. See what they're saying.",
+            time: "1w",
+            avatar: "https://randomuser.me/api/portraits/men/40.jpg",
+        },
+        {
+            id: "6",
+            type: "repost",
+            user: "rohit_singh9407",
+            text: "reposted a reel for the first time.",
+            time: "2w",
+            avatar: "https://randomuser.me/api/portraits/men/41.jpg",
+        },
+    ];
+
+    const renderItem = ({ item }: { item: any }) => (
+        <View style={styles.item}>
+            {/* Avatar */}
+            {item.avatar ? (
+                <Image source={{ uri: item.avatar }} style={styles.avatar} />
+            ) : (
+                <Ionicons name="notifications" size={40} color="#aaa" />
+            )}
+
+            {/* Text Section */}
             <View style={styles.textContainer}>
-                <Text style={styles.title}>{item.title}</Text>
-                <Text style={styles.description}>{item.description}</Text>
+                {item.user ? (
+                    <Text style={styles.username}>
+                        {item.user}{" "}
+                        {item.verified && (
+                            <Ionicons name="checkmark-circle" size={14} color="#0ab7f3" />
+                        )}
+                        <Text style={styles.message}> {item.text}</Text>
+                    </Text>
+                ) : (
+                    <Text style={styles.message}>{item.text}</Text>
+                )}
                 <Text style={styles.time}>{item.time}</Text>
             </View>
-        </TouchableOpacity>
+
+            {/* Right Button/Thumbnail */}
+            {item.type === "accepted" && (
+                <TouchableOpacity style={styles.followBtn}>
+                    <Text style={styles.followBtnText}>Following</Text>
+                </TouchableOpacity>
+            )}
+            {item.thumbnail && (
+                <Image source={{ uri: item.thumbnail }} style={styles.thumbnail} />
+            )}
+        </View>
     );
 
     return (
-        <View style={styles.container}>
-            <View style={styles.headerRow}>
-                <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
-                    <MaterialIcons name="arrow-back" size={24} color={themeColor?.secondary || "black"} />
+        <ScrollView style={styles.container}>
+            {/* Header */}
+            <View style={styles.header}>
+                <TouchableOpacity onPress={() => router.back()}>
+                    <Ionicons name="arrow-back" size={24} color="#000" />
                 </TouchableOpacity>
-                <Text style={styles.header}>Notifications</Text>
+                <Text style={styles.headerTitle}>Notifications</Text>
+                <View style={{ width: 24 }} />
             </View>
+
+            {/* Sections */}
+            <Text style={styles.sectionTitle}>Today</Text>
             <FlatList
-                data={notifications}
+                data={todayData}
                 keyExtractor={(item) => item.id}
                 renderItem={renderItem}
-                contentContainerStyle={{ paddingBottom: 20 }}
+                scrollEnabled={false}
             />
-        </View>
+
+            <Text style={styles.sectionTitle}>Yesterday</Text>
+            <FlatList
+                data={yesterdayData}
+                keyExtractor={(item) => item.id}
+                renderItem={renderItem}
+                scrollEnabled={false}
+            />
+
+            <Text style={styles.sectionTitle}>Last 30 days</Text>
+            <FlatList
+                data={lastMonthData}
+                keyExtractor={(item) => item.id}
+                renderItem={renderItem}
+                scrollEnabled={false}
+            />
+        </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: Colors.background,
-        paddingHorizontal: 16,
-        paddingTop: 50,
-    },
-    headerRow: {
-        flexDirection: "row",
-        alignItems: "center",
-        marginBottom: 20,
-    },
-    backButton: {
-        marginRight: 12,
-        padding: 6,
+        backgroundColor: "#fff",
+        paddingHorizontal: 12,
+        paddingTop: 50
     },
     header: {
-        fontSize: 22,
-        fontWeight: "700",
-        color: themeColor?.secondary,
-    },
-    card: {
         flexDirection: "row",
         alignItems: "center",
-        backgroundColor: Colors.surface,
-        padding: 12,
-        borderRadius: 12,
-        marginBottom: 12,
-        shadowColor: "#000",
-        shadowOpacity: 0.05,
-        shadowRadius: 4,
-        elevation: 2,
+        paddingVertical: 12,
+        justifyContent: "space-between",
+    },
+    headerTitle: {
+        fontSize: 18,
+        fontWeight: "600",
+        color: "#000",
+    },
+    sectionTitle: {
+        fontSize: 14,
+        fontWeight: "600",
+        marginVertical: 8,
+        color: "#333",
+    },
+    item: {
+        flexDirection: "row",
+        alignItems: "center",
+        marginVertical: 8,
     },
     avatar: {
-        width: 50,
-        height: 50,
-        borderRadius: 25,
-        marginRight: 12,
+        width: 44,
+        height: 44,
+        borderRadius: 22,
+        marginRight: 10,
     },
     textContainer: {
         flex: 1,
     },
-    title: {
-        fontSize: 16,
+    username: {
         fontWeight: "600",
-        color: themeColor?.secondary,
-    },
-    description: {
         fontSize: 14,
-        color: Colors.textSecondary,
-        marginTop: 2,
+        color: "#000",
+    },
+    message: {
+        fontWeight: "400",
+        fontSize: 14,
+        color: "#333",
     },
     time: {
         fontSize: 12,
-        color: Colors.textSecondary,
-        marginTop: 4,
+        color: "#777",
+        marginTop: 2,
+    },
+    followBtn: {
+        paddingHorizontal: 12,
+        paddingVertical: 6,
+        backgroundColor: "#eee",
+        borderRadius: 8,
+    },
+    followBtnText: {
+        fontSize: 13,
+        fontWeight: "600",
+        color: "#000",
+    },
+    thumbnail: {
+        width: 44,
+        height: 44,
+        borderRadius: 6,
+        marginLeft: 8,
     },
 });

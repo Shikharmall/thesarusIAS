@@ -1,14 +1,13 @@
-import { HeaderProps } from "@/types/exam";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import { useRouter, useNavigation } from "expo-router";
-import { Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { Colors, themeColor } from "../../constants/Colors";
 import { DrawerActions } from "@react-navigation/native";
-// import AnimatedHamburger from "../ui/AnimatedHamburger";
+import { useNavigation, useRouter } from "expo-router";
+import { Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Colors, themeColor } from "../constants/Colors";
 
-export default function HomeHeader({ onToggleNavigator, showNavigator }: HeaderProps) {
+export default function Header() {
     const router = useRouter();
     const navigation = useNavigation();
+
     // Example badge count (you can pass this as prop or from state)
     const notificationCount = 3;
 
@@ -19,12 +18,6 @@ export default function HomeHeader({ onToggleNavigator, showNavigator }: HeaderP
                     navigation.dispatch(DrawerActions.toggleDrawer());
                 }}
             >
-                {/* <AnimatedHamburger
-                    isOpen={showNavigator}
-                    onPress={onToggleNavigator}
-                    size={28}
-                    color={themeColor?.secondary}
-                /> */}
                 <Ionicons name="menu" size={28} color={themeColor?.secondary} />
             </TouchableOpacity>
 
@@ -56,6 +49,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         paddingHorizontal: 16,
         paddingVertical: 12,
+        paddingTop: 50,
         backgroundColor: Colors.surface,
         borderBottomWidth: 1,
         borderBottomColor: Colors.border,
