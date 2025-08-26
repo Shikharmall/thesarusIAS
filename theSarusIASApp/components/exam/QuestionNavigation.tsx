@@ -199,8 +199,7 @@ const styles = StyleSheet.create({
     },
     questionsContainer: {
         flexDirection: "row",
-        flexWrap: "wrap",
-        padding: 10,
+        flexWrap: "wrap"
     },
     questionButton: {
         width: 50,
