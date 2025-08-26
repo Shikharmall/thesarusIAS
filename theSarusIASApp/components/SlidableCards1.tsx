@@ -17,7 +17,7 @@ export default function SlidableCards() {
 
     return (
         <View style={styles.section}>
-            <Text style={styles.subTitle}>Featured Games</Text>
+            {/* <Text style={styles.subTitle}>Featured Games</Text> */}
             <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.scrollRow}>
                 {featured.map((item, index) => (
                     <Card key={index} game={item} />

@@ -1,12 +1,12 @@
 import Header from "@/components/Header";
 import Banner from "@/components/home/Banner";
-import SlidableCards from "@/components/SlidableCards";
+import SlidableCards1 from "@/components/SlidableCards1";
 import SlidableCards2 from "@/components/SlidableCards2";
 import AlertCustomise from "@/components/ui/AlertCustomise";
 import { AlertProps } from "@/types/Alert";
 import { useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
-import { BackHandler, StyleSheet, View } from "react-native";
+import { BackHandler, ScrollView, StyleSheet, View } from "react-native";
 import { Colors } from "../../../constants/Colors";
 
 export default function HomeScreen() {
@@ -57,10 +57,15 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <Header />
-      <Banner />
-      <SlidableCards />
-      <SlidableCards2 />
-      {/* <Pagee /> */}
+
+      <ScrollView style={{ marginVertical: 10 }}>
+        <Banner />
+        <SlidableCards1 />
+        <SlidableCards2 title={'Courses'} />
+        <SlidableCards2 title={'Test Series'} />
+        {/* <Pagee /> */}
+      </ScrollView>
+
       <AlertCustomise
         visible={alertContent?.visible}
         title={alertContent?.title}

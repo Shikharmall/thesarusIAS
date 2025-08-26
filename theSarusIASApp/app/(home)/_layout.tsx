@@ -1,10 +1,12 @@
 import { Ionicons } from "@expo/vector-icons";
 import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
+import { useRouter } from "expo-router";
 import { Drawer } from "expo-router/drawer";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 function CustomDrawerContent(props: any) {
+    const router = useRouter();
     return (
         <DrawerContentScrollView {...props} contentContainerStyle={{ flex: 1 }}>
             {/* Header */}
@@ -89,7 +91,11 @@ function CustomDrawerContent(props: any) {
             <View style={styles.footer}>
                 <TouchableOpacity
                     style={styles.logoutBtn}
-                    onPress={() => console.log("Logout pressed")}
+                    onPress={() => {
+                        router.push({
+                            pathname: "/LoginWithOTP",
+                        });
+                    }}
                 >
                     <Ionicons name="log-out-outline" size={20} color="#fff" />
                     <Text style={styles.logoutText}>Logout</Text>

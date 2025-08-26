@@ -134,37 +134,39 @@ export default function OtpVerify() {
                     </Text>
                 </View>
 
-                <View style={styles.otpCard}>
-                    <View style={styles.otpRow}>
-                        {otp.map((digit, index) => (
-                            <TextInput
-                                key={index}
-                                ref={(ref) => {
-                                    if (ref) inputs.current[index] = ref
-                                }}
-                                style={styles.otpBox}
-                                keyboardType="numeric"
-                                maxLength={1}
-                                value={digit}
-                                onChangeText={(text) => handleChange(text, index)}
-                                onKeyPress={(e) => handleKeyPress(e, index)}
-                            />
-                        ))}
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={styles.otpCard}>
+                        <View style={styles.otpRow}>
+                            {otp.map((digit, index) => (
+                                <TextInput
+                                    key={index}
+                                    ref={(ref) => {
+                                        if (ref) inputs.current[index] = ref
+                                    }}
+                                    style={styles.otpBox}
+                                    keyboardType="numeric"
+                                    maxLength={1}
+                                    value={digit}
+                                    onChangeText={(text) => handleChange(text, index)}
+                                    onKeyPress={(e) => handleKeyPress(e, index)}
+                                />
+                            ))}
+                        </View>
+
+                        <TouchableOpacity
+                            style={[styles.verifyButton, loading && styles.verifyButtonDisabled]}
+                            onPress={handleVerifyOtp}
+                            disabled={loading}
+                        >
+                            <Text style={styles.verifyButtonText}>
+                                {loading ? "Verifying..." : "Verify OTP"}
+                            </Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity>
+                            <Text style={styles.resendText}>Resend OTP</Text>
+                        </TouchableOpacity>
                     </View>
-
-                    <TouchableOpacity
-                        style={[styles.verifyButton, loading && styles.verifyButtonDisabled]}
-                        onPress={handleVerifyOtp}
-                        disabled={loading}
-                    >
-                        <Text style={styles.verifyButtonText}>
-                            {loading ? "Verifying..." : "Verify OTP"}
-                        </Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity>
-                        <Text style={styles.resendText}>Resend OTP</Text>
-                    </TouchableOpacity>
                 </View>
 
                 <AlertCustomise
@@ -238,6 +240,7 @@ const styles = StyleSheet.create({
         fontSize: 22,
         color: Colors.text,
         backgroundColor: Colors.background,
+        margin: 5
     },
     verifyButton: {
         backgroundColor: themeColor.secondary,

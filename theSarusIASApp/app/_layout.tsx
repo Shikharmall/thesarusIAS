@@ -114,10 +114,10 @@ export default function RootLayout() {
           // animation: "slide_from_bottom", // modal-like
           gestureEnabled: true,          // swipe back gesture
         }}>
-          <Stack.Screen name="(home)" options={{ headerShown: false }} />
           <Stack.Screen name="LoginWithOTP" options={{ headerShown: false }} />
           {/* <Stack.Screen name="Loading" options={{ headerShown: false }} /> */}
           <Stack.Screen name="OtpVerify" options={{ headerShown: false }} />
+          <Stack.Screen name="(home)" options={{ headerShown: false }} />
           <Stack.Screen name="Notification" options={{ headerShown: false }} />
           <Stack.Screen name="(exam)" options={{ headerShown: false }} />
           <Stack.Screen name="(course)" options={{ headerShown: false }} />
