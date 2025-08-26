@@ -33,13 +33,14 @@ const CourseDetailsScreen = () => {
     )
 
     return (
-        <>
+        <View style={styles.container}>
             {/* Header */}
             <View style={styles.header}>
-                <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
-                    <Ionicons name="chevron-back" size={24} color={themeColor?.secondary} />
+                <TouchableOpacity onPress={() => router.back()}>
+                    <Ionicons name="arrow-back" size={24} color={themeColor.secondary} />
                 </TouchableOpacity>
                 <Text style={styles.headerTitle}>Course Details</Text>
+                <View style={{ width: 24 }} />
             </View>
 
             <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
@@ -90,7 +91,7 @@ const CourseDetailsScreen = () => {
                     ))}
                 </View> */}
             </ScrollView>
-        </>
+        </View>
     )
 }
 
@@ -98,22 +99,19 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#F8F9FA",
+        paddingHorizontal: 12,
+        paddingTop: 50
     },
     header: {
         flexDirection: "row",
         alignItems: "center",
-        paddingHorizontal: 16,
         paddingVertical: 12,
-        backgroundColor: "#F8F9FA",
-        paddingTop: 50
-    },
-    backButton: {
-        marginRight: 12,
+        justifyContent: "space-between",
     },
     headerTitle: {
         fontSize: 18,
         fontWeight: "600",
-        color: themeColor?.secondary,
+        color: themeColor.secondary,
     },
     content: {
         flex: 1,

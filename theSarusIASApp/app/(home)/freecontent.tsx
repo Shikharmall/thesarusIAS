@@ -215,7 +215,7 @@ export default function FreeContentScreen() {
                 <TouchableOpacity onPress={() => router.back()}>
                     <Ionicons name="arrow-back" size={24} color={themeColor.secondary} />
                 </TouchableOpacity>
-                <Text style={styles.headerTitle}>Notifications</Text>
+                <Text style={styles.headerTitle}>NCERT PDF</Text>
                 <View style={{ width: 24 }} />
             </View>
             <FlatList
