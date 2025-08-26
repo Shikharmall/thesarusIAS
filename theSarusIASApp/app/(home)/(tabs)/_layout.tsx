@@ -1,13 +1,17 @@
 import { themeColor } from '@/constants/Colors';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Tabs } from 'expo-router';
-import { StatusBar } from 'react-native';
+// import { StatusBar } from 'react-native';
 
 export default function TabLayout() {
     return (
         <>
             {/* <StatusBar backgroundColor="#fff" /> */}
-            <Tabs screenOptions={{ tabBarActiveTintColor: themeColor?.secondary, headerShown: false }}>
+            <Tabs screenOptions={{
+                tabBarActiveTintColor: themeColor?.secondary,
+                headerShown: false,
+                animation: "shift",
+            }}>
                 <Tabs.Screen
                     name="index"
                     options={{

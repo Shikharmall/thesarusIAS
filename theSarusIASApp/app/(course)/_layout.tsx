@@ -6,6 +6,10 @@ export default function RootLayout() {
         <Stack
             screenOptions={{
                 headerShown: false,
+                animation: "slide_from_right", // 👈 smooth iOS-like push
+                // animation: "fade",          // cross-fade
+                // animation: "slide_from_bottom", // modal-like
+                gestureEnabled: true,          // swipe back gesture
             }}
         />
     );

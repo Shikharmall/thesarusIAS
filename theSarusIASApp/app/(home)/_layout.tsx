@@ -4,7 +4,6 @@ import { Drawer } from "expo-router/drawer";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
-// Custom Drawer Component
 function CustomDrawerContent(props: any) {
     return (
         <DrawerContentScrollView {...props} contentContainerStyle={{ flex: 1 }}>
@@ -44,7 +43,7 @@ function CustomDrawerContent(props: any) {
                         <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
                             <View>
                                 <Text style={styles.listTitle}>Free Content</Text>
-                                <Text style={styles.listDesc}>Customer Support, Your Queries</Text>
+                                <Text style={styles.listDesc}>Free access, Free downloads</Text>
                             </View>
                             <Ionicons name="chevron-forward" size={20} color="#777" />
                         </View>
