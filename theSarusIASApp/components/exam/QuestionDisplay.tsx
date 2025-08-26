@@ -60,7 +60,7 @@ export default function QuestionDisplay({ currentQuestion, currentSection, secti
     <View style={styles.container}>
       {/* Roll Number Watermark */}
       <View style={styles.watermark}>
-        <Text style={styles.watermarkText}>SSC2024001234</Text>
+        <Text style={styles.watermarkText}>UPSC202601234</Text>
       </View>
 
       {/* Section Header */}
@@ -92,14 +92,14 @@ const styles = StyleSheet.create({
   },
   watermark: {
     position: "absolute",
-    top: "50%",
-    left: "50%",
+    top: "60%",
+    left: "20%",
     transform: [{ translateX: -100 }, { translateY: -50 }, { rotate: "-45deg" }],
     zIndex: 0,
     opacity: 0.1,
   },
   watermarkText: {
-    fontSize: 48,
+    fontSize: 44,
     fontWeight: "bold",
     color: Colors.textSecondary,
   },

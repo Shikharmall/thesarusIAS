@@ -1,7 +1,9 @@
+import AlertCustomise from "@/components/ui/AlertCustomise";
+import { AlertProps } from "@/types/Alert";
 import { QuestionStatus } from "@/types/exam";
-import { useLocalSearchParams } from "expo-router";
-import { useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { useFocusEffect, useLocalSearchParams } from "expo-router";
+import { useCallback, useEffect, useState } from "react";
+import { BackHandler, StyleSheet, View } from "react-native";
 import ExamHeader from "../../components/exam/ExamHeader";
 import ExamNavigation from "../../components/exam/ExamNavigation";
 import QuestionDisplay from "../../components/exam/QuestionDisplay";
@@ -23,10 +25,30 @@ export default function ExamScreen() {
   const [showNavigator, setShowNavigator] = useState<boolean>(false);
   const [currentSection, setCurrentSection] = useState<number>(1);
   const [questionStatuses, setQuestionStatuses] = useState<Record<number, QuestionStatus>>({});
+  const [alertContent, setAlertContent] = useState<AlertProps>({
+    visible: false,
+    title: "",
+    message: "",
+    confirmLabel: "",
+    cancelLabel: ""
+  });
+
+  const showAlert = (props: Partial<AlertProps>) => {
+    setAlertContent({
+      visible: true,
+      title: props.title ?? "",
+      message: props.message ?? "",
+      confirmLabel: props.confirmLabel ?? "Ok",
+      cancelLabel: props.cancelLabel ?? "",
+      onConfirm: props.onConfirm,
+      onCancel: props.onCancel,
+    })
+  }
 
   const handleChangeSection = (sectionId: number) => {
     setCurrentSection(sectionId)
   }
+
   const handleAnswerSelect = (questionId: number, selectedAnswer: number) => {
     setQuestionStatuses((prev) => ({
       ...prev,
@@ -74,6 +96,21 @@ export default function ExamScreen() {
     }
   }, [rollNumber, name, title]);
 
+  const backAction = () => {
+    return true;
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      const backHandler = BackHandler.addEventListener(
+        "hardwareBackPress",
+        backAction
+      );
+
+      return () => backHandler.remove();
+    }, [])
+  );
+
   return (
     <View style={styles.container}>
       <ExamHeader onToggleNavigator={() => setShowNavigator(!showNavigator)} showNavigator={showNavigator} examName={examName} />
@@ -114,6 +151,22 @@ export default function ExamScreen() {
           examName={examName}
         />
       </ResponsiveLayout>
+
+      <AlertCustomise
+        visible={alertContent?.visible}
+        title={alertContent?.title}
+        message={alertContent?.message}
+        confirmLabel={alertContent?.confirmLabel}
+        cancelLabel={alertContent?.cancelLabel}
+        onConfirm={() => {
+          if (alertContent.onConfirm) alertContent.onConfirm()
+          setAlertContent((prev) => ({ ...prev, visible: false }))
+        }}
+        onCancel={() => {
+          if (alertContent.onCancel) alertContent.onCancel()
+          setAlertContent((prev) => ({ ...prev, visible: false }))
+        }}
+      />
     </View>
   )
 }
@@ -122,7 +175,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.background,
+    paddingBottom: 40
     //paddingTop: 30,
-    //paddingBottom: 40
   },
 })

@@ -103,7 +103,11 @@ export default function RootLayout() {
     return (
         <GestureHandlerRootView style={{ flex: 1 }}>
             <Drawer
-                screenOptions={{ headerShown: false }}
+                screenOptions={{
+                    headerShown: false,
+                    drawerType: "front", // or "back", "slide", "permanent"
+                    swipeEnabled: true,
+                }}
                 drawerContent={(props) => <CustomDrawerContent {...props} />}
             >
                 <Drawer.Screen name="(tabs)" options={{ title: "Home" }} />

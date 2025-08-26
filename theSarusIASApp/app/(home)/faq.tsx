@@ -1,16 +1,16 @@
+import { themeColor } from "@/constants/Colors";
+import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
-    View,
-    Text,
-    StyleSheet,
-    TextInput,
-    ScrollView,
-    TouchableOpacity,
     LayoutAnimation,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import { themeColor } from "@/constants/Colors";
-import { useRouter } from "expo-router";
 
 const faqs = [
     {
@@ -76,7 +76,7 @@ export default function HelpScreen() {
             </View>
 
             {/* Categories */}
-            <View style={styles.categoryRow}>
+            {/* <View style={styles.categoryRow}>
                 {categories.map((cat) => (
                     <TouchableOpacity
                         key={cat.key}
@@ -101,7 +101,7 @@ export default function HelpScreen() {
                         </Text>
                     </TouchableOpacity>
                 ))}
-            </View>
+            </View> */}
 
             {/* FAQs */}
             <ScrollView style={{ flex: 1 }}>

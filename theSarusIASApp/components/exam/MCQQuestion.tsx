@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
-import { StyleSheet, Text, View } from "react-native";
-import { Colors } from "../../constants/Colors";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Colors, themeColor } from "../../constants/Colors";
 import type { MCQQuestionProps } from "../../types/exam";
 import TouchableScale from "../TouchableScale";
 
@@ -35,17 +35,34 @@ export default function MCQQuestion({
 
       {/* Options */}
       <View style={styles.optionsContainer}>
-        {question.options.map((option, index) => (
-          <TouchableScale
+        {question?.options?.map((option, index) => (
+          <TouchableOpacity
             key={index}
-            style={[styles.optionButton, selectedAnswer === index && styles.optionButtonSelected]}
-            onPress={() => onAnswerSelect(question.id, index)}
+            style={[
+              styles.optionButton,
+              selectedAnswer === index && styles.optionButtonSelected,
+            ]}
+            onPress={() => onAnswerSelect(question?.id, index)}
           >
-            <View style={[styles.radioButton, selectedAnswer === index && styles.radioButtonSelected]}>
+            <View
+              style={[
+                styles.radioButton,
+                selectedAnswer === index && styles.radioButtonSelected,
+              ]}
+            >
               {selectedAnswer === index && <View style={styles.radioButtonInner} />}
             </View>
-            <Text style={[styles.optionText, selectedAnswer === index && styles.optionTextSelected]}>{option}</Text>
-          </TouchableScale>
+            <View style={{}}>
+              <Text
+                style={[
+                  styles.optionText,
+                  selectedAnswer === index && styles.optionTextSelected,
+                ]}
+              >
+                {option}
+              </Text>
+            </View>
+          </TouchableOpacity>
         ))}
       </View>
 
@@ -65,7 +82,7 @@ export default function MCQQuestion({
 const styles = StyleSheet.create({
   container: {
     padding: 16,
-    backgroundColor: Colors.background,
+    //backgroundColor: Colors.background,
   },
   questionHeader: {
     flexDirection: "row",
@@ -93,9 +110,11 @@ const styles = StyleSheet.create({
   },
   optionsContainer: {
     marginBottom: 24,
+    // backgroundColor: 'red',
+    flex: 1,
+    flexDirection: 'column'
   },
   optionButton: {
-    //flex: 1,
     flexDirection: "row",
     alignItems: "center",
     paddingVertical: 16,
@@ -104,13 +123,13 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 2,
     borderColor: Colors.border,
-    backgroundColor: Colors.background,
+    // backgroundColor: Colors.background,
     // backgroundColor: 'red',
     minHeight: 56,
   },
   optionButtonSelected: {
-    borderColor: Colors.primary,
-    backgroundColor: "#eff6ff",
+    borderColor: themeColor.secondary
+    // backgroundColor: "#eff6ff",
   },
   radioButton: {
     width: 24,
@@ -121,9 +140,10 @@ const styles = StyleSheet.create({
     marginRight: 16,
     alignItems: "center",
     justifyContent: "center",
+    //backgroundColor: 'red'
   },
   radioButtonSelected: {
-    borderColor: Colors.primary,
+    borderColor: themeColor.secondary,
   },
   radioButtonInner: {
     width: 12,

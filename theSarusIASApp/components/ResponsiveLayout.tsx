@@ -1,9 +1,6 @@
-"use client"
-
 import type React from "react"
-
-import { useState, useEffect } from "react"
-import { View, StyleSheet, Dimensions } from "react-native"
+import { useState, useEffect, useRef } from "react"
+import { View, StyleSheet, Dimensions, Animated, Easing } from "react-native"
 import { Colors } from "../constants/Colors"
 
 interface ResponsiveLayoutProps {
@@ -14,12 +11,12 @@ interface ResponsiveLayoutProps {
 
 export default function ResponsiveLayout({ children, sidebar, showSidebar }: ResponsiveLayoutProps) {
   const [screenData, setScreenData] = useState(Dimensions.get("window"))
+  const slideAnim = useRef(new Animated.Value(0)).current // 0 = hidden, 1 = visible
 
   useEffect(() => {
     const onChange = (result: { window: any }) => {
       setScreenData(result.window)
     }
-
     const subscription = Dimensions.addEventListener("change", onChange)
     return () => subscription?.remove()
   }, [])
@@ -27,20 +24,41 @@ export default function ResponsiveLayout({ children, sidebar, showSidebar }: Res
   const isTablet = screenData.width >= 768
   const isLandscape = screenData.width > screenData.height
 
+  // Animate whenever showSidebar changes
+  useEffect(() => {
+    Animated.timing(slideAnim, {
+      toValue: showSidebar ? 1 : 0,
+      duration: 300,
+      easing: Easing.out(Easing.ease),
+      useNativeDriver: true,
+    }).start()
+  }, [showSidebar])
+
+  // For mobile/portrait -> slide from left
+  const translateX = slideAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [-screenData.width, 0], // offscreen to left → visible
+  })
+
   return (
     <View style={styles.container}>
-      {showSidebar && (
-        <View
+      {/* Sidebar */}
+      {(isTablet || showSidebar) && (
+        <Animated.View
           style={[
             styles.sidebar,
             isTablet ? styles.sidebarTablet : styles.sidebarMobile,
             !isTablet && !isLandscape && styles.sidebarFullWidth,
+            !isTablet && {
+              transform: [{ translateX }], // slide in/out only on mobile
+            },
           ]}
         >
           {sidebar}
-        </View>
+        </Animated.View>
       )}
 
+      {/* Main Content */}
       <View
         style={[
           styles.mainContent,
@@ -75,9 +93,6 @@ const styles = StyleSheet.create({
     left: 0,
     bottom: 0,
     zIndex: 1000,
-    elevation: 10,
-    shadowColor: "#000",
-    shadowOffset: { width: 2, height: 0 },
     shadowOpacity: 0.3,
     shadowRadius: 8,
   },
@@ -95,3 +110,4 @@ const styles = StyleSheet.create({
     display: "none",
   },
 })
+
