@@ -7,11 +7,13 @@ export default function TabLayout() {
     return (
         <>
             {/* <StatusBar backgroundColor="#fff" /> */}
-            <Tabs screenOptions={{
-                tabBarActiveTintColor: themeColor?.secondary,
-                headerShown: false,
-                animation: "shift",
-            }}>
+            <Tabs
+                initialRouteName="index"
+                screenOptions={{
+                    tabBarActiveTintColor: themeColor?.secondary,
+                    headerShown: false,
+                    animation: "shift",
+                }}>
                 <Tabs.Screen
                     name="index"
                     options={{

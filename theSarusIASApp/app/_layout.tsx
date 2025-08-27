@@ -107,13 +107,15 @@ export default function RootLayout() {
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
         <StatusBar style="auto" />
-        <Stack screenOptions={{
-          headerShown: false,
-          animation: "slide_from_right", // 👈 smooth iOS-like push
-          // animation: "fade",          // cross-fade
-          // animation: "slide_from_bottom", // modal-like
-          gestureEnabled: true,          // swipe back gesture
-        }}>
+        <Stack
+          initialRouteName="LoginWithOTP"
+          screenOptions={{
+            headerShown: false,
+            animation: "slide_from_right", // 👈 smooth iOS-like push
+            // animation: "fade",          // cross-fade
+            // animation: "slide_from_bottom", // modal-like
+            gestureEnabled: true,          // swipe back gesture
+          }}>
           <Stack.Screen name="LoginWithOTP" options={{ headerShown: false }} />
           {/* <Stack.Screen name="Loading" options={{ headerShown: false }} /> */}
           <Stack.Screen name="OtpVerify" options={{ headerShown: false }} />
