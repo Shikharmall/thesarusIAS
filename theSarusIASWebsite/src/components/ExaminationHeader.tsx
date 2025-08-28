@@ -1,5 +1,5 @@
 import { Send } from "lucide-react"
-import { Progress } from "../components/ui/Progress"
+// import { Progress } from "../components/ui/Progress"
 import { ExamHeaderProps } from "../utils/type"
 import { ExamTimer } from "./ExaminationTimer"
 import { Button } from "./ui/Button"
@@ -8,7 +8,7 @@ export function ExamHeader({
     title,
     currentQuestion,
     totalQuestions,
-    currentSectionDetails,
+    sectionData,
     duration,
     onTimeUp,
     onSubmit,
@@ -20,9 +20,9 @@ export function ExamHeader({
                     <h1 className="text-xl font-bold text-card-foreground font-serif">{title}</h1>
                     <div className="flex items-center gap-4 mt-1">
                         <p className="text-sm text-muted-foreground">
-                            Question {currentQuestion} of {totalQuestions}
+                            Question {currentQuestion} of {sectionData?.questions?.length}
                         </p>
-                        {currentSectionDetails && <p className="text-sm text-blue-600 font-medium">{currentSectionDetails?.name}</p>}
+                        {sectionData && <p className="text-sm text-blue-600 font-medium">{sectionData?.name}</p>}
                     </div>
                 </div>
                 <div className="flex items-center justify-between">
@@ -44,20 +44,15 @@ export function ExamHeader({
                     </span>
                 </div>
             </div> */}
-            <div className="mt-4">
-                {/* <Progress value={progress} className="h-2" /> */}
+            {/* <div className="mt-4">
                 <div className="flex justify-between text-xs text-muted-foreground mt-1">
                     <span className="text-orange-500 font-bold underline cursor-pointer">INSTRUCTIONS</span>
-                    {/* <span>
-                        {Math.round((progress / 100) * totalQuestions)} of {totalQuestions} answered
-                    </span> */}
-
                     <Button onClick={onSubmit} className="bg-red-500 text-primary-foreground flex items-center gap-2">
                         <Send className="h-4 w-4" />
                         Submit Exam
                     </Button>
                 </div>
-            </div>
+            </div> */}
         </header>
     )
 }

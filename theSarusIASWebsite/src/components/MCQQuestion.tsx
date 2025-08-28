@@ -5,24 +5,27 @@ import { Label } from "./ui/Label"
 import { MCQQuestionProps } from "../utils/type"
 
 export function MCQQuestion({ question, onAnswerChange }: MCQQuestionProps) {
-    const [selectedValue, setSelectedValue] = useState(question.selectedAnswer || "")
+    // const [selectedValue, setSelectedValue] = useState(question?.selectedAnswer || "")
+    const [selectedValue, setSelectedValue] = useState("")
 
     const handleValueChange = (value: string) => {
         setSelectedValue(value)
         onAnswerChange(value)
     }
 
+    // console.log(question);
+
     return (
         <Card className="p-6 bg-[#fefce8] border-1 border-gray-300">
             <div className="space-y-6">
                 <div className="space-y-3">
                     <div className="flex items-center gap-2">
-                        <span className="text-lg font-bold text-card-foreground">Q.{question.id}</span>
-                        {question.section && (
-                            <span className="text-sm text-blue-600 bg-blue-50 px-2 py-1 rounded">{question.section}</span>
-                        )}
+                        <span className="text-lg font-bold text-card-foreground">Q.{question?.id}</span>
+                        {/* {question?.section && (
+                            <span className="text-sm text-blue-600 bg-blue-50 px-2 py-1 rounded">{question?.section}</span>
+                        )} */}
                     </div>
-                    <p className="text-card-foreground leading-relaxed text-base">{question.text}</p>
+                    <p className="text-card-foreground leading-relaxed text-base">{question?.question}</p>
                 </div>
 
                 <RadioGroup name={'hwllo'} value={selectedValue} onValueChange={handleValueChange} className="space-y-4">

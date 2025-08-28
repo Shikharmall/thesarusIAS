@@ -12,26 +12,37 @@ export interface ProgrammeItem {
     url: string
 }
 
-export interface Section {
-    id: number,
-    name: string;
-    start: number;
-    end: number;
-}
+// export interface Section {
+//     id: number,
+//     name: string;
+//     start: number;
+//     end: number;
+// }
+
+// export interface Question {
+//     id: number;
+//     section: string;
+//     text: string;
+//     options: string[];
+//     answered: boolean;
+//     flagged: boolean;
+//     selectedAnswer: undefined;
+// }
 
 export interface Question {
-    id: number;
-    section: string;
-    text: string;
-    options: string[];
-    answered: boolean;
-    flagged: boolean;
-    selectedAnswer: undefined;
+    id: number
+    question: string
+    options: string[]
+}
+
+export interface Section {
+    id: number
+    name: string
+    questions: Question[]
 }
 
 export interface QuestionNavigatorProps {
     sections: Section[],
-    questions: Question[],
     currentQuestion: number,
     currentSection: number,
     onSectionSelect: (sectionId: number) => void
@@ -46,13 +57,8 @@ export interface ExamData {
 }
 
 export interface MCQQuestionProps {
-    question: {
-        id: number
-        section?: string
-        text: string
-        options: string[]
-        selectedAnswer?: string
-    }
+    question: Question
+    currentSection?: number
     onAnswerChange: (answer: string) => void
 }
 
@@ -71,13 +77,10 @@ export interface ExamNavigationProps {
 export interface ExamHeaderProps {
     title: string
     currentQuestion: number
-    totalQuestions: number
-    currentSectionDetails?: {
-        name: string
-        start: number
-        end: number
-    }
-    progress: number
+    totalQuestions?: number
+    currentSection?: number
+    sectionData: Section
+    progress?: number
     duration: number
     onTimeUp: () => void
     onSubmit: () => void

@@ -9,71 +9,76 @@ import { themeColor } from "../utils/Color"
 import { ExamData, Question } from "../utils/type"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Link } from "react-router-dom"
+import { examDataUPSCGS1, examDataSSCCGL } from "../data/examData"
 
-const examData: ExamData = {
-  title: "SSC Combined Graduate Level Examination (Tier-I)",
-  duration: 60,
-  sections: [
-    { id: 1, name: "General Intelligence & Reasoning", start: 1, end: 25 },
-    { id: 2, name: "General Awareness", start: 26, end: 50 },
-    { id: 3, name: "Quantitative Aptitude", start: 51, end: 75 },
-    { id: 4, name: "English Comprehension", start: 76, end: 100 },
-  ],
-  questions: [
-    ...Array.from({ length: 25 }, (_, i) => ({
-      id: i + 1,
-      section: "General Intelligence & Reasoning",
-      text: `Reasoning Question ${i + 1}`,
-      options: ["Option 1", "Option 2", "Option 3", "Option 4"],
-      answered: false,
-      flagged: false,
-      selectedAnswer: undefined,
-    })),
-    ...Array.from({ length: 25 }, (_, i) => ({
-      id: i + 26,
-      section: "General Awareness",
-      text: `General Awareness Question ${i + 26}`,
-      options: ["Option 1", "Option 2", "Option 3", "Option 4"],
-      answered: false,
-      flagged: false,
-      selectedAnswer: undefined,
-    })),
-    ...Array.from({ length: 25 }, (_, i) => ({
-      id: i + 51,
-      section: "Quantitative Aptitude",
-      text: `Quantitative Aptitude Question ${i + 51}`,
-      options: ["Option 1", "Option 2", "Option 3", "Option 4"],
-      answered: false,
-      flagged: false,
-      selectedAnswer: undefined,
-    })),
-    ...Array.from({ length: 25 }, (_, i) => ({
-      id: i + 76,
-      section: "English Comprehension",
-      text: `English Comprehension Question ${i + 76}`,
-      options: ["Option 1", "Option 2", "Option 3", "Option 4"],
-      answered: false,
-      flagged: false,
-      selectedAnswer: undefined,
-    })),
-  ],
-};
+// const examData: ExamData = {
+//   title: "SSC Combined Graduate Level Examination (Tier-I)",
+//   duration: 60,
+//   sections: [
+//     { id: 1, name: "General Intelligence & Reasoning", start: 1, end: 25 },
+//     { id: 2, name: "General Awareness", start: 26, end: 50 },
+//     { id: 3, name: "Quantitative Aptitude", start: 51, end: 75 },
+//     { id: 4, name: "English Comprehension", start: 76, end: 100 },
+//   ],
+//   questions: [
+//     ...Array.from({ length: 25 }, (_, i) => ({
+//       id: i + 1,
+//       section: "General Intelligence & Reasoning",
+//       text: `Reasoning Question ${i + 1}`,
+//       options: ["Option 1", "Option 2", "Option 3", "Option 4"],
+//       answered: false,
+//       flagged: false,
+//       selectedAnswer: undefined,
+//     })),
+//     ...Array.from({ length: 25 }, (_, i) => ({
+//       id: i + 26,
+//       section: "General Awareness",
+//       text: `General Awareness Question ${i + 26}`,
+//       options: ["Option 1", "Option 2", "Option 3", "Option 4"],
+//       answered: false,
+//       flagged: false,
+//       selectedAnswer: undefined,
+//     })),
+//     ...Array.from({ length: 25 }, (_, i) => ({
+//       id: i + 51,
+//       section: "Quantitative Aptitude",
+//       text: `Quantitative Aptitude Question ${i + 51}`,
+//       options: ["Option 1", "Option 2", "Option 3", "Option 4"],
+//       answered: false,
+//       flagged: false,
+//       selectedAnswer: undefined,
+//     })),
+//     ...Array.from({ length: 25 }, (_, i) => ({
+//       id: i + 76,
+//       section: "English Comprehension",
+//       text: `English Comprehension Question ${i + 76}`,
+//       options: ["Option 1", "Option 2", "Option 3", "Option 4"],
+//       answered: false,
+//       flagged: false,
+//       selectedAnswer: undefined,
+//     })),
+//   ],
+// };
 
 export default function ExaminationScreen() {
   const [currentQuestion, setCurrentQuestion] = useState<number>(1);
   const [currentSection, setCurrentSection] = useState<number>(1);
-  const [questions, setQuestions] = useState(examData.questions);
+  // const [questions, setQuestions] = useState(examData.questions);
   const [examSubmitted, setExamSubmitted] = useState<boolean>(false);
+  // const [totalQuestions, setTotalQuestions] = useState<number>(0);
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(true);
 
-  const currentQuestionData = questions?.find((q) => q?.id === currentQuestion)
-  const progress = (questions?.filter((q) => q?.answered)?.length / questions?.length) * 100
+  const allQuestions = examDataSSCCGL?.sections?.flatMap((section) => section?.questions);
+  const totalQuestions = allQuestions?.length;
+
+  const currentQuestionData = examDataSSCCGL?.sections[currentSection - 1]?.questions?.find((q) => q?.id === currentQuestion)
+  //const progress = (questions?.filter((q) => q?.answered)?.length / questions?.length) * 100
 
   const getCurrentSection = () => {
-    const currentSectionData = examData?.sections?.find(
-      (section) => currentQuestion >= section?.start && currentQuestion <= section?.end
-    );
-    return currentSectionData;
+    // const currentSectionData = examData?.sections?.find(
+    //   (section) => currentQuestion >= section?.start && currentQuestion <= section?.end
+    // );
+    // return currentSectionData;
   }
 
   const handleTimeUp = useCallback(() => {
@@ -86,6 +91,8 @@ export default function ExaminationScreen() {
   }
 
   const handleSectionSelect = (sectionId: number) => {
+    // const ss = 
+    // setCurrentQuestion()
     setCurrentSection(sectionId)
   }
 
@@ -98,9 +105,10 @@ export default function ExaminationScreen() {
   }
 
   const handleSubmit = () => {
-    const answeredCount = questions?.filter((q) => q?.answered)?.length
+    // const answeredCount = questions?.filter((q) => q?.answered)?.length
+    const answeredCount = 5
     const confirmed = confirm(
-      `You have answered ${answeredCount} out of ${questions?.length} questions. Are you sure you want to submit?`,
+      `You have answered ${answeredCount} out of ${totalQuestions} questions. Are you sure you want to submit?`,
     )
     if (confirmed) {
       setExamSubmitted(true)
@@ -166,8 +174,10 @@ export default function ExaminationScreen() {
   // }, []);
 
   if (examSubmitted) {
-    const answeredCount = questions?.filter((q) => q?.answered)?.length;
-    const flaggedCount = questions?.filter((q) => q?.flagged)?.length;
+    const answeredCount = 3;
+    const flaggedCount = 4;
+    // const answeredCount = questions?.filter((q) => q?.answered)?.length;
+    // const flaggedCount = questions?.filter((q) => q?.flagged)?.length;
 
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
@@ -176,7 +186,7 @@ export default function ExaminationScreen() {
           <div className="space-y-2 text-muted-foreground mb-6">
             <p>Thank you for completing the SSC examination.</p>
             <p>
-              Questions Answered: {answeredCount || 0} out of {questions.length || 100}
+              Questions Answered: {answeredCount || 0} out of {totalQuestions || 100}
             </p>
             <p>Questions Flagged: {flaggedCount || 0}</p>
           </div>
@@ -191,6 +201,8 @@ export default function ExaminationScreen() {
     )
   }
 
+  // console.log(currentQuestionData);
+
   return (
     <div className="h-screen flex flex-col"
       ref={elementRef}
@@ -199,12 +211,11 @@ export default function ExaminationScreen() {
       {/* Fixed header */}
       <div className="flex-shrink-0">
         <ExamHeader
-          title={examData?.title}
+          title={examDataSSCCGL?.title}
           currentQuestion={currentQuestion}
-          totalQuestions={questions?.length}
-          currentSectionDetails={currentSectionDetails}
-          progress={progress}
-          duration={examData?.duration}
+          totalQuestions={totalQuestions}
+          sectionData={examDataSSCCGL?.sections[currentSection - 1]}
+          duration={examDataSSCCGL?.duration}
           onTimeUp={handleTimeUp}
           onSubmit={handleSubmit}
         />
@@ -226,10 +237,7 @@ export default function ExaminationScreen() {
         {sidebarOpen && (
           <aside className="w-80 bg-sidebar border-r border-gray-300 flex-shrink-0 overflow-y-auto">
             <QuestionNavigator
-              sections={examData?.sections}
-              questions={(examData?.questions ?? []).filter(
-                (q): q is Question => q !== undefined
-              )}
+              sections={examDataSSCCGL?.sections}
               currentQuestion={currentQuestion}
               currentSection={currentSection}
               onSectionSelect={handleSectionSelect}
@@ -249,24 +257,32 @@ export default function ExaminationScreen() {
 
               <ExamNavigation
                 currentQuestion={currentQuestion}
-                totalQuestions={questions?.length}
-                isFlagged={currentQuestionData?.flagged || false}
-                isAnswered={currentQuestionData?.answered || false}
+                totalQuestions={totalQuestions}
+                // isFlagged={currentQuestionData?.flagged || false}
+                // isAnswered={currentQuestionData?.answered || false}
+                isFlagged={false}
+                isAnswered={false}
                 onPrevious={() => setCurrentQuestion(Math?.max(1, currentQuestion - 1))}
-                onNext={() => setCurrentQuestion(Math?.min(questions?.length, currentQuestion + 1))}
-                onFlag={() =>
-                  setQuestions((prev) =>
-                    prev?.map((q) =>
-                      q?.id === currentQuestion ? { ...q, flagged: !q.flagged } : q
-                    ) ?? []
-                  )
+                onNext={() => {
+                  setCurrentQuestion(Math?.min(allQuestions?.length, currentQuestion + 1))
                 }
-                onClearResponse={() =>
-                  setQuestions((prev) =>
-                    prev?.map((q) =>
-                      q?.id === currentQuestion ? { ...q, selectedAnswer: undefined, answered: false } : q,
-                    ),
-                  )
+                }
+                onFlag={
+                  () => {
+                    // setQuestions((prev) =>
+                    //   prev?.map((q) =>
+                    //     q?.id === currentQuestion ? { ...q, flagged: !q.flagged } : q
+                    //   ) ?? []
+                    // )
+                  }
+                }
+                onClearResponse={() => {
+                  // setQuestions((prev) =>
+                  //   prev?.map((q) =>
+                  //     q?.id === currentQuestion ? { ...q, selectedAnswer: undefined, answered: false } : q,
+                  //   ),
+                  // )
+                }
                 }
                 onSubmit={handleSubmit}
               />

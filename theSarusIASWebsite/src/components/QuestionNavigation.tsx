@@ -2,10 +2,37 @@ import { Button } from "../components/ui/Button"
 import { CheckCircle, Circle, AlertCircle } from "lucide-react"
 import { QuestionNavigatorProps } from "../utils/type"
 import { colors, themeColor } from "../utils/Color"
+import { useEffect, useState } from "react"
 
-export function QuestionNavigator({ sections, questions, currentQuestion, currentSection, onSectionSelect, onQuestionSelect }: QuestionNavigatorProps) {
-  const answeredCount = questions?.filter((q) => q?.answered)?.length
-  const flaggedCount = questions?.filter((q) => q?.flagged)?.length
+export function QuestionNavigator({ sections, currentQuestion, currentSection, onSectionSelect, onQuestionSelect }: QuestionNavigatorProps) {
+
+  const getFirstQuestionFormIndex = (index: number): number => {
+    return sections?.[index]?.questions?.[0]?.id;
+  };
+
+  const [answeredCount, setAnsweredCount] = useState<number>(0);
+  const [notAnsweredCount, setNotAnsweredCount] = useState<number>(0);
+  const [flaggedCount, setFlaggedCount] = useState<number>(0);
+  const [visitedCount, setVisitedCount] = useState<number>(0);
+  const [notVisitedCount, setNotVisitedCount] = useState<number>(0);
+
+  useEffect(() => {
+    const currentSec = sections?.find(section => section?.id === currentSection);
+    if (!currentSec) return;
+
+    // const answered = currentSec.questions?.filter(q => questionStatuses[q.id]?.answered)?.length || 0;
+    // const flagged = currentSec.questions?.filter(q => questionStatuses[q.id]?.flagged)?.length || 0;
+    // const visited = currentSec.questions?.filter(q => questionStatuses[q.id]?.visited)?.length || 0;
+    const total = currentSec?.questions?.length || 0;
+
+    // setAnsweredCount(answered);
+    // setFlaggedCount(flagged);
+    // setVisitedCount(visited);
+    // setNotAnsweredCount(total - answered);
+    // setNotVisitedCount(total - visited);
+  }, [ /*questionStatuses,*/ currentSection, sections]);
+
+  // console.log(sections)
 
   return (
     <>
@@ -34,9 +61,9 @@ export function QuestionNavigator({ sections, questions, currentQuestion, curren
               </h3>
             </div>
             <div className="grid grid-cols-5 gap-2 mt-2">
-              {questions
-                .filter((q) => q?.id >= section?.start && q?.id <= section?.end)
-                .map((question) => (
+              {sections[section?.id - 1]?.questions
+                //?.filter((q) => q?.id >= section?.start && q?.id <= section?.end)
+                ?.map((question) => (
                   <Button
                     key={question?.id}
                     variant={currentQuestion === question?.id ? "default" : "outline"}
@@ -66,7 +93,7 @@ export function QuestionNavigator({ sections, questions, currentQuestion, curren
           </div>
           <div className="flex items-center gap-2">
             <Circle className="h-4 w-4 text-gray-400" />
-            <p style={{ color: themeColor?.primary }}>Not Answered: <span style={{ color: themeColor?.secondary }}>{questions.length - answeredCount}</span></p>
+            <p style={{ color: themeColor?.primary }}>Not Answered: <span style={{ color: themeColor?.secondary }}>{notAnsweredCount}</span></p>
           </div>
           <div className="flex items-center gap-2">
             <AlertCircle className="h-4 w-4 text-orange-500" />
