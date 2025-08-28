@@ -85,3 +85,11 @@ export interface ExamHeaderProps {
     onTimeUp: () => void
     onSubmit: () => void
 }
+
+
+export interface QuestionStatus {
+  answered: boolean,
+  flagged: boolean,
+  visited: boolean,
+  selectedAnswer?: number,
+}

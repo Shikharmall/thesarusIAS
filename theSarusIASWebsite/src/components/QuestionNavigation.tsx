@@ -43,7 +43,12 @@ export function QuestionNavigator({ sections, currentQuestion, currentSection, o
             {
               sections?.map((section, index) => (
                 <div key={index} className="text-white px-3 py-1 m-1 rounded flex flex-row text-xs font-bold cursor-pointer" style={{ backgroundColor: section?.id === currentSection ? themeColor?.secondary : themeColor?.primary }}
-                  onClick={() => onSectionSelect(index + 1)}
+                  onClick={() => {
+                    onSectionSelect(index + 1);
+                    onQuestionSelect(getFirstQuestionFormIndex(index));
+                  }
+                  }
+
                 >PART-{index + 1}</div>
               ))
             }
@@ -70,16 +75,17 @@ export function QuestionNavigator({ sections, currentQuestion, currentSection, o
                     size="sm"
                     className={`relative h-10 w-10 p-0 ${currentQuestion === question?.id
                       ? "bg-sidebar-primary text-sidebar-primary-foreground"
-                      : question.answered
+                      : false
+                        // : question.answered
                         ? "bg-green-100 text-green-800 border-green-300"
                         : "bg-background text-foreground"
                       }`}
                     onClick={() => onQuestionSelect(question?.id)}
                   >
                     {question?.id}
-                    {question?.flagged && (
+                    {/* {question?.flagged && (
                       <AlertCircle className="absolute -top-1 -right-1 h-3 w-3 text-orange-500" />
-                    )}
+                    )} */}
                   </Button>
                 ))}
             </div>

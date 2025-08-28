@@ -28,9 +28,9 @@ export function ExamHeader({
                 <div className="flex items-center justify-between">
                     <ExamTimer duration={duration} onTimeUp={onTimeUp} />
                     <div>
-                        <img className="w-25 h-28 border-1 border-[#0ab7f3]" src="../../images/profile.png" alt="profile" />
-                        <h1>Abhay Singh</h1>
-                        <h1>2025123</h1>
+                        <img className="w-20 h-22 border-1 border-[#0ab7f3]" src="../../images/profile.png" alt="profile" />
+                        <h1 className="text-sm">Abhay Singh</h1>
+                        <h1 className="text-xs">2025012345</h1>
                     </div>
 
                 </div>

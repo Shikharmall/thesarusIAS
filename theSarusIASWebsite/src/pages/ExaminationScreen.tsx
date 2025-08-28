@@ -6,7 +6,7 @@ import { QuestionNavigator } from "../components/QuestionNavigation"
 import { MCQQuestion } from "../components/MCQQuestion"
 import { ExamNavigation } from "../components/ExaminationNavigation"
 import { themeColor } from "../utils/Color"
-import { ExamData, Question } from "../utils/type"
+import { ExamData, Question, QuestionStatus } from "../utils/type"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Link } from "react-router-dom"
 import { examDataUPSCGS1, examDataSSCCGL } from "../data/examData"
@@ -67,6 +67,7 @@ export default function ExaminationScreen() {
   const [examSubmitted, setExamSubmitted] = useState<boolean>(false);
   // const [totalQuestions, setTotalQuestions] = useState<number>(0);
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(true);
+  const [questionStatuses, setQuestionStatuses] = useState<Record<number, QuestionStatus>>({});
 
   const allQuestions = examDataSSCCGL?.sections?.flatMap((section) => section?.questions);
   const totalQuestions = allQuestions?.length;
@@ -227,7 +228,7 @@ export default function ExaminationScreen() {
           variant="ghost"
           size="icon"
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className={sidebarOpen ? "absolute top-110 left-75 z-10 bg-background border shadow-sm cursor-pointer bg-white" : "absolute top-110 left-5 z-10 bg-background border shadow-sm cursor-pointer"}
+          className={sidebarOpen ? "absolute top-55 left-75 z-10 bg-background border shadow-sm cursor-pointer bg-white" : "absolute top-55 left-5 z-10 bg-background border shadow-sm cursor-pointer"}
         >
           {sidebarOpen
             ? <ChevronLeft className="h-6 w-6" color={themeColor?.primary} />
