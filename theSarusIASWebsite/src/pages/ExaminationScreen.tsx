@@ -9,7 +9,7 @@ import { themeColor } from "../utils/Color";
 import { QuestionStatus } from "../utils/type";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { examDataSSCCGL } from "../data/examData";
+import { examDataUPSCGS1 } from "../data/examData";
 
 export default function ExaminationScreen() {
   const [currentQuestionId, setCurrentQuestionId] = useState<number>(1);
@@ -21,12 +21,12 @@ export default function ExaminationScreen() {
     Record<number, QuestionStatus>
   >({});
 
-  const allQuestions = examDataSSCCGL?.sections?.flatMap(
+  const allQuestions = examDataUPSCGS1?.sections?.flatMap(
     (section) => section?.questions
   );
   const totalQuestions = allQuestions?.length;
   const currentQuestionData =
-    examDataSSCCGL?.sections[currentSectionIndex]?.questions?.find(
+    examDataUPSCGS1?.sections[currentSectionIndex]?.questions?.find(
       (q) => q?.id === currentQuestionId
     );
 
@@ -252,11 +252,11 @@ export default function ExaminationScreen() {
       {/* Header */}
       <div className="flex-shrink-0">
         <ExamHeader
-          title={examDataSSCCGL?.title}
+          title={examDataUPSCGS1?.title}
           currentQuestionId={currentQuestionId}
-          sectionData={examDataSSCCGL?.sections[currentSectionIndex]}
-          sections={examDataSSCCGL?.sections}
-          duration={examDataSSCCGL?.duration}
+          sectionData={examDataUPSCGS1?.sections[currentSectionIndex]}
+          sections={examDataUPSCGS1?.sections}
+          duration={examDataUPSCGS1?.duration}
           onTimeUp={handleTimeUp}
           onSubmit={handleSubmit}
         />
@@ -284,7 +284,7 @@ export default function ExaminationScreen() {
         {sidebarOpen && (
           <aside className="w-80 bg-sidebar border-r border-gray-300 flex-shrink-0 overflow-y-auto">
             <QuestionNavigator
-              sections={examDataSSCCGL?.sections}
+              sections={examDataUPSCGS1?.sections}
               currentQuestionId={currentQuestionId}
               currentSectionIndex={currentSectionIndex}
               onSectionSelect={handleSectionSelect}
@@ -303,7 +303,7 @@ export default function ExaminationScreen() {
               {currentQuestionData && (
                 <MCQQuestion
                   sectionName={
-                    examDataSSCCGL?.sections[currentSectionIndex]?.name
+                    examDataUPSCGS1?.sections[currentSectionIndex]?.name
                   }
                   questionStatus={questionStatuses[currentQuestionId]}
                   question={currentQuestionData}
@@ -313,7 +313,7 @@ export default function ExaminationScreen() {
 
               <ExamNavigation
                 currentQuestionId={currentQuestionId}
-                sections={examDataSSCCGL?.sections}
+                sections={examDataUPSCGS1?.sections}
                 questionStatuses={questionStatuses}
                 onQuestionChange={setCurrentQuestionId}
                 onSectionChange={setCurrentSectionIndex}
