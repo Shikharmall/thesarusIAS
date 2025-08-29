@@ -2,10 +2,11 @@ import { Bell, Settings } from "lucide-react";
 import { themeColor } from "../../utils/Color";
 
 const Header = () => {
+    
     return (
         <header className="fixed top-0 left-50 right-0 z-50  flex items-center justify-between bg-white px-6 py-4 shadow-sm">
             {/* Left: Title (optional) */}
-            <h1 className="text-xl font-semibold text-gray-800" style={{ color: themeColor?.primary }}>The SARUS Learning Application</h1>
+            <h1 className="text-md font-semibold text-gray-800" style={{ color: themeColor?.primary }}>The SARUS Learning Application</h1>
 
             {/* Right: Actions */}
             <div className="flex items-center gap-6">

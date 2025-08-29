@@ -2,6 +2,7 @@
 import { Plus, Edit2, Trash2 } from "lucide-react";
 import SideBar from "../components/dashboard/SideBar";
 import Header from "../components/dashboard/Header";
+import CourseCard from "../components/dashboard/CourseCard";
 
 interface Question {
   id: number;
@@ -47,6 +48,41 @@ const questions: Question[] = [
   },
 ];
 
+const courses = [
+  {
+    image: "https://picsum.photos/400/200?random=1",
+    tags: ["Beginner", "Math"],
+    title: "Algebra Basics: From Zero to Hero",
+    price: "₹999",
+    oldPrice: "₹1999",
+    discount: "50% OFF",
+  },
+  {
+    image: "https://picsum.photos/400/200?random=2",
+    tags: ["Advanced", "Science"],
+    title: "Mastering Physics for JEE/NEET",
+    price: "₹1499",
+    oldPrice: "₹2999",
+    discount: "50% OFF",
+  },
+  {
+    image: "https://picsum.photos/400/200?random=3",
+    tags: ["Coding", "Web"],
+    title: "React + TypeScript Crash Course",
+    price: "₹1299",
+    oldPrice: "₹2499",
+    discount: "48% OFF",
+  },
+  {
+    image: "https://picsum.photos/400/200?random=4",
+    tags: ["UI/UX"],
+    title: "Design Thinking & Prototyping",
+    price: "₹799",
+    oldPrice: "₹1599",
+    discount: "50% OFF",
+  },
+];
+
 const CoursesScreen = () => {
   return (
     <div className="min-h-screen bg-gray-50 p-6">
@@ -56,8 +92,14 @@ const CoursesScreen = () => {
         <Header />
         <h1 className="text-2xl font-bold mb-6">Question Bank</h1>
 
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
+          {courses.map((course, idx) => (
+            <CourseCard key={idx} item={course} />
+          ))}
+        </div>
+
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {questions.map((q) => (
             <div
               key={q.id}
@@ -83,7 +125,7 @@ const CoursesScreen = () => {
 
               <p className="text-sm text-gray-500 mb-4">{q.type}</p>
 
-              {/* Reviewers */}
+   
               <div className="flex items-center gap-2 mb-4">
                 {q.reviewers.map((r, i) => (
                   <div
@@ -98,7 +140,7 @@ const CoursesScreen = () => {
                 </button>
               </div>
 
-              {/* Actions */}
+     
               <div className="flex justify-end gap-3">
                 <button className="text-blue-600 hover:text-blue-800">
                   <Edit2 size={18} />
@@ -109,14 +151,14 @@ const CoursesScreen = () => {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
 
         {/* Create Question Button */}
-        <div className="mt-8 flex justify-center">
+        {/* <div className="mt-8 flex justify-center">
           <button className="flex items-center gap-2 bg-purple-600 text-white px-5 py-2 rounded-full shadow hover:bg-purple-700">
             <Plus size={18} /> Create Question
           </button>
-        </div>
+        </div> */}
 
       </main>
     </div>
