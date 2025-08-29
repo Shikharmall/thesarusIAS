@@ -255,6 +255,7 @@ export default function ExaminationScreen() {
           title={examDataSSCCGL?.title}
           currentQuestionId={currentQuestionId}
           sectionData={examDataSSCCGL?.sections[currentSectionIndex]}
+          sections={examDataSSCCGL?.sections}
           duration={examDataSSCCGL?.duration}
           onTimeUp={handleTimeUp}
           onSubmit={handleSubmit}

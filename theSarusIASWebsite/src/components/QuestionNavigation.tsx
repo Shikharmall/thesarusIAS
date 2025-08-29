@@ -46,7 +46,7 @@ export function QuestionNavigator({ sections, currentQuestionId, currentSectionI
                     onQuestionSelect(sections[index]?.questions[0]?.id)
                   }}
 
-                >PART-{index + 1}</div>
+                >PART-{String?.fromCharCode(65 + index)}</div>
               ))
             }
           </div>

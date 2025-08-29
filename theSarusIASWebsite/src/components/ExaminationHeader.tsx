@@ -10,6 +10,7 @@ export function ExamHeader({
     title,
     currentQuestionId,
     sectionData,
+    sections,
     duration,
     onTimeUp,
     onSubmit,
@@ -21,38 +22,6 @@ export function ExamHeader({
 
     const { questions, name } = sectionData
     const questionIndex = questions.findIndex((q) => q?.id === currentQuestionId)
-
-    // ✅ temporary sections data for Question Paper popup
-    const sections = [
-        {
-            name: "General Intelligence & Reasoning",
-            questions: [
-                { id: 1, question: "Which one of the following is the odd one out?", options: ["Apple", "Banana", "Carrot", "Grapes"] },
-                { id: 2, question: "If A=1, B=2, ..., Z=26, then what is the value of CAT?", options: ["24", "27", "30", "32"] },
-            ],
-        },
-        {
-            name: "General Awareness",
-            questions: [
-                { id: 3, question: "Who is the current President of India?", options: ["Narendra Modi", "Droupadi Murmu", "Ram Nath Kovind", "Pratibha Patil"] },
-                { id: 4, question: "Which planet is known as the Red Planet?", options: ["Earth", "Mars", "Jupiter", "Venus"] },
-            ],
-        },
-        {
-            name: "Quantitative Aptitude",
-            questions: [
-                { id: 5, question: "What is the value of (25 × 4) ÷ 10?", options: ["5", "10", "15", "20"] },
-                { id: 6, question: "The average of 5, 10, 15 is:", options: ["5", "10", "12.5", "15"] },
-            ],
-        },
-        {
-            name: "English Comprehension",
-            questions: [
-                { id: 7, question: "Choose the correct synonym of 'Abundant':", options: ["Rare", "Plentiful", "Scarce", "Tiny"] },
-                { id: 8, question: "Fill in the blank: She ____ to school every day.", options: ["go", "going", "goes", "gone"] },
-            ],
-        },
-    ]
 
     return (
         <>
@@ -120,7 +89,7 @@ export function ExamHeader({
                 onStartExam={() => setShowInstructions(false)}
             />
 
-            {/* Question Paper Popup */}
+            {/* Question Paper Popup → using sections from examDataSSCCGL */}
             <QuestionPaperPopup
                 isOpen={isQPVisible}
                 onClose={() => setQPVisible(false)}

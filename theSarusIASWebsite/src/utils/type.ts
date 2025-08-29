@@ -83,6 +83,7 @@ export interface ExamHeaderProps {
     totalQuestions?: number
     currentSection?: number
     sectionData: Section
+    sections: Section[]
     progress?: number
     duration: number
     onTimeUp: () => void
