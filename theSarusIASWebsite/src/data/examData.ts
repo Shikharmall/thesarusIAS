@@ -1951,27 +1951,27 @@ const sectionsSSC: Section[] = [
         name: "General Awareness",
         questions: [
             {
-                id: 6,
+                id: 26,
                 question: "Who is known as the 'Father of the Indian Constitution'?",
                 options: ["Mahatma Gandhi", "Dr. B.R. Ambedkar", "Jawaharlal Nehru", "Sardar Patel"],
             },
             {
-                id: 7,
+                id: 27,
                 question: "Which planet is known as the 'Red Planet'?",
                 options: ["Venus", "Jupiter", "Mars", "Saturn"],
             },
             {
-                id: 8,
+                id: 28,
                 question: "The currency of Japan is:",
                 options: ["Yuan", "Won", "Yen", "Ringgit"],
             },
             {
-                id: 9,
+                id: 29,
                 question: "Which is the longest river in the world?",
                 options: ["Amazon", "Nile", "Ganges", "Mississippi"],
             },
             {
-                id: 10,
+                id: 30,
                 question: "The headquarters of UNESCO is located in:",
                 options: ["New York", "Geneva", "Paris", "London"],
             },
@@ -1982,27 +1982,27 @@ const sectionsSSC: Section[] = [
         name: "Quantitative Aptitude",
         questions: [
             {
-                id: 11,
+                id: 31,
                 question: "What is the value of (25% of 80) + (30% of 60)?",
                 options: ["35", "38", "40", "42"],
             },
             {
-                id: 12,
+                id: 32,
                 question: "If the area of a circle is 154 cm², what is its radius? (Take π = 22/7)",
                 options: ["7 cm", "14 cm", "21 cm", "28 cm"],
             },
             {
-                id: 13,
+                id: 33,
                 question: "A train travels 360 km in 4 hours. What is its speed in km/hr?",
                 options: ["80", "85", "90", "95"],
             },
             {
-                id: 14,
+                id: 34,
                 question: "The simple interest on ₹1000 for 2 years at 5% per annum is:",
                 options: ["₹50", "₹100", "₹150", "₹200"],
             },
             {
-                id: 15,
+                id: 35,
                 question: "What is the next number in the sequence: 1, 4, 9, 16, 25, ?",
                 options: ["30", "35", "36", "49"],
             },
@@ -2013,12 +2013,12 @@ const sectionsSSC: Section[] = [
         name: "English Comprehension",
         questions: [
             {
-                id: 16,
+                id: 36,
                 question: "Choose the correct synonym for 'ABUNDANT':",
                 options: ["Scarce", "Plentiful", "Limited", "Rare"],
             },
             {
-                id: 17,
+                id: 37,
                 question: "Identify the grammatically correct sentence:",
                 options: [
                     "He don't like coffee",
@@ -2028,17 +2028,17 @@ const sectionsSSC: Section[] = [
                 ],
             },
             {
-                id: 18,
+                id: 38,
                 question: "Choose the correct antonym for 'OPTIMISTIC':",
                 options: ["Hopeful", "Positive", "Pessimistic", "Confident"],
             },
             {
-                id: 19,
+                id: 39,
                 question: "Fill in the blank: 'The meeting has been _____ to next week.'",
                 options: ["postponed", "preponed", "advanced", "delayed"],
             },
             {
-                id: 20,
+                id: 40,
                 question: "Choose the correctly spelled word:",
                 options: ["Occassion", "Occasion", "Ocasion", "Occassion"],
             },

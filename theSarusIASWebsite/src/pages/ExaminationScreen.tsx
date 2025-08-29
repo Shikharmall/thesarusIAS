@@ -11,60 +11,11 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Link } from "react-router-dom"
 import { examDataUPSCGS1, examDataSSCCGL } from "../data/examData"
 
-// const examData: ExamData = {
-//   title: "SSC Combined Graduate Level Examination (Tier-I)",
-//   duration: 60,
-//   sections: [
-//     { id: 1, name: "General Intelligence & Reasoning", start: 1, end: 25 },
-//     { id: 2, name: "General Awareness", start: 26, end: 50 },
-//     { id: 3, name: "Quantitative Aptitude", start: 51, end: 75 },
-//     { id: 4, name: "English Comprehension", start: 76, end: 100 },
-//   ],
-//   questions: [
-//     ...Array.from({ length: 25 }, (_, i) => ({
-//       id: i + 1,
-//       section: "General Intelligence & Reasoning",
-//       text: `Reasoning Question ${i + 1}`,
-//       options: ["Option 1", "Option 2", "Option 3", "Option 4"],
-//       answered: false,
-//       flagged: false,
-//       selectedAnswer: undefined,
-//     })),
-//     ...Array.from({ length: 25 }, (_, i) => ({
-//       id: i + 26,
-//       section: "General Awareness",
-//       text: `General Awareness Question ${i + 26}`,
-//       options: ["Option 1", "Option 2", "Option 3", "Option 4"],
-//       answered: false,
-//       flagged: false,
-//       selectedAnswer: undefined,
-//     })),
-//     ...Array.from({ length: 25 }, (_, i) => ({
-//       id: i + 51,
-//       section: "Quantitative Aptitude",
-//       text: `Quantitative Aptitude Question ${i + 51}`,
-//       options: ["Option 1", "Option 2", "Option 3", "Option 4"],
-//       answered: false,
-//       flagged: false,
-//       selectedAnswer: undefined,
-//     })),
-//     ...Array.from({ length: 25 }, (_, i) => ({
-//       id: i + 76,
-//       section: "English Comprehension",
-//       text: `English Comprehension Question ${i + 76}`,
-//       options: ["Option 1", "Option 2", "Option 3", "Option 4"],
-//       answered: false,
-//       flagged: false,
-//       selectedAnswer: undefined,
-//     })),
-//   ],
-// };
-
 export default function ExaminationScreen() {
   const [currentQuestion, setCurrentQuestion] = useState<number>(1);
-  const [currentSection, setCurrentSection] = useState<number>(1);
-  // const [questions, setQuestions] = useState(examData.questions);
+  const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0);
   const [examSubmitted, setExamSubmitted] = useState<boolean>(false);
+  // const [questions, setQuestions] = useState(examData.questions);
   // const [totalQuestions, setTotalQuestions] = useState<number>(0);
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(true);
   const [questionStatuses, setQuestionStatuses] = useState<Record<number, QuestionStatus>>({});
@@ -72,7 +23,7 @@ export default function ExaminationScreen() {
   const allQuestions = examDataSSCCGL?.sections?.flatMap((section) => section?.questions);
   const totalQuestions = allQuestions?.length;
 
-  const currentQuestionData = examDataSSCCGL?.sections[currentSection - 1]?.questions?.find((q) => q?.id === currentQuestion)
+  const currentQuestionData = examDataSSCCGL?.sections[currentSectionIndex]?.questions?.find((q) => q?.id === currentQuestion)
   //const progress = (questions?.filter((q) => q?.answered)?.length / questions?.length) * 100
 
   const getCurrentSection = () => {
@@ -92,17 +43,7 @@ export default function ExaminationScreen() {
   }
 
   const handleSectionSelect = (sectionId: number) => {
-    // const ss = 
-    // setCurrentQuestion()
-    setCurrentSection(sectionId)
-  }
-
-  const handleMCQAnswer = (answer: string) => {
-    // setQuestions((prev) =>
-    //   prev.map((q) =>
-    //     q.id === currentQuestion ? { ...q, selectedAnswer: answer, answered: true } : q
-    //   )
-    // )
+    setCurrentSectionIndex(sectionId)
   }
 
   const handleSubmit = () => {
@@ -116,7 +57,41 @@ export default function ExaminationScreen() {
     }
   }
 
-  const currentSectionDetails = getCurrentSection();
+  const handleAnswerSelect = (questionId: number, selectedAnswer: number) => {
+    setQuestionStatuses((prev) => ({
+      ...prev,
+      [questionId]: {
+        ...prev[questionId],
+        answered: true,
+        visited: true,
+        selectedAnswer,
+      },
+    }))
+  }
+
+  const handleFlagQuestion = (questionId: number) => {
+    setQuestionStatuses((prev) => ({
+      ...prev,
+      [questionId]: {
+        ...prev[questionId],
+        flagged: !prev[questionId]?.flagged,
+        visited: true,
+      },
+    }))
+  }
+
+  const handleClearResponse = (questionId: number) => {
+    setQuestionStatuses((prev) => ({
+      ...prev,
+      [questionId]: {
+        ...prev[questionId],
+        answered: false,
+        selectedAnswer: undefined,
+        visited: true,
+      },
+    }))
+  }
+
   const elementRef = useRef<HTMLDivElement>(null);
 
   // Enter fullscreen
@@ -214,8 +189,8 @@ export default function ExaminationScreen() {
         <ExamHeader
           title={examDataSSCCGL?.title}
           currentQuestion={currentQuestion}
-          totalQuestions={totalQuestions}
-          sectionData={examDataSSCCGL?.sections[currentSection - 1]}
+          // totalQuestions={totalQuestions}
+          sectionData={examDataSSCCGL?.sections[currentSectionIndex]}
           duration={examDataSSCCGL?.duration}
           onTimeUp={handleTimeUp}
           onSubmit={handleSubmit}
@@ -228,7 +203,11 @@ export default function ExaminationScreen() {
           variant="ghost"
           size="icon"
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className={sidebarOpen ? "absolute top-55 left-75 z-10 bg-background border shadow-sm cursor-pointer bg-white" : "absolute top-55 left-5 z-10 bg-background border shadow-sm cursor-pointer"}
+          className={
+            sidebarOpen
+              ?
+              "absolute top-110 left-75 z-10 bg-background border shadow-sm cursor-pointer bg-white" :
+              "absolute top-110 left-5 z-10 bg-background border shadow-sm cursor-pointer"}
         >
           {sidebarOpen
             ? <ChevronLeft className="h-6 w-6" color={themeColor?.primary} />
@@ -240,9 +219,10 @@ export default function ExaminationScreen() {
             <QuestionNavigator
               sections={examDataSSCCGL?.sections}
               currentQuestion={currentQuestion}
-              currentSection={currentSection}
+              currentSectionIndex={currentSectionIndex}
               onSectionSelect={handleSectionSelect}
               onQuestionSelect={handleQuestionSelect}
+              questionStatuses={questionStatuses}
             />
           </aside>
         )}
@@ -253,39 +233,22 @@ export default function ExaminationScreen() {
               style={{ marginLeft: sidebarOpen ? '0px' : "50px" }}
             >
               {currentQuestionData && (
-                <MCQQuestion question={currentQuestionData} onAnswerChange={handleMCQAnswer} />
+                <MCQQuestion
+                  sectionName={examDataSSCCGL?.sections[currentSectionIndex]?.name}
+                  questionStatus={questionStatuses[currentQuestion]}
+                  question={currentQuestionData}
+                  onAnswerSelect={handleAnswerSelect}
+                />
               )}
 
               <ExamNavigation
                 currentQuestion={currentQuestion}
-                totalQuestions={totalQuestions}
-                // isFlagged={currentQuestionData?.flagged || false}
-                // isAnswered={currentQuestionData?.answered || false}
-                isFlagged={false}
-                isAnswered={false}
-                onPrevious={() => setCurrentQuestion(Math?.max(1, currentQuestion - 1))}
-                onNext={() => {
-                  setCurrentQuestion(Math?.min(allQuestions?.length, currentQuestion + 1))
-                }
-                }
-                onFlag={
-                  () => {
-                    // setQuestions((prev) =>
-                    //   prev?.map((q) =>
-                    //     q?.id === currentQuestion ? { ...q, flagged: !q.flagged } : q
-                    //   ) ?? []
-                    // )
-                  }
-                }
-                onClearResponse={() => {
-                  // setQuestions((prev) =>
-                  //   prev?.map((q) =>
-                  //     q?.id === currentQuestion ? { ...q, selectedAnswer: undefined, answered: false } : q,
-                  //   ),
-                  // )
-                }
-                }
-                onSubmit={handleSubmit}
+                sections={examDataSSCCGL?.sections}
+                questionStatuses={questionStatuses}
+                onQuestionChange={setCurrentQuestion}
+                onSectionChange={setCurrentSectionIndex}
+                onFlagSelect={handleFlagQuestion}
+                onClearSelect={handleClearResponse}
               />
             </div>
           </div>

@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import ExaminationScreen from "./pages/ExaminationScreen";
 import InstructionsPage from "./pages/Instruction";
 import TermsPage from "./pages/Term";
+import InstructionScreen from "./pages/InstructionPop";
 // import { InstructionPopup } from "./components/InstructionPopup";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
     <Routes>
       <Route exact path="/" element={<Home />} />
       {/* <Route exact path="/slider" element={<Slider />} /> */}
+      <Route exact path="/instructionPop" element={<InstructionScreen />} />
       <Route exact path="/instructionPage" element={<InstructionsPage />} />
       {/* <Route exact path="/" element={<InstructionPopup />} /> */}
       <Route exact path="/terms" element={<TermsPage />} />

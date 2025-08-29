@@ -7,7 +7,6 @@ import { Button } from "./ui/Button"
 export function ExamHeader({
     title,
     currentQuestion,
-    totalQuestions,
     sectionData,
     duration,
     onTimeUp,
@@ -44,7 +43,7 @@ export function ExamHeader({
                     </span>
                 </div>
             </div> */}
-            {/* <div className="mt-4">
+            <div className="mt-4">
                 <div className="flex justify-between text-xs text-muted-foreground mt-1">
                     <span className="text-orange-500 font-bold underline cursor-pointer">INSTRUCTIONS</span>
                     <Button onClick={onSubmit} className="bg-red-500 text-primary-foreground flex items-center gap-2">
@@ -52,7 +51,7 @@ export function ExamHeader({
                         Submit Exam
                     </Button>
                 </div>
-            </div> */}
+            </div>
         </header>
     )
 }

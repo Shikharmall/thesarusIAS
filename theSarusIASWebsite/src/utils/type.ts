@@ -44,9 +44,10 @@ export interface Section {
 export interface QuestionNavigatorProps {
     sections: Section[],
     currentQuestion: number,
-    currentSection: number,
+    currentSectionIndex: number,
     onSectionSelect: (sectionId: number) => void
     onQuestionSelect: (questionId: number) => void
+    questionStatuses: Record<number, QuestionStatus>
 }
 
 export interface ExamData {
@@ -58,20 +59,22 @@ export interface ExamData {
 
 export interface MCQQuestionProps {
     question: Question
-    currentSection?: number
-    onAnswerChange: (answer: string) => void
+    sectionName: string
+    questionStatus?: QuestionStatus,
+    onAnswerSelect: (questionId: number, selectedAnswer: number) => void,
 }
 
 export interface ExamNavigationProps {
-    currentQuestion: number
-    totalQuestions: number
-    isFlagged: boolean
-    isAnswered: boolean
-    onPrevious: () => void
-    onNext: () => void
-    onFlag: () => void
-    onClearResponse: () => void
-    onSubmit: () => void
+    currentQuestion: number,
+    onQuestionChange: (questionIndex: number) => void,
+    onSectionChange: (sectionId: number) => void,
+    onFlagSelect: (questionId: number) => void,
+    onClearSelect: (questionId: number) => void,
+    sections: Section[],
+    // userName: string,
+    // rollNum: string,
+    // examName: string
+    questionStatuses: Record<number, QuestionStatus>
 }
 
 export interface ExamHeaderProps {
@@ -88,8 +91,8 @@ export interface ExamHeaderProps {
 
 
 export interface QuestionStatus {
-  answered: boolean,
-  flagged: boolean,
-  visited: boolean,
-  selectedAnswer?: number,
+    answered: boolean,
+    flagged: boolean,
+    visited: boolean,
+    selectedAnswer?: number,
 }
