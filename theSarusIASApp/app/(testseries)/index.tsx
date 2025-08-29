@@ -1,9 +1,9 @@
-import { themeColor } from "@/constants/Colors";
+import { Colors, themeColor } from "@/constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-export default function CourseDetailsScreen() {
+export default function TestSeriesDetailsScreen() {
     const router = useRouter();
     const featureItems = [
         { id: 1, title: "Features", icon: "document-text-outline", color: "#4A90E2", url: "/(course)/video" },
@@ -17,11 +17,11 @@ export default function CourseDetailsScreen() {
         { id: 9, title: "Class Test", icon: "clipboard-outline", color: "#3498DB", url: "/(course)/video" },
     ]
 
-    // const bottomItems = [
-    //     { id: 1, title: "Test Series", icon: "library-outline", color: "#E67E22" },
-    //     { id: 2, title: "Submit Answer", icon: "checkmark-circle-outline", color: "#9B59B6" },
-    //     { id: 3, title: "Class Test", icon: "clipboard-outline", color: "#3498DB" },
-    // ]
+    const bottomItems = [
+        { id: 1, title: "Test Series", icon: "library-outline", color: "#E67E22" },
+        { id: 2, title: "Submit Answer", icon: "checkmark-circle-outline", color: "#9B59B6" },
+        { id: 3, title: "Class Test", icon: "clipboard-outline", color: "#3498DB" },
+    ]
 
     const FeatureCard = ({ item }: { item: any }) => (
         <TouchableOpacity style={styles.featureCard} onPress={() => router.push(item.url)} >
@@ -39,7 +39,7 @@ export default function CourseDetailsScreen() {
                 <TouchableOpacity onPress={() => router.back()}>
                     <Ionicons name="arrow-back" size={24} color={themeColor.secondary} />
                 </TouchableOpacity>
-                <Text style={styles.headerTitle}>Course Details</Text>
+                <Text style={styles.headerTitle}>Test Series Details</Text>
                 <View style={{ width: 24 }} />
             </View>
 
@@ -48,17 +48,17 @@ export default function CourseDetailsScreen() {
                 <View style={styles.courseCard}>
                     <View style={styles.courseHeader}>
                         <View style={styles.courseInfo}>
-                            <Text style={styles.courseTitle}>IAS GS Foundation</Text>
+                            <Text style={styles.courseTitle}>UPSC Prelims (General Studies I) 2026</Text>
                             <Text style={styles.courseBatch}>Batch - 32B</Text>
                         </View>
-                        <View style={styles.liveIndicator}>
+                        {/* <View style={styles.liveIndicator}>
                             <Text style={styles.liveText}>Live</Text>
-                        </View>
+                        </View> */}
                     </View>
 
                     <View style={styles.courseTags}>
                         <View style={styles.liveTag}>
-                            <Text style={styles.liveTagText}>🔴 Live</Text>
+                            <Text style={styles.liveTagText}>PDF Solution</Text>
                         </View>
                         <View style={styles.englishTag}>
                             <Text style={styles.englishTagText}>English</Text>
@@ -68,11 +68,11 @@ export default function CourseDetailsScreen() {
                     <View style={styles.courseDetails}>
                         <View style={styles.detailRow}>
                             <Text style={styles.detailLabel}>Weekly</Text>
-                            <Text style={styles.detailValue}>36 Months</Text>
+                            <Text style={styles.detailValue}>4 Months</Text>
                         </View>
                         <View style={styles.detailRow}>
                             <Text style={styles.detailLabel}>Category</Text>
-                            <Text style={styles.detailValue}>Offline</Text>
+                            <Text style={styles.detailValue}>Online</Text>
                         </View>
                     </View>
                 </View>
@@ -85,6 +85,10 @@ export default function CourseDetailsScreen() {
                 </View>
 
                 {/* Bottom Items */}
+                <TouchableOpacity style={styles.submitButton}>
+                    <Ionicons name="cash" size={20} color={Colors.background} />
+                    <Text style={styles.submitButtonText}>Purchase ₹60</Text>
+                </TouchableOpacity>
                 {/* <View style={styles.bottomGrid}>
                     {bottomItems.map((item) => (
                         <FeatureCard key={item.id} item={item} />
@@ -133,7 +137,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     courseTitle: {
-        fontSize: 20,
+        fontSize: 16,
         fontWeight: "bold",
         color: "#2C3E50",
         marginBottom: 4,
@@ -239,5 +243,19 @@ const styles = StyleSheet.create({
         textAlign: "center",
         color: "#2C3E50",
         fontWeight: "500",
+    },
+    submitButton: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: Colors.success,
+        paddingVertical: 12,
+        borderRadius: 8,
+    },
+    submitButtonText: {
+        fontSize: 16,
+        fontWeight: "600",
+        color: Colors.background,
+        marginLeft: 8,
     },
 });

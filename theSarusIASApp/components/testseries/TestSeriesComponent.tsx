@@ -18,7 +18,7 @@ export default function TestSeriesComponent({ testseries }: TestSeriesProps) {
         <TouchableOpacity style={styles.card}
             onPress={() => {
                 router.push({
-                    pathname: "/(exam)/instructions",
+                    pathname: "/(testseries)",
                     params: { title: item?.title, },
                 });
             }}
@@ -79,7 +79,7 @@ export default function TestSeriesComponent({ testseries }: TestSeriesProps) {
                             data={testseries}
                             keyExtractor={(item) => item.id}
                             renderItem={renderSeries}
-                            // contentContainerStyle={{ padding: 10 }}
+                        // contentContainerStyle={{ padding: 10 }}
                         />
 
                     )

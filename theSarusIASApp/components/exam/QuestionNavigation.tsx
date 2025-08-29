@@ -1,8 +1,8 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { QuestionNavigatorProps } from "@/types/exam";
 import { Colors, themeColor } from "@/constants/Colors";
+import { QuestionNavigatorProps } from "@/types/exam";
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { useEffect, useState } from "react";
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function QuestionNavigator({
     sections,
@@ -74,97 +74,103 @@ export default function QuestionNavigator({
                 </Text>
             </View>
 
-            {/* Questions Grid */}
-            <View style={styles.questionsContainer}>
-                {sections
-                    ?.find(section => section?.id === currentSection)
-                    ?.questions
-                    ?.map((question) => {
-                        const status = questionStatuses[question?.id];
-                        const isActive = currentQuestion + 1 === question?.id;
+            <ScrollView showsVerticalScrollIndicator={false}>
 
-                        let backgroundColor = "white";
-                        let borderColor = "#d1d5db";
-                        let textColor = themeColor?.secondary;
-                        let icon: keyof typeof MaterialIcons.glyphMap | null = null;
-                        let iconColor = "transparent";
+                {/* Questions Grid */}
+                <View style={styles.questionsContainer}>
+                    {sections
+                        ?.find(section => section?.id === currentSection)
+                        ?.questions
+                        ?.map((question) => {
+                            const status = questionStatuses[question?.id];
+                            const isActive = currentQuestion + 1 === question?.id;
 
-                        if (isActive) {
-                            backgroundColor = themeColor?.primary;
-                            textColor = "white";
-                        } else if (status?.answered) {
-                            backgroundColor = "#dcfce7";
-                            borderColor = "#86efac";
-                            textColor = "#065f46";
-                            icon = "check-circle";
-                            iconColor = "green";
-                        } else if (status?.flagged) {
-                            backgroundColor = "#ffedd5";
-                            borderColor = "#fdba74";
-                            textColor = "#92400e";
-                            icon = "flag";
-                            iconColor = "orange";
-                        } else if (status?.visited) {
-                            backgroundColor = "#f3f4f6";
-                            borderColor = "#d1d5db";
-                            textColor = "#374151";
-                        }
+                            let backgroundColor = "white";
+                            let borderColor = "#d1d5db";
+                            let textColor = themeColor?.secondary;
+                            let icon: keyof typeof MaterialIcons.glyphMap | null = null;
+                            let iconColor = "transparent";
 
-                        return (
-                            <TouchableOpacity
-                                key={question?.id}
-                                style={[
-                                    styles.questionButton,
-                                    {
-                                        backgroundColor,
-                                        borderColor,
-                                        borderWidth: isActive ? 0 : 1,
-                                    }
-                                ]}
-                                onPress={() => onQuestionSelect(question?.id - 1)}
-                            >
-                                {icon ? (
-                                    <MaterialIcons name={icon} size={18} color={iconColor} />
-                                ) : (
-                                    <Text style={[styles.questionText, { color: textColor }]}>
-                                        {question?.id}
-                                    </Text>
-                                )}
-                            </TouchableOpacity>
-                        );
-                    })}
-            </View>
+                            if (isActive) {
+                                backgroundColor = themeColor?.primary;
+                                textColor = "white";
+                            } else if (status?.answered) {
+                                backgroundColor = "#dcfce7";
+                                borderColor = "#86efac";
+                                textColor = "#065f46";
+                                icon = "check-circle";
+                                iconColor = "green";
+                            } else if (status?.flagged) {
+                                backgroundColor = "#ffedd5";
+                                borderColor = "#fdba74";
+                                textColor = "#92400e";
+                                icon = "flag";
+                                iconColor = "orange";
+                            } else if (status?.visited) {
+                                backgroundColor = "#f3f4f6";
+                                borderColor = "#d1d5db";
+                                textColor = "#374151";
+                            }
 
-            {/* Legend */}
-            <View style={styles.legendContainer}>
-                <View style={styles.legendItem}>
-                    <MaterialIcons name="check-circle" size={25} color="green" />
-                    <Text style={styles.legendText}>Answered (<Text style={styles.legendCount}>{answeredCount}</Text>)</Text>
+                            return (
+                                <TouchableOpacity
+                                    key={question?.id}
+                                    style={[
+                                        styles.questionButton,
+                                        {
+                                            backgroundColor,
+                                            borderColor,
+                                            borderWidth: isActive ? 0 : 1,
+                                        }
+                                    ]}
+                                    onPress={() => onQuestionSelect(question?.id - 1)}
+                                >
+                                    {icon ? (
+                                        <MaterialIcons name={icon} size={18} color={iconColor} />
+                                    ) : (
+                                        <Text style={[styles.questionText, { color: textColor }]}>
+                                            {question?.id}
+                                        </Text>
+                                    )}
+                                </TouchableOpacity>
+                            );
+                        })}
                 </View>
-                <View style={styles.legendItem}>
-                    <MaterialIcons name="check-circle" size={25} color="red" />
-                    <Text style={styles.legendText}>Not Answered (<Text style={styles.legendCount}>{notAnsweredCount}</Text>)</Text>
+
+                {/* Legend */}
+                <View style={styles.legendContainer}>
+                    <View style={styles.legendItem}>
+                        <MaterialIcons name="check-circle" size={25} color="green" />
+                        <Text style={styles.legendText}>Answered (<Text style={styles.legendCount}>{answeredCount}</Text>)</Text>
+                    </View>
+                    <View style={styles.legendItem}>
+                        <MaterialIcons name="check-circle" size={25} color="red" />
+                        <Text style={styles.legendText}>Not Answered (<Text style={styles.legendCount}>{notAnsweredCount}</Text>)</Text>
+                    </View>
+                    <View style={styles.legendItem}>
+                        <MaterialIcons name="check-circle" size={25} color="orange" />
+                        <Text style={styles.legendText}>Mark for Review (<Text style={styles.legendCount}>{flaggedCount}</Text>)</Text>
+                    </View>
+                    <View style={styles.legendItem}>
+                        <MaterialIcons name="check-circle" size={25} color="gray" />
+                        <Text style={styles.legendText}>Not Visited (<Text style={styles.legendCount}>{notVisitedCount}</Text>)</Text>
+                    </View>
                 </View>
-                <View style={styles.legendItem}>
-                    <MaterialIcons name="check-circle" size={25} color="orange" />
-                    <Text style={styles.legendText}>Mark for Review (<Text style={styles.legendCount}>{flaggedCount}</Text>)</Text>
-                </View>
-                <View style={styles.legendItem}>
-                    <MaterialIcons name="check-circle" size={25} color="gray" />
-                    <Text style={styles.legendText}>Not Visited (<Text style={styles.legendCount}>{notVisitedCount}</Text>)</Text>
-                </View>
-            </View>
+
+            </ScrollView>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     wrapper: {
-        margin: 20,
+        marginHorizontal: 25,
+        marginBottom: 70
     },
     sectionRow: {
         flexDirection: "row",
         justifyContent: "space-between",
+        marginTop: 20
     },
     sectionButton: {
         paddingVertical: 8,
@@ -199,7 +205,9 @@ const styles = StyleSheet.create({
     },
     questionsContainer: {
         flexDirection: "row",
-        flexWrap: "wrap"
+        flexWrap: "wrap",
+        // justifyContent: 'center',
+        // alignItems: 'center'
     },
     questionButton: {
         width: 50,

@@ -1,9 +1,9 @@
-import React, { useRef } from "react";
-import { StyleSheet, View, Button } from "react-native";
-import { useVideoPlayer, VideoView } from "expo-video";
 import * as ScreenOrientation from "expo-screen-orientation";
+import { useVideoPlayer, VideoView } from "expo-video";
+import React, { useRef } from "react";
+import { Button, StyleSheet, View } from "react-native";
 
-export default function App() {
+export default function VideoComponent() {
   const player = useVideoPlayer(
     { uri: "https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4" },
     (player) => {

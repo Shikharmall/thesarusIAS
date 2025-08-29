@@ -31,7 +31,7 @@ const TabSwitcherTestSeries = () => {
     },
     {
       id: "2",
-      title: "UPPCS CSAT Practice Test Series (Aptitude & Reasoning)",
+      title: "UPCS CSAT Practice Test Series (Aptitude & Reasoning)",
       price: "₹50",
       oldPrice: "₹1000",
       discount: "95% OFF",

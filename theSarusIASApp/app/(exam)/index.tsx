@@ -113,7 +113,7 @@ export default function ExamScreen() {
 
   return (
     <View style={styles.container}>
-      <ExamHeader onToggleNavigator={() => setShowNavigator(!showNavigator)} showNavigator={showNavigator} examName={examName} />
+      <ExamHeader onToggleNavigator={() => setShowNavigator(!showNavigator)} showNavigator={showNavigator} examName={examName} duration={examData?.duration} />
 
       <ResponsiveLayout
         showSidebar={showNavigator}

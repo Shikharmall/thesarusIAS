@@ -1,14 +1,13 @@
-import { useState, useEffect } from "react";
-import { Text, View, StyleSheet } from "react-native";
 import { themeColor } from "@/constants/Colors";
+import { useEffect, useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
 
 interface ExamTimerProps {
-    initialTime: number;
     duration: number; // duration in minutes
     onTimeUp: () => void;
 }
 
-export function ExamTimer({ initialTime, duration, onTimeUp }: ExamTimerProps) {
+export function ExamTimer({ duration, onTimeUp }: ExamTimerProps) {
     const [timeLeft, setTimeLeft] = useState(duration * 60); // convert to seconds
 
     useEffect(() => {

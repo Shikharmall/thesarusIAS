@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import AnimatedCircleProgress from "@/components/ui/AnimatedCircle";
+import { Colors, themeColor } from "@/constants/Colors";
+import { SIZES } from "@/constants/Size";
+import { Slide } from "@/types/AppIntroSlider";
+import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
+import React, { useState } from "react";
+import { Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
-import { useFonts } from "expo-font";
-import { View, Image, Text, StyleSheet, SafeAreaView } from "react-native";
-import { Colors, themeColor } from "@/constants/Colors";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { SIZES } from "@/constants/Size";
-import AnimatedCircleProgress from "@/components/ui/AnimatedCircle";
-import { Slide } from "@/types/AppIntroSlider";
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -106,9 +106,11 @@ export default function RootLayout() {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
+
         <StatusBar style="auto" />
+        {/* <Redirect href="/LoginWithOTP" /> */}
+
         <Stack
-          initialRouteName="LoginWithOTP"
           screenOptions={{
             headerShown: false,
             animation: "slide_from_right", // 👈 smooth iOS-like push

@@ -52,12 +52,14 @@ export default function MCQQuestion({
             >
               {selectedAnswer === index && <View style={styles.radioButtonInner} />}
             </View>
-            <View style={{}}>
+            <View style={{ flex: 1 }}>
               <Text
                 style={[
                   styles.optionText,
                   selectedAnswer === index && styles.optionTextSelected,
                 ]}
+                numberOfLines={0}   // wrap text (multi-line)
+                ellipsizeMode="tail"
               >
                 {option}
               </Text>

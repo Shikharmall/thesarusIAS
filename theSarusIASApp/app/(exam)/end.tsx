@@ -42,7 +42,7 @@ export default function EndScreen() {
   }, [rollNum, userName, totalQuestions, answeredCount, flaggedCount, examName]);
 
   const backAction = () => {
-    router.replace("/(home)/(tabs)");  // go to home
+    router.replace("/(home)/(tabs)/testseries");  // go to home
     return true;
   };
 
