@@ -61,13 +61,13 @@ export function ExamHeader({
                     <div className="flex items-center gap-6">
                         <span
                             onClick={() => setShowInstructions(true)}
-                            className="text-orange-600 font-semibold underline cursor-pointer hover:text-orange-700 transition-colors"
+                            className="text-orange-600 text-xs font-semibold underline cursor-pointer hover:text-orange-700 transition-colors"
                         >
                             INSTRUCTIONS
                         </span>
                         <span
                             onClick={() => setQPVisible(true)}
-                            className="text-blue-600 font-semibold underline cursor-pointer hover:text-blue-700 transition-colors"
+                            className="text-blue-600 text-xs font-semibold underline cursor-pointer hover:text-blue-700 transition-colors"
                         >
                             VIEW QUESTION PAPER
                         </span>
