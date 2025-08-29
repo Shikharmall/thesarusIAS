@@ -43,7 +43,7 @@ export interface Section {
 
 export interface QuestionNavigatorProps {
     sections: Section[],
-    currentQuestion: number,
+    currentQuestionId: number,
     currentSectionIndex: number,
     onSectionSelect: (sectionId: number) => void
     onQuestionSelect: (questionId: number) => void
@@ -65,7 +65,7 @@ export interface MCQQuestionProps {
 }
 
 export interface ExamNavigationProps {
-    currentQuestion: number,
+    currentQuestionId: number,
     onQuestionChange: (questionIndex: number) => void,
     onSectionChange: (sectionId: number) => void,
     onFlagSelect: (questionId: number) => void,
@@ -79,7 +79,7 @@ export interface ExamNavigationProps {
 
 export interface ExamHeaderProps {
     title: string
-    currentQuestion: number
+    currentQuestionId: number
     totalQuestions?: number
     currentSection?: number
     sectionData: Section

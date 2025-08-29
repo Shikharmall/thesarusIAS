@@ -1,12 +1,11 @@
-import { Button } from "../components/ui/Button"
-import { Card } from "../components/ui/Card"
-import { Flag, ChevronLeft, ChevronRight, Send, RotateCcw } from "lucide-react"
-import { ExamNavigationProps } from "../utils/type"
-import { useEffect } from "react";
-import { useState } from "react";
+import { Button } from "../components/ui/Button";
+import { Card } from "../components/ui/Card";
+import { Flag, ChevronLeft, ChevronRight, RotateCcw, Send } from "lucide-react";
+import { ExamNavigationProps } from "../utils/type";
+import { useMemo } from "react";
 
 export function ExamNavigation({
-  currentQuestion,
+  currentQuestionId,
   sections,
   questionStatuses,
   onQuestionChange,
@@ -14,84 +13,95 @@ export function ExamNavigation({
   onFlagSelect,
   onClearSelect,
 }: ExamNavigationProps) {
+  // Flatten all questions with section index reference
+  const allQuestions = useMemo(
+    () =>
+      sections.flatMap((section, sectionIndex) =>
+        section.questions.map((q) => ({ ...q, sectionIndex }))
+      ),
+    [sections]
+  );
 
-  const isFlagged = questionStatuses[currentQuestion]?.flagged;
-  const allQuestions = sections?.flatMap((section) => section?.questions);
-  const totalQuestions = allQuestions?.length;
+  const totalQuestions = allQuestions.length;
+  const currentIndex = allQuestions.findIndex(
+    (q) => q.id === currentQuestionId
+  );
 
-  const [answeredCount, setAnsweredCount] = useState<number>(0);
-  const [flaggedCount, setFlaggedCount] = useState<number>(0);
+  const isFirst = currentIndex <= 0;
+  const isLast = currentIndex === totalQuestions - 1;
+  const isFlagged = questionStatuses[currentQuestionId]?.flagged;
 
-  const getCurrentSectionForIndex = (index: number): number => {
-    let questionCount = 0
-    for (const section of sections) {
-      if (index < questionCount + section.questions.length) {
-        return section?.id
-      }
-      questionCount += section.questions.length
-    }
-    return sections[0]?.id
-  }
+  const answeredCount = useMemo(
+    () => allQuestions.filter((q) => questionStatuses[q.id]?.answered).length,
+    [allQuestions, questionStatuses]
+  );
+
+  const flaggedCount = useMemo(
+    () => allQuestions.filter((q) => questionStatuses[q.id]?.flagged).length,
+    [allQuestions, questionStatuses]
+  );
 
   const handlePrevious = () => {
-    if (currentQuestion > 0) {
-      const newIndex = currentQuestion - 1;
-      onQuestionChange(newIndex);
-      onSectionChange(getCurrentSectionForIndex(newIndex));
+    if (!isFirst) {
+      const prev = allQuestions[currentIndex - 1];
+      onSectionChange(prev.sectionIndex);
+      onQuestionChange(prev.id);
     }
-  }
+  };
 
   const handleNext = () => {
-    if (currentQuestion < totalQuestions - 1) {
-      const newIndex = currentQuestion + 1;
-      onQuestionChange(newIndex);
-      onSectionChange(getCurrentSectionForIndex(newIndex));
+    if (!isLast) {
+      const next = allQuestions[currentIndex + 1];
+      onSectionChange(next.sectionIndex);
+      onQuestionChange(next.id);
     }
-  }
-
-  useEffect(() => {
-    if (allQuestions?.length > 0) {
-      const answered = allQuestions?.filter(q => questionStatuses[q.id]?.answered)?.length || 0;
-      const flagged = allQuestions?.filter(q => questionStatuses[q.id]?.flagged)?.length || 0;
-      setAnsweredCount(answered);
-      setFlaggedCount(flagged);
-    }
-  }, [allQuestions]);
+  };
 
   return (
-    <Card className="p-4 border-1 border-gray-300">
+    <Card className="p-4 border-1 border-gray-300 my-4">
       <div className="flex items-center justify-between">
+        {/* Previous */}
         <Button
           variant="outline"
           onClick={handlePrevious}
-          disabled={currentQuestion === 0}
+          disabled={isFirst}
           className="flex items-center gap-2 bg-transparent"
         >
           <ChevronLeft className="h-4 w-4" />
           Previous
         </Button>
 
-        <div className="flex gap-2">
+        <div className="flex gap-2 items-center">
+          {/* Status */}
+          {/* <span className="text-sm text-gray-600">
+            Answered: {answeredCount} | Flagged: {flaggedCount}
+          </span> */}
+
+          {/* Clear */}
           <Button
             variant="outline"
-            onClick={() => onClearSelect(currentQuestion)}
-            // disabled={!isAnswered}
+            onClick={() => onClearSelect(currentQuestionId)}
             className="flex items-center gap-2 bg-transparent"
           >
             <RotateCcw className="h-4 w-4" />
             Clear Response
           </Button>
 
+          {/* Flag */}
           <Button
             variant="outline"
-            onClick={() => onFlagSelect(currentQuestion)}
-            className={`flex items-center gap-2 ${isFlagged ? "bg-orange-100 text-orange-800 border-orange-300" : ""}`}
+            onClick={() => onFlagSelect(currentQuestionId)}
+            className={`flex items-center gap-2 ${isFlagged
+              ? "bg-orange-100 text-orange-800 border-orange-300"
+              : ""
+              }`}
           >
             <Flag className="h-4 w-4" />
             {isFlagged ? "Unmark Review" : "Mark for Review"}
           </Button>
 
-          {currentQuestion === totalQuestions - 1 ? (
+          {/* Next or Submit */}
+          {isLast ? (
             <Button className="bg-red-500 text-primary-foreground flex items-center gap-2">
               <Send className="h-4 w-4" />
               Submit Exam
@@ -105,5 +115,5 @@ export function ExamNavigation({
         </div>
       </div>
     </Card>
-  )
+  );
 }
