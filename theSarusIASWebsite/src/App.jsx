@@ -7,6 +7,7 @@ import ExaminationScreen from "./pages/ExaminationScreen";
 import InstructionsPage from "./pages/Instruction";
 import TermsPage from "./pages/Term";
 import InstructionScreen from "./pages/InstructionPop";
+import DownloadSoftware from "./pages/DownloadSoftware";
 // import { InstructionPopup } from "./components/InstructionPopup";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
       {/* <Route exact path="/" element={<InstructionPopup />} /> */}
       <Route exact path="/terms" element={<TermsPage />} />
       <Route exact path="/exam" element={<ExaminationScreen />} />
+      <Route exact path="/download/:systemType" element={<DownloadSoftware />} />
       <Route exact path="/comingSoon" element={<ComingSoon />} />
     </Routes>
   );

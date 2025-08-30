@@ -21,8 +21,10 @@ import Navbar from "./Navbar"
 import { useState } from "react";
 import SliderContent from "./SliderContent";
 import ChatBot from "./ChatBot";
+import { useNavigate } from "react-router-dom";
 
 export default function Hero() {
+    const navigate = useNavigate();
 
     return (
         <div className={`min-h-screen bg-gradient-to-br from-[${themeColor?.primary}] via-cyan-500 to-[${themeColor?.secondary}] relative overflow-hidden`}>
@@ -57,17 +59,17 @@ export default function Hero() {
 
                 {/* App Download buttons */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 w-full max-w-4xl">
-                    <button className="bg-slate-800 hover:bg-slate-900 text-white py-6 px-6 rounded-lg flex items-center gap-3 text-xs font-semibold cursor-pointer flex justify-center transition-all transform hover:scale-105" style={{ backgroundColor: themeColor?.secondary }}>
+                    <button onClick={() => navigate('/download/IOS')} className="bg-slate-800 hover:bg-slate-900 text-white py-6 px-6 rounded-lg flex items-center gap-3 text-xs font-semibold cursor-pointer flex justify-center transition-all transform hover:scale-105" style={{ backgroundColor: themeColor?.secondary }}>
                         <Apple className="w-3 h-3" />
                         The SARUS LEARNING APP (IOS)
                     </button>
 
-                    <button className="text-white py-4 px-6 rounded-lg flex items-center gap-3 text-xs font-semibold cursor-pointer border-1 flex justify-center transition-all transform hover:scale-105">
+                    <button onClick={() => navigate('/download/Android')} className="text-white py-4 px-6 rounded-lg flex items-center gap-3 text-xs font-semibold cursor-pointer border-1 flex justify-center transition-all transform hover:scale-105">
                         <Smartphone className="w-3 h-3" />
                         The SARUS LEARNING APP (ANDROID)
                     </button>
 
-                    <button className="bg-slate-800 hover:bg-slate-900 text-white py-6 px-6 rounded-lg flex items-center gap-3 text-xs font-semibold cursor-pointer flex justify-center transition-all transform hover:scale-105">
+                    <button onClick={() => navigate('/download/Windows')} className="bg-slate-800 hover:bg-slate-900 text-white py-6 px-6 rounded-lg flex items-center gap-3 text-xs font-semibold cursor-pointer flex justify-center transition-all transform hover:scale-105">
                         <AppWindow className="w-3 h-3" />
                         The SARUS APP (WINDOWS)
                     </button>
