@@ -1,6 +1,7 @@
 // Dashboard.tsx
 // import React from "react";
 // import { Book, Calendar, File, Folder, Home, Settings } from "lucide-react";
+import ChartsPage from "../components/dashboard/Chart";
 import Header from "../components/dashboard/Header";
 import SideBar from "../components/dashboard/SideBar";
 
@@ -14,7 +15,11 @@ const Dashboard = () => {
             <main className="flex-1 ml-50 mt-15">
                 <Header />
 
+                <ChartsPage />
+
                 <div className="p-8">
+
+
 
                     {/* Exam Status */}
                     <h2 className="text-xl font-bold mb-4">Exam Status</h2>

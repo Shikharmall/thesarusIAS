@@ -3,9 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import SideBar from "./SideBar";
 import Header from "./Header";
 import SubHeader from "./SubHeader";
-import { themeColor } from "../../utils/Color";
-import CourseDetailsLeftSideScreen from "./CourseDetailsLeftSide";
-import CourseDetailsRightSideScreen from "./CourseDetailsRightSideScreen";
 
 const CourseDetails: React.FC = () => {
     //const { id } = useParams(); // for dynamic routing
@@ -41,25 +38,9 @@ const CourseDetails: React.FC = () => {
 
                 <SubHeader title={course?.title} isBack={true} isAdd={true} />
 
-                <div className="flex flex-row w-full">
-                    <div
-                        className="w-[30%] m-1 rounded-md"
-                        style={{
-                            backgroundColor: themeColor?.lightSecondary
-                        }}
-                    >
-                        <CourseDetailsLeftSideScreen />
-                    </div>
-                    <div className="w-[70%] m-1 rounded-md" style={{
-                        backgroundColor: themeColor?.lightSecondary
-                    }}>
-                        <CourseDetailsRightSideScreen />
-                    </div>
-                </div>
-
 
                 {/* Banner */}
-                {/* <div className="relative h-64 w-full">
+                <div className="relative h-64 w-full">
                     <img
                         src={course.image}
                         alt={course.title}
@@ -70,11 +51,11 @@ const CourseDetails: React.FC = () => {
                             {course.title}
                         </h1>
                     </div>
-                </div> */}
+                </div>
 
                 {/* Content */}
-                {/* <div className="max-w-5xl mx-auto p-6">
-              
+                <div className="max-w-5xl mx-auto p-6">
+                    {/* Tags */}
                     <div className="flex flex-wrap gap-2 mb-4">
                         {course.tags.map((tag, idx) => (
                             <span
@@ -86,7 +67,7 @@ const CourseDetails: React.FC = () => {
                         ))}
                     </div>
 
-                  
+                    {/* Price */}
                     <div className="flex items-center gap-3 mb-6">
                         <span className="text-3xl font-bold text-blue-600">{course.price}</span>
                         {course.oldPrice && (
@@ -101,10 +82,10 @@ const CourseDetails: React.FC = () => {
                         )}
                     </div>
 
-         
+                    {/* Description */}
                     <p className="text-gray-700 leading-relaxed mb-6">{course.description}</p>
 
-                
+                    {/* What you'll learn */}
                     <div className="mb-8">
                         <h2 className="text-xl font-semibold text-gray-800 mb-3">
                             What you’ll learn
@@ -116,14 +97,14 @@ const CourseDetails: React.FC = () => {
                         </ul>
                     </div>
 
-            
+                    {/* Enroll button */}
                     <button
                         onClick={() => navigate("/lecture")}
                         className="px-6 py-3 rounded-xl bg-blue-600 text-white font-semibold text-lg hover:bg-blue-700 transition"
                     >
                         Enroll Now
                     </button>
-                </div> */}
+                </div>
 
             </main>
         </div>

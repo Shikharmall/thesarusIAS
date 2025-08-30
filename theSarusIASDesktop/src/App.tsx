@@ -5,8 +5,11 @@ import Dashboard from "./screen/Dashboard";
 import QuestionBankScreen from "./screen/QuestionBank";
 import AddQuestionScreen from "./screen/AddQuestion";
 import CoursesScreen from "./screen/Courses";
-import CourseDetails from "./components/dashboard/CourseDetails";
 import LecturePage from "./components/dashboard/LecturePage";
+import LoginScreen from "./screen/Login";
+import RegisterScreen from "./screen/Register";
+import CourseDetails from "./components/dashboard/CourseDetails";
+import VideoPlayerPage from "./components/dashboard/VideoPage";
 // import Home from "./pages/Home";
 // import InstructionsPage from "./pages/Instruction";
 // import Slider from "./components/Slider";
@@ -29,12 +32,15 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Dashboard />} />
+      <Route path="/" element={<LoginScreen />} />
+      <Route path="/register" element={<RegisterScreen />} />
+      <Route path="/home" element={<Dashboard />} />
       <Route path="/exam" element={<ExaminationScreen />} />
       <Route path="/questionBank" element={<QuestionBankScreen />} />
       <Route path="/courses" element={<CoursesScreen />} />
       <Route path="/addQuestion" element={<AddQuestionScreen />} />
       <Route path="/courseDetails" element={<CourseDetails />} />
+      <Route path="/video" element={<VideoPlayerPage />} />
       <Route path="/lecture" element={<LecturePage />} />
       {/* <Route path="/instructionPage" element={<InstructionsPage />} />*/}
       {/* <Route path="/slider" element={<Slider />} /> */}

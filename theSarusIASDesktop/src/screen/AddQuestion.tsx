@@ -12,6 +12,12 @@ const AddQuestionScreen = () => {
 
     const [tab, setTab] = useState<number>(1);
 
+    const steps = [
+        { label: "Create Exam Paper" },
+        { label: "Create Sections" },
+        { label: "Create Questions" }
+    ];
+
     return (
         <div className="min-h-screen bg-gray-50 p-8">
 
@@ -20,43 +26,7 @@ const AddQuestionScreen = () => {
 
             <main className="flex-1 ml-50 p-8">
 
-                <Stepper currentStep={1} />
-
-                {/* Progress Indicator */}
-                <div className="flex items-center justify-center mb-10">
-                    <div className="flex items-center w-full max-w-3xl">
-                        {["Create Exam Paper", "Create Sections", "Create Questions"].map(
-                            (step, index) => (
-                                <div key={index} className="flex-1 flex items-center">
-                                    <div className="flex flex-col items-center w-full">
-                                        {/* Step Circle */}
-                                        <div
-                                            className={`w-8 h-8 rounded-full flex items-center justify-center border-2 ${index === 0
-                                                ? "bg-purple-600 border-purple-600 text-white"
-                                                : "border-gray-300 text-gray-400"
-                                                }`}
-                                        >
-                                            {index + 1}
-                                        </div>
-                                        <span
-                                            className={`mt-2 text-sm ${index === 0 ? "text-purple-600 font-semibold" : "text-gray-400"
-                                                }`}
-                                        >
-                                            {step}
-                                        </span>
-                                    </div>
-                                    {/* Line Connector */}
-                                    {index < 2 && (
-                                        <div
-                                            className={`flex-1 h-[2px] ${index === 0 ? "bg-purple-600" : "bg-gray-300"
-                                                }`}
-                                        ></div>
-                                    )}
-                                </div>
-                            )
-                        )}
-                    </div>
-                </div>
+                <Stepper steps={steps} currentStep={tab} />
 
                 {
                     tab === 1
