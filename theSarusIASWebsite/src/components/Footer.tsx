@@ -27,10 +27,10 @@ export default function Footer() {
                             <img src="../../images/thesaruslogo.jpg" className='w-15 h-15 rounded' />
                         </div>
                         <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-cyan-300 bg-clip-text text-transparent">
-                            The SARUS IAS
+                            The SARUS
                         </h3>
                         <p className="text-gray-300 leading-relaxed mb-6">
-                            India's leading platform for UPSC Civil Services preparation. Think IAS, Think Drishti - your trusted
+                            India's leading platform for UPSC Civil Services preparation - your trusted
                             partner in achieving your IAS dreams.
                         </p>
                         <div className="flex gap-4">
@@ -247,7 +247,7 @@ export default function Footer() {
                                 Sitemap
                             </button>
                         </div>
-                        <div className="text-sm text-gray-400">© {new Date().getFullYear()} The SARUS IAS. All rights reserved.</div>
+                        <div className="text-sm text-gray-400">© {new Date().getFullYear()} The SARUS. All rights reserved.</div>
                     </div>
                 </div>
             </div>
