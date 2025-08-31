@@ -1,5 +1,5 @@
 // import React from 'react'
-import { Calendar, File, Folder, FolderCheck, GraduationCap, HelpCircle, Home, LayoutList } from "lucide-react";
+import { Calendar, File, Folder, GraduationCap, HelpCircle, Home, LayoutList } from "lucide-react";
 import { themeColor } from "../../utils/Color";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
@@ -7,13 +7,14 @@ import { useState } from "react";
 export default function SideBar() {
     const location = useLocation();
     const { pathname } = location;
-
     const [isAdmin, setIsAdmin] = useState<boolean>(true);
 
     return (
-        <aside className="fixed left-0 top-0 h-screen w-50 text-white flex flex-col justify-between p-0" style={{
-            backgroundColor: themeColor?.secondary
-        }}> {/* w-64 bg-[#3f2768] */}
+        <aside className="fixed left-0 top-0 h-screen w-50 text-white flex flex-col justify-between p-0 "
+            style={{
+                backgroundColor: themeColor?.secondary
+            }}
+        > {/* w-64 bg-[#3f2768] */}
             <div>
                 <div className="text-2xl font-bold my-5 flex justify-center items-center">
                     <img
@@ -33,9 +34,9 @@ export default function SideBar() {
                     </Link>
 
                     <Link to={'/courses'} //text-[#b8b8b8ff]
-                        className={`flex flex-row items-center gap-3 hover:bg-slate-800 hover:bg-opacity-3 px-5 py-5 text-[#b8b8b8ff] ${pathname.includes("/courses") && "text-white text-white border-l-3 border-white bg-slate-800"} `}
+                        className={`flex flex-row items-center gap-3 hover:bg-slate-800 hover:bg-opacity-3 px-5 py-5 text-[#b8b8b8ff] ${(pathname.includes("/courses") || pathname.includes("/courseDetails") || pathname.includes("/addCourse")) && "text-white text-white border-l-3 border-white bg-slate-800"} `}
                     >
-                        <GraduationCap size={20} color={pathname.includes("/courses") ? "#fff" : "#b8b8b8ff"} />
+                        <GraduationCap size={20} color={(pathname.includes("/courses") || pathname.includes("/courseDetails") || pathname.includes("/addCourse")) ? "#fff" : "#b8b8b8ff"} />
                         <p className="text-sm">
                             Courses
                         </p>
@@ -115,8 +116,8 @@ export default function SideBar() {
                     </Link>
                 </nav>
             </div>
-            <div className="flex justify-center my-5">
-                <div className="text-sm">@2025 thesarus.in</div>
+            <div className="flex justify-center my-4">
+                <div className="text-sm">@{new Date().getFullYear()} thesarus.in</div>
                 {/* <button className="mt-3 bg-red-500 text-white font-bold px-4 py-2 rounded-lg text-sm">
                     Logout
                 </button> */}

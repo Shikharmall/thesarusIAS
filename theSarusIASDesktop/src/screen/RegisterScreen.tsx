@@ -1,9 +1,8 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { themeColor } from "../utils/Color";
 
-const LoginScreen: React.FC = () => {
-    const navigate = useNavigate();
+const RegisterScreen: React.FC = () => {
     return (
         <div className="flex min-h-screen bg-white">
             {/* Left Section - Signup Form */}
@@ -20,11 +19,26 @@ const LoginScreen: React.FC = () => {
 
                     <h2 className="text-2xl font-semibold text-gray-900">Get Started</h2>
                     <p className="mt-1 text-sm text-gray-500">
-                        Welcome to Fillianta - Let's create your account
+                        Welcome to The SARUS Learning Application - Let's create your account
                     </p>
 
                     {/* Form */}
                     <form className="mt-8 space-y-6">
+                        <div>
+                            <label
+                                htmlFor="email"
+                                className="block text-sm font-medium text-gray-700"
+                            >
+                                Name
+                            </label>
+                            <input
+                                id="name"
+                                type="name"
+                                placeholder="Enter your full name"
+                                className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:border-[#072c73] focus:outline-none focus:ring-1 focus:ring-[#072c73]"
+                            />
+                        </div>
+
                         <div>
                             <label
                                 htmlFor="email"
@@ -63,23 +77,45 @@ const LoginScreen: React.FC = () => {
                             />
                         </div>
 
+                        <div>
+                            <div className="flex justify-between items-center">
+                                <label
+                                    htmlFor="password"
+                                    className="block text-sm font-medium text-gray-700"
+                                >
+                                    Re-Enter Password
+                                </label>
+                                <a
+                                    href="#"
+                                    className="text-sm font-medium"
+                                    style={{ color: themeColor.primary }}
+                                >
+                                    Forgot?
+                                </a>
+                            </div>
+                            <input
+                                id="password"
+                                type="password"
+                                className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:border-[#072c73] focus:outline-none focus:ring-1 focus:ring-[#072c73]"
+                            />
+                        </div>
+
                         <button
                             type="submit"
-                            className="w-full rounded-md py-2 text-white font-medium shadow-md hover:opacity-90 transition"
+                            className="w-full rounded-md py-2 text-white font-medium shadow-md hover:opacity-90 transition cursor-pointer"
                             style={{ background: "linear-gradient(to right, #072c73, #0ab7f3)", }}
-                            onClick={() => navigate("/home")}
                         //className="w-full rounded-md bg-gradient-to-r from-green-900 to-green-600 py-2 text-white font-medium shadow-md hover:opacity-90 transition"
                         >
-                            Login
+                            Register
                         </button>
                     </form>
 
                     <p className="mt-6 text-sm text-gray-600">
-                        Don't have an account?{" "}
-                        <Link to={'/register'} className="hover:text-green-700 font-medium" style={{
+                        Already have an account?{" "}
+                        <Link to={'/'} className="hover:text-green-700 font-medium" style={{
                             color: themeColor.primary
                         }}>
-                            Register
+                            Login
                         </Link>
                     </p>
                 </div>
@@ -123,4 +159,4 @@ const LoginScreen: React.FC = () => {
     );
 };
 
-export default LoginScreen;
+export default RegisterScreen;

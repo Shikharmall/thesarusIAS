@@ -5,9 +5,6 @@ import {
   HelpCircle,
   Star,
   Calendar,
-  Folder,
-  Library,
-  CheckCircle,
   ClipboardList,
 } from "lucide-react";
 
@@ -23,7 +20,7 @@ export default function CourseDetailsLeftSideScreen() {
     //{ id: 6, title: "My Class", icon: Folder, color: "#95A5A6", url: "/course/video" },
     //{ id: 7, title: "Test Series", icon: Library, color: "#E67E22", url: "/course/video" },
     //{ id: 8, title: "Submit Answer", icon: CheckCircle, color: "#9B59B6", url: "/course/video" },
-    { id: 9, title: "Class Test", icon: ClipboardList, color: "#3498DB", url: "/course/video" },
+    { id: 7, title: "Class Test", icon: ClipboardList, color: "#3498DB", url: "/course/video" },
   ];
 
   const FeatureCard = ({ item }: { item: any }) => {

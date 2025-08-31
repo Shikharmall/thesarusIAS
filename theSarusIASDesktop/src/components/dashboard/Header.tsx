@@ -1,8 +1,11 @@
 import { Bell, Settings } from "lucide-react";
 import { themeColor } from "../../utils/Color";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-    
+
+    const navigate = useNavigate();
+
     return (
         <header className="fixed top-0 left-50 right-0 z-50  flex items-center justify-between bg-white px-6 py-4 shadow-sm">
             {/* Left: Title (optional) */}
@@ -11,7 +14,7 @@ const Header = () => {
             {/* Right: Actions */}
             <div className="flex items-center gap-6">
                 {/* Notification Bell */}
-                <button className="relative text-gray-600 hover:text-gray-800">
+                <button onClick={() => navigate('/notification')} className="relative text-gray-600 hover:text-gray-800 cursor-pointer">
                     <Bell size={20} color={themeColor?.secondary} />
                     <span className="absolute -top-1 -right-1 bg-purple-600 text-white text-xs rounded-full px-1" style={{ backgroundColor: themeColor?.primary }}>
                         2
@@ -19,7 +22,7 @@ const Header = () => {
                 </button>
 
                 {/* Settings */}
-                <button className="text-gray-600 hover:text-gray-800">
+                <button className="text-gray-600 hover:text-gray-800 cursor-pointer">
                     <Settings size={20} />
                 </button>
 

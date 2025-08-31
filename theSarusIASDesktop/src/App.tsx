@@ -1,22 +1,17 @@
 import { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import ExaminationScreen from "./pages/ExaminationScreen";
-import Dashboard from "./screen/Dashboard";
-import QuestionBankScreen from "./screen/QuestionBank";
+import Dashboard from "./screen/DashboardScreen";
+import QuestionBankScreen from "./screen/QuestionBankScreen";
 import AddQuestionScreen from "./screen/AddQuestion";
-import CoursesScreen from "./screen/Courses";
+import CoursesScreen from "./screen/CoursesScreen";
 import LecturePage from "./components/dashboard/LecturePage";
-import LoginScreen from "./screen/Login";
-import RegisterScreen from "./screen/Register";
+import LoginScreen from "./screen/LoginScreen";
+import RegisterScreen from "./screen/RegisterScreen";
 import CourseDetails from "./components/dashboard/CourseDetails";
 import VideoPlayerPage from "./components/dashboard/VideoPage";
-// import Home from "./pages/Home";
-// import InstructionsPage from "./pages/Instruction";
-// import Slider from "./components/Slider";
-// import ComingSoon from "./pages/ComingSoon";
-// import TermsPage from "./pages/Term";
-// import InstructionScreen from "./pages/InstructionPop";
-// import { InstructionPopup } from "./components/InstructionPopup";
+import AddCourseScreen from "./screen/AddCourseScreen";
+import NotificationScreen from "./screen/NotificationScreen";
 
 function App() {
   const location = useLocation();
@@ -38,10 +33,12 @@ function App() {
       <Route path="/exam" element={<ExaminationScreen />} />
       <Route path="/questionBank" element={<QuestionBankScreen />} />
       <Route path="/courses" element={<CoursesScreen />} />
+      <Route path="/addCourse" element={<AddCourseScreen />} />
       <Route path="/addQuestion" element={<AddQuestionScreen />} />
-      <Route path="/courseDetails" element={<CourseDetails />} />
+      <Route path="/courseDetails/:id" element={<CourseDetails />} />
       <Route path="/video" element={<VideoPlayerPage />} />
       <Route path="/lecture" element={<LecturePage />} />
+      <Route path="/notification" element={<NotificationScreen />} />
       {/* <Route path="/instructionPage" element={<InstructionsPage />} />*/}
       {/* <Route path="/slider" element={<Slider />} /> */}
       {/* <Route path="/instructionPop" element={<InstructionScreen />} />

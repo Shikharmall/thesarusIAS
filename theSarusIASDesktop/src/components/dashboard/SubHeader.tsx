@@ -2,7 +2,7 @@ import { ArrowLeftCircle, PlusCircle } from "lucide-react";
 import { themeColor } from "../../utils/Color";
 import { useNavigate } from "react-router-dom";
 
-const SubHeader = ({ title, isBack, isAdd }: any) => {
+const SubHeader = ({ title, isBack, isAdd, route }: any) => {
 
     const navigate = useNavigate();
 
@@ -26,7 +26,7 @@ const SubHeader = ({ title, isBack, isAdd }: any) => {
                 {
                     isAdd && (
 
-                        <PlusCircle size={25} color={themeColor?.secondary} className="cursor-pointer" />
+                        <PlusCircle size={25} color={themeColor?.secondary} className="cursor-pointer" onClick={() => navigate(route)} />
                     )
                 }
 

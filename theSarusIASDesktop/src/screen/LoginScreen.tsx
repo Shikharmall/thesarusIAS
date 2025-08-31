@@ -1,8 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { themeColor } from "../utils/Color";
 
-const RegisterScreen: React.FC = () => {
+const LoginScreen: React.FC = () => {
+    const navigate = useNavigate();
     return (
         <div className="flex min-h-screen bg-white">
             {/* Left Section - Signup Form */}
@@ -19,7 +20,7 @@ const RegisterScreen: React.FC = () => {
 
                     <h2 className="text-2xl font-semibold text-gray-900">Get Started</h2>
                     <p className="mt-1 text-sm text-gray-500">
-                        Welcome to Fillianta - Let's create your account
+                        Welcome to The SARUS Learning Application - Let's expore it
                     </p>
 
                     {/* Form */}
@@ -64,20 +65,21 @@ const RegisterScreen: React.FC = () => {
 
                         <button
                             type="submit"
-                            className="w-full rounded-md py-2 text-white font-medium shadow-md hover:opacity-90 transition"
+                            className="w-full rounded-md py-2 text-white font-medium shadow-md hover:opacity-90 transition cursor-pointer"
                             style={{ background: "linear-gradient(to right, #072c73, #0ab7f3)", }}
+                            onClick={() => navigate("/home")}
                         //className="w-full rounded-md bg-gradient-to-r from-green-900 to-green-600 py-2 text-white font-medium shadow-md hover:opacity-90 transition"
                         >
-                            Sign up
+                            Login
                         </button>
                     </form>
 
                     <p className="mt-6 text-sm text-gray-600">
-                        Already have an account?{" "}
-                        <Link to={'/'} className="hover:text-green-700 font-medium" style={{
+                        Don't have an account?{" "}
+                        <Link to={'/register'} className="hover:text-green-700 font-medium" style={{
                             color: themeColor.primary
                         }}>
-                            Login
+                            Register
                         </Link>
                     </p>
                 </div>
@@ -121,4 +123,4 @@ const RegisterScreen: React.FC = () => {
     );
 };
 
-export default RegisterScreen;
+export default LoginScreen;
