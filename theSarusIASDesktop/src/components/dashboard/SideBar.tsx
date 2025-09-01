@@ -105,11 +105,10 @@ export default function SideBar() {
 
                     }
 
-
-                    <Link to={'/'}
-                        className={`flex flex-row items-center gap-3 hover:bg-slate-800 hover:bg-opacity-3 px-5 py-5 text-[#b8b8b8ff] ${pathname.includes("/support") && "text-white border-l-3 border-white bg-slate-800"} `}
+                    <Link to={'/helpSupport'}
+                        className={`flex flex-row items-center gap-3 hover:bg-slate-800 hover:bg-opacity-3 px-5 py-5 text-[#b8b8b8ff] ${pathname.includes("/helpSupport") && "text-white border-l-3 border-white bg-slate-800"} `}
                     >
-                        <HelpCircle size={20} color={pathname.includes("/support") ? "#fff" : "#b8b8b8ff"} />
+                        <HelpCircle size={20} color={pathname.includes("/helpSupport") ? "#fff" : "#b8b8b8ff"} />
                         <p className="text-sm">
                             Help & Support
                         </p>

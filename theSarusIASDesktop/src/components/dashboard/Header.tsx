@@ -22,7 +22,7 @@ const Header = () => {
                 </button>
 
                 {/* Settings */}
-                <button className="text-gray-600 hover:text-gray-800 cursor-pointer">
+                <button onClick={() => navigate('/settings')} className="text-gray-600 hover:text-gray-800 cursor-pointer">
                     <Settings size={20} />
                 </button>
 

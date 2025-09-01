@@ -12,6 +12,9 @@ import CourseDetails from "./components/dashboard/CourseDetails";
 import VideoPlayerPage from "./components/dashboard/VideoPage";
 import AddCourseScreen from "./screen/AddCourseScreen";
 import NotificationScreen from "./screen/NotificationScreen";
+import HelpSupportScreen from "./screen/HelpSupportScreen";
+import TicketScreen from "./screen/TicketScreen";
+import SettingsScreen from "./screen/SettingsScreen";
 
 function App() {
   const location = useLocation();
@@ -38,6 +41,9 @@ function App() {
       <Route path="/courseDetails/:id" element={<CourseDetails />} />
       <Route path="/video" element={<VideoPlayerPage />} />
       <Route path="/lecture" element={<LecturePage />} />
+      <Route path="/helpSupport" element={<HelpSupportScreen />} />
+      <Route path="/settings" element={<SettingsScreen />} />
+      <Route path="/ticket" element={<TicketScreen />} />
       <Route path="/notification" element={<NotificationScreen />} />
       {/* <Route path="/instructionPage" element={<InstructionsPage />} />*/}
       {/* <Route path="/slider" element={<Slider />} /> */}
