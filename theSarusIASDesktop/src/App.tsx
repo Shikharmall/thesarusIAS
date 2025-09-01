@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import ExaminationScreen from "./pages/ExaminationScreen";
 import Dashboard from "./screen/DashboardScreen";
-import QuestionBankScreen from "./screen/QuestionBankScreen";
 import AddQuestionScreen from "./screen/AddQuestion";
 import CoursesScreen from "./screen/CoursesScreen";
 import LecturePage from "./components/dashboard/LecturePage";
@@ -15,6 +14,8 @@ import NotificationScreen from "./screen/NotificationScreen";
 import HelpSupportScreen from "./screen/HelpSupportScreen";
 import TicketScreen from "./screen/TicketScreen";
 import SettingsScreen from "./screen/SettingsScreen";
+import QuestionBankScreen from "./screen/QuestionBankScreen";
+import QuestionBankListScreen from "./screen/QuestionBankListScreen";
 
 function App() {
   const location = useLocation();
@@ -35,6 +36,7 @@ function App() {
       <Route path="/home" element={<Dashboard />} />
       <Route path="/exam" element={<ExaminationScreen />} />
       <Route path="/questionBank" element={<QuestionBankScreen />} />
+      <Route path="/questionBankList/:id" element={<QuestionBankListScreen />} />
       <Route path="/courses" element={<CoursesScreen />} />
       <Route path="/addCourse" element={<AddCourseScreen />} />
       <Route path="/addQuestion" element={<AddQuestionScreen />} />

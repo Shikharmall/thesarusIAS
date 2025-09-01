@@ -1,135 +1,125 @@
-// src/pages/QuestionBank.tsx
-import { Edit, Plus, Trash, Upload } from "lucide-react";
-import { useState } from "react";
+import React from "react";
 import SideBar from "../components/dashboard/SideBar";
+import Header from "../components/dashboard/Header";
+import SubHeader from "../components/dashboard/SubHeader";
+import { Link } from "react-router-dom";
 
-interface Question {
-    id: number;
-    text: string;
-    type: string;
-    difficulty: "Easy" | "Medium" | "Hard";
-    reviewers: string[];
-    createdAt: string;
-}
+type CardProps = {
+  id: number;
+  image: string;
+  examName: string;
+  title: string;
+  description: string;
+  time: string;
+};
 
-const QuestionBankScreen = () => {
-    const [questions, setQuestions] = useState<Question[]>([
-        {
-            id: 1,
-            text: "In an Agile environment, what is the main...",
-            type: "Single-select",
-            difficulty: "Easy",
-            reviewers: ["A"],
-            createdAt: "2h ago",
-        },
-        {
-            id: 2,
-            text: "In an Agile environment, what is the main...",
-            type: "Multi-select",
-            difficulty: "Medium",
-            reviewers: ["A", "B"],
-            createdAt: "2h ago",
-        },
-        {
-            id: 3,
-            text: "_____ is responsible for measuring the...",
-            type: "Paragraph",
-            difficulty: "Hard",
-            reviewers: ["A"],
-            createdAt: "2h ago",
-        },
-        {
-            id: 4,
-            text: "Write 200 words short essay on American...",
-            type: "Fill in the blanks",
-            difficulty: "Hard",
-            reviewers: ["A", "B"],
-            createdAt: "2h ago",
-        },
-    ]);
+const cards: CardProps[] = [
+  {
+    id: 1,
+    image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756030769/upsc_pzkoyq.png", // replace with icon
+    examName: "Union Public Service Commission",
+    title: "General Studies I",
+    description: "New BlackMonk with UI updates + enhanced features.",
+    time: "FEW SECONDS",
+  },
+  {
+    id: 2,
+    image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756030769/upsc_pzkoyq.png", // replace with icon
+    examName: "UPSC GS-II",
+    title: "BlackMonk v3.5",
+    description: "New BlackMonk with UI updates + enhanced features.",
+    time: "FEW SECONDS",
+  },
+  {
+    id: 3,
+    image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756099014/uppcs_ybcobx.png",
+    examName: "UPPCS GS-I",
+    title: "Apple Pay on Stripe",
+    description: "Easy Apple Pay integration for businesses built on Stripe.",
+    time: "A MINUTE",
+  },
+  {
+    id: 4,
+    image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756099014/uppcs_ybcobx.png",
+    examName: "UPPCS GS-II",
+    title: "Apple Pay on Stripe",
+    description: "Easy Apple Pay integration for businesses built on Stripe.",
+    time: "A MINUTE",
+  },
+  {
+    id: 5,
+    image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756030769/ssccgl_rknj1o.png",
+    examName: "SSC CGL",
+    title: "BlackMonk Insider",
+    description: "New template that exclusively built for local search.",
+    time: "FEW SECONDS",
+  },
+  {
+    id: 6,
+    image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756030769/sscchsl_fwfdka.png",
+    examName: "SSC CHSL",
+    title: "Project Polymer",
+    description:
+      "Web Components usher in a new era of web development based on encapsulated and interoperable custom.",
+    time: "7 MINUTES",
+  },
+  {
+    id: 7,
+    image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756030769/sscmts_j31n5a.png",
+    examName: "SSC MTS",
+    title: "InVision v5",
+    description: "UI update + Reengineered almost everything from the ground up.",
+    time: "2 DAYS",
+  },
+  {
+    id: 8,
+    image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756031617/railwayblue_tjaeud.jpg",
+    examName: "Stripe Inc.",
+    title: "Stripe Amex Express Checkout",
+    description: "Stripe + Amex Express Checkout",
+    time: "A WEEK",
+  },
+];
 
-    return (
-        <div className="flex min-h-screen bg-gray-50">
-            {/* Sidebar */}
-            <SideBar />
+const Card: React.FC<CardProps> = ({ id, image, examName, title, description, time }) => (
+  <Link to={'/questionBankList/'+id} className="bg-white shadow-sm rounded-lg p-5 border border-gray-200 flex flex-col cursor-pointer">
+    <div className="flex items-center justify-between mb-3 text-gray-400">
+      <div className="flex flex-col">
+        <span className="text-xs">{examName}</span>
+        <span className="text-sm">{title}</span>
+      </div>
+      <img src={image} alt={examName} className="h-20 rounded-10" />
+    </div>
+    <h4 className="text-sm font-medium text-gray-500">{time}</h4>
+    <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
+    <p className="text-sm text-gray-600 mt-1">{description}</p>
+  </Link>
+);
 
-            {/* Main Content */}
-            <main className="flex-1 ml-50 p-8">
-                <div className="flex justify-between items-center mb-6">
-                    <h1 className="text-2xl font-semibold">Question Bank</h1>
-                    <button className="flex items-center gap-2 text-purple-700 hover:text-purple-900">
-                        <Upload /> Import questions
-                    </button>
-                </div>
+const QuestionBankScreen: React.FC = () => {
+  return (
+    <div className="flex min-h-screen bg-gray-50 p-6">
+      {/* Sidebar */}
+      <SideBar />
 
-                {/* Search */}
-                <div className="mb-6">
-                    <input
-                        type="text"
-                        placeholder="Search for questions here"
-                        className="w-full max-w-md border rounded-lg px-4 py-2 focus:ring-2 focus:ring-purple-500"
-                    />
-                </div>
+      {/* Main Content */}
+      <main className="flex-1 ml-50 mt-15">
+        <Header />
 
-                {/* Table */}
-                <div className="bg-white rounded-xl shadow overflow-hidden">
-                    <table className="w-full text-left">
-                        <thead className="bg-gray-100 text-sm text-gray-600">
-                            <tr>
-                                <th className="p-3">Sno</th>
-                                <th className="p-3">Question</th>
-                                <th className="p-3">Type</th>
-                                <th className="p-3">Difficulty</th>
-                                <th className="p-3">Reviewers</th>
-                                <th className="p-3">Options</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {questions.map((q, idx) => (
-                                <tr key={q.id} className="border-t hover:bg-gray-50">
-                                    <td className="p-3">{idx + 1}</td>
-                                    <td className="p-3">
-                                        <div>{q.text}</div>
-                                        <div className="text-xs text-gray-400">Created {q.createdAt}</div>
-                                    </td>
-                                    <td className="p-3">{q.type}</td>
-                                    <td className="p-3">{q.difficulty}</td>
-                                    <td className="p-3 flex items-center gap-2">
-                                        {q.reviewers.map((r, i) => (
-                                            <div
-                                                key={i}
-                                                className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-sm font-bold"
-                                            >
-                                                {r}
-                                            </div>
-                                        ))}
-                                        <button className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-purple-600">
-                                            <Plus />
-                                        </button>
-                                    </td>
-                                    <td className="p-3 flex gap-3">
-                                        <button className="text-blue-600 hover:text-blue-800">
-                                            <Edit />
-                                        </button>
-                                        <button className="text-red-600 hover:text-red-800">
-                                            <Trash />
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
+        <SubHeader title="Exams" isBack={false} isAdd={true} route={'/addCourse'} tooltip="Add Exam" />
 
-                {/* Create question */}
-                <div className="mt-6">
-                    <button className="flex items-center gap-2 text-purple-700 font-semibold hover:text-purple-900">
-                        <Plus /> Create question
-                    </button>
-                </div>
-            </main>
+
+        <div className="min-h-screen bg-gray-50 py-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {cards.map((card, index) => (
+              <Card key={index} {...card} />
+            ))}
+          </div>
         </div>
-    );
+
+      </main>
+    </div>
+  );
 };
 
 export default QuestionBankScreen;

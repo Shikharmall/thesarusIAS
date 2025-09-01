@@ -148,7 +148,7 @@ const NotificationScreen: React.FC = () => {
               <button
                 key={tab}
                 onClick={() => setFilter(tab as any)}
-                className={`pb-2 capitalize ${filter === tab
+                className={`pb-2 capitalize cursor-pointer ${filter === tab
                   ? "font-medium"
                   : "hover:text-gray-700"
                   }`}

@@ -2,7 +2,7 @@ import { ArrowLeftCircle, PlusCircle } from "lucide-react";
 import { themeColor } from "../../utils/Color";
 import { useNavigate } from "react-router-dom";
 
-const SubHeader = ({ title, isBack, isAdd, route }: any) => {
+const SubHeader = ({ title, isBack, isAdd, route, tooltip }: any) => {
 
     const navigate = useNavigate();
 
@@ -11,16 +11,19 @@ const SubHeader = ({ title, isBack, isAdd, route }: any) => {
 
             {/* Back Icon */}
             {
-                isBack && (
+                isBack ? (
                     <ArrowLeftCircle size={25} color={themeColor?.secondary} className="cursor-pointer" onClick={() => navigate(-1)} />
-                )
+                ) :
+                    (
+                        <p></p>
+                    )
             }
 
             {/* Left: Title (optional) */}
             <h1 className="text-md font-semibold text-gray-800" style={{ color: themeColor?.primary }}>{title}</h1>
 
             {/* Right: Actions */}
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-6" title={tooltip}>
 
                 {/* Add Icon */}
                 {

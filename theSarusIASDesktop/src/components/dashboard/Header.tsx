@@ -32,6 +32,9 @@ const Header = () => {
                     alt="profile"
                     className="w-10 h-10 rounded-full object-cover border"
                 />
+                <p style={{
+                    color: themeColor?.primary
+                }}>Shikhar Mall</p>
             </div>
         </header>
     );
