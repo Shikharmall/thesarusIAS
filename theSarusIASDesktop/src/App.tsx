@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import ExaminationScreen from "./pages/ExaminationScreen";
+import ExaminationScreen from "./screen/ExaminationScreen";
 import Dashboard from "./screen/DashboardScreen";
-import AddQuestionScreen from "./screen/AddQuestion";
 import CoursesScreen from "./screen/CoursesScreen";
 import LecturePage from "./components/dashboard/LecturePage";
 import LoginScreen from "./screen/LoginScreen";
@@ -16,6 +15,10 @@ import TicketScreen from "./screen/TicketScreen";
 import SettingsScreen from "./screen/SettingsScreen";
 import QuestionBankScreen from "./screen/QuestionBankScreen";
 import QuestionBankListScreen from "./screen/QuestionBankListScreen";
+import AddQuestionScreen from "./screen/AddQuestionScreen";
+import DisplayQuestionPaperScreen from "./screen/DisplayQuestionPaperScreen";
+import ExamPaperScreen from "./screen/ExamPaperScreen";
+import TestSeriesScreen from "./screen/TestSeriesScreen";
 
 function App() {
   const location = useLocation();
@@ -34,7 +37,9 @@ function App() {
       <Route path="/" element={<LoginScreen />} />
       <Route path="/register" element={<RegisterScreen />} />
       <Route path="/home" element={<Dashboard />} />
-      <Route path="/exam" element={<ExaminationScreen />} />
+
+      <Route path="/exam/:id" element={<ExaminationScreen />} />
+
       <Route path="/questionBank" element={<QuestionBankScreen />} />
       <Route path="/questionBankList/:id" element={<QuestionBankListScreen />} />
       <Route path="/courses" element={<CoursesScreen />} />
@@ -47,6 +52,12 @@ function App() {
       <Route path="/settings" element={<SettingsScreen />} />
       <Route path="/ticket" element={<TicketScreen />} />
       <Route path="/notification" element={<NotificationScreen />} />
+
+      <Route path="/examPaper" element={<ExamPaperScreen />} />
+      <Route path="/displayQuestionPaper" element={<DisplayQuestionPaperScreen />} />
+
+      <Route path="/testSeries" element={<TestSeriesScreen />} />
+
       {/* <Route path="/instructionPage" element={<InstructionsPage />} />*/}
       {/* <Route path="/slider" element={<Slider />} /> */}
       {/* <Route path="/instructionPop" element={<InstructionScreen />} />

@@ -1,10 +1,12 @@
 // src/pages/QuestionBank.tsx
-import { Edit, Plus, Trash, Upload } from "lucide-react";
+import { Edit, ListFilter, Plus, Trash, Upload } from "lucide-react";
 import { useState } from "react";
 import SideBar from "../components/dashboard/SideBar";
 import Header from "../components/dashboard/Header";
 import SubHeader from "../components/dashboard/SubHeader";
 import { themeColor } from "../utils/Color";
+import { useNavigate } from "react-router-dom";
+import FilterModal from "../components/dashboard/FIlterModal";
 
 interface Question {
     id: number;
@@ -16,6 +18,8 @@ interface Question {
 }
 
 const QuestionBankListScreen = () => {
+    const navigate = useNavigate();
+    const [open, setOpen] = useState(false);
     const [questions] = useState<Question[]>([
         {
             id: 1,
@@ -64,6 +68,7 @@ const QuestionBankListScreen = () => {
                 {/* Actions */}
                 <div className="flex flex-wrap justify-between items-center mb-6 gap-3">
                     <button
+                        onClick={() => navigate('/addQuestion')}
                         className="flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium shadow-sm transition hover:shadow-md cursor-pointer"
                         style={{ color: themeColor?.primary, borderColor: themeColor?.primary }}
                     >
@@ -86,7 +91,15 @@ const QuestionBankListScreen = () => {
                         className="flex-1 min-w-[200px] border rounded-lg px-4 py-2 focus:ring-1 focus:ring-[#0ab7f3] focus:border-none focus:outline-none"
                     />
 
-                    <select
+                    <button
+                        className="flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium shadow-sm transition hover:shadow-md cursor-pointer"
+                        style={{ color: themeColor?.primary, borderColor: themeColor?.primary }}
+                        onClick={() => setOpen(true)}
+                    >
+                        <ListFilter size={18} /> Filter
+                    </button>
+
+                    {/* <select
                         id="type"
                         name="type"
                         className="w-40 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm shadow-sm outline-none focus:border-gray-900 focus:ring-2 focus:ring-gray-900/10"
@@ -99,9 +112,9 @@ const QuestionBankListScreen = () => {
                         <option value="multi">Multi-select</option>
                         <option value="para">Paragraph</option>
                         <option value="fill">Fill in the blanks</option>
-                    </select>
+                    </select> */}
 
-                    <select
+                    {/* <select
                         id="level"
                         name="level"
                         className="w-40 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm shadow-sm outline-none focus:border-gray-900 focus:ring-2 focus:ring-gray-900/10"
@@ -111,7 +124,7 @@ const QuestionBankListScreen = () => {
                         <option value="easy">Easy</option>
                         <option value="medium">Medium</option>
                         <option value="hard">Hard</option>
-                    </select>
+                    </select> */}
                 </div>
 
                 {/* Table */}
@@ -123,12 +136,12 @@ const QuestionBankListScreen = () => {
                                 <th className="p-3 font-medium">Question</th>
                                 <th className="p-3 font-medium">Type</th>
                                 <th className="p-3 font-medium">Difficulty</th>
-                                <th className="p-3 font-medium">Reviewers</th>
+                                {/* <th className="p-3 font-medium">Reviewers</th> */}
                                 <th className="p-3 font-medium">Actions</th>
                             </tr>
                         </thead>
                         <tbody className="text-sm">
-                            {questions.map((q, idx) => (
+                            {questions?.map((q, idx) => (
                                 <tr
                                     key={q.id}
                                     className="border-t transition hover:bg-gray-50"
@@ -143,15 +156,15 @@ const QuestionBankListScreen = () => {
                                     <td className="p-3">{q.type}</td>
                                     <td
                                         className={`p-3 font-medium ${q.difficulty === "Easy"
-                                                ? "text-green-600"
-                                                : q.difficulty === "Medium"
-                                                    ? "text-yellow-600"
-                                                    : "text-red-600"
+                                            ? "text-green-600"
+                                            : q.difficulty === "Medium"
+                                                ? "text-yellow-600"
+                                                : "text-red-600"
                                             }`}
                                     >
                                         {q.difficulty}
                                     </td>
-                                    <td className="p-3">
+                                    {/* <td className="p-3">
                                         <div className="flex items-center gap-2">
                                             {q.reviewers.map((r, i) => (
                                                 <div
@@ -165,13 +178,13 @@ const QuestionBankListScreen = () => {
                                                 <Plus size={16} />
                                             </button>
                                         </div>
-                                    </td>
+                                    </td> */}
                                     <td className="p-3 flex gap-3">
-                                        <button className="text-blue-600 hover:text-blue-800 transition">
-                                            <Edit size={18} />
+                                        <button className="transition cursor-pointer">
+                                            <Edit size={18} color={themeColor?.primary} />
                                         </button>
-                                        <button className="text-red-600 hover:text-red-800 transition">
-                                            <Trash size={18} />
+                                        <button className="transition cursor-pointer">
+                                            <Trash size={18} color="red" />
                                         </button>
                                     </td>
                                 </tr>
@@ -180,6 +193,7 @@ const QuestionBankListScreen = () => {
                     </table>
                 </div>
             </main>
+            <FilterModal isOpen={open} onClose={() => setOpen(false)} />
         </div>
     );
 };

@@ -45,7 +45,6 @@ export default function SideBar() {
                     {
                         isAdmin && (
                             <>
-
                                 <Link to={'/questionBank'}
                                     className={`flex flex-row items-center gap-3 hover:bg-slate-800 hover:bg-opacity-3 px-5 py-5 text-[#b8b8b8ff] ${pathname.includes("/questionBank") && "text-white border-l-3 border-white bg-slate-800"} `}
                                 >
@@ -55,26 +54,22 @@ export default function SideBar() {
                                     </p>
                                 </Link>
 
-                                <Link to={'/addQuestion'}
-                                    className={`flex flex-row items-center gap-3 hover:bg-slate-800 hover:bg-opacity-3 px-5 py-5 text-[#b8b8b8ff] ${pathname.includes("/addQuestion") && "text-white border-l-3 border-white bg-slate-800"} `}
+                                <Link to={'/examPaper'}
+                                    className={`flex flex-row items-center gap-3 hover:bg-slate-800 hover:bg-opacity-3 px-5 py-5 text-[#b8b8b8ff] ${pathname.includes("/examPaper") && "text-white border-l-3 border-white bg-slate-800"} `}
                                 >
-                                    <File size={20} color={pathname.includes("/addQuestion") ? "#fff" : "#b8b8b8ff"} />
+                                    <File size={20} color={pathname.includes("/examPaper") ? "#fff" : "#b8b8b8ff"} />
                                     <p className="text-sm">
-                                        Exam Paper
+                                        Exam Papers
                                     </p>
                                 </Link>
-
                             </>
-
                         )
                     }
 
-
-
-                    <Link to={'/'}
-                        className={`flex flex-row items-center gap-3 hover:bg-slate-800 hover:bg-opacity-3 px-5 py-5 text-[#b8b8b8ff] ${pathname.includes("/homee") && "text-white border-l-3 border-white bg-slate-800"} `}
+                    <Link to={'/testSeries'}
+                        className={`flex flex-row items-center gap-3 hover:bg-slate-800 hover:bg-opacity-3 px-5 py-5 text-[#b8b8b8ff] ${pathname.includes("/testSeries") && "text-white border-l-3 border-white bg-slate-800"} `}
                     >
-                        <LayoutList size={20} color={pathname.includes("/homee") ? "#fff" : "#b8b8b8ff"} />
+                        <LayoutList size={20} color={pathname.includes("/testSeries") ? "#fff" : "#b8b8b8ff"} />
                         <p className="text-sm">
                             Test Series
                         </p>
@@ -91,7 +86,6 @@ export default function SideBar() {
 
                     {
                         isAdmin && (
-
                             <Link to={'/'}
                                 className={`flex flex-row items-center gap-3 hover:bg-slate-800 hover:bg-opacity-3 px-5 py-5 text-[#b8b8b8ff] ${pathname.includes("/homee") && "text-white border-l-3 border-white bg-slate-800"} `}
                             >
@@ -100,9 +94,7 @@ export default function SideBar() {
                                     Conduct Exam
                                 </p>
                             </Link>
-
                         )
-
                     }
 
                     <Link to={'/helpSupport'}

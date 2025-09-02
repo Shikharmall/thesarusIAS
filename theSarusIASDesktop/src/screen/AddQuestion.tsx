@@ -4,7 +4,7 @@ import SideBar from "../components/dashboard/SideBar";
 import CreateSection from "./CreateSection";
 import Stepper from "../components/dashboard/Stepper";
 
-const AddQuestionScreen = () => {
+const AddQuestion = () => {
     const [examName, setExamName] = useState("");
     const [course, setCourse] = useState("");
     const [courseCode, setCourseCode] = useState("");
@@ -126,4 +126,4 @@ const AddQuestionScreen = () => {
     );
 };
 
-export default AddQuestionScreen;
+export default AddQuestion;

@@ -106,7 +106,7 @@ const QuestionBankScreen: React.FC = () => {
       <main className="flex-1 ml-50 mt-15">
         <Header />
 
-        <SubHeader title="Exams" isBack={false} isAdd={true} route={'/addCourse'} tooltip="Add Exam" />
+        <SubHeader title="Question Bank" isBack={false} isAdd={true} route={'/addCourse'} tooltip="Add Exam" />
 
 
         <div className="min-h-screen bg-gray-50 py-2">
