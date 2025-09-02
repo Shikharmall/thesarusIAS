@@ -7,7 +7,7 @@ const SubHeader = ({ title, isBack, isAdd, route, tooltip }: any) => {
     const navigate = useNavigate();
 
     return (
-        <header className="flex items-center justify-between bg-white rounded-full px-6 py-4 shadow-sm my-3">
+        <header className="flex items-center justify-between bg-white rounded-sm px-6 py-4 shadow-sm my-3">
 
             {/* Back Icon */}
             {

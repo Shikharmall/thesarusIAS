@@ -19,6 +19,7 @@ import AddQuestionScreen from "./screen/AddQuestionScreen";
 import DisplayQuestionPaperScreen from "./screen/DisplayQuestionPaperScreen";
 import ExamPaperScreen from "./screen/ExamPaperScreen";
 import TestSeriesScreen from "./screen/TestSeriesScreen";
+import InstructionsPage from "./pages/Instruction";
 
 function App() {
   const location = useLocation();
@@ -38,6 +39,7 @@ function App() {
       <Route path="/register" element={<RegisterScreen />} />
       <Route path="/home" element={<Dashboard />} />
 
+      <Route path="/instructionPage/:id" element={<InstructionsPage />} />
       <Route path="/exam/:id" element={<ExaminationScreen />} />
 
       <Route path="/questionBank" element={<QuestionBankScreen />} />
