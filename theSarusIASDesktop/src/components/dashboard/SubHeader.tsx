@@ -12,7 +12,10 @@ const SubHeader = ({ title, isBack, isAdd, route, tooltip }: any) => {
             {/* Back Icon */}
             {
                 isBack ? (
-                    <ArrowLeftCircle size={25} color={themeColor?.secondary} className="cursor-pointer" onClick={() => navigate(-1)} />
+                    <div title={'Back'}>
+                        <ArrowLeftCircle size={25} color={themeColor?.secondary} className="cursor-pointer" onClick={() => navigate(-1)} />
+                    </div>
+
                 ) :
                     (
                         <p></p>

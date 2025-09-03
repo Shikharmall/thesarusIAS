@@ -20,6 +20,9 @@ import DisplayQuestionPaperScreen from "./screen/DisplayQuestionPaperScreen";
 import ExamPaperScreen from "./screen/ExamPaperScreen";
 import TestSeriesScreen from "./screen/TestSeriesScreen";
 import InstructionsPage from "./pages/Instruction";
+import QuestionPaperScreen from "./screen/QuestionPaperScreen";
+import ExamSectionPaperScreen from "./screen/ExamSectionPaperScreen";
+import CreateExamPaperScreen from "./screen/CreateExamPaperScreen";
 
 function App() {
   const location = useLocation();
@@ -44,18 +47,24 @@ function App() {
 
       <Route path="/questionBank" element={<QuestionBankScreen />} />
       <Route path="/questionBankList/:id" element={<QuestionBankListScreen />} />
+
       <Route path="/courses" element={<CoursesScreen />} />
       <Route path="/addCourse" element={<AddCourseScreen />} />
       <Route path="/addQuestion" element={<AddQuestionScreen />} />
       <Route path="/courseDetails/:id" element={<CourseDetails />} />
       <Route path="/video" element={<VideoPlayerPage />} />
       <Route path="/lecture" element={<LecturePage />} />
+
       <Route path="/helpSupport" element={<HelpSupportScreen />} />
       <Route path="/settings" element={<SettingsScreen />} />
-      <Route path="/ticket" element={<TicketScreen />} />
       <Route path="/notification" element={<NotificationScreen />} />
 
+      <Route path="/ticket" element={<TicketScreen />} />
+
       <Route path="/examPaper" element={<ExamPaperScreen />} />
+      <Route path="/examSectionPaper/:id" element={<ExamSectionPaperScreen />} />
+      <Route path="/createExamPaper" element={<CreateExamPaperScreen />} />
+      <Route path="/questionPaper/:id" element={<QuestionPaperScreen />} />
       <Route path="/displayQuestionPaper" element={<DisplayQuestionPaperScreen />} />
 
       <Route path="/testSeries" element={<TestSeriesScreen />} />

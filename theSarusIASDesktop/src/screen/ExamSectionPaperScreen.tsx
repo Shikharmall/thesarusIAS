@@ -3,6 +3,7 @@ import SideBar from "../components/dashboard/SideBar";
 import Header from "../components/dashboard/Header";
 import SubHeader from "../components/dashboard/SubHeader";
 import { Link } from "react-router-dom";
+import { themeColor } from "../utils/Color";
 
 type CardProps = {
     id: number;
@@ -82,21 +83,23 @@ const cards: CardProps[] = [
 ];
 
 const Card: React.FC<CardProps> = ({ id, image, examName, title, description, time }) => (
-    <Link to={'/examSectionPaper/' + id} className="bg-white shadow-sm rounded-lg p-5 border border-gray-200 flex flex-col cursor-pointer">
+    <Link to={'/questionPaper/' + id} className="bg-white shadow-sm rounded-sm p-5 border-l-4 border-gray-200 flex flex-col cursor-pointer" style={{
+        borderColor: themeColor?.primary
+    }}>
         <div className="flex items-center justify-between mb-3 text-gray-400">
             <div className="flex flex-col">
-                <span className="text-xs">{examName}</span>
+                <span className="text-sm font-medium text-gray-500">{examName}</span>
                 <span className="text-sm">{title}</span>
             </div>
-            <img src={image} alt={examName} className="h-20 rounded-10" />
+            {/* <img src={image} alt={examName} className="h-20 rounded-10" /> */}
         </div>
-        <h4 className="text-sm font-medium text-gray-500">{time}</h4>
-        <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
-        <p className="text-sm text-gray-600 mt-1">{description}</p>
+        {/* <h4 className="text-sm font-medium text-gray-500">{time}</h4>
+        <h3 className="text-lg font-semibold text-gray-900">{title}</h3> */}
+        <p className="text-sm text-gray-600 mt-1">Mock Test {id}</p>
     </Link>
 );
 
-const ExamPaperScreen: React.FC = () => {
+const ExamSectionPaperScreen: React.FC = () => {
     return (
         <div className="flex min-h-screen bg-gray-50 p-6">
             {/* Sidebar */}
@@ -106,7 +109,7 @@ const ExamPaperScreen: React.FC = () => {
             <main className="flex-1 ml-50 mt-15">
                 <Header />
 
-                <SubHeader title="Different Exams" isBack={false} isAdd={true} route={'/addCourse'} tooltip="Add Exam" />
+                <SubHeader title="UPSC Exam" isBack={true} isAdd={true} route={'/createExamPaper'} tooltip="Create Question Paper" />
 
 
                 <div className="min-h-screen bg-gray-50 py-2">
@@ -122,4 +125,4 @@ const ExamPaperScreen: React.FC = () => {
     );
 };
 
-export default ExamPaperScreen;
+export default ExamSectionPaperScreen;
