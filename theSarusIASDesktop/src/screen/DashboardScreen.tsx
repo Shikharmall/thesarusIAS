@@ -1,14 +1,20 @@
-// Dashboard.tsx
-// import React from "react";
-// import { Book, Calendar, File, Folder, Home, Settings } from "lucide-react";
-import { Bell, FileText, HelpCircle, Settings, Shield, User } from "lucide-react";
+import { FileText, Shield, User } from "lucide-react";
 import ChartsPage from "../components/dashboard/Chart";
 import Header from "../components/dashboard/Header";
 import SideBar from "../components/dashboard/SideBar";
+import type { ReactNode } from "react";
+
+interface Item {
+    id: number;
+    count: number;
+    label: string;
+    color: string;
+    icon: ReactNode;
+}
 
 const Dashboard = () => {
 
-    const items = [
+    const items: Item[] = [
         {
             id: 1,
             count: 6,

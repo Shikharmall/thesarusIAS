@@ -360,55 +360,57 @@ const SettingsScreen: React.FC = () => {
                                 </>
                             )
                         }
-                        {filter === "Purchased" && (
-                            <AnimatePresence>
-                                {notifications.map((n) => (
-                                    <motion.div
-                                        key={n.id}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, x: 50 }}
-                                        transition={{ duration: 0.3 }}
-                                        className={`flex items-start justify-between p-4 rounded-xl border ${n.type === "error"
-                                            ? "bg-red-50 border-red-200"
-                                            : n.new
-                                                ? "bg-green-50 border-green-200"
-                                                : "bg-white border-gray-200"
-                                            }`}
-                                    >
-                                        {/* Left Section */}
-                                        <div className="flex items-start gap-4">
-                                            <div>{getIcon(n.type)}</div>
-                                            <div>
-                                                <h3 className="font-semibold text-gray-800">{n.title}</h3>
-                                                <p className="text-sm text-gray-600">{n.message}</p>
-                                                {n.date && <span className="text-xs text-gray-400">{n.date}</span>}
+                        {
+                            filter === "Purchased" && (
+                                <AnimatePresence>
+                                    {notifications.map((n) => (
+                                        <motion.div
+                                            key={n.id}
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0, x: 50 }}
+                                            transition={{ duration: 0.3 }}
+                                            className={`flex items-start justify-between p-4 rounded-xl border ${n.type === "error"
+                                                ? "bg-red-50 border-red-200"
+                                                : n.new
+                                                    ? "bg-green-50 border-green-200"
+                                                    : "bg-white border-gray-200"
+                                                }`}
+                                        >
+                                            {/* Left Section */}
+                                            <div className="flex items-start gap-4">
+                                                <div>{getIcon(n.type)}</div>
+                                                <div>
+                                                    <h3 className="font-semibold text-gray-800">{n.title}</h3>
+                                                    <p className="text-sm text-gray-600">{n.message}</p>
+                                                    {n.date && <span className="text-xs text-gray-400">{n.date}</span>}
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        {/* Right Section */}
-                                        <div className="flex flex-col items-end gap-2">
-                                            {n.new && (
-                                                <span
-                                                    className={`text-xs font-semibold px-2 py-1 rounded ${n.type === "error"
-                                                        ? "bg-red-100 text-red-600"
-                                                        : "bg-green-100 text-green-600"
-                                                        }`}
+                                            {/* Right Section */}
+                                            <div className="flex flex-col items-end gap-2">
+                                                {n.new && (
+                                                    <span
+                                                        className={`text-xs font-semibold px-2 py-1 rounded ${n.type === "error"
+                                                            ? "bg-red-100 text-red-600"
+                                                            : "bg-green-100 text-green-600"
+                                                            }`}
+                                                    >
+                                                        New
+                                                    </span>
+                                                )}
+                                                <button
+                                                    onClick={() => handleDelete(n.id)}
+                                                    className="flex items-center gap-1 text-xs text-red-500 border border-red-200 px-2 py-1 rounded hover:bg-red-50 transition"
                                                 >
-                                                    New
-                                                </span>
-                                            )}
-                                            <button
-                                                onClick={() => handleDelete(n.id)}
-                                                className="flex items-center gap-1 text-xs text-red-500 border border-red-200 px-2 py-1 rounded hover:bg-red-50 transition"
-                                            >
-                                                <Trash2 size={14} /> Delete
-                                            </button>
-                                        </div>
-                                    </motion.div>
-                                ))}
-                            </AnimatePresence>
-                        )}
+                                                    <Trash2 size={14} /> Delete
+                                                </button>
+                                            </div>
+                                        </motion.div>
+                                    ))}
+                                </AnimatePresence>
+                            )
+                        }
                     </div>
                 </div>
             </main>
