@@ -41,22 +41,28 @@ const HelpSupportScreen = () => {
             <SideBar />
             <main className="flex-1 ml-50 mt-15">
                 <Header />
-                <div className="max-w-4xl mx-auto p-6">
-                    <h1 className="text-3xl font-bold mb-6 text-center" style={{
-                        color: themeColor?.secondary
-                    }}>
-                        Help & Support
-                    </h1>
+                <div className="mx-auto p-6">
+
+                    {/* Header */}
+                    <div className="flex items-center justify-between mb-4">
+                        <div>
+                            <h1 className="text-xl font-semibold text-gray-800">Help & Support</h1>
+                            <p className="text-sm text-gray-500">
+                                We're here to help you with account, settings, and technical support.
+                            </p>
+                        </div>
+                    </div>
 
                     {/* Search Bar */}
                     <div className="relative mb-6">
-                        <Search className="absolute left-3 top-3 text-gray-400" size={20} />
+                        <Search className="absolute left-3 top-5 text-gray-400" size={20} />
                         <input
                             type="text"
                             placeholder="Search for help..."
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
-                            className={`w-full pl-10 pr-4 py-2 border border-[${themeColor?.primary}] rounded-lg focus:ring-2 focus:ring-[${themeColor?.secondary}] outline-none`}
+                            className={`w-full pl-10 pr-4 py-4 border border-[#eee] rounded-lg focus:shadow outline-none`}
+                        // className={`w-full pl-10 pr-4 py-2 border border-[${themeColor?.primary}] rounded-lg focus:ring-2 focus:ring-[${themeColor?.secondary}] outline-none`}
                         />
                     </div>
 

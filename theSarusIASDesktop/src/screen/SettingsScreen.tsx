@@ -134,9 +134,9 @@ const SettingsScreen: React.FC = () => {
         setNotifications((prev) => prev.filter((n) => n.id !== id));
     };
 
-    const handleMarkAllAsRead = () => {
-        setNotifications((prev) => prev.map((n) => ({ ...n, new: false })));
-    };
+    // const handleMarkAllAsRead = () => {
+    //     setNotifications((prev) => prev.map((n) => ({ ...n, new: false })));
+    // };
 
     const getIcon = (type: NotificationType["type"]) => {
         switch (type) {
@@ -160,7 +160,7 @@ const SettingsScreen: React.FC = () => {
             <SideBar />
             <main className="flex-1 ml-50 mt-15">
                 <Header />
-                <div className=" mx-auto p-6">
+                <div className="mx-auto p-6">
                     {/* Header */}
                     <div className="flex items-center justify-between mb-4">
                         <div>

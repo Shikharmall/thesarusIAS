@@ -1,5 +1,4 @@
-// src/pages/QuestionBank.tsx
-import { Edit, ListFilter, Plus, Trash, Upload } from "lucide-react";
+import { Edit, Plus, SlidersHorizontal, Trash, Upload } from "lucide-react";
 import { useState } from "react";
 import SideBar from "../components/dashboard/SideBar";
 import Header from "../components/dashboard/Header";
@@ -67,19 +66,27 @@ const QuestionBankListScreen = () => {
 
                 {/* Actions */}
                 <div className="flex flex-wrap justify-between items-center mb-6 gap-3">
-                    <button
+                    {/* <button
                         onClick={() => navigate('/addQuestion')}
-                        className="flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium shadow-sm transition hover:shadow-md cursor-pointer"
+                        className="flex items-center gap-2 rounded-lg border px-4 py-2 text-xs font-medium shadow-sm transition hover:shadow-md cursor-pointer"
                         style={{ color: themeColor?.primary, borderColor: themeColor?.primary }}
                     >
-                        <Plus size={18} /> Create Question
+                        <Plus size={18} /> NEW QUESTION
+                    </button> */}
+
+                    <button
+                        onClick={() => navigate('/addQuestion')}
+                        className="flex items-center gap-2 rounded-lg border px-4 py-2 text-xs font-medium shadow-sm transition hover:shadow-md cursor-pointer text-white"
+                        style={{ backgroundColor: themeColor?.primary, borderColor: themeColor?.primary }}
+                    >
+                        <Plus size={18} /> NEW QUESTION
                     </button>
 
                     <button
-                        className="flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium shadow-sm transition hover:shadow-md cursor-pointer"
+                        className="flex items-center gap-2 rounded-lg border px-4 py-2 text-xs font-medium shadow-sm transition hover:shadow-md cursor-pointer"
                         style={{ color: themeColor?.primary, borderColor: themeColor?.primary }}
                     >
-                        <Upload size={18} /> Import Questions
+                        <Upload size={18} /> IMPORT QUESTIONS
                     </button>
                 </div>
 
@@ -96,7 +103,7 @@ const QuestionBankListScreen = () => {
                         style={{ color: themeColor?.primary, borderColor: themeColor?.primary }}
                         onClick={() => setOpen(true)}
                     >
-                        <ListFilter size={18} /> Filter
+                        <SlidersHorizontal size={14} /> Filter
                     </button>
 
                     {/* <select
