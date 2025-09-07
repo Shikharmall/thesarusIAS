@@ -131,7 +131,7 @@ export default function CourseDetailsRightSideScreen() {
   const [activeTab, setActiveTab] = useState<string>(tabs[0].id);
 
   return (
-    <div className="w-full max-w-3xl mx-auto">
+    <div className="w-full mx-auto">
       {/* Tab Headers */}
       <div className="flex border-b border-gray-200 overflow-x-auto bg-gray-50 rounded-t-lg">
         {tabs.map((tab) => {

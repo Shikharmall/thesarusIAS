@@ -24,8 +24,8 @@ const CourseCard: React.FC<CourseCardProps> = ({ item }) => {
 
   return (
     <div
-      onClick={() => navigate(`${'/courseDetails/' + item?.id}`)}
-      className="cursor-pointer rounded-2xl overflow-hidden shadow-md bg-white hover:shadow-xl transition duration-300 border border-gray-200 max-w-sm"
+      //onClick={() => navigate(`${'/courseDetails/' + item?.id}`)}
+      className="rounded-2xl overflow-hidden shadow-md bg-white hover:shadow-xl transition duration-300 border border-gray-200 max-w-sm"
     >
       {/* Image Section with Ribbon */}
       <div className="relative h-48 w-full overflow-hidden">
@@ -84,20 +84,20 @@ const CourseCard: React.FC<CourseCardProps> = ({ item }) => {
         {/* Buttons */}
         <div className="flex gap-3 mt-4">
           <button
-            className="flex-1 border font-medium py-2 rounded-lg transition text-sm"
+            className="flex-1 border font-medium py-2 rounded-lg transition text-sm cursor-pointer"
             style={{
               borderColor: themeColor?.primary,
               color: themeColor?.primary
             }}
             onClick={(e) => {
               e.stopPropagation();
-              navigate("/courseDetails");
+              navigate("/courseDetails/" + item?.id);
             }}
           >
             EXPLORE
           </button>
           <button
-            className="flex-1 text-white font-medium py-2 rounded-lg transition text-sm"
+            className="flex-1 text-white font-medium py-2 rounded-lg transition text-sm cursor-pointer"
             style={{
               backgroundColor: themeColor?.primary
             }}

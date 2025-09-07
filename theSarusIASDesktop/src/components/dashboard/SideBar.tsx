@@ -10,7 +10,7 @@ export default function SideBar() {
     const [isAdmin, setIsAdmin] = useState<boolean>(true);
 
     return (
-        <aside className="fixed left-0 top-0 h-screen w-50 text-white flex flex-col justify-between p-0 "
+        <aside className="fixed left-0 top-0 h-screen w-50 text-white flex flex-col justify-between p-0"
             style={{
                 backgroundColor: themeColor?.secondary
             }}
