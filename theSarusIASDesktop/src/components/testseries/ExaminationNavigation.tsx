@@ -1,6 +1,6 @@
 import type { ExamNavigationProps } from "../../utils/types/testseries";
-import { Button } from "../ui/Button";
-import { Card } from "../ui/Card";
+import { Button } from "../common/Button";
+import { Card } from "../common/Card";
 import { Flag, ChevronLeft, ChevronRight, RotateCcw, Send } from "lucide-react";
 import { useMemo } from "react";
 

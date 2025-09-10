@@ -1,5 +1,5 @@
-import { Button } from "../ui/Button"
-import { Card, CardContent } from "../ui/Card"
+import { Button } from "../common/Button"
+import { Card, CardContent } from "../common/Card"
 import { X, FileText } from "lucide-react"
 import { themeColor } from "../../utils/constant/Color"
 import type { QuestionPaperPopupProps } from "../../utils/types/testseries"

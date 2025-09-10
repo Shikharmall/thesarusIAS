@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Send } from "lucide-react"
 import { ExamTimer } from "./ExaminationTimer"
-import { Button } from "../ui/Button"
+import { Button } from "../common/Button"
 import { InstructionPopup } from "./InstructionPopup"
 import { QuestionPaperPopup } from "./QuestionPopup"
 import type { ExamHeaderProps } from "../../utils/types/testseries"

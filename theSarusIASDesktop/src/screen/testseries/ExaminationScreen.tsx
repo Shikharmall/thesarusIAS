@@ -1,7 +1,7 @@
 import { useState, useCallback, useRef, useEffect } from "react";
-import { Button } from "../../components/ui/Button";
-import { Card } from "../../components/ui/Card";
-import { QuestionNavigator } from "../../components/QuestionNavigation";
+import { Button } from "../../components/common/Button";
+import { Card } from "../../components/common/Card";
+import { QuestionNavigator } from "../../components/testseries/QuestionNavigation";
 import { MCQQuestion } from "../../components/testseries/MCQQuestion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";

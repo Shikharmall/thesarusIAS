@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { Card } from "../ui/Card";
+import { Card } from "../common/Card";
 import type { MCQQuestionProps } from "../../utils/types/testseries";
 
 export function MCQQuestion({
