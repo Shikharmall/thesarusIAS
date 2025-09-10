@@ -2,8 +2,8 @@ import { useState } from "react";
 import CreateTicketScreen from "./CreateTicketScreen";
 import TicketListScreen from "./TicketListScreen";
 import TicketDetailsScreen from "./TicketDetailsScreen";
-import SideBar from "../../components/dashboard/SideBar";
-import Header from "../../components/dashboard/Header";
+import SideBar from "../../components/common/SideBar";
+import Header from "../../components/common/Header";
 
 const TicketScreen = () => {
     const [tickets, setTickets] = useState<any[]>([]);

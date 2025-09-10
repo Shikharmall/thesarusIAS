@@ -1,5 +1,5 @@
 import * as React from "react";
-import { themeColor } from "../../utils/Color";
+import { themeColor } from "../../utils/constant/Color";
 
 function mergeClassNames(...classes: (string | undefined)[]) {
   return classes.filter(Boolean).join(" ");

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Search, MessageCircle, Mail, Phone } from "lucide-react";
-import Header from "../../components/dashboard/Header";
-import SideBar from "../../components/dashboard/SideBar";
+import Header from "../../components/common/Header";
+import SideBar from "../../components/common/SideBar";
 import type { faqsType } from "../../utils/types/miscellaneous";
 import { themeColor } from "../../utils/constant/Color";
 // import { useNavigate } from "react-router-dom";

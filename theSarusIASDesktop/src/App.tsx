@@ -21,10 +21,10 @@ import AddQuestionScreen from "./screen/questionbank/AddQuestionScreen";
 import DisplayQuestionPaperScreen from "./screen/exampaper/DisplayQuestionPaperScreen";
 import ExamPaperScreen from "./screen/exampaper/ExamPaperScreen";
 import TestSeriesScreen from "./screen/testseries/TestSeriesScreen";
-import InstructionsPage from "./screen/testseries/Instruction";
 import QuestionPaperScreen from "./screen/exampaper/QuestionPaperScreen";
 import ExamSectionPaperScreen from "./screen/exampaper/ExamSectionPaperScreen";
 import CreateExamPaperScreen from "./screen/exampaper/CreateExamPaperScreen";
+import InstructionScreen from "./screen/testseries/InstructionScreen";
 // import TicketScreen from "./screen/ticket/TicketScreen";
 
 function App() {
@@ -69,7 +69,7 @@ function App() {
 
       {/* Test Series Routes */}
       <Route path="/testSeries" element={<TestSeriesScreen />} />
-      <Route path="/instructionPage/:id" element={<InstructionsPage />} />
+      <Route path="/instructionPage/:id" element={<InstructionScreen />} />
       <Route path="/exam/:id" element={<ExaminationScreen />} />
 
       {/* Miscellaneous Routes */}

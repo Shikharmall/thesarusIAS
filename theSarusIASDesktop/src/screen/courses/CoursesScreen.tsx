@@ -1,7 +1,7 @@
-import SideBar from "../../components/dashboard/SideBar";
-import Header from "../../components/dashboard/Header";
-import CourseCard from "../../components/dashboard/CourseCard";
-import SubHeader from "../../components/dashboard/SubHeader";
+import SideBar from "../../components/common/SideBar";
+import Header from "../../components/common/Header";
+import CourseCard from "../../components/courses/CourseCard";
+import SubHeader from "../../components/common/SubHeader";
 import { courseData } from "../../data/courseData";
 
 const CoursesScreen = () => {

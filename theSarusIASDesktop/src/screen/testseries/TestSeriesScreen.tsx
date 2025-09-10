@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import SideBar from "../../components/dashboard/SideBar";
-import Header from "../../components/dashboard/Header";
-import SubHeader from "../../components/dashboard/SubHeader";
+import SideBar from "../../components/common/SideBar";
+import Header from "../../components/common/Header";
+import SubHeader from "../../components/common/SubHeader";
 import { useNavigate } from "react-router-dom";
 import { LaptopMinimalCheckIcon, LaptopMinimalIcon } from "lucide-react";
 import { motion } from "framer-motion";
@@ -76,7 +76,8 @@ const cards: CardProps[] = [
     },
 ];
 
-const Card: React.FC<CardProps> = ({ id, image, examName, title, description, time }) => {
+// const Card: React.FC<CardProps> = ({ id, image, examName, title, description, time }) => {
+const Card: React.FC<CardProps> = ({ id, image, examName }) => {
     const navigate = useNavigate();
 
     return (
@@ -139,7 +140,8 @@ const Card: React.FC<CardProps> = ({ id, image, examName, title, description, ti
     );
 };
 
-const CardAttended: React.FC<CardProps> = ({ id, image, examName, title, description, time }) => {
+// const CardAttended: React.FC<CardProps> = ({ id, image, examName, title, description, time }) => {
+const CardAttended: React.FC<CardProps> = ({ id, image, examName }) => {
     const navigate = useNavigate();
 
     return (

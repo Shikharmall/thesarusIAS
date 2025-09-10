@@ -4,11 +4,11 @@ import {
     //useNavigate 
 } from "react-router-dom";
 import { courseData } from "../../data/courseData";
-import CourseDetailsRightSideScreen from "../../components/dashboard/CourseDetailsRightSideScreen";
-import SideBar from "../../components/dashboard/SideBar";
-import Header from "../../components/dashboard/Header";
-import SubHeader from "../../components/dashboard/SubHeader";
-import CourseDetailsLeftSideScreen from "../../components/dashboard/CourseDetailsLeftSide";
+import CourseDetailsRightSideScreen from "../../components/courses/CourseDetailsRightSideScreen";
+import SideBar from "../../components/common/SideBar";
+import Header from "../../components/common/Header";
+import SubHeader from "../../components/common/SubHeader";
+import CourseDetailsLeftSideScreen from "../../components/courses/CourseDetailsLeftSide";
 import type { CourseType } from "../../utils/types/courses";
 import { themeColor } from "../../utils/constant/Color";
 

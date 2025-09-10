@@ -1,15 +1,28 @@
 import { useEffect, useState } from "react";
-import { ArrowRight, CircleAlert, CircleCheck, CircleIcon, CirclePlay, CircleX, Clock4, Flag, Menu, RotateCcw } from "lucide-react";
+import {
+  ArrowRight,
+  CircleAlert,
+  CircleCheck,
+  CircleIcon,
+  CirclePlay,
+  CircleX,
+  Clock4,
+  Flag,
+  Menu,
+  RotateCcw
+} from "lucide-react";
 
 export default function InstructionScreen() {
   //const { title } = useLocalSearchParams<{ title?: string | string[] }>();
   const [examName, setExamName] = useState<string>("SSC Test Series");
 
-  // useEffect(() => {
-  //   if (title) {
-  //     setExamName(Array.isArray(title) ? title[0] : title);
-  //   }
-  // }, [title]);
+  useEffect(() => {
+    // if (title) {
+    //   setExamName(Array.isArray(title) ? title[0] : title);
+    // }
+    // }, [title]);
+    setExamName("SSC Test Series");
+  }, []);
 
   return (
     <div className="flex-1 justify-center items-center">

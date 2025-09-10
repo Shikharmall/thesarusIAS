@@ -8,8 +8,8 @@ import {
     Trash2,
     CheckCircle,
 } from "lucide-react";
-import SideBar from "../../components/dashboard/SideBar";
-import Header from "../../components/dashboard/Header";
+import SideBar from "../../components/common/SideBar";
+import Header from "../../components/common/Header";
 import { useNavigate } from "react-router-dom";
 import type { Notification, ProfileForm, Socials } from "../../utils/types/miscellaneous";
 import { themeColor } from "../../utils/constant/Color";

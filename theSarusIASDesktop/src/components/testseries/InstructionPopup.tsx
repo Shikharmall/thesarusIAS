@@ -1,5 +1,5 @@
-import { Button } from "../components/ui/Button"
-import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/Card"
+import { Button } from "../ui/Button"
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/Card"
 import { X, AlertCircle, Clock, CheckCircle } from "lucide-react"
 
 interface InstructionPopupProps {

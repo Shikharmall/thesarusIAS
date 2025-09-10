@@ -1,7 +1,7 @@
 import { FileText, Shield, User } from "lucide-react";
 import ChartsPage from "../../components/dashboard/Chart";
-import Header from "../../components/dashboard/Header";
-import SideBar from "../../components/dashboard/SideBar";
+import Header from "../../components/common/Header";
+import SideBar from "../../components/common/SideBar";
 import type { ReactNode } from "react";
 
 interface Item {

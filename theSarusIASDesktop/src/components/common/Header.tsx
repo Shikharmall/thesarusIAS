@@ -1,6 +1,6 @@
 import { Bell, Settings } from "lucide-react";
-import { themeColor } from "../../utils/Color";
 import { useNavigate } from "react-router-dom";
+import { themeColor } from "../../utils/constant/Color";
 
 const Header = () => {
 

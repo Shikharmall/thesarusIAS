@@ -1,8 +1,8 @@
-import { Button } from "../components/ui/Button"
-import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/Card"
+import { Button } from "../ui/Button"
+import { Card, CardContent } from "../ui/Card"
 import { X, FileText } from "lucide-react"
-import type { Section } from "../utils/type"
-import { themeColor } from "../utils/Color"
+import type { Section } from "../../utils/type"
+import { themeColor } from "../../utils/constant/Color"
 
 interface QuestionPaperPopupProps {
     isOpen: boolean

@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react"
-import { Clock } from "lucide-react"
-import { themeColor } from "../utils/Color"
+import { themeColor } from "../../utils/constant/Color"
 
 interface ExamTimerProps {
   duration: number // duration in minutes

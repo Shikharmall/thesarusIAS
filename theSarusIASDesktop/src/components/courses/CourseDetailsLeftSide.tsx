@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import {
   FileText,
   Play,
@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 
 export default function CourseDetailsLeftSideScreen() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const featureItems = [
     { id: 1, title: "Features", icon: FileText, color: "#4A90E2", url: "/course/video" },

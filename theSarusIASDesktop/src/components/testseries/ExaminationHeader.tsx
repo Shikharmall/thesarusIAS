@@ -1,10 +1,10 @@
 import { useState } from "react"
 import { Send } from "lucide-react"
+import type { ExamHeaderProps } from "../../utils/type"
 import { ExamTimer } from "./ExaminationTimer"
-import { Button } from "./ui/Button"
+import { Button } from "../ui/Button"
 import { InstructionPopup } from "./InstructionPopup"
 import { QuestionPaperPopup } from "./QuestionPopup"
-import type { ExamHeaderProps } from "../utils/type"
 
 export function ExamHeader({
     title,

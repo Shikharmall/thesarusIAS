@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const Instruction: React.FC = () => {
+const InstructionScreen: React.FC = () => {
   const navigate = useNavigate();
 
   const handleAgree = () => {
@@ -87,4 +87,4 @@ const Instruction: React.FC = () => {
   );
 };
 
-export default Instruction;
+export default InstructionScreen;

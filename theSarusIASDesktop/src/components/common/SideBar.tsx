@@ -1,13 +1,17 @@
 // import React from 'react'
 import { Calendar, File, Folder, GraduationCap, HelpCircle, Home, LayoutList } from "lucide-react";
-import { themeColor } from "../../utils/Color";
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { themeColor } from "../../utils/constant/Color";
 
 export default function SideBar() {
     const location = useLocation();
     const { pathname } = location;
     const [isAdmin, setIsAdmin] = useState<boolean>(true);
+
+    useEffect(() => {
+        setIsAdmin(true);
+    }, []);
 
     return (
         <aside className="fixed left-0 top-0 h-screen w-50 text-white flex flex-col justify-between p-0"

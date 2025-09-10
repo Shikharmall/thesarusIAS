@@ -1,10 +1,10 @@
 import { Edit, Plus, SlidersHorizontal, Trash, Upload } from "lucide-react";
 import { useState } from "react";
-import SideBar from "../../components/dashboard/SideBar";
-import Header from "../../components/dashboard/Header";
-import SubHeader from "../../components/dashboard/SubHeader";
+import SideBar from "../../components/common/SideBar";
+import Header from "../../components/common/Header";
+import SubHeader from "../../components/common/SubHeader";
 import { useNavigate } from "react-router-dom";
-import FilterModal from "../../components/dashboard/FIlterModal";
+import FilterModal from "../../components/common/FIlterModal";
 import type { Question } from "../../utils/types/questionbank";
 import { themeColor } from "../../utils/constant/Color";
 

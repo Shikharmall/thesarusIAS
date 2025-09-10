@@ -1,7 +1,7 @@
 import React from "react";
-import SideBar from "../../components/dashboard/SideBar";
-import Header from "../../components/dashboard/Header";
-import SubHeader from "../../components/dashboard/SubHeader";
+import SideBar from "../../components/common/SideBar";
+import Header from "../../components/common/Header";
+import SubHeader from "../../components/common/SubHeader";
 import { Link } from "react-router-dom";
 import type { CardProps } from "../../utils/types/questionbank";
 

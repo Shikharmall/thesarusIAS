@@ -7,13 +7,7 @@ import {
   Calendar,
 } from "lucide-react";
 import { Link } from "react-router-dom";
-
-type Tab = {
-  id: string;
-  label: string;
-  icon: React.ElementType;
-  content: React.ReactNode;
-};
+import type { Tab } from "../../utils/types/testseries";
 
 export default function CourseDetailsRightSideScreen() {
 

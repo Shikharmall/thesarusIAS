@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { AlertCircle, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { themeColor } from "../../utils/Color";
+import { themeColor } from "../../utils/constant/Color";
 
 interface FilterModalProps {
     isOpen: boolean;

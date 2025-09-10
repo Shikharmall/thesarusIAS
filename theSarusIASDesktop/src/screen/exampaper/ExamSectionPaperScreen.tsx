@@ -1,7 +1,7 @@
 import React from "react";
-import SideBar from "../../components/dashboard/SideBar";
-import Header from "../../components/dashboard/Header";
-import SubHeader from "../../components/dashboard/SubHeader";
+import SideBar from "../../components/common/SideBar";
+import Header from "../../components/common/Header";
+import SubHeader from "../../components/common/SubHeader";
 import { Link } from "react-router-dom";
 import type { CardProps } from "../../utils/types/exam";
 import { themeColor } from "../../utils/constant/Color";
@@ -74,7 +74,8 @@ const cards: CardProps[] = [
     },
 ];
 
-const Card: React.FC<CardProps> = ({ id, image, examName, title, description, time }) => (
+// const Card: React.FC<CardProps> = ({ id, image, examName, title, description, time }) => (
+const Card: React.FC<CardProps> = ({ id, examName, title }) => (
     <Link to={'/questionPaper/' + id} className="bg-white shadow-sm rounded-sm p-5 border-l-4 border-gray-200 flex flex-col cursor-pointer" style={{
         borderColor: themeColor?.primary
     }}>
