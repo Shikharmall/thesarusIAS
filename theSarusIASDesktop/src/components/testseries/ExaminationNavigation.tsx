@@ -1,8 +1,8 @@
+import type { ExamNavigationProps } from "../../utils/types/testseries";
 import { Button } from "../ui/Button";
 import { Card } from "../ui/Card";
 import { Flag, ChevronLeft, ChevronRight, RotateCcw, Send } from "lucide-react";
 import { useMemo } from "react";
-import type { ExamNavigationProps } from "../../utils/type";
 
 export function ExamNavigation({
   currentQuestionId,

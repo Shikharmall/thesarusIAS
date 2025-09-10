@@ -1,10 +1,6 @@
 import { useState, useEffect } from "react"
 import { themeColor } from "../../utils/constant/Color"
-
-interface ExamTimerProps {
-  duration: number // duration in minutes
-  onTimeUp: () => void
-}
+import type { ExamTimerProps } from "../../utils/types/testseries"
 
 export function ExamTimer({ duration, onTimeUp }: ExamTimerProps) {
   const [timeLeft, setTimeLeft] = useState(duration * 60) // convert to seconds

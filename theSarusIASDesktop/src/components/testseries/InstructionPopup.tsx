@@ -1,12 +1,7 @@
+import type { InstructionPopupProps } from "../../utils/types/testseries"
 import { Button } from "../ui/Button"
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/Card"
 import { X, AlertCircle, Clock, CheckCircle } from "lucide-react"
-
-interface InstructionPopupProps {
-  isOpen: boolean
-  onClose: () => void
-  onStartExam: () => void
-}
 
 export function InstructionPopup({ isOpen = true, onClose, onStartExam }: InstructionPopupProps) {
   if (!isOpen) return null

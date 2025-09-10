@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
-import { Card } from "./ui/Card";
-import type { MCQQuestionProps } from "../utils/type";
+import { Card } from "../ui/Card";
+import type { MCQQuestionProps } from "../../utils/types/testseries";
 
 export function MCQQuestion({
   sectionName,
@@ -58,8 +58,8 @@ export function MCQQuestion({
                 onClick={() => onAnswerSelect(question?.id, index)}
                 aria-pressed={isSelected}
                 className={`flex items-center px-4 py-4 rounded-xl min-h-[56px] text-left transition-colors border ${isSelected
-                    ? "border-blue-500 bg-blue-50"
-                    : "border-gray-300 hover:border-blue-300"
+                  ? "border-blue-500 bg-blue-50"
+                  : "border-gray-300 hover:border-blue-300"
                   }`}
               >
                 <div

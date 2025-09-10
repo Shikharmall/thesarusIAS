@@ -1,14 +1,8 @@
 import { Button } from "../ui/Button"
 import { Card, CardContent } from "../ui/Card"
 import { X, FileText } from "lucide-react"
-import type { Section } from "../../utils/type"
 import { themeColor } from "../../utils/constant/Color"
-
-interface QuestionPaperPopupProps {
-    isOpen: boolean
-    onClose: () => void
-    sections: Section[]
-}
+import type { QuestionPaperPopupProps } from "../../utils/types/testseries"
 
 export function QuestionPaperPopup({ isOpen, onClose, sections }: QuestionPaperPopupProps) {
     if (!isOpen) return null

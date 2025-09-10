@@ -1,8 +1,8 @@
 import { Button } from "../components/ui/Button"
 import { CheckCircle, Circle, AlertCircle } from "lucide-react"
 import { useEffect, useState } from "react"
-import type { QuestionNavigatorProps } from "../utils/type"
 import { colors, themeColor } from "../utils/constant/Color"
+import type { QuestionNavigatorProps } from "../utils/types/testseries"
 
 export function QuestionNavigator({ sections, currentQuestionId, currentSectionIndex, onSectionSelect, onQuestionSelect, questionStatuses }: QuestionNavigatorProps) {
 

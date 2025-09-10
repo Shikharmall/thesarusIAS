@@ -2,14 +2,14 @@ import { useState, useCallback, useRef, useEffect } from "react";
 import { Button } from "../../components/ui/Button";
 import { Card } from "../../components/ui/Card";
 import { QuestionNavigator } from "../../components/QuestionNavigation";
-import { MCQQuestion } from "../../components/MCQQuestion";
+import { MCQQuestion } from "../../components/testseries/MCQQuestion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { examDataUPSCGS1 } from "../../data/examData";
-import type { QuestionStatus } from "../../utils/type";
 import { themeColor } from "../../utils/constant/Color";
 import { ExamHeader } from "../../components/testseries/ExaminationHeader";
 import { ExamNavigation } from "../../components/testseries/ExaminationNavigation";
+import type { QuestionStatus } from "../../utils/types/testseries";
 
 export default function ExaminationScreen() {
   const [currentQuestionId, setCurrentQuestionId] = useState<number>(1);
