@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { Card } from "../components/ui/Card"
-// import { Textarea } from "@/components/ui/textarea"
 import { Button } from "../components/ui/Button"
 import { Play, Save } from "lucide-react"
 

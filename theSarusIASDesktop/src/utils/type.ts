@@ -1,33 +1,9 @@
-export interface themeColorType {
-    primary: string,
-    secondary: string,
-    lightPrimary: string,
-    lightSecondary: string
-}
-
 export interface ProgrammeItem {
     id: number,
     name: string,
     nameHindi: string,
     url: string
 }
-
-// export interface Section {
-//     id: number,
-//     name: string;
-//     start: number;
-//     end: number;
-// }
-
-// export interface Question {
-//     id: number;
-//     section: string;
-//     text: string;
-//     options: string[];
-//     answered: boolean;
-//     flagged: boolean;
-//     selectedAnswer: undefined;
-// }
 
 export interface Question {
     id: number
@@ -71,9 +47,6 @@ export interface ExamNavigationProps {
     onFlagSelect: (questionId: number) => void,
     onClearSelect: (questionId: number) => void,
     sections: Section[],
-    // userName: string,
-    // rollNum: string,
-    // examName: string
     questionStatuses: Record<number, QuestionStatus>
 }
 
@@ -90,10 +63,16 @@ export interface ExamHeaderProps {
     onSubmit: () => void
 }
 
-
 export interface QuestionStatus {
     answered: boolean,
     flagged: boolean,
     visited: boolean,
     selectedAnswer?: number,
 }
+
+
+
+
+
+
+

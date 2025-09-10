@@ -1,23 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Calendar } from "lucide-react";
-import { themeColor } from "../../utils/Color";
-
-interface CourseType {
-  id: number,
-  image: string;
-  title: string;
-  lang: string;
-  startDate?: string;
-  endDate?: string;
-  price: string;
-  oldPrice?: string;
-  discount?: string;
-}
-
-interface CourseCardProps {
-  item: CourseType;
-}
+import type { CourseCardProps } from "../../utils/types/courses";
+import { themeColor } from "../../utils/constant/Color";
 
 const CourseCard: React.FC<CourseCardProps> = ({ item }) => {
   const navigate = useNavigate();

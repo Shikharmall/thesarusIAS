@@ -3,6 +3,7 @@ import SideBar from "./SideBar";
 import Header from "./Header";
 
 const LecturePage: React.FC = () => {
+    
     const lecture = {
         id: "101",
         title: "Introduction to Algebra",

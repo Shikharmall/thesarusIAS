@@ -2,6 +2,7 @@ import { Button } from "../components/ui/Button"
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/Card"
 import { X, FileText } from "lucide-react"
 import type { Section } from "../utils/type"
+import { themeColor } from "../utils/Color"
 
 interface QuestionPaperPopupProps {
     isOpen: boolean
@@ -17,12 +18,14 @@ export function QuestionPaperPopup({ isOpen, onClose, sections }: QuestionPaperP
             <Card className="w-full max-w-5xl max-h-[90vh] overflow-y-auto shadow-2xl rounded-xl">
 
                 {/* Header */}
-                <CardHeader className="bg-indigo-600 text-white rounded-t-xl">
+                <div className="bg-indigo-600 text-white px-4 py-2" style={{
+                    backgroundColor: themeColor?.primary
+                }}>
                     <div className="flex items-center justify-between">
-                        <CardTitle className="text-xl font-bold flex items-center gap-2">
+                        <div className="text-xl font-bold flex items-center gap-2">
                             <FileText className="h-5 w-5" />
                             Question Paper
-                        </CardTitle>
+                        </div>
                         <Button
                             variant="ghost"
                             size="icon"
@@ -32,11 +35,11 @@ export function QuestionPaperPopup({ isOpen, onClose, sections }: QuestionPaperP
                             <X className="h-5 w-5" />
                         </Button>
                     </div>
-                </CardHeader>
+                </div>
 
                 {/* Content */}
                 <CardContent className="p-6 space-y-8">
-                    {sections.map((section, sectionIndex) => (
+                    {sections?.map((section, sectionIndex) => (
                         <div key={sectionIndex} className="space-y-4">
                             <h2 className="text-lg font-semibold text-indigo-600 border-b pb-1">
                                 {section?.name}

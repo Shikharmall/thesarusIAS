@@ -64,11 +64,11 @@ export function QuestionNavigator({ sections, currentQuestionId, currentSectionI
 
               let bg = "bg-white";
               let border = "border border-gray-300";
-              let text = "text-blue-700";
+              let text = "text-blue-500";
               let icon = null;
 
               if (isActive) {
-                bg = "bg-blue-700";
+                bg = themeColor?.primary;
                 border = "border-0";
                 text = "text-white";
               } else if (status?.answered) {
