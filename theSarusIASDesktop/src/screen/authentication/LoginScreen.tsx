@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { themeColor } from "../../utils/constant/Color";
+import type { LoginData } from "../../utils/types/authentication";
 
 const LoginScreen: React.FC = () => {
+
     const navigate = useNavigate();
+    const [formData, setFormData] = useState<LoginData>({ email: "", password: "" });
+
+    const onHandleChange = (key: string, value: string) => {
+        setFormData({ ...formData, [key]: value })
+    }
+
     return (
         <div className="flex min-h-screen bg-white">
             {/* Left Section - Signup Form */}
@@ -35,6 +43,8 @@ const LoginScreen: React.FC = () => {
                             <input
                                 id="email"
                                 type="email"
+                                value={formData?.email}
+                                onChange={(e) => onHandleChange("email", e.target.value)}
                                 placeholder="hi@fillianta.com"
                                 className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:border-[#072c73] focus:outline-none focus:ring-1 focus:ring-[#072c73]"
                             />
@@ -59,6 +69,8 @@ const LoginScreen: React.FC = () => {
                             <input
                                 id="password"
                                 type="password"
+                                value={formData?.password}
+                                onChange={(e) => onHandleChange("password", e.target.value)}
                                 className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:border-[#072c73] focus:outline-none focus:ring-1 focus:ring-[#072c73]"
                             />
                         </div>

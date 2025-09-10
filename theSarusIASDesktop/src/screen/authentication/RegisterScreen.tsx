@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { themeColor } from "../../utils/constant/Color";
+import type { RegisterData } from "../../utils/types/authentication";
 
 const RegisterScreen: React.FC = () => {
+    const [formData, setFormData] = useState<RegisterData>({ name: "", email: "", password: "", repassword: "" });
+
+    const onHandleChange = (key: string, value: string) => {
+        setFormData({ ...formData, [key]: value })
+    }
+
     return (
         <div className="flex min-h-screen bg-white">
             {/* Left Section - Signup Form */}
@@ -35,6 +42,8 @@ const RegisterScreen: React.FC = () => {
                                 id="name"
                                 type="name"
                                 placeholder="Enter your full name"
+                                value={formData?.name}
+                                onChange={(e) => onHandleChange("name", e.target.value)}
                                 className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:border-[#072c73] focus:outline-none focus:ring-1 focus:ring-[#072c73]"
                             />
                         </div>
@@ -50,6 +59,8 @@ const RegisterScreen: React.FC = () => {
                                 id="email"
                                 type="email"
                                 placeholder="hi@fillianta.com"
+                                value={formData?.email}
+                                onChange={(e) => onHandleChange("email", e.target.value)}
                                 className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:border-[#072c73] focus:outline-none focus:ring-1 focus:ring-[#072c73]"
                             />
                         </div>
@@ -73,6 +84,8 @@ const RegisterScreen: React.FC = () => {
                             <input
                                 id="password"
                                 type="password"
+                                value={formData?.password}
+                                onChange={(e) => onHandleChange("password", e.target.value)}
                                 className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:border-[#072c73] focus:outline-none focus:ring-1 focus:ring-[#072c73]"
                             />
                         </div>
@@ -94,8 +107,10 @@ const RegisterScreen: React.FC = () => {
                                 </a>
                             </div>
                             <input
-                                id="password"
+                                id="repassword"
                                 type="password"
+                                value={formData?.repassword}
+                                onChange={(e) => onHandleChange("repassword", e.target.value)}
                                 className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 focus:border-[#072c73] focus:outline-none focus:ring-1 focus:ring-[#072c73]"
                             />
                         </div>
