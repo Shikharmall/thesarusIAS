@@ -1,22 +1,21 @@
-import { useCallback, useEffect, useState } from "react"
+import { useFocusEffect, useRouter } from "expo-router";
+import { useCallback, useEffect, useState } from "react";
 import {
-    View,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    StyleSheet,
+    BackHandler,
+    Image,
+    Keyboard,
     KeyboardAvoidingView,
     Platform,
     ScrollView,
-    BackHandler,
-    Image,
-    Alert,
-    Keyboard
-} from "react-native"
-import { Colors, themeColor } from "../constants/Colors"
-import AlertCustomise from "../components/ui/AlertCustomise"
-import { useFocusEffect, useRouter } from "expo-router";
-import { AlertProps } from "@/types/Alert";
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View
+} from "react-native";
+import AlertCustomise from "../components/ui/AlertCustomise";
+import { Colors, themeColor } from "../utils/constant/Colors";
+import { AlertProps } from "@/utils/types/alert";
 
 export default function LoginWithOTP() {
     const [phone, setPhone] = useState<string>("");
@@ -117,7 +116,7 @@ export default function LoginWithOTP() {
             <ScrollView contentContainerStyle={styles.scrollContainer}>
                 <View style={styles.header}>
                     <Image
-                        source={require("../assets/images/thesaruslogo.jpg")}
+                        source={{ uri: 'https://res.cloudinary.com/drb1ds8e3/image/upload/v1757607104/thesaruslogo_xeczgp.jpg' }}
                         style={styles.image}
                         resizeMode="contain" // contain | cover | stretch | center
                     />
@@ -129,14 +128,38 @@ export default function LoginWithOTP() {
                 <View style={styles.loginCard}>
                     <Text style={styles.loginTitle}>Login with OTP</Text>
 
-                    <View style={{ flexDirection: "row", alignItems: "center" }}>
+                    <View style={{ flexDirection: "row", alignItems: "center", }}>
                         {/* Country code input (fixed) */}
-                        <TextInput
-                            style={[styles.input, { width: 60, textAlign: "center", marginRight: 8 }]}
-                            value="+91"
-                            editable={false}
-                            placeholderTextColor={Colors.textSecondary}
-                        />
+
+                        <View style={{
+                            flexDirection: "row",
+                            alignItems: "center",
+                            marginRight: 5,
+                            borderWidth: 1,
+                            borderColor: Colors.border,
+                            borderRadius: 8,
+                            paddingHorizontal: 8,
+                            backgroundColor: Colors.background,
+                            padding: 2
+                        }}>
+                            <TextInput
+                                //style={[styles.input, { width: 60, textAlign: "center", marginRight: 8 }]}
+                                style={[{
+                                    textAlign: "center",
+                                    fontSize: 16,
+                                    color: Colors.text,
+                                }]}
+                                value="+91"
+                                editable={false}
+                                placeholderTextColor={Colors.textSecondary}
+                            />
+                            <View style={{ borderColor: '#d1d1d1ff', borderWidth: 0.3, height: 30, marginRight: 8 }}></View>
+                            <Image
+                                source={{ uri: 'https://res.cloudinary.com/drb1ds8e3/image/upload/v1757607525/flag_g5senu.png' }}
+                                style={styles.logo}
+                                resizeMode="contain" // contain | cover | stretch | center
+                            />
+                        </View>
 
                         {/* Phone number input */}
                         <TextInput
@@ -145,7 +168,7 @@ export default function LoginWithOTP() {
                             onChangeText={setPhone}
                             keyboardType="numeric"
                             maxLength={10} // typical for Indian numbers
-                            placeholder="Enter your Phone Number"
+                            placeholder="Enter your Ph. Number"
                             placeholderTextColor={Colors.textSecondary}
                         />
                     </View>
@@ -223,6 +246,10 @@ const styles = StyleSheet.create({
         width: 100,
         height: 100,
         marginVertical: 30
+    },
+    logo: {
+        width: 40,
+        height: 30,
     },
     subtitle: {
         fontSize: 17,

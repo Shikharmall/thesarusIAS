@@ -1,6 +1,6 @@
-import { useRef, useEffect } from "react"
-import { View, TouchableOpacity, Animated, StyleSheet, Easing } from "react-native"
-import { Colors } from "../../constants/Colors"
+import { useEffect, useRef } from "react"
+import { Animated, Easing, StyleSheet, TouchableOpacity, View } from "react-native"
+import { Colors } from "../../utils/constant/Colors"
 
 interface AnimatedHamburgerProps {
     isOpen: boolean

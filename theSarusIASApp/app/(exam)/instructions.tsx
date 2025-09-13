@@ -1,8 +1,8 @@
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native";
+import { Colors } from "@/utils/constant/Colors";
 import { Ionicons } from "@expo/vector-icons";
-import { Colors } from "@/constants/Colors";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function InstructionScreen() {
     const router = useRouter();

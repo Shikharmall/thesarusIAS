@@ -1,6 +1,6 @@
-import { themeColor } from "@/constants/Colors";
+import { themeColor } from "@/utils/constant/Colors";
 import React from "react";
-import { View, Text, Image, Pressable, StyleSheet } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 
 export default function Banner() {
     return (

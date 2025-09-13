@@ -1,20 +1,21 @@
+import { AlertProps } from "@/utils/types/alert"
+import { Ionicons } from "@expo/vector-icons"
+import { useFocusEffect, useLocalSearchParams, useRouter } from "expo-router"
 import { useCallback, useEffect, useRef, useState } from "react"
 import {
-    View,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    StyleSheet,
+    BackHandler,
+    Keyboard,
     KeyboardAvoidingView,
     Platform,
     ScrollView,
-    BackHandler,
-    Keyboard,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View,
 } from "react-native"
-import { Colors, themeColor } from "../constants/Colors"
 import AlertCustomise from "../components/ui/AlertCustomise"
-import { useFocusEffect, useLocalSearchParams, useRouter } from "expo-router"
-import { AlertProps } from "@/types/Alert"
+import { Colors, themeColor } from "../utils/constant/Colors"
 
 export default function OtpVerify() {
     const { phone } = useLocalSearchParams<{ phone: string }>();
@@ -75,12 +76,12 @@ export default function OtpVerify() {
         }
 
         setLoading(true)
+        setLoading(false)
+        router.push("/(home)/(tabs)")
 
         // Simulate OTP verification
-        setTimeout(() => {
-            setLoading(false)
-            router.push("/(home)/(tabs)")
-        }, 1000)
+        // setTimeout(() => {
+        // }, 1000)
     }
 
     const backAction = () => true
@@ -126,6 +127,14 @@ export default function OtpVerify() {
             style={styles.container}
             behavior={kbBehavior}
         >
+            <View style={{
+                marginTop: 40,
+                paddingLeft: 30,
+            }}>
+                <TouchableOpacity onPress={() => router.back()}>
+                    <Ionicons name="arrow-back" size={30} color={themeColor.secondary} />
+                </TouchableOpacity>
+            </View>
             <ScrollView contentContainerStyle={styles.scrollContainer}>
                 <View style={styles.header}>
                     <Text style={styles.title}>Verify OTP</Text>
@@ -134,7 +143,7 @@ export default function OtpVerify() {
                     </Text>
                 </View>
 
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <View style={{ flex: 1, alignItems: 'center' }}>
                     <View style={styles.otpCard}>
                         <View style={styles.otpRow}>
                             {otp.map((digit, index) => (
@@ -163,9 +172,24 @@ export default function OtpVerify() {
                             </Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity>
-                            <Text style={styles.resendText}>Resend OTP</Text>
-                        </TouchableOpacity>
+
+                        <View style={{
+                            flexDirection: 'row',
+                            justifyContent: 'center'
+                        }}>
+                            <Text style={{
+                                fontSize: 14,
+                                color: Colors.textSecondary,
+                                textAlign: "center",
+                                marginTop: 10,
+                                marginRight: 10
+                            }}>Didn't receive a OTP?</Text>
+                            <TouchableOpacity>
+                                <Text style={styles.resendText}>Resend OTP</Text>
+                            </TouchableOpacity>
+                        </View>
+
+
                     </View>
                 </View>
 
@@ -215,15 +239,15 @@ const styles = StyleSheet.create({
         textAlign: "center",
     },
     otpCard: {
-        backgroundColor: Colors.surface,
+        //backgroundColor: Colors.surface,
         borderRadius: 12,
         padding: 24,
         marginBottom: 30,
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 4,
-        elevation: 3,
+        //shadowColor: "#000",
+        //shadowOffset: { width: 0, height: 2 },
+        //shadowOpacity: 0.1,
+        //shadowRadius: 4,
+        //elevation: 3,
     },
     otpRow: {
         flexDirection: "row",
@@ -259,8 +283,10 @@ const styles = StyleSheet.create({
     },
     resendText: {
         fontSize: 14,
+        fontWeight: '800',
         color: themeColor.secondary,
         textAlign: "center",
         marginTop: 10,
+        textDecorationLine: 'underline'
     },
 })

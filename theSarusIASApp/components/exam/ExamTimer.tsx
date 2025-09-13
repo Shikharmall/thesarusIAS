@@ -1,4 +1,4 @@
-import { themeColor } from "@/constants/Colors";
+import { themeColor } from "@/utils/constant/Colors";
 import { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 

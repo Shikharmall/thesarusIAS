@@ -1,13 +1,13 @@
-import { themeColor } from "@/constants/Colors";
-import { AlertProps } from "@/types/Alert";
+import { themeColor } from "@/utils/constant/Colors";
+import { AlertProps } from "@/utils/types/alert";
 import { MaterialIcons } from "@expo/vector-icons";
 import React from "react";
 import {
     Modal,
-    View,
-    Text,
     StyleSheet,
+    Text,
     TouchableOpacity,
+    View,
 } from "react-native";
 
 export default function AlertCustomise({

@@ -1,15 +1,15 @@
-import { themeColor } from "@/constants/Colors";
+import { themeColor } from "@/utils/constant/Colors";
+import { Course } from "@/utils/types/courses";
 import React, { useEffect, useRef, useState } from "react";
 import {
-  Animated,
-  Dimensions,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
+    Animated,
+    Dimensions,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View,
 } from "react-native";
 import Courses from "./CoursesComponent";
-import { Course } from "@/types/courses";
 
 const { width } = Dimensions.get("window");
 

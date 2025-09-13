@@ -1,9 +1,9 @@
-import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+import { themeColor } from "@/utils/constant/Colors";
 import { Ionicons } from "@expo/vector-icons";
-import { themeColor } from "@/constants/Colors";
+import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
+import React from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function LaunchingSoonScreen() {
 

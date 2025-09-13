@@ -1,16 +1,16 @@
-import React from "react";
-import {
-    View,
-    Text,
-    StyleSheet,
-    Image,
-    TouchableOpacity,
-    ScrollView,
-    FlatList,
-} from "react-native";
+import { themeColor } from "@/utils/constant/Colors";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useRouter } from "expo-router";
-import { themeColor } from "@/constants/Colors";
+import React from "react";
+import {
+  FlatList,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 export default function NotificationsScreen() {
     const router = useRouter();

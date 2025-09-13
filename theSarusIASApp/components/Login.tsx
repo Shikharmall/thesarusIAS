@@ -1,16 +1,16 @@
 import { useState } from "react"
 import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
   Alert,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native"
-import { Colors } from "../constants/Colors"
+import { Colors } from "../utils/constant/Colors"
 
 interface LoginScreenProps {
   onLogin: (rollNumber: string, password: string) => void

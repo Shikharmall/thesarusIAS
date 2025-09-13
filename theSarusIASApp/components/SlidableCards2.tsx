@@ -1,12 +1,12 @@
+import { themeColor } from "@/utils/constant/Colors";
 import React from "react";
 import {
-    View,
-    Text,
-    StyleSheet,
-    ScrollView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
 } from "react-native";
 import Card from "./Cards2";
-import { themeColor } from "@/constants/Colors";
 
 interface CardProps {
     id: number;

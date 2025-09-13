@@ -3,11 +3,11 @@ import Banner from "@/components/home/Banner";
 import SlidableCards1 from "@/components/SlidableCards1";
 import SlidableCards2 from "@/components/SlidableCards2";
 import AlertCustomise from "@/components/ui/AlertCustomise";
-import { AlertProps } from "@/types/Alert";
+import { AlertProps } from "@/utils/types/alert";
 import { useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
 import { BackHandler, ScrollView, StyleSheet, View } from "react-native";
-import { Colors } from "../../../constants/Colors";
+import { Colors } from "../../../utils/constant/Colors";
 
 export default function HomeScreen() {
 

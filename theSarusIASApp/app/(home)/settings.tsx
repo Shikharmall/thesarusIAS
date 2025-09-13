@@ -1,8 +1,8 @@
-import { themeColor } from "@/constants/Colors";
+import { themeColor } from "@/utils/constant/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React from "react";
-import { View, Text, StyleSheet, Switch, TouchableOpacity } from "react-native";
+import { StyleSheet, Switch, Text, TouchableOpacity, View } from "react-native";
 
 export default function SettingsScreen() {
     const router = useRouter();

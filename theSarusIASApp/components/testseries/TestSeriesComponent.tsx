@@ -1,4 +1,4 @@
-import { TestSeries, TestSeriesProps } from "@/types/testseries";
+import { TestSeries, TestSeriesProps } from "@/utils/types/testseries";
 import { useRouter } from "expo-router";
 import React from "react";
 import {

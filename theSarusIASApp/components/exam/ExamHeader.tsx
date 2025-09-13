@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native"
-import { Colors, themeColor } from "../../constants/Colors"
+import { Colors, themeColor } from "../../utils/constant/Colors"
 import AnimatedHamburger from "../ui/AnimatedHamburger"
 import { ExamTimer } from "./ExamTimer"
 

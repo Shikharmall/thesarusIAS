@@ -1,4 +1,4 @@
-import type { ExamData, Question, Section } from "../types/exam";
+import type { ExamData, Question, Section } from "../utils/types/exam";
 
 // eas build:configure
 // eas build -p android --profile preview

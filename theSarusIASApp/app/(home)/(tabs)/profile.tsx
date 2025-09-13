@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import Profile from "@/components/profile/Profile";
 import { StyleSheet, View } from "react-native";
-import { Colors } from "../../../constants/Colors";
+import { Colors } from "../../../utils/constant/Colors";
 
 export default function HomeScreen() {
   return (

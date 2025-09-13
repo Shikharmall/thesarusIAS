@@ -1,18 +1,18 @@
-import { useCallback, useState } from "react"
-import {
-    View,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    StyleSheet,
-    Alert,
-    KeyboardAvoidingView,
-    Platform,
-    ScrollView,
-    BackHandler,
-} from "react-native"
-import { Colors } from "../constants/Colors"
 import { useFocusEffect, useRouter } from "expo-router";
+import { useCallback, useState } from "react";
+import {
+  Alert,
+  BackHandler,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { Colors } from "../utils/constant/Colors";
 
 export default function LoginScreen() {
     const [name, setName] = useState<string>("");

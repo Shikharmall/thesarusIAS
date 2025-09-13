@@ -1,4 +1,4 @@
-import { Colors, themeColor } from "@/constants/Colors";
+import { Colors, themeColor } from "@/utils/constant/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";

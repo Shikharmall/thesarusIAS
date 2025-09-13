@@ -1,8 +1,8 @@
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from "react-native"
-import Modal from "react-native-modal"
+import { InstructionModalProps } from "@/utils/types/exam"
 import { Ionicons } from "@expo/vector-icons"
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import Modal from "react-native-modal"
 import { Colors } from "../constants/Colors"
-import { InstructionModalProps } from "@/types/exam"
 
 export default function InstructionModal({ isVisible, onStartExam }: InstructionModalProps) {
   return (

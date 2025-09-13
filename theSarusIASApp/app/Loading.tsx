@@ -1,6 +1,6 @@
-import { themeColor } from "@/constants/Colors";
+import { themeColor } from "@/utils/constant/Colors";
 import React from "react";
-import { View, Text, ActivityIndicator, StyleSheet } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 
 export default function LoadingScreen() {
     return (

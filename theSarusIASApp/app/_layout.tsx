@@ -1,7 +1,7 @@
 import AnimatedCircleProgress from "@/components/ui/AnimatedCircle";
-import { Colors, themeColor } from "@/constants/Colors";
-import { SIZES } from "@/constants/Size";
+import { SIZES } from "@/utils/constant/Size";
 import { Slide } from "@/types/AppIntroSlider";
+import { Colors, themeColor } from "@/utils/constant/Colors";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";

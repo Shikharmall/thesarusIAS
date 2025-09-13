@@ -1,4 +1,4 @@
-import { Course, CoursesProps } from "@/types/courses";
+import { Course, CoursesProps } from "@/utils/types/courses";
 import { useRouter } from "expo-router";
 import React from "react";
 import {

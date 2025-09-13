@@ -1,15 +1,15 @@
-import { themeColor } from "@/constants/Colors";
+import { themeColor } from "@/utils/constant/Colors";
+import { TestSeries } from "@/utils/types/testseries";
 import React, { useEffect, useRef, useState } from "react";
 import {
-  Animated,
-  Dimensions,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
+    Animated,
+    Dimensions,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View,
 } from "react-native";
 import TestSeriesComponent from "./TestSeriesComponent";
-import { TestSeries } from "@/types/testseries";
 const { width } = Dimensions.get("window");
 
 const TabSwitcherTestSeries = () => {

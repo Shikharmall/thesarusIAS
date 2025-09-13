@@ -1,6 +1,6 @@
 import AlertCustomise from "@/components/ui/AlertCustomise";
-import { AlertProps } from "@/types/Alert";
-import { QuestionStatus } from "@/types/exam";
+import { AlertProps } from "@/utils/types/alert";
+import { QuestionStatus } from "@/utils/types/exam";
 import { useFocusEffect, useLocalSearchParams } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
 import { BackHandler, StyleSheet, View } from "react-native";
@@ -9,8 +9,8 @@ import ExamNavigation from "../../components/exam/ExamNavigation";
 import QuestionDisplay from "../../components/exam/QuestionDisplay";
 import QuestionNavigator from "../../components/exam/QuestionNavigation";
 import ResponsiveLayout from "../../components/ResponsiveLayout";
-import { Colors } from "../../constants/Colors";
 import { examData } from "../../data/examData";
+import { Colors } from "../../utils/constant/Colors";
 
 export default function ExamScreen() {
   const { name, rollNumber, title } = useLocalSearchParams<{

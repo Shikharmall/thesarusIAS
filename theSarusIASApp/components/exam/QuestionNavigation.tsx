@@ -1,5 +1,5 @@
-import { Colors, themeColor } from "@/constants/Colors";
-import { QuestionNavigatorProps } from "@/types/exam";
+import { Colors, themeColor } from "@/utils/constant/Colors";
+import { QuestionNavigatorProps } from "@/utils/types/exam";
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";

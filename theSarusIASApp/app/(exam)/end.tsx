@@ -1,7 +1,7 @@
 import { useFocusEffect, useLocalSearchParams, useRouter } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
 import { BackHandler, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { Colors } from "../../constants/Colors";
+import { Colors } from "../../utils/constant/Colors";
 
 export default function EndScreen() {
   const { timeSpent } = {

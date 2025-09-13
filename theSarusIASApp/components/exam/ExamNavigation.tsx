@@ -1,10 +1,10 @@
-import { AlertProps } from "@/types/Alert";
-import { ExamNavigationProps } from "@/types/exam";
+import { AlertProps } from "@/utils/types/alert";
+import { ExamNavigationProps } from "@/utils/types/exam";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { Colors, themeColor } from "../../constants/Colors";
+import { Colors, themeColor } from "../../utils/constant/Colors";
 import AlertCustomise from "../ui/AlertCustomise";
 
 export default function ExamNavigation({ currentQuestion, onQuestionChange, onSectionChange, sections, userName, rollNum,

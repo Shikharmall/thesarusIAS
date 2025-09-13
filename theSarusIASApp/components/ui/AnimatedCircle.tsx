@@ -1,8 +1,6 @@
-import { themeColor } from "@/constants/Colors";
-import { AnimatedCircleProgressProps } from "@/types/exam";
-import { MaterialIcons } from "@expo/vector-icons";
+import { AnimatedCircleProgressProps } from "@/utils/types/exam";
 import React, { useEffect, useRef } from "react";
-import { View, Animated, Text, TouchableOpacity } from "react-native";
+import { Animated, Text, TouchableOpacity, View } from "react-native";
 import Svg, { Circle } from "react-native-svg";
 
 export default function AnimatedCircleProgress({
