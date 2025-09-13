@@ -8,10 +8,10 @@ import {
   Trash2,
   CheckCircle,
 } from "lucide-react";
-import SideBar from "../../components/common/SideBar";
 import Header from "../../components/common/Header";
 import type { Notification } from "../../utils/types/miscellaneous";
 import { themeColor } from "../../utils/constant/Color";
+import Sidebar from "../../components/common/Sidebar";
 
 const notificationsData: Notification[] = [
   {
@@ -119,7 +119,7 @@ const NotificationScreen: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 p-6">
-      <SideBar />
+      <Sidebar />
       <main className="flex-1 ml-50 mt-15">
         <Header />
         <div className="mx-auto p-6">

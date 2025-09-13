@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { themeColor } from "../../utils/constant/Color";
 
-export default function SideBar() {
+export default function Sidebar() {
     const location = useLocation();
     const { pathname } = location;
     const [isAdmin, setIsAdmin] = useState<boolean>(true);

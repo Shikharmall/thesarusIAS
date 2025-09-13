@@ -2,8 +2,8 @@ import { useState } from "react";
 import CreateTicketScreen from "./CreateTicketScreen";
 import TicketListScreen from "./TicketListScreen";
 import TicketDetailsScreen from "./TicketDetailsScreen";
-import SideBar from "../../components/common/SideBar";
 import Header from "../../components/common/Header";
+import Sidebar from "../../components/common/Sidebar";
 
 const TicketScreen = () => {
     const [tickets, setTickets] = useState<any[]>([]);
@@ -16,7 +16,7 @@ const TicketScreen = () => {
     return (
         <div className="flex min-h-screen bg-gray-50">
             {/* Sidebar */}
-            <SideBar />
+            <Sidebar/>
 
             {/* Main Content */}
             <main className="flex-1 ml-50 mt-15">

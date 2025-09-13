@@ -1,13 +1,14 @@
-import SideBar from "../../components/common/SideBar";
+
 import Header from "../../components/common/Header";
 import CourseCard from "../../components/courses/CourseCard";
 import SubHeader from "../../components/common/SubHeader";
 import { courseData } from "../../data/courseData";
+import Sidebar from "../../components/common/Sidebar";
 
 const CoursesScreen = () => {
   return (
     <div className="min-h-screen bg-gray-50 p-6">
-      <SideBar />
+      <Sidebar />
 
       <main className="flex-1 ml-50 mt-15">
         <Header />

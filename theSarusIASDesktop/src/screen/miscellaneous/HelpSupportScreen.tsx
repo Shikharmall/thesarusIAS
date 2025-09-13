@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Search, MessageCircle, Mail, Phone } from "lucide-react";
 import Header from "../../components/common/Header";
-import SideBar from "../../components/common/SideBar";
 import type { faqsType } from "../../utils/types/miscellaneous";
 import { themeColor } from "../../utils/constant/Color";
+import Sidebar from "../../components/common/Sidebar";
 // import { useNavigate } from "react-router-dom";
 
 const faqs: faqsType[] = [
@@ -34,7 +34,7 @@ const HelpSupportScreen = () => {
 
     return (
         <div className="min-h-screen bg-gray-50 p-6">
-            <SideBar />
+            <Sidebar />
             <main className="flex-1 ml-50 mt-15">
                 <Header />
                 <div className="mx-auto p-6">

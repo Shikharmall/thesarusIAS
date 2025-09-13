@@ -1,12 +1,12 @@
 import { Edit, Plus, SlidersHorizontal, Trash, Upload } from "lucide-react";
 import { useState } from "react";
-import SideBar from "../../components/common/SideBar";
 import Header from "../../components/common/Header";
 import SubHeader from "../../components/common/SubHeader";
 import { useNavigate } from "react-router-dom";
 import FilterModal from "../../components/common/FIlterModal";
 import type { Question } from "../../utils/types/questionbank";
 import { themeColor } from "../../utils/constant/Color";
+import Sidebar from "../../components/common/Sidebar";
 
 const QuestionBankListScreen = () => {
     const navigate = useNavigate();
@@ -50,7 +50,7 @@ const QuestionBankListScreen = () => {
     return (
         <div className="flex min-h-screen bg-gray-50">
             {/* Sidebar */}
-            <SideBar />
+            <Sidebar />
 
             {/* Main Content */}
             <main className="flex-1 ml-50 p-6 mt-15">
