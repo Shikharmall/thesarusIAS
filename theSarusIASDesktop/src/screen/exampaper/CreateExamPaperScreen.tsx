@@ -1,11 +1,10 @@
-
+import SideBar from '../../components/common/Sidebar'
 import Header from '../../components/common/Header'
 import SubHeader from '../../components/common/SubHeader'
 import { useState } from 'react';
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import React from 'react';
-import Sidebar from '../../components/common/Sidebar';
 
 const questions = [
     { id: 1, text: "In an Agile environment, what is the main dfdf   gf ggjhjg fd hh ghrfht tuutyu", type: "Single-select", topic: "Current Affairs", difficulty: "Easy", reviewers: ["A"], createdAt: "2h ago" },
@@ -34,7 +33,7 @@ export default function CreateExamPaperScreen() {
 
     return (
         <div className="flex min-h-screen bg-gray-50 p-6">
-            <Sidebar />
+            <SideBar />
             <main className="flex-1 ml-50 mt-15">
                 <Header />
                 <SubHeader title="Create Question Paper" isBack={true} isAdd={false} />

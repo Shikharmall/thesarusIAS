@@ -1,21 +1,25 @@
 import { useState } from "react";
 import { Search, MessageCircle, Mail, Phone } from "lucide-react";
 import Header from "../../components/common/Header";
+import SideBar from "../../components/common/Sidebar";
 import type { faqsType } from "../../utils/types/miscellaneous";
 import { themeColor } from "../../utils/constant/Color";
-import Sidebar from "../../components/common/Sidebar";
 // import { useNavigate } from "react-router-dom";
 
 const faqs: faqsType[] = [
     {
         question: "How do I reset my password?",
         answer:
-            "Go to settings > account > reset password. You'll receive an email to create a new password.",
+            "Go to settings > password. You'll receive an email to create a new password.",
     },
     {
         question: "How do I contact customer support?",
         answer:
             "You can reach us via live chat, email at thesarus.2022@gmail.com, or call our helpline.",
+    },
+    {
+        question: "How do I logout?",
+        answer: "Go to settings > profile. Scroll at the bottom and you'll get logout option.",
     },
     {
         question: "Can I upgrade my plan later?",
@@ -34,7 +38,7 @@ const HelpSupportScreen = () => {
 
     return (
         <div className="min-h-screen bg-gray-50 p-6">
-            <Sidebar />
+            <SideBar />
             <main className="flex-1 ml-50 mt-15">
                 <Header />
                 <div className="mx-auto p-6">

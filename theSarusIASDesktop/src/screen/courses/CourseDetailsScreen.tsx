@@ -5,12 +5,12 @@ import {
 } from "react-router-dom";
 import { courseData } from "../../data/courseData";
 import CourseDetailsRightSideScreen from "../../components/courses/CourseDetailsRightSideScreen";
+import SideBar from "../../components/common/Sidebar";
 import Header from "../../components/common/Header";
 import SubHeader from "../../components/common/SubHeader";
 import CourseDetailsLeftSideScreen from "../../components/courses/CourseDetailsLeftSide";
 import type { CourseType } from "../../utils/types/courses";
 import { themeColor } from "../../utils/constant/Color";
-import Sidebar from "../../components/common/Sidebar";
 
 const CourseDetailsScreen: React.FC = () => {
     const { id } = useParams(); // for dynamic routing
@@ -26,7 +26,7 @@ const CourseDetailsScreen: React.FC = () => {
 
     return (
         <div className="min-h-screen bg-gray-50 p-6">
-            <Sidebar />
+            <SideBar />
 
             <main className="flex-1 ml-50 mt-15">
 

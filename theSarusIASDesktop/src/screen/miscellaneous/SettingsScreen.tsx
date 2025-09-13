@@ -8,11 +8,11 @@ import {
     Trash2,
     CheckCircle,
 } from "lucide-react";
+import SideBar from "../../components/common/Sidebar";
 import Header from "../../components/common/Header";
 import { useNavigate } from "react-router-dom";
 import type { Notification, ProfileForm, Socials } from "../../utils/types/miscellaneous";
 import { themeColor } from "../../utils/constant/Color";
-import Sidebar from "../../components/common/Sidebar";
 
 const initialForm = {
     name: "Shivam Singh",
@@ -135,7 +135,7 @@ const SettingsScreen: React.FC = () => {
 
     return (
         <div className="min-h-screen bg-gray-50 p-6">
-            <Sidebar />
+            <SideBar />
             <main className="flex-1 ml-50 mt-15">
                 <Header />
                 <div className="mx-auto p-6">
@@ -334,7 +334,11 @@ const SettingsScreen: React.FC = () => {
                         {
                             filter === "Password" && (
                                 <>
-
+                                    <div className="flex flex-1 justify-center items-center h-[60vh]">
+                                        <p className="text-gray-600 text-lg font-medium">
+                                            Under maintenance.
+                                        </p>
+                                    </div>
                                 </>
                             )
                         }

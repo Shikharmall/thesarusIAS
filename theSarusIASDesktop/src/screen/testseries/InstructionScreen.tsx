@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const InstructionScreen: React.FC = () => {
@@ -7,6 +7,8 @@ const InstructionScreen: React.FC = () => {
   const handleAgree = () => {
     navigate("/exam/1"); // redirect to exam start page
   };
+
+  const [isAgreed, setIsAgreed] = useState<boolean>(false);
 
   return (
     <div className="min-h-screen bg-gray-50 flex justify-center p-6">
@@ -60,6 +62,7 @@ const InstructionScreen: React.FC = () => {
           <input
             id="agree"
             type="checkbox"
+            onClick={() => setIsAgreed(!isAgreed)}
             className="mt-1 h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
           />
           <label htmlFor="agree" className="ml-2 text-sm text-gray-600">
@@ -71,13 +74,14 @@ const InstructionScreen: React.FC = () => {
         <div className="mt-6 flex justify-end gap-3">
           <button
             onClick={() => navigate(-1)}
-            className="px-5 py-2 text-sm rounded-lg border border-gray-300 hover:bg-gray-100"
+            className="px-5 py-2 text-sm rounded-lg border border-gray-300 hover:bg-gray-100 cursor-pointer"
           >
             Back
           </button>
           <button
             onClick={handleAgree}
-            className="px-5 py-2 text-sm rounded-lg bg-blue-600 text-white hover:bg-blue-700"
+            disabled={!isAgreed}
+            className="px-5 py-2 text-sm rounded-lg bg-blue-600 text-white hover:bg-blue-700 cursor-pointer"
           >
             I Agree & Start Exam
           </button>

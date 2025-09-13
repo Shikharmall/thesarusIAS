@@ -14,7 +14,7 @@ const Header = () => {
             {/* Right: Actions */}
             <div className="flex items-center gap-6">
                 {/* Notification Bell */}
-                <button onClick={() => navigate('/notification')} className="relative text-gray-600 hover:text-gray-800 cursor-pointer">
+                <button onClick={() => navigate('/notification')} className="relative text-gray-600 hover:text-gray-800 cursor-pointer" title="notifications">
                     <Bell size={20} color={themeColor?.secondary} />
                     <span className="absolute -top-1 -right-1 bg-purple-600 text-white text-xs rounded-full px-1" style={{ backgroundColor: themeColor?.primary }}>
                         2
@@ -22,7 +22,7 @@ const Header = () => {
                 </button>
 
                 {/* Settings */}
-                <button onClick={() => navigate('/settings')} className="text-gray-600 hover:text-gray-800 cursor-pointer">
+                <button onClick={() => navigate('/settings')} className="text-gray-600 hover:text-gray-800 cursor-pointer" title="settings">
                     <Settings size={20} />
                 </button>
 

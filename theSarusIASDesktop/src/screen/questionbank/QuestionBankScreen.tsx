@@ -1,9 +1,9 @@
 import React from "react";
+import SideBar from "../../components/common/Sidebar";
 import Header from "../../components/common/Header";
 import SubHeader from "../../components/common/SubHeader";
 import { Link } from "react-router-dom";
 import type { CardProps } from "../../utils/types/questionbank";
-import Sidebar from "../../components/common/Sidebar";
 
 const cards: CardProps[] = [
   {
@@ -92,7 +92,7 @@ const QuestionBankScreen: React.FC = () => {
   return (
     <div className="flex min-h-screen bg-gray-50 p-6">
       {/* Sidebar */}
-      <Sidebar />
+      <SideBar />
 
       {/* Main Content */}
       <main className="flex-1 ml-50 mt-15">

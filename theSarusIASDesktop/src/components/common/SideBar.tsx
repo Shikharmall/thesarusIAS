@@ -1,10 +1,10 @@
-// import React from 'react'
 import { Calendar, File, Folder, GraduationCap, HelpCircle, Home, LayoutList } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { themeColor } from "../../utils/constant/Color";
 
-export default function Sidebar() {
+export default function SideBar() {
     const location = useLocation();
     const { pathname } = location;
     const [isAdmin, setIsAdmin] = useState<boolean>(true);
@@ -13,12 +13,21 @@ export default function Sidebar() {
         setIsAdmin(true);
     }, []);
 
+    const navItems = [
+        { to: "/home", label: "Home", icon: Home },
+        { to: "/courses", label: "Courses", icon: GraduationCap, match: ["/courses", "/courseDetails", "/addCourse"] },
+        ...(isAdmin ? [{ to: "/questionBank", label: "Question Bank", icon: Folder }] : []),
+        ...(isAdmin ? [{ to: "/examPaper", label: "Exam Papers", icon: File, match: ["/examPaper", "/examSectionPaper"] }] : []),
+        { to: "/testSeries", label: "Test Series", icon: LayoutList },
+        ...(isAdmin ? [{ to: "/conduct", label: "Conduct Exam", icon: Calendar, match: ["/conduct"] }] : []),
+        { to: "/helpSupport", label: "Help & Support", icon: HelpCircle }
+    ];
+
     return (
-        <aside className="fixed left-0 top-0 h-screen w-50 text-white flex flex-col justify-between p-0"
-            style={{
-                backgroundColor: themeColor?.secondary
-            }}
-        > {/* w-64 bg-[#3f2768] */}
+        <aside
+            className="fixed left-0 top-0 h-screen w-50 text-white flex flex-col justify-between p-0"
+            style={{ backgroundColor: themeColor?.secondary }}
+        >
             <div>
                 <div className="text-2xl font-bold my-5 flex justify-center items-center">
                     <img
@@ -27,102 +36,47 @@ export default function Sidebar() {
                         alt="logo"
                     />
                 </div>
-                <nav className="">
-                    <Link to={'/home'}
-                        className={`flex flex-row items-center gap-3 hover:bg-slate-800 hover:bg-opacity-3 px-5 py-5 text-[#b8b8b8ff] ${pathname.includes("/home") && "text-white border-l-3 border-white bg-slate-800"} `}
-                    >
-                        <Home size={20} color={pathname.includes("/home") ? "#fff" : "#b8b8b8ff"} />
-                        <p className="text-sm">
-                            Home
-                        </p>
-                    </Link>
 
-                    <Link to={'/courses'} //text-[#b8b8b8ff]
-                        className={`flex flex-row items-center gap-3 hover:bg-slate-800 hover:bg-opacity-3 px-5 py-5 text-[#b8b8b8ff] ${(pathname.includes("/courses") || pathname.includes("/courseDetails") || pathname.includes("/addCourse")) && "text-white text-white border-l-3 border-white bg-slate-800"} `}
-                    >
-                        <GraduationCap size={20} color={(pathname.includes("/courses") || pathname.includes("/courseDetails") || pathname.includes("/addCourse")) ? "#fff" : "#b8b8b8ff"} />
-                        <p className="text-sm">
-                            Courses
-                        </p>
-                    </Link>
+                <nav className="relative">
+                    {navItems.map(({ to, label, icon: Icon, match }) => {
+                        const isActive =
+                            match?.some((m) => pathname.includes(m)) ?? pathname.includes(to);
 
-                    {
-                        isAdmin && (
-                            <>
-                                <Link to={'/questionBank'}
-                                    className={`flex flex-row items-center gap-3 hover:bg-slate-800 hover:bg-opacity-3 px-5 py-5 text-[#b8b8b8ff] ${pathname.includes("/questionBank") && "text-white border-l-3 border-white bg-slate-800"} `}
-                                >
-                                    <Folder size={20} color={pathname.includes("/questionBank") ? "#fff" : "#b8b8b8ff"} />
-                                    <p className="text-sm">
-                                        Question Bank
-                                    </p>
-                                </Link>
-
-                                <Link to={'/examPaper'}
-                                    className={`flex flex-row items-center gap-3 hover:bg-slate-800 hover:bg-opacity-3 px-5 py-5 text-[#b8b8b8ff] ${(pathname.includes("/examPaper") || pathname.includes("/examSectionPaper")) && "text-white border-l-3 border-white bg-slate-800"} `}
-                                >
-                                    <File size={20} color={(pathname.includes("/examPaper") || pathname.includes("/examSectionPaper")) ? "#fff" : "#b8b8b8ff"} />
-                                    <p className="text-sm">
-                                        Exam Papers
-                                    </p>
-                                </Link>
-                            </>
-                        )
-                    }
-
-                    <Link to={'/testSeries'}
-                        className={`flex flex-row items-center gap-3 hover:bg-slate-800 hover:bg-opacity-3 px-5 py-5 text-[#b8b8b8ff] ${pathname.includes("/testSeries") && "text-white border-l-3 border-white bg-slate-800"} `}
-                    >
-                        <LayoutList size={20} color={pathname.includes("/testSeries") ? "#fff" : "#b8b8b8ff"} />
-                        <p className="text-sm">
-                            Test Series
-                        </p>
-                    </Link>
-
-                    {/* <Link to={'/'}
-                        className={`flex flex-row items-center gap-3 hover:bg-slate-800 hover:bg-opacity-3 px-5 py-5 text-[#b8b8b8ff] ${pathname.includes("/homee") && "text-white border-l-3 border-white bg-slate-800"} `}
-                    >
-                        <FolderCheck size={20} color={pathname.includes("/homee") ? "#fff" : "#b8b8b8ff"} />
-                        <p className="text-sm">
-                            Free Materials
-                        </p>
-                    </Link> */}
-
-                    {
-                        isAdmin && (
-                            <Link to={'/'}
-                                className={`flex flex-row items-center gap-3 hover:bg-slate-800 hover:bg-opacity-3 px-5 py-5 text-[#b8b8b8ff] ${pathname.includes("/homee") && "text-white border-l-3 border-white bg-slate-800"} `}
+                        return (
+                            <Link
+                                key={to}
+                                to={to}
+                                className={`relative flex flex-row items-center gap-3 px-5 py-5 text-sm transition-colors duration-300 
+                                    ${isActive ? "text-white" : "text-[#b8b8b8ff] hover:text-white"}`}
                             >
-                                <Calendar size={20} color={pathname.includes("/homee") ? "#fff" : "#b8b8b8ff"} />
-                                <p className="text-sm">
-                                    Conduct Exam
-                                </p>
-                            </Link>
-                        )
-                    }
+                                {isActive && (
+                                    <motion.div
+                                        layoutId="activeHighlight"
+                                        className="absolute left-0 top-0 h-full w-full bg-slate-800 rounded-md"
+                                        initial={false}
+                                        transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                                    />
+                                )}
+                                {isActive && (
+                                    <motion.div
+                                        layoutId="activeBorder"
+                                        className="absolute left-0 top-0 h-full w-1 bg-white"
+                                        initial={false}
+                                        transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                                    />
+                                )}
 
-                    <Link to={'/helpSupport'}
-                        className={`flex flex-row items-center gap-3 hover:bg-slate-800 hover:bg-opacity-3 px-5 py-5 text-[#b8b8b8ff] ${pathname.includes("/helpSupport") && "text-white border-l-3 border-white bg-slate-800"} `}
-                    >
-                        <HelpCircle size={20} color={pathname.includes("/helpSupport") ? "#fff" : "#b8b8b8ff"} />
-                        <p className="text-sm">
-                            Help & Support
-                        </p>
-                    </Link>
+                                <Icon size={20} color={isActive ? "#fff" : "#b8b8b8ff"} className="relative z-10" />
+                                <p className="relative z-10">{label}</p>
+                            </Link>
+                        );
+                    })}
                 </nav>
             </div>
+
             <div className="flex justify-center my-4">
                 <div className="text-sm">@{new Date().getFullYear()} thesarus.in</div>
-                {/* <button className="mt-3 bg-red-500 text-white font-bold px-4 py-2 rounded-lg text-sm">
-                    Logout
-                </button> */}
             </div>
-            {/* <div className="bg-purple-700 p-4 rounded-xl mt-10 text-center">
-                <div className="text-sm">Buy Premium</div>
-                <button className="mt-3 bg-yellow-400 text-purple-900 font-bold px-4 py-2 rounded-lg">
-                    Learn More
-                </button>
-            </div> */}
         </aside>
-    )
+    );
 }

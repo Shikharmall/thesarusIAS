@@ -1,8 +1,8 @@
 import { FileText, Shield, User } from "lucide-react";
 import ChartsPage from "../../components/dashboard/Chart";
 import Header from "../../components/common/Header";
+import SideBar from "../../components/common/Sidebar";
 import type { ReactNode } from "react";
-import Sidebar from "../../components/common/Sidebar";
 
 interface Item {
     id: number;
@@ -48,7 +48,7 @@ const Dashboard = () => {
     return (
         <div className="flex min-h-screen bg-gray-50">
             {/* Sidebar */}
-            <Sidebar />
+            <SideBar />
 
             {/* Main Content */}
             <main className="flex-1 ml-50 mt-15">
