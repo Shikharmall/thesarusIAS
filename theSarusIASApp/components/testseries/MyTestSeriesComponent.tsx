@@ -1,4 +1,4 @@
-import { Course, CoursesProps } from "@/utils/types/courses";
+import { TestSeries, TestSeriesProps } from "@/utils/types/testseries";
 import { useRouter } from "expo-router";
 import React from "react";
 import {
@@ -10,29 +10,26 @@ import {
     View,
 } from "react-native";
 
-export default function CoursesComponent({ courses }: CoursesProps) {
+export default function MyTestSeriesComponent({ testseries }: TestSeriesProps) {
 
     const router = useRouter();
 
-    const renderCourse = ({ item }: { item: Course }) => (
+    const renderSeries = ({ item }: { item: TestSeries }) => (
         <TouchableOpacity style={styles.card}
             onPress={() => {
                 router.push({
-                    pathname: "/(course)",
+                    pathname: "/(exam)/instructions",
+                    params: { title: item?.title, },
                 });
             }}
         >
             <View style={styles.row}>
-                <Image
-                    source={{ uri: item.image }}
-                    style={styles.image}
-                    resizeMode="cover"
-                />
+                <Image source={{ uri: item.image }} style={styles.image} />
 
                 <View style={styles.content}>
                     {/* Tags */}
                     <View style={styles.tagsRow}>
-                        {item?.tags?.map((tag, idx) => (
+                        {item.tags.map((tag, idx) => (
                             <Text key={idx} style={styles.tag}>
                                 {tag}
                             </Text>
@@ -44,15 +41,16 @@ export default function CoursesComponent({ courses }: CoursesProps) {
                         {item.title}
                     </Text>
 
-                    {/* Price Section */}
+                    {/* Date Section */}
                     <View style={styles.priceRow}>
-                        <Text style={styles.price}>{item.price}</Text>
+                        <Text style={styles.oldPrice}>Sept 30, 2025</Text>
+                        {/* <Text style={styles.price}>{item.price}</Text>
                         {item.oldPrice && (
                             <Text style={styles.oldPrice}>{item.oldPrice}</Text>
                         )}
                         {item.discount && (
                             <Text style={styles.discount}>{item.discount}</Text>
-                        )}
+                        )} */}
                     </View>
                 </View>
             </View>
@@ -61,43 +59,55 @@ export default function CoursesComponent({ courses }: CoursesProps) {
 
     return (
         <View style={styles.container}>
-            {courses?.length === 0 ? (
-                <View style={styles.emptyContainer}>
-                    {/* Empty State */}
-                </View>
-            ) : (
-                <FlatList
-                    data={courses}
-                    keyExtractor={(item) => item.id}
-                    renderItem={renderCourse}
-                />
-            )}
+            {/* Test Series List */}
+            {
+                testseries?.length === 0 ? (
+                    <View style={styles.emptyContainer}>
+                        <Image
+                            source={{ uri: "https://cdn-icons-png.flaticon.com/512/7486/7486744.png" }} // replace with your own illustration
+                            style={styles.emptyImage}
+                            resizeMode="contain"
+                        />
+                        <Text style={styles.emptyTitle}>No Test Series Found</Text>
+                        <Text style={styles.emptySubtitle}>
+                            We couldnt find any test series right now. Please check back later!
+                        </Text>
+                    </View>
+                )
+                    :
+                    (
+                        <FlatList
+                            data={testseries}
+                            keyExtractor={(item) => item.id}
+                            renderItem={renderSeries}
+                        // contentContainerStyle={{ padding: 10 }}
+                        />
+
+                    )
+            }
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: { flex: 1, backgroundColor: "#fff" },
-
     // Card
     card: {
         backgroundColor: "#fff",
-        //marginBottom: 12,
-        //borderRadius: 10,
+        // marginBottom: 12,
+        // borderRadius: 10,
         borderColor: '#eee',
         borderBottomWidth: 1,
-        // borderColor: '#000',
-        // borderWidth: 1,
         // elevation: 3,
         // shadowColor: "#000",
         // shadowOpacity: 0.1,
         // shadowRadius: 4,
         // shadowOffset: { width: 0, height: 2 },
     },
-    row: { flexDirection: "row", padding: 10 },
+    row: { flexDirection: "row", padding: 10, alignItems: 'center' },
     image: {
-        width: 150,
-        height: 90,
+        width: 90,
+        height: 70,
         borderRadius: 6,
         marginRight: 10,
     },
@@ -117,7 +127,7 @@ const styles = StyleSheet.create({
     price: { fontSize: 14, fontWeight: "bold", color: "#000" },
     oldPrice: {
         fontSize: 12,
-        textDecorationLine: "line-through",
+        //textDecorationLine: "line-through",
         marginLeft: 6,
         color: "gray",
     },
@@ -129,7 +139,6 @@ const styles = StyleSheet.create({
     },
 
     // items not found
-
     emptyContainer: {
         flex: 1,
         justifyContent: "center",
@@ -155,4 +164,33 @@ const styles = StyleSheet.create({
         lineHeight: 20,
     },
 
+    // Bottom Navigation
+    bottomNav: {
+        height: 60,
+        flexDirection: "row",
+        borderTopWidth: 1,
+        borderTopColor: "#ddd",
+        backgroundColor: "#fff",
+    },
+    navItem: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    navItemActive: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    navText: {
+        fontSize: 12,
+        color: "#666",
+        marginTop: 2,
+    },
+    navTextActive: {
+        fontSize: 12,
+        color: "#2196F3",
+        marginTop: 2,
+        fontWeight: "bold",
+    },
 });

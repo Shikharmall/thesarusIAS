@@ -60,26 +60,27 @@ export default function TestSeriesComponent({ testseries }: TestSeriesProps) {
         <View style={styles.container}>
             {/* Test Series List */}
             {
-                testseries?.length === 0 ? (
-                    <View style={styles.emptyContainer}>
-                        <Image
-                            source={{ uri: "https://cdn-icons-png.flaticon.com/512/7486/7486744.png" }} // replace with your own illustration
-                            style={styles.emptyImage}
-                            resizeMode="contain"
-                        />
-                        <Text style={styles.emptyTitle}>No Test Series Found</Text>
-                        <Text style={styles.emptySubtitle}>
-                            We couldnt find any test series right now. Please check back later!
-                        </Text>
-                    </View>
-                )
+                testseries?.length === 0
+                    ?
+                    (
+                        <View style={styles.emptyContainer}>
+                            <Image
+                                source={{ uri: "https://cdn-icons-png.flaticon.com/512/7486/7486744.png" }} // replace with your own illustration
+                                style={styles.emptyImage}
+                                resizeMode="contain"
+                            />
+                            <Text style={styles.emptyTitle}>No Test Series Found</Text>
+                            <Text style={styles.emptySubtitle}>
+                                We couldnt find any test series right now. Please check back later!
+                            </Text>
+                        </View>
+                    )
                     :
                     (
                         <FlatList
                             data={testseries}
                             keyExtractor={(item) => item.id}
                             renderItem={renderSeries}
-                        // contentContainerStyle={{ padding: 10 }}
                         />
 
                     )

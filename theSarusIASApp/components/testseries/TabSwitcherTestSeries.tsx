@@ -1,125 +1,31 @@
+import { mytestseries, testseries } from "@/data/testSeriesData";
 import { themeColor } from "@/utils/constant/Colors";
-import { TestSeries } from "@/utils/types/testseries";
 import React, { useEffect, useRef, useState } from "react";
 import {
-    Animated,
-    Dimensions,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  Animated,
+  Dimensions,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
+import MyTestSeriesComponent from "./MyTestSeriesComponent";
 import TestSeriesComponent from "./TestSeriesComponent";
+
 const { width } = Dimensions.get("window");
 
 const TabSwitcherTestSeries = () => {
-  const tabs = ["Test Series", "My Test Series"];
-  const [activeTab, setActiveTab] = useState("Test Series");
+  const tabs: string[] = ["Test Series", "My Test Series"];
+  const [activeTab, setActiveTab] = useState<string>("Test Series");
+  const [prevTab, setPrevTab] = useState(activeTab);
 
-  const tabWidth = width / tabs.length - 20; // adjust for margin
+  const tabWidth = width / tabs.length - 20;
   const translateX = useRef(new Animated.Value(0)).current;
 
-  const testseries: TestSeries[] = [
-    {
-      id: "1",
-      title: "UPSC Prelims Test Series 2026 (General Studies)",
-      price: "₹60",
-      oldPrice: "₹1000",
-      discount: "94% OFF",
-      tags: ["FULL LENGTH", "MCQs", "PDF SOLUTIONS"],
-      image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756030769/upsc_pzkoyq.png",
-    },
-    {
-      id: "2",
-      title: "UPCS CSAT Practice Test Series (Aptitude & Reasoning)",
-      price: "₹50",
-      oldPrice: "₹1000",
-      discount: "95% OFF",
-      tags: ["FULL LENGTH", "MCQs", "PDF SOLUTIONS"],
-      // tags: ["SECTIONAL TESTS", "SOLUTION PDFs"],
-      image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756030769/upsc_pzkoyq.png",
-    },
-    {
-      id: "3",
-      title: "UPPSC Prelims Test Series 2026 (Aptitude & Reasoning)",
-      price: "₹50",
-      oldPrice: "₹1000",
-      discount: "95% OFF",
-      tags: ["FULL LENGTH", "MCQs", "PDF SOLUTIONS"],
-      // tags: ["SECTIONAL TESTS", "SOLUTION PDFs"],
-      image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756099014/uppcs_ybcobx.png",
-    },
-    {
-      id: "4",
-      title: "UPPSC CSAT Test Series 2026 (General Studies)",
-      price: "₹50",
-      oldPrice: "₹1000",
-      discount: "95% OFF",
-      tags: ["FULL LENGTH", "MCQs", "PDF SOLUTIONS"],
-      // tags: ["SECTIONAL TESTS", "SOLUTION PDFs"],
-      image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756099014/uppcs_ybcobx.png",
-    },
-    {
-      id: "5",
-      title: "SSC CGL Test Series",
-      price: "₹50",
-      oldPrice: "₹5,00",
-      discount: "90% OFF",
-      tags: ["FULL LENGTH", "MCQs", "PDF SOLUTIONS"],
-      image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756030769/ssccgl_rknj1o.png",
-    },
-    {
-      id: "6",
-      title: "SSC CHSL Test Series",
-      price: "₹50",
-      tags: ["FULL LENGTH", "MCQs", "PDF SOLUTIONS"],
-      image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756030769/sscchsl_fwfdka.png",
-    },
-    {
-      id: "7",
-      title: "SSC MTS Test Series",
-      price: "₹50",
-      tags: ["FULL LENGTH", "MCQs", "PDF SOLUTIONS"],
-      image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756030769/sscmts_j31n5a.png",
-    },
-    {
-      id: "8",
-      title: "Railway NTPC Test Series",
-      price: "₹50",
-      tags: ["FULL LENGTH", "MCQs", "PDF SOLUTIONS"],
-      image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756031617/railwayblue_tjaeud.jpg",
-    }
-  ];
+  const prevAnim = useRef(new Animated.Value(0)).current;
+  const newAnim = useRef(new Animated.Value(width)).current;
 
-  const mytestseries: TestSeries[] = [
-    {
-      id: "1",
-      title: "UPSC Prelims Test Series 2026 (General Studies)",
-      price: "₹60",
-      oldPrice: "₹1000",
-      discount: "94% OFF",
-      tags: ["FULL LENGTH", "MCQs", "PDF SOLUTIONS"],
-      image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756030769/upsc_pzkoyq.png",
-    },
-    {
-      id: "2",
-      title: "SSC CGL Test Series",
-      price: "₹50",
-      oldPrice: "₹5,00",
-      discount: "90% OFF",
-      tags: ["FULL LENGTH", "MCQs", "PDF SOLUTIONS"],
-      image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756030769/ssccgl_rknj1o.png",
-    },
-    {
-      id: "3",
-      title: "Railway NTPC Test Series",
-      price: "₹50",
-      tags: ["FULL LENGTH", "MCQs", "PDF SOLUTIONS"],
-      image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756031617/railwayblue_tjaeud.jpg",
-    }
-  ];
-
-  // animate indicator on tab change
+  // Animate tab indicator
   useEffect(() => {
     const index = tabs.indexOf(activeTab);
     Animated.spring(translateX, {
@@ -128,11 +34,42 @@ const TabSwitcherTestSeries = () => {
     }).start();
   }, [activeTab]);
 
+  // Animate content slide in/out
+  useEffect(() => {
+    const direction = tabs.indexOf(activeTab) > tabs.indexOf(prevTab) ? 1 : -1;
+
+    // Prepare positions
+    prevAnim.setValue(0);
+    newAnim.setValue(direction * width);
+
+    Animated.parallel([
+      Animated.timing(prevAnim, {
+        toValue: -direction * width,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+      Animated.timing(newAnim, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+    ]).start(() => {
+      setPrevTab(activeTab); // update previous tab after animation
+    });
+  }, [activeTab]);
+
+  const renderTabContent = (tab: string) => {
+    return tab === "Test Series" ? (
+      <TestSeriesComponent testseries={testseries} />
+    ) : (
+      <MyTestSeriesComponent testseries={mytestseries} />
+    );
+  };
+
   return (
     <View style={styles.container}>
       {/* Tab Container */}
       <View style={styles.tabContainer}>
-        {/* Animated Indicator */}
         <Animated.View
           style={[
             styles.indicator,
@@ -143,7 +80,7 @@ const TabSwitcherTestSeries = () => {
           ]}
         />
 
-        {tabs.map((tab) => (
+        {tabs?.map((tab) => (
           <TouchableOpacity
             key={tab}
             style={styles.tab}
@@ -160,9 +97,39 @@ const TabSwitcherTestSeries = () => {
           </TouchableOpacity>
         ))}
       </View>
+      {/* Animated Content */}
+      <View style={{ flex: 1, overflow: "hidden" }}>
+        <Animated.View
+          style={{
+            flex: 1,                          // take full height
+            transform: [{ translateX: prevAnim }],
+          }}
+          pointerEvents="none"                // disable touches on old tab
+        >
+          <View style={{ flex: 1 }}>
+            {renderTabContent(prevTab)}
+          </View>
+        </Animated.View>
 
-      {/* Content */}
-      {activeTab === "Test Series" ? <TestSeriesComponent testseries={testseries} /> : <TestSeriesComponent testseries={mytestseries} />}
+        <Animated.View
+          style={{
+            flex: 1,                          // take full height
+            transform: [{ translateX: newAnim }],
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+          }}
+          pointerEvents="auto"                // allow touches on active tab
+        >
+          <View style={{ flex: 1 }}>
+            {renderTabContent(activeTab)}
+          </View>
+        </Animated.View>
+      </View>
+
+
     </View>
   );
 };
@@ -170,9 +137,7 @@ const TabSwitcherTestSeries = () => {
 export default TabSwitcherTestSeries;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+  container: { flex: 1 },
   tabContainer: {
     flexDirection: "row",
     backgroundColor: "#F8F9FA",
@@ -182,12 +147,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     position: "relative",
   },
-  tab: {
-    flex: 1,
-    paddingVertical: 12,
-    alignItems: "center",
-    zIndex: 1, // keep text above indicator
-  },
+  tab: { flex: 1, paddingVertical: 12, alignItems: "center", zIndex: 1 },
   indicator: {
     position: "absolute",
     height: "100%",
@@ -196,12 +156,6 @@ const styles = StyleSheet.create({
     left: 4,
     top: 4,
   },
-  tabText: {
-    fontSize: 14,
-    color: "#666",
-  },
-  activeTabText: {
-    color: "white",
-    fontWeight: "600",
-  },
+  tabText: { fontSize: 14, color: "#666" },
+  activeTabText: { color: "white", fontWeight: "600" },
 });

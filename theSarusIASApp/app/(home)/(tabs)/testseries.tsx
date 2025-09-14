@@ -1,4 +1,4 @@
-import Header from "@/components/Header";
+import Header from "@/components/common/Header";
 import TabSwitcherTestSeries from "@/components/testseries/TabSwitcherTestSeries";
 import { StyleSheet, View } from "react-native";
 import { Colors } from "../../../utils/constant/Colors";

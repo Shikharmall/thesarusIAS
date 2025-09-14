@@ -10,7 +10,7 @@ import {
     View,
 } from "react-native";
 
-export default function CoursesComponent({ courses }: CoursesProps) {
+export default function MyCoursesComponent({ courses }: CoursesProps) {
 
     const router = useRouter();
 
@@ -61,17 +61,34 @@ export default function CoursesComponent({ courses }: CoursesProps) {
 
     return (
         <View style={styles.container}>
-            {courses?.length === 0 ? (
-                <View style={styles.emptyContainer}>
-                    {/* Empty State */}
-                </View>
-            ) : (
-                <FlatList
-                    data={courses}
-                    keyExtractor={(item) => item.id}
-                    renderItem={renderCourse}
-                />
-            )}
+            {/* Courses list */}
+
+            {
+                courses?.length === 0 ?
+                    (
+                        <View style={styles.emptyContainer}>
+                            <Image
+                                source={{ uri: "https://cdn-icons-png.flaticon.com/512/7486/7486744.png" }} // replace with your own illustration
+                                style={styles.emptyImage}
+                                resizeMode="contain"
+                            />
+                            <Text style={styles.emptyTitle}>No Courses Found</Text>
+                            <Text style={styles.emptySubtitle}>
+                                We couldn't find any courses right now. Please check back later!
+                            </Text>
+                        </View>
+                    ) : (
+
+                        <FlatList
+                            data={courses}
+                            keyExtractor={(item) => item.id}
+                            renderItem={renderCourse}
+                        // contentContainerStyle={{ padding: 10 }}
+                        />
+                    )
+            }
+
+
         </View>
     );
 }

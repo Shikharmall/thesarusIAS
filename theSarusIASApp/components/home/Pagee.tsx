@@ -1,10 +1,10 @@
-import { View, Text, ScrollView, TouchableOpacity, Image, StyleSheet } from 'react-native'
-import React, { useState } from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { MaterialIcons } from '@expo/vector-icons'
 import { LinearGradient } from 'expo-linear-gradient'
-import GameCard from './Cards'
-import { MaterialIcons } from '@expo/vector-icons';
-import { Button } from './ui/Button'
+import React, { useState } from 'react'
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import Card1 from './Card1'
+import { Button } from '../ui/Button'
 
 const categories = ['Action', 'Family', 'Puzzle', 'Adventure', 'Racing', 'Education', 'Others'];
 
@@ -64,7 +64,7 @@ export default function StoreScreen() {
                     <Text style={styles.subTitle}>Featured Games</Text>
                     <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.scrollRow}>
                         {featured.map((item, index) => (
-                            <GameCard key={index} game={item} />
+                            <Card1 key={index} game={item} />
                         ))}
                     </ScrollView>
                 </View>

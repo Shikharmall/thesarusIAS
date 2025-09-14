@@ -186,7 +186,7 @@ export default function LoginWithOTP() {
                         <Text style={styles.instructionText}>• Use your registered Phone Number</Text>
                         {/* <Text style={styles.instructionText}>• Use your registered Roll Number and Password</Text> */}
                         <Text style={styles.instructionText}>• Ensure stable internet connection</Text>
-                        <Text style={styles.instructionText}>• Do not refresh or close the App</Text>
+                        {/* <Text style={styles.instructionText}>• Do not refresh or close the App</Text> */}
                         <Text style={styles.instructionText}>• Contact helpdesk for technical issues</Text>
                     </View>
                 </View>

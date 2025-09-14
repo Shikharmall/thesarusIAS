@@ -1,6 +1,5 @@
 import AnimatedCircleProgress from "@/components/ui/AnimatedCircle";
 import { SIZES } from "@/utils/constant/Size";
-import { Slide } from "@/types/AppIntroSlider";
 import { Colors, themeColor } from "@/utils/constant/Colors";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
@@ -9,13 +8,14 @@ import React, { useState } from "react";
 import { Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { Slide } from "@/utils/types/AppIntroSlider";
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
 
-  const [showSlider, setShowSlider] = useState(false); //
+  const [showSlider, setShowSlider] = useState(false); // enable and disable app intro slider
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   const renderNextButton = () => (
@@ -45,25 +45,25 @@ export default function RootLayout() {
       id: 1,
       title: "Get things done.",
       description: "Just a click away from planning your tasks.",
-      image: require("../assets/images/demo.png"),
+      image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1757835921/demo1_xo22ds.png",
     },
     {
       id: 2,
       title: "Shows alert.",
       description: "Reminds you when date is near.",
-      image: require("../assets/images/demo.png"),
+      image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1757835921/demo1_xo22ds.png",
     },
     {
       id: 3,
       title: "Start with the app.",
       description: "Lets Start",
-      image: require("../assets/images/demo.png"),
+      image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1757835921/demo1_xo22ds.png",
     },
     {
       id: 4,
       title: "Start with the app fast.",
       description: "Lets Startsss",
-      image: require("../assets/images/demo.png"),
+      image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1757835921/demo1_xo22ds.png",
     },
   ];
 
@@ -79,7 +79,7 @@ export default function RootLayout() {
           renderItem={({ item }) => (
             <View style={styles.slide}>
               <Image
-                source={item.image}
+                source={{ uri: item?.image }}
                 style={{
                   width: SIZES.width,
                   height: 600,
@@ -106,11 +106,9 @@ export default function RootLayout() {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
-
         <StatusBar style="auto" />
-        {/* <Redirect href="/LoginWithOTP" /> */}
-
         <Stack
+          initialRouteName="index"
           screenOptions={{
             headerShown: false,
             animation: "slide_from_right", // 👈 smooth iOS-like push
@@ -118,6 +116,7 @@ export default function RootLayout() {
             // animation: "slide_from_bottom", // modal-like
             gestureEnabled: true,          // swipe back gesture
           }}>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
           <Stack.Screen name="LoginWithOTP" options={{ headerShown: false }} />
           {/* <Stack.Screen name="Loading" options={{ headerShown: false }} /> */}
           <Stack.Screen name="OtpVerify" options={{ headerShown: false }} />

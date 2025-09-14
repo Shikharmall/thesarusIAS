@@ -16,7 +16,7 @@ interface CardProps {
   };
 }
 
-export default function Card({ game }: CardProps) {
+export default function Card2({ game }: CardProps) {
   const [isFavourite, setFavourite] = useState<boolean>(false);
 
   return (

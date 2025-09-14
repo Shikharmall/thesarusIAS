@@ -1,4 +1,4 @@
-import Header from "@/components/Header";
+import Header from "@/components/common/Header";
 import Profile from "@/components/profile/Profile";
 import { StyleSheet, View } from "react-native";
 import { Colors } from "../../../utils/constant/Colors";

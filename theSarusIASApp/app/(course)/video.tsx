@@ -145,7 +145,7 @@ export default function VideoScreen() {
                     {/* Lecture List */}
                     <View style={styles.lecturesContainer}>
                         <Text style={styles.sectionTitle}>📚 Lectures</Text>
-                        {lectures.map((lecture, index) => (
+                        {lectures?.map((lecture) => (
                             <TouchableOpacity
                                 key={lecture.id}
                                 style={[styles.lectureItem, { backgroundColor: lecture?.src === videoSource ? '#d6d6d6ff' : '#ffffffff' }]}
@@ -154,7 +154,7 @@ export default function VideoScreen() {
                             >
                                 <View style={styles.thumbnailWrapper}>
                                     <Image
-                                        source={require("../../assets/images/thumbnail.png")}
+                                        source={{ uri: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756027561/thumbnail_coefxn.png" }}
                                         style={styles.thumbnail}
                                         resizeMode="cover"
                                     />

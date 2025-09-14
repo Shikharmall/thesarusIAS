@@ -95,7 +95,7 @@ export default function MyCourse() {
             <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
                 {/* Featured Courses */}
                 <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.featuredScroll}>
-                    {courseData.map((course) => (
+                    {courseData?.map((course) => (
                         <View key={course.id} style={[styles.featuredCard, { backgroundColor: course.color }]}>
                             <Text style={styles.featuredTitle}>{course.title}</Text>
                             <Text style={styles.featuredSubtitle}>{course.subtitle}</Text>
@@ -119,7 +119,7 @@ export default function MyCourse() {
                 </View>
 
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                    {newCourses.map((course) => (
+                    {newCourses?.map((course) => (
                         <View key={course.id} style={styles.courseCard}>
                             <Text style={styles.courseCardTitle}>{course.title}</Text>
                             <Text style={styles.courseCardSubtitle}>{course.subtitle}</Text>
@@ -143,7 +143,7 @@ export default function MyCourse() {
                 </View>
 
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                    {newCourses.map((course) => (
+                    {newCourses?.map((course) => (
                         <View key={`popular-${course.id}`} style={styles.courseCard}>
                             <Text style={styles.courseCardTitle}>{course.title}</Text>
                             <Text style={styles.courseCardSubtitle}>{course.subtitle}</Text>
@@ -167,7 +167,7 @@ export default function MyCourse() {
                 </View>
 
                 <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginBottom: 100 }}>
-                    {newCourses.map((course) => (
+                    {newCourses?.map((course) => (
                         <View key={`trending-${course.id}`} style={styles.courseCard}>
                             <Text style={styles.courseCardTitle}>{course.title}</Text>
                             <Text style={styles.courseCardSubtitle}>{course.subtitle}</Text>

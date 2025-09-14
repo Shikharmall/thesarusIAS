@@ -1,5 +1,5 @@
+import Header from "@/components/common/Header";
 import TabSwitcherCourses from "@/components/course/TabSwitcherCourses";
-import Header from "@/components/Header";
 import { StyleSheet, View } from "react-native";
 import { Colors } from "../../../utils/constant/Colors";
 

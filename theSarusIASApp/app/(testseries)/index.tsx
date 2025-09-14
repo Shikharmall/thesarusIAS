@@ -1,3 +1,4 @@
+
 import { Colors, themeColor } from "@/utils/constant/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
@@ -6,21 +7,15 @@ import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-nati
 export default function TestSeriesDetailsScreen() {
     const router = useRouter();
     const featureItems = [
-        { id: 1, title: "Features", icon: "document-text-outline", color: "#4A90E2", url: "/(course)/video" },
-        { id: 2, title: "Demo Class", icon: "play-outline", color: "#50C878", url: "/(course)/video" },
-        { id: 3, title: "FAQs", icon: "help-circle-outline", color: "#FFB347", url: "/(course)/video" },
+        { id: 1, title: "10 Tests", icon: "library-outline", color: "#4A90E2", url: "/(course)/video" },
+        { id: 2, title: "Demo Test", icon: "play-outline", color: "#50C878", url: "/(course)/video" },
+        { id: 3, title: "Solutions", icon: "document-text-outline", color: "#E67E22", url: "/(course)/video" },
         { id: 4, title: "Submit Feedback", icon: "star-outline", color: "#FF6B6B", url: "/(course)/video" },
         { id: 5, title: "Schedule & Syllabus", icon: "calendar-outline", color: "#4ECDC4", url: "/(course)/video" },
         { id: 6, title: "My Class", icon: "folder-outline", color: "#95A5A6", url: "/(course)/video" },
-        { id: 7, title: "Test Series", icon: "library-outline", color: "#E67E22", url: "/(course)/video" },
+        { id: 7, title: "FAQs", icon: "help-circle-outline", color: "#FFB347", url: "/(course)/video" },
         { id: 8, title: "Submit Answer", icon: "checkmark-circle-outline", color: "#9B59B6", url: "/(course)/video" },
         { id: 9, title: "Class Test", icon: "clipboard-outline", color: "#3498DB", url: "/(course)/video" },
-    ]
-
-    const bottomItems = [
-        { id: 1, title: "Test Series", icon: "library-outline", color: "#E67E22" },
-        { id: 2, title: "Submit Answer", icon: "checkmark-circle-outline", color: "#9B59B6" },
-        { id: 3, title: "Class Test", icon: "clipboard-outline", color: "#3498DB" },
     ]
 
     const FeatureCard = ({ item }: { item: any }) => (
@@ -28,7 +23,7 @@ export default function TestSeriesDetailsScreen() {
             <View style={[styles.iconContainer, { backgroundColor: `${item.color}20` }]}>
                 <Ionicons name={item.icon as any} size={24} color={item.color} />
             </View>
-            <Text style={styles.featureText}>{item.title}</Text>
+            <Text style={styles.featureText}>{item?.title}</Text>
         </TouchableOpacity>
     )
 
@@ -84,16 +79,12 @@ export default function TestSeriesDetailsScreen() {
                     ))}
                 </View>
 
-                {/* Bottom Items */}
+                {/* Bottom Button */}
                 <TouchableOpacity style={styles.submitButton}>
                     <Ionicons name="cash" size={20} color={Colors.background} />
                     <Text style={styles.submitButtonText}>Purchase ₹60</Text>
                 </TouchableOpacity>
-                {/* <View style={styles.bottomGrid}>
-                    {bottomItems.map((item) => (
-                        <FeatureCard key={item.id} item={item} />
-                    ))}
-                </View> */}
+
             </ScrollView>
         </View>
     )

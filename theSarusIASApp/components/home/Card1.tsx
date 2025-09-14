@@ -5,13 +5,13 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 const size = 50;
 
-export default function Card({ game }: any) {
+export default function Card1({ game }: any) {
   const [isFavourite, setFavourite] = useState(false);
 
   return (
     <View style={styles.cardWrapper}>
       <Image
-        source={require("../assets/images/bg1.png")}
+        source={{ uri: 'https://res.cloudinary.com/drb1ds8e3/image/upload/v1757832866/bg1_mla2uz.png' }}
         style={styles.cardImage}
       />
       <LinearGradient

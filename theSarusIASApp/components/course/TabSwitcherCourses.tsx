@@ -1,65 +1,29 @@
+import { courses, mycourses } from "@/data/coursesData";
 import { themeColor } from "@/utils/constant/Colors";
-import { Course } from "@/utils/types/courses";
 import React, { useEffect, useRef, useState } from "react";
 import {
-    Animated,
-    Dimensions,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  Animated,
+  Dimensions,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
-import Courses from "./CoursesComponent";
+import CoursesComponent from "./CoursesComponent";
+import MyCoursesComponent from "./MyCoursesComponent";
 
 const { width } = Dimensions.get("window");
 
 const TabSwitcherCourses = () => {
-  const tabs = ["Courses", "My Courses"];
-  const [activeTab, setActiveTab] = useState("Courses");
+  const tabs: string[] = ["Courses", "My Courses"];
+  const [activeTab, setActiveTab] = useState<string>("Courses");
+  const [prevTab, setPrevTab] = useState(activeTab);
 
-  const courses: Course[] = [
-    {
-      id: "1",
-      title: "NCERT Geography (6th to 12th)",
-      price: "₹1,400",
-      oldPrice: "₹3,000",
-      discount: "53% OFF",
-      tags: ["FREE CONTENT", "TESTS", "VIDEOS"],
-      image:
-        "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756027561/thumbnail_coefxn.png",
-    },
-    {
-      id: "2",
-      title: "COMBINED NCERT (HISTORY + POLITY + GEOGRAPHY + ECONOMICS)",
-      price: "₹10,000",
-      tags: ["FREE CONTENT", "TESTS", "VIDEOS"],
-      image:
-        "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756027561/thumbnail_coefxn.png",
-    },
-    {
-      id: "3",
-      title: "MENTORSHIP PROGRAMME - UPSC CSE PRELIMS 2021",
-      price: "₹550",
-      oldPrice: "₹1,200",
-      discount: "54% OFF",
-      tags: ["FREE CONTENT", "VIDEOS", "FILES"],
-      image:
-        "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756027561/thumbnail_coefxn.png",
-    },
-    {
-      id: "4",
-      title: "COURSE FOR INTERNATIONAL RELATIONS",
-      price: "₹2,500",
-      tags: ["FREE CONTENT", "VIDEOS", "FILES"],
-      image:
-        "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756027561/thumbnail_coefxn.png",
-    },
-  ];
-
-  const mycourses: Course[] = [];
-
-  const tabWidth = width / tabs.length - 20; // adjust for margin
+  const tabWidth = width / tabs.length - 20;
   const translateX = useRef(new Animated.Value(0)).current;
+
+  const prevAnim = useRef(new Animated.Value(0)).current;
+  const newAnim = useRef(new Animated.Value(width)).current;
 
   // animate indicator on tab change
   useEffect(() => {
@@ -69,6 +33,39 @@ const TabSwitcherCourses = () => {
       useNativeDriver: true,
     }).start();
   }, [activeTab]);
+
+  // Animate content slide in/out
+  useEffect(() => {
+    const direction = tabs.indexOf(activeTab) > tabs.indexOf(prevTab) ? 1 : -1;
+
+    // Prepare positions
+    prevAnim.setValue(0);
+    newAnim.setValue(direction * width);
+
+    Animated.parallel([
+      Animated.timing(prevAnim, {
+        toValue: -direction * width,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+      Animated.timing(newAnim, {
+        toValue: 0,
+        duration: 300,
+        useNativeDriver: true,
+      }),
+    ]).start(() => {
+      setPrevTab(activeTab); // update previous tab after animation
+    });
+  }, [activeTab]);
+
+
+  const renderTabContent = (tab: string) => {
+    return tab === "Courses" ? (
+      <CoursesComponent courses={courses} />
+    ) : (
+      <MyCoursesComponent courses={mycourses} />
+    );
+  };
 
   return (
     <View style={styles.container}>
@@ -85,7 +82,7 @@ const TabSwitcherCourses = () => {
           ]}
         />
 
-        {tabs.map((tab) => (
+        {tabs?.map((tab) => (
           <TouchableOpacity
             key={tab}
             style={styles.tab}
@@ -103,8 +100,38 @@ const TabSwitcherCourses = () => {
         ))}
       </View>
 
-      {/* Content */}
-      {activeTab === "Courses" ? <Courses courses={courses} /> : <Courses courses={mycourses} />}
+      {/* Animated Content */}
+      <View style={{ flex: 1, overflow: "hidden" }}>
+        <Animated.View
+          style={{
+            flex: 1,                          // take full height
+            transform: [{ translateX: prevAnim }],
+          }}
+          pointerEvents="none"                // disable touches on old tab
+        >
+          <View style={{ flex: 1 }}>
+            {renderTabContent(prevTab)}
+          </View>
+        </Animated.View>
+
+        <Animated.View
+          style={{
+            flex: 1,                          // take full height
+            transform: [{ translateX: newAnim }],
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+          }}
+          pointerEvents="auto"                // allow touches on active tab
+        >
+          <View style={{ flex: 1 }}>
+            {renderTabContent(activeTab)}
+          </View>
+        </Animated.View>
+      </View>
+
     </View>
   );
 };

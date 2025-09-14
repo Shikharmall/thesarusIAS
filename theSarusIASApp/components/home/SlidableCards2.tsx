@@ -1,34 +1,22 @@
 import { themeColor } from "@/utils/constant/Colors";
 import React from "react";
 import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
+    ScrollView,
+    StyleSheet,
+    Text,
+    View,
 } from "react-native";
-import Card from "./Cards2";
+import { CardProps, Props } from "@/utils/types/home";
+import Card2 from "./Card2";
 
-interface CardProps {
-    id: number;
-    title: string;
-    subTitle: string;
-    image: string;
-    enrolled: string;
-    stars: number;
-    color: string;
-}
+export default function SlidableCards2({ title }: Props) {
 
-interface Props {
-    title: string
-}
-
-export default function SlidableCards({ title }: Props) {
     const featured: CardProps[] = [
         {
             id: 1,
             title: 'UPSC Prelims',
             subTitle: "IAS Prelims 2026",
-            image: require('../assets/images/bg1.png'),
+            image: 'https://res.cloudinary.com/drb1ds8e3/image/upload/v1757832866/bg1_mla2uz.png',
             enrolled: '5k',
             stars: 4,
             color: "#29B6F6",
@@ -37,7 +25,7 @@ export default function SlidableCards({ title }: Props) {
             id: 2,
             title: 'UPSC CSAT',
             subTitle: "IAS CSAT 2026",
-            image: require('../assets/images/bg1.png'),
+            image: 'https://res.cloudinary.com/drb1ds8e3/image/upload/v1757832866/bg1_mla2uz.png',
             enrolled: '3k',
             stars: 4,
             color: "#E57373",
@@ -46,7 +34,7 @@ export default function SlidableCards({ title }: Props) {
             id: 3,
             title: 'SSC Tier I & II',
             subTitle: "SSC 2026",
-            image: require('../assets/images/bg1.png'),
+            image: 'https://res.cloudinary.com/drb1ds8e3/image/upload/v1757832866/bg1_mla2uz.png',
             enrolled: '5k',
             stars: 4,
             color: "#EC407A",
@@ -55,7 +43,7 @@ export default function SlidableCards({ title }: Props) {
             id: 4,
             title: 'Railway Exam',
             subTitle: "Railway CBT I & II 2026",
-            image: require('../assets/images/bg1.png'),
+            image: 'https://res.cloudinary.com/drb1ds8e3/image/upload/v1757832866/bg1_mla2uz.png',
             enrolled: '5k',
             stars: 3,
             color: "#26C6DA",
@@ -64,7 +52,7 @@ export default function SlidableCards({ title }: Props) {
             id: 5,
             title: 'Bank PO',
             subTitle: "Prelims 2026",
-            image: require('../assets/images/bg1.png'),
+            image: 'https://res.cloudinary.com/drb1ds8e3/image/upload/v1757832866/bg1_mla2uz.png',
             enrolled: '2k',
             stars: 4,
             color: "#9575CD",
@@ -76,7 +64,7 @@ export default function SlidableCards({ title }: Props) {
             <Text style={styles.subTitle}>{title}</Text>
             <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.scrollRow}>
                 {featured?.map((item, index) => (
-                    <Card key={index} game={item} />
+                    <Card2 key={index} game={item} />
                 ))}
             </ScrollView>
         </View>

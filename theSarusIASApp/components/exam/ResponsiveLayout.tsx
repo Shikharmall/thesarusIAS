@@ -1,7 +1,8 @@
+
+import { Colors } from "@/utils/constant/Colors"
 import type React from "react"
 import { useEffect, useRef, useState } from "react"
 import { Animated, Dimensions, Easing, StyleSheet, View } from "react-native"
-import { Colors } from "../utils/constant/Colors"
 
 interface ResponsiveLayoutProps {
   children: React.ReactNode

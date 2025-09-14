@@ -8,7 +8,7 @@ import ExamHeader from "../../components/exam/ExamHeader";
 import ExamNavigation from "../../components/exam/ExamNavigation";
 import QuestionDisplay from "../../components/exam/QuestionDisplay";
 import QuestionNavigator from "../../components/exam/QuestionNavigation";
-import ResponsiveLayout from "../../components/ResponsiveLayout";
+import ResponsiveLayout from "../../components/exam/ResponsiveLayout";
 import { examData } from "../../data/examData";
 import { Colors } from "../../utils/constant/Colors";
 

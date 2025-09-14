@@ -2,7 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Colors, themeColor } from "../../utils/constant/Colors";
 import type { MCQQuestionProps } from "../../utils/types/exam";
-import TouchableScale from "../TouchableScale";
+import TouchableScale from "./TouchableScale";
 
 export default function MCQQuestion({
   question,

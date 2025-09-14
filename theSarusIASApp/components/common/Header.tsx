@@ -2,7 +2,7 @@ import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { DrawerActions } from "@react-navigation/native";
 import { useNavigation, useRouter } from "expo-router";
 import { Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { Colors, themeColor } from "../utils/constant/Colors";
+import { Colors, themeColor } from "../../utils/constant/Colors";
 
 export default function Header() {
     const router = useRouter();

@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "The Sarus Learning Application",
+    "name": "The Sarus",
     "slug": "theSarusIASApp",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -29,7 +29,7 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/thesaruslogo.jpg",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
