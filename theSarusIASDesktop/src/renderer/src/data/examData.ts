@@ -3174,3 +3174,6 @@ export const examDataSSCCGL: ExamData = {
     startTimestamp: "2025-09-16T20:00:00.0",
     sections: sectionsSSC
 }
+
+
+export const examData: ExamData = examDataUPSCGS1;

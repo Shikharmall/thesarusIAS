@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CheckCircle, AlertCircle, SquareMenuIcon, Info } from "lucide-react";
-import { examDataSSCCGL } from "../../data/examData";
+import { examData } from "../../data/examData";
 
 const InstructionScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -42,11 +42,11 @@ const InstructionScreen: React.FC = () => {
           <ul className="space-y-2 text-sm">
             <li className="flex items-start gap-2">
               <span className="font-semibold text-blue-600">1.</span>
-              <span>Total duration of examination is <strong>{examDataSSCCGL?.duration} minutes</strong>.</span>
+              <span>Total duration of examination is <strong>{examData?.duration} minutes</strong>.</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="font-semibold text-blue-600">2.</span>
-              <span>The examination contains <strong>{examDataSSCCGL?.duration} questions</strong> divided into {examDataSSCCGL?.sections?.length} sections.</span>
+              <span>The examination contains <strong>{examData?.duration} questions</strong> divided into {examData?.sections?.length} sections.</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="font-semibold text-blue-600">3.</span>
@@ -72,7 +72,7 @@ const InstructionScreen: React.FC = () => {
           <h3 className="font-semibold text-lg text-green-600">Section Details</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {
-              examDataSSCCGL?.sections?.map((section, index) => (
+              examData?.sections?.map((section, index) => (
                 <div className="border rounded-lg p-3" key={index}>
                   <h4 className="font-semibold text-blue-600">{section?.name}</h4>
                   <p className="text-sm text-gray-600">Questions {section?.questions[0]?.id}-{section?.questions[section?.questions?.length - 1]?.id} ({section?.questions?.length} questions)</p>

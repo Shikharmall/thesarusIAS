@@ -4,7 +4,7 @@ import { QuestionNavigator } from "../../components/testseries/QuestionNavigatio
 import { MCQQuestion } from "../../components/testseries/MCQQuestion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { examDataSSCCGL } from "../../data/examData";
+import { examData } from "../../data/examData";
 import { themeColor } from "../../utils/constant/Color";
 import { ExamHeader } from "../../components/testseries/ExaminationHeader";
 import { ExamNavigation } from "../../components/testseries/ExaminationNavigation";
@@ -22,14 +22,14 @@ export default function ExaminationScreen() {
 
   const elementRef = useRef<HTMLDivElement>(null);
 
-  const allQuestions = examDataSSCCGL?.sections?.flatMap(
+  const allQuestions = examData?.sections?.flatMap(
     (section) => section?.questions
   );
 
   const totalQuestions = allQuestions?.length || 0;
 
   const currentQuestionData =
-    examDataSSCCGL?.sections[currentSectionIndex]?.questions?.find(
+    examData?.sections[currentSectionIndex]?.questions?.find(
       (q) => q?.id === currentQuestionId
     );
 
@@ -197,7 +197,7 @@ export default function ExaminationScreen() {
   }, []);
 
 
-  console.log(questionStatuses)
+  // console.log(questionStatuses)
 
   return (
     <div
@@ -228,12 +228,12 @@ export default function ExaminationScreen() {
 
       {/* Header */}
       <ExamHeader
-        title={examDataSSCCGL?.title}
+        title={examData?.title}
         currentQuestionId={currentQuestionId}
-        sectionData={examDataSSCCGL?.sections[currentSectionIndex]}
-        sections={examDataSSCCGL?.sections}
-        startTimestamp={examDataSSCCGL?.startTimestamp}
-        duration={examDataSSCCGL?.duration}
+        sectionData={examData?.sections[currentSectionIndex]}
+        sections={examData?.sections}
+        startTimestamp={examData?.startTimestamp}
+        duration={examData?.duration}
         onTimeUp={handleTimeUp}
         onSubmit={handleSubmit}
       />
@@ -261,7 +261,7 @@ export default function ExaminationScreen() {
         {sidebarOpen && (
           <aside className="w-80 bg-sidebar border-r flex-shrink-0 overflow-y-auto">
             <QuestionNavigator
-              sections={examDataSSCCGL?.sections}
+              sections={examData?.sections}
               currentQuestionId={currentQuestionId}
               currentSectionIndex={currentSectionIndex}
               onSectionSelect={handleSectionSelect}
@@ -276,7 +276,7 @@ export default function ExaminationScreen() {
             {currentQuestionData && (
               <MCQQuestion
                 sectionName={
-                  examDataSSCCGL?.sections[currentSectionIndex]?.name
+                  examData?.sections[currentSectionIndex]?.name
                 }
                 questionStatus={questionStatuses[currentQuestionId]}
                 question={currentQuestionData}
@@ -286,7 +286,7 @@ export default function ExaminationScreen() {
 
             <ExamNavigation
               currentQuestionId={currentQuestionId}
-              sections={examDataSSCCGL?.sections}
+              sections={examData?.sections}
               questionStatuses={questionStatuses}
               onQuestionChange={handleQuestionSelect}
               onSectionChange={setCurrentSectionIndex}
