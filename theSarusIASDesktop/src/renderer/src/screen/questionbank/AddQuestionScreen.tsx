@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import type { Option, QuestionTypes } from "../../utils/types/questionbank";
 import { themeColor } from "../../utils/constant/Color";
+// import { js_beautify } from "js-beautify";
 
 interface Question {
     type: string;
@@ -145,7 +146,7 @@ const AddQuestionScreen = () => {
         setQuestions(questions.filter((_, i) => i !== index));
     };
 
-    // console.log(questions);
+    console.log(questions);
 
     return (
         <div className="flex flex-col min-h-screen bg-gray-50 p-5">
@@ -319,12 +320,14 @@ const AddQuestionScreen = () => {
                                 </label>
                                 <JoditEditor
                                     ref={editor}
-                                    value={question.solution}
-                                    config={{ readonly: false, placeholder: "Type solution..." }}
+                                    value={question.question}
+                                    config={{
+                                        readonly: false,
+                                        placeholder: "Type question...",
+                                        //textBeautifier: js_beautify,
+                                    }}
                                     tabIndex={1}
-                                    onBlur={(newContent) =>
-                                        handleChange(index, "solution", newContent)
-                                    }
+                                    onBlur={(newContent) => handleChange(index, "question", newContent)}
                                 />
                             </div>
 

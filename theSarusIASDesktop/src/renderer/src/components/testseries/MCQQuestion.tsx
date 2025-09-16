@@ -41,9 +41,14 @@ export function MCQQuestion({
               </span>
             )}
           </div>
-          <p className="text-card-foreground leading-relaxed text-base">
+          {/* Render HTML question safely */}
+          <div
+            className="text-card-foreground leading-relaxed text-base"
+            dangerouslySetInnerHTML={{ __html: question?.question }}
+          />
+          {/* <p className="text-card-foreground leading-relaxed text-base">
             {question?.question}
-          </p>
+          </p> */}
         </div>
 
         {/* Options */}
@@ -73,7 +78,7 @@ export function MCQQuestion({
                   className={`flex-1 text-[15px] leading-[22px] ${isSelected ? "text-blue-600 font-medium" : "text-gray-800"
                     }`}
                 >
-                  {option}
+                  {option?.label}
                 </span>
               </button>
             );

@@ -22,10 +22,16 @@ export interface ExamTimerProps {
 
 ////////////////////////////////////////
 
+export interface Option {
+    label: string
+    isCorrect: boolean
+}
+
 export interface Question {
     id: number
     question: string
-    options: string[]
+    options: Option[]
+    solution: string
 }
 
 export interface Section {
@@ -33,6 +39,15 @@ export interface Section {
     name: string
     questions: Question[]
 }
+
+export interface ExamData {
+    title: string
+    startTimestamp: string
+    duration: number
+    sections: Section[]
+}
+
+////////////////////////////////////
 
 export interface InstructionPopupProps {
     isOpen: boolean

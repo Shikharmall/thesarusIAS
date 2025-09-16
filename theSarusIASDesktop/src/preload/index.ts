@@ -1,6 +1,11 @@
 import { contextBridge } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
 
+// 🚫 Prevent drag & drop from causing navigation or reloading
+window.addEventListener("dragover", (e) => e.preventDefault())
+window.addEventListener("drop", (e) => e.preventDefault())
+window.addEventListener("dragstart", (e) => e.preventDefault())
+
 // Custom APIs for renderer
 const api = {}
 
