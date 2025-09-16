@@ -180,7 +180,7 @@ const SettingsScreen: React.FC = () => {
                     <div className="space-y-3">
                         {
                             filter === "Profile" && (
-                                <div className={`max-w-3xl mx-auto bg-white rounded-2xl shadow p-6`}>
+                                <div className={`mx-auto bg-white rounded-2xl shadow p-6`}>
                                     {/* Name */}
                                     <div className="sm:col-span-2 mb-4">
                                         <label className="block text-xs text-gray-500">Full Name</label>
@@ -316,15 +316,16 @@ const SettingsScreen: React.FC = () => {
                                         )}
                                     </div>
 
-                                    <div className="mt-6 flex gap-3 border-t border-[#eee] py-6">
+                                    <div className="mt-6 flex gap-3 border-t border-[#e6e6e6] py-6">
                                         {editing ?
                                             null
                                             : (
                                                 <button
                                                     onClick={() => navigate('/')}
-                                                    className="rounded-lg px-4 py-2 text-sm text-semibold text-red-500 cursor-pointer border border-red-500"
+                                                    className="rounded-lg px-4 py-2 text-md text-semibold text-red-500 cursor-pointer"
+                                                    //className="rounded-lg px-4 py-2 text-sm text-semibold text-red-500 cursor-pointer border border-red-500"
                                                 >
-                                                    Logout
+                                                    Log out
                                                 </button>
                                             )}
                                     </div>

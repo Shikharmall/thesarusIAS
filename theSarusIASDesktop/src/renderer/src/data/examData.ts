@@ -12,6 +12,7 @@ interface Section {
 
 interface ExamData {
     title: string
+    startTimestamp: string
     duration: number
     sections: Section[]
 }
@@ -2048,24 +2049,28 @@ const sectionsSSC: Section[] = [
 
 export const examData: ExamData = {
     title: "SSC Combined Graduate Level Examination 2024",
+    startTimestamp: "2025-09-16T08:26:56.0",
     duration: 120, // 120 minutes
     sections: sectionsUPSCGS1
 }
 
 export const examDataUPSCGS1: ExamData = {
     title: "UPSC Prelims Test Series 2026",
-    duration: 120, // 120 minutes
+    duration: 50, // (in minutes)
+    startTimestamp: "2025-09-16T16:50:00.0",
     sections: sectionsUPSCGS1
 }
 
 export const examDataUPSCGS2: ExamData = {
     title: "UPSC CSAT Test Series 2026",
     duration: 120, // 120 minutes
+    startTimestamp: "2025-09-16T15:25:00.0",
     sections: sectionsUPSCGS2
 }
 
 export const examDataSSCCGL: ExamData = {
     title: "SSC CGL Test Series 2026",
     duration: 120, // 120 minutes
+    startTimestamp: "2025-09-16T08:26:56.0",
     sections: sectionsSSC
 }

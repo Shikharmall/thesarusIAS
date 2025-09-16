@@ -16,6 +16,7 @@ export interface Tab {
 
 export interface ExamTimerProps {
     duration: number // duration in minutes
+    startTimestamp: string
     onTimeUp: () => void
 }
 
@@ -76,7 +77,7 @@ export interface ExamHeaderProps {
     currentSection?: number
     sectionData: Section
     sections: Section[]
-    progress?: number
+    startTimestamp: string
     duration: number
     onTimeUp: () => void
     onSubmit: () => void

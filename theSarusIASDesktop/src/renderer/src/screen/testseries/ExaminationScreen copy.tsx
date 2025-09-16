@@ -1,59 +1,54 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { Button } from "../../components/common/Button";
+import { Card } from "../../components/common/Card";
 import { QuestionNavigator } from "../../components/testseries/QuestionNavigation";
 import { MCQQuestion } from "../../components/testseries/MCQQuestion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import { examDataUPSCGS1 } from "../../data/examData"; //
+import { Link } from "react-router-dom";
+import { examDataUPSCGS1 } from "../../data/examData";
 import { themeColor } from "../../utils/constant/Color";
 import { ExamHeader } from "../../components/testseries/ExaminationHeader";
 import { ExamNavigation } from "../../components/testseries/ExaminationNavigation";
 import type { QuestionStatus } from "../../utils/types/testseries";
 
 export default function ExaminationScreen() {
-  const navigate = useNavigate();
   const [currentQuestionId, setCurrentQuestionId] = useState<number>(1);
   const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0);
+  const [examSubmitted, setExamSubmitted] = useState<boolean>(false);
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(true);
-  const [locked, setLocked] = useState<boolean>(false);
+  const [locked, setLocked] = useState<boolean>(false); // ✅ lock screen state
   const [questionStatuses, setQuestionStatuses] = useState<
     Record<number, QuestionStatus>
   >({});
 
-  const elementRef = useRef<HTMLDivElement>(null);
-
   const allQuestions = examDataUPSCGS1?.sections?.flatMap(
     (section) => section?.questions
   );
-
-  const totalQuestions = allQuestions?.length || 0;
-
+  const totalQuestions = allQuestions?.length;
   const currentQuestionData =
     examDataUPSCGS1?.sections[currentSectionIndex]?.questions?.find(
       (q) => q?.id === currentQuestionId
     );
 
-  // Force fullscreen
+  const elementRef = useRef<HTMLDivElement>(null);
+
+  // ✅ Force Fullscreen when exam starts
   const handleFullScreen = () => {
     if (elementRef.current) {
       if (elementRef.current.requestFullscreen) {
         elementRef.current.requestFullscreen();
       } else if ((elementRef.current as any).webkitRequestFullscreen) {
         (elementRef.current as any).webkitRequestFullscreen();
+      } else if ((elementRef.current as any).msRequestFullscreen) {
+        (elementRef.current as any).msRequestFullscreen();
       }
     }
   };
 
-  const handleTimeUp = () => {
-    const answeredCount = Object?.values(questionStatuses)?.filter(
-      (q) => q?.answered
-    )?.length;
-
-    const flaggedCount = Object?.values(questionStatuses)?.filter(
-      (q) => q?.flagged
-    )?.length;
-    navigate(`/examSubmit/${totalQuestions}/${answeredCount}/${flaggedCount}`);
-  };
+  const handleTimeUp = useCallback(() => {
+    setExamSubmitted(true);
+    alert("⏰ Time is up! Your exam has been automatically submitted.");
+  }, []);
 
   const handleQuestionSelect = (questionId: number) => {
     setCurrentQuestionId(questionId);
@@ -99,78 +94,87 @@ export default function ExaminationScreen() {
   };
 
   const handleSubmit = () => {
-    const answeredCount = Object?.values(questionStatuses)?.filter(
+    const answeredCount = Object.values(questionStatuses).filter(
       (q) => q?.answered
-    )?.length;
-
-    const flaggedCount = Object?.values(questionStatuses)?.filter(
-      (q) => q?.flagged
-    )?.length;
+    ).length;
 
     const confirmed = confirm(
       `You have answered ${answeredCount} out of ${totalQuestions}. Are you sure you want to submit?`
     );
 
     if (confirmed) {
+      // ✅ allow close after submit
       window.removeEventListener("beforeunload", beforeUnloadHandler);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       window.removeEventListener("blur", handleBlur);
       window.removeEventListener("keydown", disableKeys, true);
 
-      navigate(`/examSubmit/${totalQuestions}/${answeredCount}/${flaggedCount}`);
+      setExamSubmitted(true);
       if (document.exitFullscreen) document.exitFullscreen();
     }
   };
 
-  // Prevent tab close/refresh
+  // 🚫 Prevent closing tab/window
+  // const beforeUnloadHandler = (event: BeforeUnloadEvent) => {
+  //   if (!examSubmitted) {
+  //     event.preventDefault();
+  //     event.returnValue = "";
+  //     return "";
+  //   }
+  // };
   const beforeUnloadHandler = (event: BeforeUnloadEvent): string | void => {
-    event.preventDefault();
-    event.returnValue = "";
-    return "";
+    if (!examSubmitted) {
+      event.preventDefault();
+      event.returnValue = ""; // This is required for most browsers
+      return "";              // Some browsers still check return value
+    }
+    // If examSubmitted is true, nothing is returned (void)
   };
 
-  // Lock on tab switch/minimize
+  // 🚫 Auto lock screen on tab switch/minimize
   const handleVisibilityChange = () => {
-    if (document.hidden) {
+    if (!examSubmitted && document.hidden) {
       setLocked(true);
     }
   };
 
   const handleBlur = () => {
-    setLocked(true);
+    if (!examSubmitted) {
+      setLocked(true);
+    }
   };
 
-  // Disable shortcuts
+  // 🚫 Disable keyboard shortcuts
   const disableKeys = (e: KeyboardEvent) => {
-    const key = e.key.toLowerCase();
     if (
-      e.key === "F12" ||
-      (e.ctrlKey && ["r", "n", "t", "w"].includes(key))
+      e.key === "F12" || // DevTools
+      (e.ctrlKey && ["r", "R", "n", "t", "w"].includes(e.key)) // refresh, new tab, close
     ) {
       e.preventDefault();
       e.stopPropagation();
-      alert("🚫 Shortcuts are disabled during the exam.");
+      alert("Keyboard shortcuts are disabled during the exam.");
     }
   };
 
   useEffect(() => {
     handleFullScreen();
 
+    // ✅ Security bindings
     window.addEventListener("beforeunload", beforeUnloadHandler);
     document.addEventListener("visibilitychange", handleVisibilityChange);
     window.addEventListener("blur", handleBlur);
     window.addEventListener("keydown", disableKeys, true);
 
+    // 🚫 Block right click & copy/paste
     const disableContextMenu = (e: MouseEvent) => e.preventDefault();
-    const disableClipboard = (e: ClipboardEvent) => e.preventDefault();
-
+    const disableCopyPaste = (e: ClipboardEvent) => e.preventDefault();
     document.addEventListener("contextmenu", disableContextMenu);
-    document.addEventListener("copy", disableClipboard);
-    document.addEventListener("paste", disableClipboard);
-    document.addEventListener("cut", disableClipboard);
+    document.addEventListener("copy", disableCopyPaste);
+    document.addEventListener("paste", disableCopyPaste);
 
+    // ✅ Detect fullscreen exit
     const handleFullscreenChange = () => {
-      if (!document.fullscreenElement) {
+      if (!document.fullscreenElement && !examSubmitted) {
         setLocked(true);
       }
     };
@@ -182,27 +186,64 @@ export default function ExaminationScreen() {
       window.removeEventListener("blur", handleBlur);
       window.removeEventListener("keydown", disableKeys, true);
       document.removeEventListener("contextmenu", disableContextMenu);
-      document.removeEventListener("copy", disableClipboard);
-      document.removeEventListener("paste", disableClipboard);
-      document.removeEventListener("cut", disableClipboard);
+      document.removeEventListener("copy", disableCopyPaste);
+      document.removeEventListener("paste", disableCopyPaste);
       document.removeEventListener("fullscreenchange", handleFullscreenChange);
     };
-  }, []);
+  }, [examSubmitted]);
 
+  // ✅ After Submit Screen
+  if (examSubmitted) {
+    const answeredCount = Object.values(questionStatuses).filter(
+      (q) => q?.answered
+    ).length;
+    const flaggedCount = Object.values(questionStatuses).filter(
+      (q) => q?.flagged
+    ).length;
+
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <Card className="p-8 max-w-lg text-center">
+          <h2 className="text-2xl font-bold text-foreground font-serif mb-4">
+            ✅ Exam Submitted Successfully
+          </h2>
+          <div className="space-y-2 text-muted-foreground mb-6">
+            <p>Thank you for completing the SSC examination.</p>
+            <p>
+              Questions Answered: {answeredCount || 0} out of{" "}
+              {totalQuestions || 100}
+            </p>
+            <p>Questions Flagged: {flaggedCount || 0}</p>
+          </div>
+          <div className="flex justify-center">
+            <Link
+              to={"/testSeries"}
+              className="mt-4 text-white font-bold py-4 px-10 rounded"
+              style={{ backgroundColor: themeColor?.primary }}
+            >
+              Exit
+            </Link>
+          </div>
+        </Card>
+      </div>
+    );
+  }
+
+  // ✅ Main Exam UI
   return (
     <div
       className="h-screen flex flex-col relative"
       ref={elementRef}
       style={{ backgroundColor: themeColor?.lightSecondary }}
     >
-      {/* Lock overlay */}
+      {/* 🔒 Lock Screen Overlay */}
       {locked && (
         <div className="absolute inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center">
           <div className="bg-white p-6 rounded shadow-lg text-center">
             <h2 className="text-xl font-bold mb-4">🔒 Screen Locked</h2>
             <p className="mb-4">
-              You switched windows or exited fullscreen.
-              Click below to re-enter fullscreen and resume.
+              You switched windows or exited fullscreen. Click below to
+              re-enter fullscreen and resume.
             </p>
             <Button
               onClick={() => {
@@ -217,28 +258,28 @@ export default function ExaminationScreen() {
       )}
 
       {/* Header */}
-      <ExamHeader
-        title={examDataUPSCGS1?.title}
-        currentQuestionId={currentQuestionId}
-        sectionData={examDataUPSCGS1?.sections[currentSectionIndex]}
-        sections={examDataUPSCGS1?.sections}
-        startTimestamp={examDataUPSCGS1?.startTimestamp}
-        duration={examDataUPSCGS1?.duration}
-        onTimeUp={handleTimeUp}
-        onSubmit={handleSubmit}
-      />
+      <div className="flex-shrink-0">
+        <ExamHeader
+          title={examDataUPSCGS1?.title}
+          currentQuestionId={currentQuestionId}
+          sectionData={examDataUPSCGS1?.sections[currentSectionIndex]}
+          sections={examDataUPSCGS1?.sections}
+          duration={examDataUPSCGS1?.duration}
+          onTimeUp={handleTimeUp}
+          onSubmit={handleSubmit}
+        />
+      </div>
 
-      {/* Main body */}
+      {/* Main */}
       <div className="flex flex-1 overflow-hidden">
-        {/* Sidebar toggle */}
         <Button
           variant="ghost"
           size="icon"
           onClick={() => setSidebarOpen(!sidebarOpen)}
           className={
             sidebarOpen
-              ? "absolute bottom-10 left-75 z-10 bg-white border shadow-sm"
-              : "absolute bottom-10 left-5 z-10 bg-white border shadow-sm"
+              ? "absolute bottom-10 left-75 z-10 bg-background border shadow-sm cursor-pointer bg-white"
+              : "absolute bottom-10 left-5 z-10 bg-background border shadow-sm cursor-pointer"
           }
         >
           {sidebarOpen ? (
@@ -249,7 +290,7 @@ export default function ExaminationScreen() {
         </Button>
 
         {sidebarOpen && (
-          <aside className="w-80 bg-sidebar border-r flex-shrink-0 overflow-y-auto">
+          <aside className="w-80 bg-sidebar border-r border-gray-300 flex-shrink-0 overflow-y-auto">
             <QuestionNavigator
               sections={examDataUPSCGS1?.sections}
               currentQuestionId={currentQuestionId}
@@ -263,26 +304,31 @@ export default function ExaminationScreen() {
 
         <main className="flex-1 overflow-y-auto bg-white">
           <div className="p-6">
-            {currentQuestionData && (
-              <MCQQuestion
-                sectionName={
-                  examDataUPSCGS1?.sections[currentSectionIndex]?.name
-                }
-                questionStatus={questionStatuses[currentQuestionId]}
-                question={currentQuestionData}
-                onAnswerSelect={handleAnswerSelect}
-              />
-            )}
+            <div
+              className="mx-auto space-y-6"
+              style={{ marginLeft: sidebarOpen ? "0px" : "50px" }}
+            >
+              {currentQuestionData && (
+                <MCQQuestion
+                  sectionName={
+                    examDataUPSCGS1?.sections[currentSectionIndex]?.name
+                  }
+                  questionStatus={questionStatuses[currentQuestionId]}
+                  question={currentQuestionData}
+                  onAnswerSelect={handleAnswerSelect}
+                />
+              )}
 
-            <ExamNavigation
-              currentQuestionId={currentQuestionId}
-              sections={examDataUPSCGS1?.sections}
-              questionStatuses={questionStatuses}
-              onQuestionChange={setCurrentQuestionId}
-              onSectionChange={setCurrentSectionIndex}
-              onFlagSelect={handleFlagQuestion}
-              onClearSelect={handleClearResponse}
-            />
+              <ExamNavigation
+                currentQuestionId={currentQuestionId}
+                sections={examDataUPSCGS1?.sections}
+                questionStatuses={questionStatuses}
+                onQuestionChange={setCurrentQuestionId}
+                onSectionChange={setCurrentSectionIndex}
+                onFlagSelect={handleFlagQuestion}
+                onClearSelect={handleClearResponse}
+              />
+            </div>
           </div>
         </main>
       </div>

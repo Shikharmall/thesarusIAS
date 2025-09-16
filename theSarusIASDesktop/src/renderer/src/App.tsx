@@ -26,6 +26,7 @@ import ExamSectionPaperScreen from "./screen/exampaper/ExamSectionPaperScreen";
 import CreateExamPaperScreen from "./screen/exampaper/CreateExamPaperScreen";
 import InstructionScreen from "./screen/testseries/InstructionScreen";
 import ConductScreen from "./screen/conduct/ConductScreen";
+import ExamSubmitScreen from "./screen/testseries/ExamSubmitScreen";
 // import TicketScreen from "./screen/ticket/TicketScreen";
 
 function App() {
@@ -72,6 +73,7 @@ function App() {
       <Route path="/testSeries" element={<TestSeriesScreen />} />
       <Route path="/instructionPage/:id" element={<InstructionScreen />} />
       <Route path="/exam/:id" element={<ExaminationScreen />} />
+      <Route path="/examSubmit/:total/:answered/:marked" element={<ExamSubmitScreen />} />
 
       {/* Conduct Exam Routes */}
       <Route path="/conduct" element={<ConductScreen />} />

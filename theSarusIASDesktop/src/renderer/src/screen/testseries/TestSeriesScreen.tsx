@@ -127,7 +127,7 @@ const Card: React.FC<CardProps> = ({ id, image, examName }) => {
                 <div className="flex gap-2">
                     <button
                         onClick={() => navigate(`/instructionPage/${id}`)}
-                        className="px-4 py-2 text-sm text-white cursor-pointer rounded-lg"
+                        className="px-4 py-2 text-sm text-white text-bold cursor-pointer rounded-lg"
                         style={{
                             backgroundColor: themeColor?.primary
                         }}

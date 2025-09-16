@@ -12,6 +12,7 @@ export function ExamHeader({
     currentQuestionId,
     sectionData,
     sections,
+    startTimestamp,
     duration,
     onTimeUp,
     onSubmit,
@@ -22,7 +23,7 @@ export function ExamHeader({
     if (!sectionData) return null
 
     const { questions, name } = sectionData
-    const questionIndex = questions.findIndex((q) => q?.id === currentQuestionId)
+    const questionIndex = questions?.findIndex((q) => q?.id === currentQuestionId)
 
     return (
         <>
@@ -36,7 +37,7 @@ export function ExamHeader({
                         <div className="flex items-center gap-6 mt-2">
                             <p className="text-sm text-muted-foreground">
                                 <span className="font-medium text-gray-700">Question</span>{" "}
-                                {questionIndex + 1} of {questions.length}
+                                {questionIndex + 1} of {questions?.length}
                             </p>
                             <p className="text-sm text-blue-600 font-semibold">{name}</p>
                         </div>
@@ -44,7 +45,7 @@ export function ExamHeader({
 
                     {/* Timer + Profile */}
                     <div className="flex items-center gap-8">
-                        <ExamTimer duration={duration} onTimeUp={onTimeUp} />
+                        <ExamTimer duration={duration} startTimestamp={startTimestamp} onTimeUp={onTimeUp} />
                         <div className="flex flex-col items-center text-center">
                             <img
                                 className="w-20 h-20 rounded-full border-2 border-[#0ab7f3] object-cover shadow-sm"

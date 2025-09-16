@@ -1,4 +1,4 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import { app, shell, BrowserWindow, ipcMain, globalShortcut } from 'electron'
 import path, { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 // import icon from '../../resources/logo.ico?asset'
@@ -8,7 +8,7 @@ function createWindow(): void {
   const mainWindow = new BrowserWindow({
     width: 1200,
     height: 800,
-    autoHideMenuBar: true,
+    // autoHideMenuBar: true,
     icon: path.join(__dirname, "../../resources/logo.ico"),
     // ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
@@ -49,6 +49,13 @@ app.whenReady().then(() => {
     optimizer.watchWindowShortcuts(window)
   })
 
+  // Disable dangerous shortcuts
+  globalShortcut.register("CommandOrControl+R", () => { });
+  globalShortcut.register("CommandOrControl+Shift+R", () => { });
+  globalShortcut.register("F5", () => { });
+  globalShortcut.register("F12", () => { });
+  globalShortcut.register("CommandOrControl+W", () => { });
+  globalShortcut.register("Alt+F4", () => { }); // optional
   // IPC test
   ipcMain.on('ping', () => console.log('pong'))
 
