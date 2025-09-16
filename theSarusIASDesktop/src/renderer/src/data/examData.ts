@@ -1595,945 +1595,1582 @@ export const examDataUPSCGS1: ExamData = {
     sections: sectionsUPSCGS1
 }
 
-/* UPSC GS 2 && SSC */
+/* UPSC GS 2 */
 
-// const questionsUPSCGS2: Question[] = [
-//     {
-//         id: 1,
-//         question: "Read the following passage and answer the items that follow the passage. Your answers to these items should be based on the passages only. \n\nEach State in India faces a distinctive set of challenges regarding the impact of warming, but also offers its own set of opportunities for reducing emissions depending on its natural resources. For example, coastal States need to take action to protect their shores from sea level rise, districts that are drier need to prepare for variable monsoon precipitation. Himalayan regions have their own unique challenges, and selected parts of peninsular India and offshore areas offer great opportunities for harnessing wind power. These various aspects need to be considered for developing clear and sustainable goals for the future.\n\nWhich one of the following statements best reflects the most logical, rational and pragmatic message conveyed by the author of the passage?",
-//         options: ["The mitigation and adaptation strategies to address/tackle the climate change is essentially the responsibility of each State.", "India is too diverse to implement any effective strategy or programme to address/tackle the climate change.", "It is basically the responsibility of the Union Government to implement the climate action plans and ensure net zero emissions.", "India needs to formulate effective climate change mitigation and adaptation strategies at the State/region level."],
-//     },
-//     {
-//         id: 2,
-//         question: "Read the following passage and answer the items that follow the passage. Your answers to these items should be based on the passage only. \n\nEach State in India faces a distinctive set of challenges regarding the impact of warming, but also offers its own set of opportunities for reducing emissions depending on its natural resources. For example, coastal States need to take action to protect their shores from sea level rise, districts that are drier need to prepare for variable monsoon precipitation. Himalayan regions have their own unique challenges, and selected parts of peninsular India and offshore areas offer great opportunities for harnessing wind power. These various aspects need to be considered for developing clear and sustainable goals for the future.\n\nWith reference to the passage, the following assumptions have been made: \n I. Green energy production can be linked to/integrated with the climate change mitigation and adaptation strategies. \n II. Effects of climate change are much more severe in coastal and mountainous regions. \n Which of the above assumptions is/are valid ?",
-//         options: ["I only", "II only", "Both I and II", "Neither I nor II"],
-//     },
-//     {
-//         id: 3,
-//         question: "Read the following two passages and answer the items that follow the passages. Your answers to these items should be based on the passages only. \n\nIf the social inequality is the most acutely felt social problem in India, insecurity, more than poverty, is the most acutely felt economic problem. Besides those below the official poverty line, even those just over the poverty line are subject to multiple economic insecurities of various kinds (due to wealth and/or health risks, market fluctuations, job-related uncertainties). Many Government policies are actually intended towards mitigating these insecurities.\n\nWhich one of the following statements best reflects the critical message conveyed by the passage?",
-//         options: ["India's political executive should be aware that poverty and social inequality and the consequent sense of insecurity is the main social problem.", "In India, poverty is the primary reason for social inequality and insecurity.", "Poverty and social inequality are so intricately linked that they pose an unmanageable crisis for India.", "Insecurity, more than poverty, is the main economic issue that Government policies must address."],
-//     },
-//     {
-//         id: 4,
-//         question: "Read the following two passages and answer the items that follow the passages. Your answers to these items should be based on the passages only. \n\nIf the social inequality is the most acutely felt social problem in India, insecurity, more than poverty, is the most acutely felt economic problem. Besides those below the official poverty line, even those just over the poverty line are subject to multiple economic insecurities of various kinds (due to wealth and/or health risks, market fluctuations, job-related uncertainties). Many Government policies are actually intended towards mitigating these insecurities.\n\nWith reference to the passage, the following assumptions have been made: \n I. People above the poverty line also are prone to suffer from anxiety about economic insecurity. \n II. Eradication of poverty can result in peace and social equality in the country. \n Which of the above assumptions is/are valid ?",
-//         options: ["I only", "II only", "Both I and II", "Neither I nor II"],
-//     },
-//     {
-//         id: 5,
-//         question: "A solid cube is painted yellow on all its faces. The cube is then cut into 60 smaller but equal pieces by making the minimum number of cuts. Which of the following statements is/are correct?\n\nI. The minimum number of cuts is 9.\nII. The number of smaller pieces which are not painted on any face is 6.",
-//         options: ["I only", "II only", "Both I and II", "Neither I nor II"],
-//     },
-//     {
-//         id: 6,
-//         question: "If 7 x 24 = 25 and 12 x 16 = 20, then what is 16 x 63 equal to?",
-//         options: ["70", "66", "65", "64"],
-//     },
-//     {
-//         id: 7,
-//         question: "The petrol price shot up by 10% as a result of the hike in crude oil prices. The price of petrol before the hike was 90 per litre. A person travels 2200 km every month and his car gives a mileage of 16 km per litre. By how many km should he reduce his travel if he wants to maintain his expenditure at the previous level?",
-//         options: ["180 km", "200 km", "220 km", "240 km"],
-//     },
-//     {
-//         id: 8,
-//         question: "A 4-digit number N is such that when divided by 3, 5, 6, 9 leaves a remainder 1, 3, 4, 7 respectively. What is the smallest value of N?",
-//         options: ["1068", "1072", "1078", "1082"],
-//     },
-//     {
-//         id: 9,
-//         question: "Consider the following statements:\n\nI. If A ≤ B > C < D > E > F ≥ G = H; then B is always greater than E.\nII. If P > Q = R ≥ S = T ≤ U = V > W; then S is always less than V.\n\nWhich of the statements given above is/are correct?",
-//         options: ["I only", "II only", "Both I and II", "Neither I nor II"],
-//     },
-//     {
-//         id: 10,
-//         question: "What is the unit digit in the multiplication of 1 × 3 × 5 × 7 × 9 × … × 999?",
-//         options: ["1", "3", "5", "9"],
-//     },
-//     {
-//         id: 11,
-//         question: `In our country, regrettably, teaching and learning for the examination have been our forte but the new demands of society and the future of work require critical and independent thinking, learning through doing, asking questions from multiple disciplinary perspectives on the same issue, using evidence for building arguments, and reflecting and articulation. Higher education should not “either be a mere servant of the government policy or a passive respondent to public mood.” Higher learning is all about how to think rather than what to think. Teaching has to be re-invented.
+const questionsUPSCGS2: Question[] = [
+    {
+        id: 1,
+        question: `<p>Consider the following types of vehicles:</p>
+<ol style="list-style-type: upper-roman;">
+  <li>Full battery electric vehicles</li>
+  <li>Hydrogen fuel cell vehicles</li>
+  <li>Fuel cell electric hybrid vehicles</li>
+</ol>
+<p>How many of the above are considered as alternative powertrain vehicles?</p>`,
+        options: [
+            { label: "Only one", isCorrect: false },
+            { label: "Only two", isCorrect: false },
+            { label: "All the three", isCorrect: false },
+            { label: "None", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 2,
+        question: `<p>With reference to Unmanned Aerial Vehicles (UAVs), consider the following statements:</p>
+<ol style="list-style-type: upper-roman;">
+  <li>All types of UAVs can do vertical landing.</li>
+  <li>All types of UAVs can do automated hovering.</li>
+  <li>All types of UAVs can use battery only as a source of power supply.</li>
+</ol>
+<p>How many of the statements given above are correct?</p>`,
+        options: [
+            { label: "Only one", isCorrect: false },
+            { label: "Only two", isCorrect: false },
+            { label: "All the three", isCorrect: false },
+            { label: "None", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 3,
+        question: `<p>In the context of electric vehicle batteries, consider the following elements:</p>
+<ol style="list-style-type: upper-roman;">
+  <li>Cobalt</li>
+  <li>Graphite</li>
+  <li>Lithium</li>
+  <li>Nickel</li>
+</ol>
+<p>How many of the above usually make up battery cathodes?</p>`,
+        options: [
+            { label: "Only one", isCorrect: false },
+            { label: "Only two", isCorrect: false },
+            { label: "Only three", isCorrect: false },
+            { label: "All the four", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 4,
+        question: `<p>Consider the following:</p>
+<ol style="list-style-type: upper-roman;">
+  <li>Cigarette butts</li>
+  <li>Eyeglass lenses</li>
+  <li>Car tyres</li>
+</ol>
+<p>How many of them contain plastic?</p>`,
+        options: [
+            { label: "Only one", isCorrect: false },
+            { label: "Only two", isCorrect: false },
+            { label: "All the three", isCorrect: false },
+            { label: "None", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 5,
+        question: `<p>Consider the following substances:</p>
+<ol style="list-style-type: upper-roman;">
+  <li>Ethanol</li>
+  <li>Nitroglycerine</li>
+  <li>Urea</li>
+</ol>
+<p>Coal gasification technology can be used in the production of how many of them?</p>`,
+        options: [
+            { label: "Only one", isCorrect: false },
+            { label: "Only two", isCorrect: false },
+            { label: "All the three", isCorrect: false },
+            { label: "None", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 6,
+        question: `<p>What is the common characteristic of the chemical substances generally known as CL-20, HMX and LLM-105, which are sometimes talked about in media?</p>`,
+        options: [
+            { label: "These are alternatives to hydro-fluorocarbon refrigerants", isCorrect: false },
+            { label: "These are explosives in military weapons", isCorrect: false },
+            { label: "These are high-energy fuels for cruise missiles", isCorrect: false },
+            { label: "These are fuels for rocket propulsion", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 7,
+        question: `<p>Consider the following statements:</p>
+<ol style="list-style-type: upper-roman;">
+  <li>It is expected that Majorana 1 chip will enable quantum computing.</li>
+  <li>Majorana 1 chip has been introduced by Amazon Web Services (AWS).</li>
+  <li>Deep learning is a subset of machine learning.</li>
+</ol>
+<p>Which of the statements given above are correct?</p>`,
+        options: [
+            { label: "I and II only", isCorrect: false },
+            { label: "II and III only", isCorrect: false },
+            { label: "I and III only", isCorrect: false },
+            { label: "I, II and III", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 8,
+        question: `<p>With reference to monoclonal antibodies, often mentioned in news, consider the following statements:</p>
+<ol style="list-style-type: upper-roman;">
+  <li>They are man-made proteins.</li>
+  <li>They stimulate immunological function due to their ability to bind to specific antigens.</li>
+  <li>They are used in treating viral infections like that of Nipah virus.</li>
+</ol>
+<p>Which of the statements given above are correct?</p>`,
+        options: [
+            { label: "I and II only", isCorrect: false },
+            { label: "II and III only", isCorrect: false },
+            { label: "I and III only", isCorrect: false },
+            { label: "I, II and III", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 9,
+        question: `<p>Consider the following statements:</p>
+<ol style="list-style-type: upper-roman;">
+  <li>No virus can survive in ocean waters.</li>
+  <li>No virus can infect bacteria.</li>
+  <li>No virus can change the cellular transcriptional activity in host cells.</li>
+</ol>
+<p>How many of the statements given above are correct?</p>`,
+        options: [
+            { label: "Only one", isCorrect: false },
+            { label: "Only two", isCorrect: false },
+            { label: "All the three", isCorrect: false },
+            { label: "None", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 10,
+        question: `<p>Consider the following statements:</p>
+<p><strong>Statement I:</strong></p>
+<p>Activated carbon is a good and an attractive tool to remove pollutants from effluent streams and to remediate contaminants from various industries.</p>
+<p><strong>Statement II:</strong></p>
+<p>Activated carbon exhibits a large surface area and a strong potential for adsorbing heavy metals.</p>
+<p><strong>Statement III:</strong></p>
+<p>Activated carbon can be easily synthesized from environmental wastes with high carbon content.</p>
+<p>Which one of the following is correct in respect of the above statements?</p>`,
+        options: [
+            { label: "Both Statement II and Statement III are correct and both of them explain Statement I", isCorrect: false },
+            { label: "Both Statement II and Statement III are correct but only one of them explains Statement I", isCorrect: false },
+            { label: "Only one of the Statements II and III is correct and that explains Statement I", isCorrect: false },
+            { label: "Neither Statement II nor Statement III is correct", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 11,
+        question: `<p>In our country, regrettably, teaching and learning for the examination have been our forte but the new demands of society and the future of work require critical and independent thinking, learning through doing, asking questions from multiple disciplinary perspectives on the same issue, using evidence for building arguments, and reflecting and articulation. Higher education should not “either be a mere servant of the government policy or a passive respondent to public mood.” Higher learning is all about how to think rather than what to think. Teaching has to be re-invented.</p>
+<p>Which one of the following statements best reflects the central idea conveyed by the passage?</p>`,
+        options: [
+            { label: "India does not have enough resources for promoting quality education in its universities.", isCorrect: false },
+            { label: "The institutions of higher learning in the country should not be under the control of the Government.", isCorrect: false },
+            { label: "Classroom approach to higher education should be done away with.", isCorrect: false },
+            { label: "Classroom needs to be reimagined and teaching needs to be re-invented.", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 12,
+        question: `<p>With reference to the above passage, the following assumptions have been made:</p>
+<ol style="list-style-type: upper-roman;">
+  <li>Higher education is a constantly evolving subject that needs to align towards new developments in all spheres of society.</li>
+  <li>In our country, sufficient funds are not allocated for promoting higher education.</li>
+</ol>
+<p>Which of the above assumptions is/are valid?</p>`,
+        options: [
+            { label: "I only", isCorrect: false },
+            { label: "II only", isCorrect: false },
+            { label: "Both I and II", isCorrect: false },
+            { label: "Neither I nor II", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 13,
+        question: `<p>If there is inequality in the pattern of population growth, there is greater inequality in food production and utilization. As societies become wealthier, their consumption of animal products increases. This means that a greater proportion of such basic foodstuff as grains and legumes that could feed humans directly is instead being converted into feed for poultry and large farm animals. Yet this conversion of plant-based food into animal food for humans is far from efficient. Only 16% of the calories fed to chickens are recovered by us when we eat them. This conversion rate goes down to five to seven per cent in large animals that are fed grain to add fat and some protein before slaughter.</p>
+<p>Which one of the following statements best reflects the crux of the passage?</p>`,
+        options: [
+            { label: "There is an urgent need for a public policy to promote the consumption of cereal-based foods in wealthier societies.", isCorrect: false },
+            { label: "Animal-based food is far less efficient than grain/plant-based food in terms of production and utilization.", isCorrect: false },
+            { label: "Plant-based protein should replace the animal-based protein in our daily diets.", isCorrect: false },
+            { label: "Inequality in food production and consumption is inevitable in any fast changing society.", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 14,
+        question: `<p>With reference to the above passage, the following assumptions have been made:</p>
+<ol style="list-style-type: upper-roman;">
+  <li>The food manufacturing and processing industries in every country should align their objectives and processes in accordance with the changing needs of the societies.</li>
+  <li>Wealthier societies tend to incur great loss of calories of food materials due to indirect utilization of their agricultural produce.</li>
+</ol>
+<p>Which of the above assumptions is/are valid?</p>`,
+        options: [
+            { label: "I only", isCorrect: false },
+            { label: "II only", isCorrect: false },
+            { label: "Both I and II", isCorrect: false },
+            { label: "Neither I nor II", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 15,
+        question: `<p>What is the maximum value of n such that 7 × 343 × 385 × 1000 × 2401 × 77777 is divisible by 35ⁿ?</p>`,
+        options: [
+            { label: "3", isCorrect: false },
+            { label: "4", isCorrect: false },
+            { label: "5", isCorrect: false },
+            { label: "7", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 16,
+        question: `<p>What is X in the sequence 24, X, 12, 18, 36, 90?</p>`,
+        options: [
+            { label: "18", isCorrect: false },
+            { label: "12", isCorrect: false },
+            { label: "9", isCorrect: false },
+            { label: "6", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 17,
+        question: `<p>P and Q walk along a circular track. They start at 5:00 a.m. from the same point in opposite directions. P walks at an average speed of 5 rounds per hour and Q walks at an average speed of 3 rounds per hour. How many times will they cross each other between 5:20 a.m. and 7:00 a.m.?</p>`,
+        options: [
+            { label: "12", isCorrect: false },
+            { label: "13", isCorrect: false },
+            { label: "14", isCorrect: false },
+            { label: "15", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 18,
+        question: `<p>If P = +, Q = -, R = ×, S = ÷, then insert the proper notations between the successive numbers in the equation:</p>
+<p>60 _ 15 _ 3 _ 20 _ 4 = 20</p>`,
+        options: [
+            { label: "SPRQ", isCorrect: false },
+            { label: "QRPS", isCorrect: false },
+            { label: "QRSP", isCorrect: false },
+            { label: "SPQR", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 19,
+        question: `<p>A tram overtakes 2 persons X and Y walking at an average speed of 3 km/hr and 4 km/hr in the same direction and completely passes them in 8 seconds and 9 seconds respectively. What is the length of the tram?</p>`,
+        options: [
+            { label: "15 m", isCorrect: false },
+            { label: "18 m", isCorrect: false },
+            { label: "20 m", isCorrect: false },
+            { label: "24 m", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 20,
+        question: `<p>If N² = 12345678987654321, then how many digits does the number N have?</p>`,
+        options: [
+            { label: "8", isCorrect: false },
+            { label: "9", isCorrect: false },
+            { label: "10", isCorrect: false },
+            { label: "11", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 21,
+        question: `<p>Maintaining an ecosystem just to conserve biodiversity will affect its commercial potential as well as the livelihoods dependent on the ecosystem. There is also a conflict between using an ecosystem only for livelihoods, for commercial exploitation, or strictly for conservation. Deforestation caused due to commercial exploitation will lead to indirect harm like floods, siltation problems and microclimatic instability, apart from adversely affecting livelihoods dependent on forests. These conflicts are particularly acute in developing countries where the dependence of people on the ecosystem is significant, and commercial exploitation has the potential to boost national income.</p>
+<p><strong>Which one of the following statements best reflects the critical message conveyed by the author of the passage?</strong></p>`,
+        options: [
+            { label: "Conservation of biodiversity is not an issue to be worried about when some people depend on ecosystems for their livelihoods.", isCorrect: false },
+            { label: "Commercial exploitation of forests goes against the fundamental rights of the people dependent on forests for food and shelter.", isCorrect: false },
+            { label: "Sustenance of livelihood and degradation of ecosystem while being together exacerbate one another, leading to conflicts and imbalance.", isCorrect: false },
+            { label: "Commercial exploitation of ecosystems should be completely stopped.", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 22,
+        question: `<p>Maintaining an ecosystem just to conserve biodiversity will affect its commercial potential as well as the livelihoods dependent on the ecosystem. There is also a conflict between using an ecosystem only for livelihoods, for commercial exploitation, or strictly for conservation. Deforestation caused due to commercial exploitation will lead to indirect harm like floods, siltation problems and microclimatic instability, apart from adversely affecting livelihoods dependent on forests. These conflicts are particularly acute in developing countries where the dependence of people on the ecosystem is significant, and commercial exploitation has the potential to boost national income.</p>
+<p><strong>With reference to above passage, the following assumptions have been made:</strong></p>
+<ol style="list-style-type: upper-roman;">
+  <li>No country needs to depend on ecosystems to boost national income.</li>
+  <li>Resource-rich countries need to share their resources with those of scant resources so as to prevent the degradation of ecosystems.</li>
+</ol>
+<p>Which of the above assumptions is/are valid?</p>`,
+        options: [
+            { label: "I only", isCorrect: false },
+            { label: "II only", isCorrect: false },
+            { label: "Both I and II", isCorrect: false },
+            { label: "Neither I nor II", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 23,
+        question: `<p>The history of renewable energy suggests there is a steep learning curve, meaning that, as more is produced, costs fall rapidly because of economies of scale and learning by doing. The firms’ green innovation is path-dependent; the more a firm does, the more it is likely to do in the future. The strongest evidence for this is the collapse in the price of solar energy, which became about 90% cheaper during the 2010s, repeatedly beating forecasts. Moving early and gradually gives economies more time to adjust, allowing them to reap the benefits of path-dependent green investment without much disruption. A late, more chaotic transition is costlier.</p>
+<p><strong>Which one of the following statements best reflects the central idea of the passage?</strong></p>`,
+        options: [
+            { label: "Economies of scale is essential for transition to green growth.", isCorrect: false },
+            { label: "Modern technological progress is intensely linked to path-dependent innovations.", isCorrect: false },
+            { label: "Countries with large economies are in a better position to adopt green technologies.", isCorrect: false },
+            { label: "Timing plays a crucial role in the case of green technology development.", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 24,
+        question: `<p>The history of renewable energy suggests there is a steep learning curve, meaning that, as more is produced, costs fall rapidly because of economies of scale and learning by doing. The firms’ green innovation is path-dependent; the more a firm does, the more it is likely to do in the future. The strongest evidence for this is the collapse in the price of solar energy, which became about 90% cheaper during the 2010s, repeatedly beating forecasts. Moving early and gradually gives economies more time to adjust, allowing them to reap the benefits of path-dependent green investment without much disruption. A late, more chaotic transition is costlier.</p>
+<p><strong>With reference to the above passage, the following assumptions have been made:</strong></p>
+<ol style="list-style-type: upper-roman;">
+  <li>Path-dependent green investments will eventually most likely benefit growth as well as public finances in a country like India.</li>
+  <li>If other green technologies follow the same pattern as that of solar energy, there will most likely be an easy green transition.</li>
+</ol>
+<p>Which of the above assumptions is/are valid?</p>`,
+        options: [
+            { label: "I only", isCorrect: false },
+            { label: "II only", isCorrect: false },
+            { label: "Both I and II", isCorrect: false },
+            { label: "Neither I nor II", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 25,
+        question: `<p>A natural number N is such that it can be expressed as N = p + q + r, where p, q and r are distinct factors of N. How many numbers below 50 have this property?</p>`,
+        options: [
+            { label: "6", isCorrect: false },
+            { label: "7", isCorrect: false },
+            { label: "8", isCorrect: false },
+            { label: "9", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 26,
+        question: `<p>Three prime numbers p, q and r, each less than 20, are such that p - q = q - r. How many distinct possible values can we get for (p + q + r)?</p>`,
+        options: [
+            { label: "4", isCorrect: false },
+            { label: "5", isCorrect: false },
+            { label: "6", isCorrect: false },
+            { label: "More than 6", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 27,
+        question: `<p>How many possible values of (p + q + r) are there satisfying, 1/p + 1/q + 1/r = 1 where p, q and r are natural numbers (not necessarily distinct)?</p>`,
+        options: [
+            { label: "None", isCorrect: false },
+            { label: "One", isCorrect: false },
+            { label: "Three", isCorrect: false },
+            { label: "More than three", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 28,
+        question: `<p>What comes at X and Y respectively in the following sequence?</p>
+<p>January, January, December, October, X, March, October, Y, September</p>`,
+        options: [
+            { label: "July, May", isCorrect: false },
+            { label: "July, April", isCorrect: false },
+            { label: "June, May", isCorrect: false },
+            { label: "June, April", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 29,
+        question: `<p>Team X scored a total of N runs in 20 overs. Team Y tied the score in 10% less overs. Had team Y’s average run rate (runs per over) been 50% higher, the scores would have been tied in 12 overs. How many runs were scored by team X?</p>`,
+        options: [
+            { label: "72", isCorrect: false },
+            { label: "144", isCorrect: false },
+            { label: "216", isCorrect: false },
+            { label: "Cannot be determined", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 30,
+        question: `<p>The price (p) of a commodity is first increased by k%; then decreased by k%; again increased by k%; and again decreased by k%. If the new price is q, then what is the relation between p and q?</p>`,
+        options: [
+            { label: "p(10000-k²)² = q × 108", isCorrect: false },
+            { label: "p(10000-k²)² = q × 104", isCorrect: false },
+            { label: "p(10000-k²)  = q × 104", isCorrect: false },
+            { label: "p(10000-k²)  = q × 108", isCorrect: false },
+        ],
+        solution: "",
+    },
 
-// Which one of the following statements best reflects the central idea conveyed by the passage?`,
-//         options: [
-//             "India does not have enough resources for promoting quality education in its universities.",
-//             "The institutions of higher learning in the country should not be under the control of the Government.",
-//             "Classroom approach to higher education should be done away with.",
-//             "Classroom needs to be reimagined and teaching needs to be re-invented."
-//         ],
-//     },
-//     {
-//         id: 12,
-//         question: `With reference to the above passage, the following assumptions have been made:
+    {
+        id: 31,
+        question: `<p>One of the dismal realities of the agricultural sector in independent India has been that it never experienced a high-growth phase, unlike the non-agricultural economy. The highest decadal growth (compound annual growth rate or CAGR) for agriculture has been just 3-5% in the 1980s. Also, after experiencing a spurt in decadal growth during the 1980s, agricultural growth suffered relative stagnation thereafter. This is in sharp contrast to non-agricultural growth, which consistently increased from the 1980s to 2000s.</p>
+<p><strong>Which one of the following statements best reflects the corollary to the above passage?</strong></p>`,
+        options: [
+            { label: "The benefit of economic reforms percolates down more slowly to the agriculture sector than in other sectors of the economy.", isCorrect: false },
+            { label: "For India, the green revolution was not as useful as it was expected to be.", isCorrect: false },
+            { label: "India lagged behind other countries in adapting mechanized and modern farming.", isCorrect: false },
+            { label: "Rural-to-urban migration resulted in the stagnant agriculture sector.", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 32,
+        question: `<p>With reference to the passage, the following assumptions have been made:</p>
+<p>The growing divergence between the fortunes of the agricultural and non-agricultural economy in India could have been reduced/contained by:</p>
+<ol style="list-style-type: upper-roman;">
+  <li>Adapting large-scale cultivation of commercial crops and viable corporate farming.</li>
+  <li>Providing free insurance for all crops and heavily subsidizing seeds, fertilizers, electricity and farm machinery at par with developed countries.</li>
+</ol>
+<p>Which of the above assumptions is/are valid?</p>`,
+        options: [
+            { label: "I only", isCorrect: false },
+            { label: "II only", isCorrect: false },
+            { label: "Both I and II", isCorrect: false },
+            { label: "Neither I nor II", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 33,
+        question: `<p>In our country, handlooms are equated with a culture that ensures a continuity of tradition. This idea has become part of the public policy-framing and provides a legitimate basis for the State to support the sector. But the notion of tradition as a single, linear entity is being strongly contested today. The narratives dominant in defining culture/tradition in a particular way are seen to have emerged as the identities and histories of large sections. The discounted and, at times, forcibly stifled identities are fighting for their rightful place in history. Against this backdrop, when we promote handloom as a traditional industry, it is not surprising that large sections of our population choose to ignore it.</p>
+<p><strong>Which one of the following statements best reflects the most logical and rational message conveyed by the author of the passage?</strong></p>`,
+        options: [
+            { label: "We need to free the handloom industry from the limited narrative linked to preserving cultural heritage.", isCorrect: false },
+            { label: "Continued State support to the handloom industry ensures the preservation of some of our glorious art forms and old traditions.", isCorrect: false },
+            { label: "Household units of the handloom sector should be modernized and made an economically viable organized industry.", isCorrect: false },
+            { label: "Handloom products need to be converted to machine-made designer products so as to make them more popular.", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 34,
+        question: `<p>With reference to the above passage, the following assumptions have been made:</p>
+<ol style="list-style-type: upper-roman;">
+  <li>There is no need for the State to be involved in any manner in the handloom sector.</li>
+  <li>Handloom products are no longer appealing and attractive in the rapidly changing modern world.</li>
+</ol>
+<p>Which of the above assumptions is/are valid?</p>`,
+        options: [
+            { label: "I only", isCorrect: false },
+            { label: "II only", isCorrect: false },
+            { label: "Both I and II", isCorrect: false },
+            { label: "Neither I nor II", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 35,
+        question: `<p>Consider the first 100 natural numbers. How many of them are not divisible by any one of 2, 3, 5, 7 and 9?</p>`,
+        options: [
+            { label: "20", isCorrect: false },
+            { label: "21", isCorrect: false },
+            { label: "22", isCorrect: false },
+            { label: "23", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 36,
+        question: `<p>If 4 ≤ x ≤ 8 and 2 ≤ y ≤ 7, then what is the ratio of maximum value of (x + y) to minimum value of (x - y)?</p>`,
+        options: [
+            { label: "6", isCorrect: false },
+            { label: "15/2", isCorrect: false },
+            { label: "-15/2", isCorrect: false },
+            { label: "None of the above", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 37,
+        question: `<p>Let both p and k be prime numbers such that (p² + k) is also a prime number less than 30. What is the number of possible values of k?</p>`,
+        options: [
+            { label: "4", isCorrect: false },
+            { label: "5", isCorrect: false },
+            { label: "6", isCorrect: false },
+            { label: "7", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 38,
+        question: `<p>There are n sets of numbers each having only three positive integers with LCM equal to 1001 and HCF equal to 1. What is the value of n?</p>`,
+        options: [
+            { label: "6", isCorrect: false },
+            { label: "7", isCorrect: false },
+            { label: "8", isCorrect: false },
+            { label: "More than 8", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 39,
+        question: `<p>Let PQR be a 3-digit number, PPT be a 3-digit number and PS be a 2-digit number, where P, Q, R, S, T are distinct non-zero digits. Further, PQR - PS = PPT. If Q = 3 and T < 6, then what is the number of possible values of (R, S)?</p>`,
+        options: [
+            { label: "2", isCorrect: false },
+            { label: "3", isCorrect: false },
+            { label: "4", isCorrect: false },
+            { label: "More than 4", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 40,
+        question: `<p>Consider the sequence AB_CC_A_BCCC_BBC_C that follows a certain pattern. Which one of the following completes the sequence?</p>`,
+        options: [
+            { label: "B, C, B, C, A", isCorrect: false },
+            { label: "A, C, B, C, A", isCorrect: false },
+            { label: "B, C, B, A, C", isCorrect: false },
+            { label: "C, B, B, A, C", isCorrect: false },
+        ],
+        solution: "",
+    },
 
-// I. Higher education is a constantly evolving subject that needs to align towards new developments in all spheres of society.
-// II. In our country, sufficient funds are not allocated for promoting higher education.
+    {
+        id: 41,
+        question: `<p>It is hard to predict how changes in the climate and the atmosphere’s chemistry will affect the prevalence and virulence of agricultural diseases. But there is a risk that such changes will make some plant infections more common in all climatic zones, perhaps catastrophically so. Part of the problem is that centuries of selective breeding have refined the genomes of most high-value crops. They are spectacular at growing in today’s conditions but genetic variations that are not immediately useful to them have been bred out. This is good for yields but bad for coping with changes. A minor disease or even an unknown one could suddenly rampage through a genetically honed crop.</p>
+<p><strong>Which one of the following statements best reflects the central idea conveyed by the passage?</strong></p>`,
+        options: [
+            { label: "Global climate change adversely affects the productivity of crops.", isCorrect: false },
+            { label: "Our total dependence on genetically honed crops entails possible food insecurity.", isCorrect: false },
+            { label: "Our food security should not depend on agricultural productivity alone.", isCorrect: false },
+            { label: "Genetically honed crops should be replaced with their wild varieties in our present cultivation practices.", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 42,
+        question: `<p>With reference to the above passage, the following assumptions have been made:</p>
+<ol style="list-style-type: upper-roman;">
+<li>Global climate change can result in the migration of several plant diseases to new areas.</li>
+<li>Scientific understanding of the wild relatives of our present crops would enable us to strengthen food security.</li>
+</ol>
+<p>Which of the above assumptions is/are valid?</p>`,
+        options: [
+            { label: "I only", isCorrect: false },
+            { label: "II only", isCorrect: false },
+            { label: "Both I and II", isCorrect: false },
+            { label: "Neither I nor II", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 43,
+        question: `<p>“A good statesman, like any other sensible human being, learns more from his opponents than from his fervent supporters. For his supporters will push him to disaster unless his opponents show him where the dangers are. So if he is wise he will often pray to be delivered from his friends, because they will ruin him. But, though it hurts, he ought also to pray never to be left without opponents; for they keep him on the path of reason and good sense. The national unity of free people depends upon a sufficiently even balance of political power to make it impracticable for the administration to be arbitrary and for opposition to be revolutionary and irreconcilable.”</p>
+<p><strong>Which one of the following statements best reflects the critical message conveyed by the author of the passage?</strong></p>`,
+        options: [
+            { label: "Without opposition parties, the administration in a democracy gets to become more responsible.", isCorrect: false },
+            { label: "Democracy needs to have revolutionaries in opposition to keep the government alert.", isCorrect: false },
+            { label: "Rulers in a democracy need the support of opposition for their political survival.", isCorrect: false },
+            { label: "In a democracy, the opposition is indispensable for the balance of political power and good governance.", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 44,
+        question: `<p>With reference to the above passage, the following assumptions have been made:</p>
+<ol style="list-style-type: upper-roman;">
+<li>In a democracy, a strong opposition is required only if the Head of Government is indifferent.</li>
+<li>The more aggressive the opposition, the better is the governance in a democracy.</li>
+</ol>
+<p>Which of the above assumptions is/are valid?</p>`,
+        options: [
+            { label: "I only", isCorrect: false },
+            { label: "II only", isCorrect: false },
+            { label: "Both I and II", isCorrect: false },
+            { label: "Neither I nor II", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 45,
+        question: `<p>P is the brother of Q and R. S is R’s mother. T is P’s father. How many of the following statements are definitely true?</p>
+<ol style="list-style-type: upper-roman;">
+<li>S and T are a couple.</li>
+<li>Q is T’s son.</li>
+<li>T is Q’s father.</li>
+<li>S is P’s mother.</li>
+<li>R is T’s daughter.</li>
+<li>P is S’s son.</li>
+</ol>`,
+        options: [
+            { label: "Only two", isCorrect: false },
+            { label: "Only three", isCorrect: false },
+            { label: "Only four", isCorrect: false },
+            { label: "Only five", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 46,
+        question: `<p>If NO is coded as 210, NOT is coded as 4200 and NOTE is coded as 21000, then how is NOTES coded?</p>`,
+        options: [
+            { label: "399000", isCorrect: false },
+            { label: "420000", isCorrect: false },
+            { label: "440000", isCorrect: false },
+            { label: "630000", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 47,
+        question: `<p>If FRANCE is coded as 654321 and GERMANY is coded as 9158437, then how is YEMEN coded?</p>`,
+        options: [
+            { label: "54321", isCorrect: false },
+            { label: "81913", isCorrect: false },
+            { label: "71913", isCorrect: false },
+            { label: "71813", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 48,
+        question: `<p>The 5-digit number PQRST (all distinct digits) is such that T ≠ 0. P is thrice T. S is greater than Q by 4, while Q is greater than R by 3. How many such 5-digit numbers are possible?</p>`,
+        options: [
+            { label: "3", isCorrect: false },
+            { label: "4", isCorrect: false },
+            { label: "5", isCorrect: false },
+            { label: "6", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 49,
+        question: `<p>X can complete one-third of a certain work in 6 days, Y can complete one-third of the same work in 8 days and Z can complete three-fourth of the same work in 12 days. All of them work together for n days and then X and Z quit and Y alone finishes the remaining work in 26/3. What is n equal to?</p>`,
+        options: [
+            { label: "3", isCorrect: false },
+            { label: "4", isCorrect: false },
+            { label: "5", isCorrect: false },
+            { label: "6", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 50,
+        question: `<p>What is X in the sequence 1, 3, 6, 11, 18, X, 42?</p>`,
+        options: [
+            { label: "26", isCorrect: false },
+            { label: "27", isCorrect: false },
+            { label: "29", isCorrect: false },
+            { label: "30", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 51,
+        question: `<p>A single number for inflation is an aggregate across different commodities and services; the price rise differs for different items of consumption. So, the single number is arrived at by assigning weights to different commodities and services. For WPI, the weights in production are used; for CPI, the consumption basket is used. But people are not homogeneous. The consumption basket is vastly different for the poor, the middle classes, and the rich. Hence, the CPI is different for each of these classes and a composite index requires averaging the baskets.</p>
+<p><strong>Which one of the following statements best reflects the most logical, rational and crucial message conveyed by the passage?</strong></p>`,
+        options: [
+            { label: "We must use WPI exclusively in measuring price rise and CPI should be done away with.", isCorrect: false },
+            { label: "The present calculation of inflation rate does not correctly measure price rise of individual item/commodity.", isCorrect: false },
+            { label: "Inflation data under-presents services in the consumption basket.", isCorrect: false },
+            { label: "Knowledge of inflation rate is not really of any use to anybody in the country.", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 52,
+        question: `<p>Trust stands commonly defined as being vulnerable to others. As entrepreneurship implies trust in others and willingness to expose oneself to betrayal. Trust in expert systems is the essence of globalizing behaviour; trust itself emerges as a super-commodity in the social market and defines the characteristics of goods and services in a global market. Trusting conduct also means holding others in good esteem, and an optimism that they are, or will be, competent in certain respects.</p>
+<p><strong>Which one of the following statements best reflects the crux of the passage?</strong></p>`,
+        options: [
+            { label: "Trustworthiness cannot be expected in entrepreneurship.", isCorrect: false },
+            { label: "Trustworthy people are the most vulnerable people.", isCorrect: false },
+            { label: "No economic activity is possible without being exposed to betrayal.", isCorrect: false },
+            { label: "Trust is important though it entails risk.", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 53,
+        question: `<p>In a football match, team P playing against Q was behind by 3 goals with 10 minutes remaining. Does team P win the match?</p>
+<p><strong>Statement I:</strong> Team P scored 4 goals in the last 10 minutes.<br>
+<strong>Statement II:</strong> Team Q scored a total of 4 goals in the match.</p>
+<p>Which one of the following is correct in respect of the above question and the Statements?</p>`,
+        options: [
+            { label: "The Question can be answered by using one of the Statements alone, but cannot be answered using the other statement alone.", isCorrect: false },
+            { label: "The Question can be answered by using either Statement alone.", isCorrect: false },
+            { label: "The Question can be answered by using both the Statements together, but cannot be answered using either Statement alone.", isCorrect: false },
+            { label: "The Question cannot be answered even using any of the Statements.", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 54,
+        question: `<p>A question is given followed by two Statements I and II. Consider the Question and the Statements and mark the correct option.</p>
+<p><strong>Question:</strong> Is (p + q)² - 4pq, where p, q are natural numbers, positive?</p>
+<p><strong>Statement I:</strong> p < q.<br>
+<strong>Statement II:</strong> p > q.</p>
+<p>Which one of the following is correct in respect of the above question and the Statements?</p>`,
+        options: [
+            { label: "The Question can be answered by using one of the Statements alone, but cannot be answered using the other statement alone.", isCorrect: false },
+            { label: "The Question can be answered by using either Statement alone.", isCorrect: false },
+            { label: "The Question can be answered by using both the Statements together, but cannot be answered using either Statement alone.", isCorrect: false },
+            { label: "The Question can be answered even without using any of the Statements.", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 55,
+        question: `<p>In a T20 cricket match, three players X, Y and Z scored a total of 37 runs. The ratio of number of runs scored by X to the number of runs scored by Y is equal to the ratio of number of runs scored by Y to number of runs scored by Z.</p>
+<p><strong>Value-I:</strong> Runs scored by X<br>
+<strong>Value-II:</strong> Runs scored by Y<br>
+<strong>Value-III:</strong> Runs scored by Z</p>
+<p>Which one of the following is correct?</p>`,
+        options: [
+            { label: "Value-I < Value-II < Value-III", isCorrect: false },
+            { label: "Value-III < Value-II < Value-I", isCorrect: false },
+            { label: "Value-I < Value-III < Value-II", isCorrect: false },
+            { label: "Cannot be determined due insufficient data", isCorrect: false },
+        ],
+        solution: "",
+    },
 
-// Which of the above assumptions is/are valid?`,
-//         options: ["I only", "II only", "Both I and II", "Neither I nor II"],
-//     },
-//     {
-//         id: 13,
-//         question: `If there is inequality in the pattern of population growth, there is greater inequality in food production and utilization. As societies become wealthier, their consumption of animal products increases. This means that a greater proportion of such basic foodstuff as grains and legumes that could feed humans directly is instead being converted into feed for poultry and large farm animals. Yet this conversion of plant-based food into animal food for humans is far from efficient. Only 16% of the calories fed to chickens are recovered by us when we eat them. This conversion rate goes down to five to seven per cent in large animals that are fed grain to add fat and some protein before slaughter.
+    {
+        id: 56,
+        question: `<p>Let p + q = 10 where p, q are integers.</p>
+<p><strong>Value-I:</strong> Maximum value of p × q when p, q are positive integers.<br>
+<strong>Value-II:</strong> Maximum value of p × q when p ≥ -6, q ≥ -4.</p>
+<p>Which one of the following is correct?</p>`,
+        options: [
+            { label: "Value-I < Value-II", isCorrect: false },
+            { label: "Value-II < Value-I", isCorrect: false },
+            { label: "Value-I = Value-II", isCorrect: false },
+            { label: "Cannot be determined due to insufficient data", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 57,
+        question: `<p>Consider a set of 11 numbers:</p>
+<p><strong>Value-I:</strong> Minimum value of the average of the numbers of the set when they are consecutive integers ≥ -5.<br>
+<strong>Value-II:</strong> Minimum value of the product of the numbers of the set when they are consecutive non-negative integers.</p>
+<p>Which one of the following is correct?</p>`,
+        options: [
+            { label: "Value-I < Value-II", isCorrect: false },
+            { label: "Value-II < Value-I", isCorrect: false },
+            { label: "Value-I = Value-II", isCorrect: false },
+            { label: "Cannot be determined due to insufficient data", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 58,
+        question: `<p>The average of three numbers p, q and r is k. p is as much more than the average as q is less than the average. What is the value of r?</p>`,
+        options: [
+            { label: "k", isCorrect: false },
+            { label: "k-1", isCorrect: false },
+            { label: "k+1", isCorrect: false },
+            { label: "k/2", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 59,
+        question: `<p>Let x be a real number between 0 and 1. Which of the following statements is/are correct?</p>
+<ol style="list-style-type: upper-roman;">
+<li>x² > x³</li>
+<li>x > √x</li>
+</ol>
+<p>Select the correct answer using the code given below:</p>`,
+        options: [
+            { label: "I only", isCorrect: false },
+            { label: "II only", isCorrect: false },
+            { label: "Both I and II", isCorrect: false },
+            { label: "Neither I nor II", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 60,
+        question: `<p>The difference between any two natural numbers is 10. What can be said about the natural numbers which are divisible by 5 and lie between these two numbers?</p>`,
+        options: [
+            { label: "There is only one such number.", isCorrect: false },
+            { label: "There are only two such numbers.", isCorrect: false },
+            { label: "There can be more than one such number.", isCorrect: false },
+            { label: "No such number exists.", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 61,
+        question: `<p>Over the next 30 years, many countries are promising to move to net-zero carbon, implying that household emissions will have to be cut to close to nothing. A leading climate scientist reckons that, at best, half the reduction might be achieved through demand-side measures, such as behavioural changes by individuals and households. And even that would require companies and governments to provide more incentives to change through supply-side investments to make low-carbon options cheaper and more widely available.</p>
+<p><strong>Which one of the following statements best reflects the central idea conveyed by the passage?</strong></p>`,
+        options: [
+            { label: "Moving to net-zero carbon is possible only by the reduction in household emissions.", isCorrect: false },
+            { label: "Low-carbon behaviour in people can be brought about by incentivising them.", isCorrect: false },
+            { label: "Cheaper goods and services can be made available to people by using low-carbon technologies.", isCorrect: false },
+            { label: "Manufacturing industries that use low-carbon technologies should be provided with subsidies.", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 62,
+        question: `<p>Over the next 30 years, many countries are promising to move to net-zero carbon, implying that household emissions will have to be cut to close to nothing. A leading climate scientist reckons that, at best, half the reduction might be achieved through demand-side measures, such as behavioural changes by individuals and households. And even that would require companies and governments to provide more incentives to change through supply-side investments to make low-carbon options cheaper and more widely available.</p>
+<p>With reference to the above passage, the following assumptions have been made:</p>
+<ol style="list-style-type: upper-roman;">
+<li>Supply-side investments in companies can result in low-carbon behaviour in people.</li>
+<li>People are not capable of adapting low-carbon behaviour without the involvement of Government and Companies.</li>
+</ol>
+<p>Which of the above assumptions is/are valid?</p>`,
+        options: [
+            { label: "I only", isCorrect: false },
+            { label: "II only", isCorrect: false },
+            { label: "Both I and II", isCorrect: false },
+            { label: "Neither I nor II", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 63,
+        question: `<p>In only 50 years, the world’s consumption of raw materials has nearly quadrupled, to more than 100 billion tons. Less than 9% of this is reused. Batteries of old vehicles contain materials such as lithium, cobalt, manganese and nickel that are pricey and can be hard to obtain. Supply chains are long and complicated. Buyers’ risks are being aggravated by their suppliers’ poor environmental and labour standards. Reusing materials makes sense. Once batteries reach the ends of their lives, they should go back to a factory where their ingredients can be recovered and put into new batteries.</p>
+<p><strong>Which one of the following statements best reflects the most logical, rational and pragmatic message conveyed by the passage?</strong></p>`,
+        options: [
+            { label: "Green economy is not possible without reusing critical minerals.", isCorrect: false },
+            { label: "Every sector of economy should adapt the reuse of material immediately.", isCorrect: false },
+            { label: "Circular economy can be beneficial for sustainable growth.", isCorrect: false },
+            { label: "Circular use of material resources is the only option for some industries for their survival.", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 64,
+        question: `<p>In only 50 years, the world’s consumption of raw materials has nearly quadrupled, to more than 100 billion tons. Less than 9% of this is reused. Batteries of old vehicles contain materials such as lithium, cobalt, manganese and nickel that are pricey and can be hard to obtain. Supply chains are long and complicated. Buyers’ risks are being aggravated by their suppliers’ poor environmental and labour standards. Reusing materials makes sense. Once batteries reach the ends of their lives, they should go back to a factory where their ingredients can be recovered and put into new batteries.</p>
+<p>With reference to the above passage, the following assumptions have been made:</p>
+<ol style="list-style-type: upper-roman;">
+<li>Automobile factories are examples of the circular economy.</li>
+<li>Economic growth is compatible with circular use of mineral resources.</li>
+</ol>
+<p>Which of the above assumptions is/are valid?</p>`,
+        options: [
+            { label: "I only", isCorrect: false },
+            { label: "II only", isCorrect: false },
+            { label: "Both I and II", isCorrect: false },
+            { label: "Neither I nor II", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 65,
+        question: `<p>A set (X) of 20 pipes can fill 70% of a tank in 14 minutes. Another set (Y) of 10 pipes fills 3/8th of the tank in 6 minutes. A third set (Z) of 16 pipes can empty half of the tank in 20 minutes. If half of the pipes of set X are closed and only half of the pipes of set Y are open, and all pipes of the set (Z) are open, then how long will it take to fill 50% of the tank?</p>`,
+        options: [
+            { label: "8 minutes", isCorrect: false },
+            { label: "10 minutes", isCorrect: false },
+            { label: "12 minutes", isCorrect: false },
+            { label: "16 minutes", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 66,
+        question: `<p>If n is a natural number, then what is the number of distinct remainders of (1ⁿ + 2ⁿ) when divided by 4?</p>`,
+        options: [
+            { label: "0", isCorrect: false },
+            { label: "1", isCorrect: false },
+            { label: "2", isCorrect: false },
+            { label: "3", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 67,
+        question: `<p>Let P = QQQ be a 3-digit number. What is the HCF of P and 481?</p>`,
+        options: [
+            { label: "1", isCorrect: false },
+            { label: "13", isCorrect: false },
+            { label: "37", isCorrect: false },
+            { label: "481", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 68,
+        question: `<p>What is the 489th digit in the number 123456789101112…?</p>`,
+        options: [
+            { label: "0", isCorrect: false },
+            { label: "3", isCorrect: false },
+            { label: "6", isCorrect: false },
+            { label: "9", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 69,
+        question: `<p>A mobile phone has been stolen. There are 3 suspects P, Q and R. They were questioned knowing that only one of them is guilty. Their responses are as follows:</p>
+<ol style="list-style-type: upper-roman;">
+<li>P : I did not steal. Q stole it.</li>
+<li>Q : R did not steal. I did not steal.</li>
+<li>R : I did not steal. I do not know who did it.</li>
+</ol>
+<p>Who stole the mobile phone?</p>`,
+        options: [
+            { label: "P", isCorrect: false },
+            { label: "Q", isCorrect: false },
+            { label: "R", isCorrect: false },
+            { label: "Cannot be concluded", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 70,
+        question: `<p>Three teams P, Q, R participated in a tournament in which the teams play with one another exactly once. A win fetches a team 2 points and a draw 1 point. A team gets no point for a loss. Each team scored exactly one goal in the tournament. The team P got 3 points, Q got 2 points and R got 1 point.</p>
+<p><strong>I.</strong> The result of the match between P and Q is a draw with the score 0 - 0.<br>
+<strong>II.</strong> The number of goals scored by R against Q is 1.</p>
+<p>Which of the statements given above is/are correct?</p>`,
+        options: [
+            { label: "I only", isCorrect: false },
+            { label: "II only", isCorrect: false },
+            { label: "Both I and II", isCorrect: false },
+            { label: "Neither I nor II", isCorrect: false },
+        ],
+        solution: "",
+    },
 
-// Which one of the following statements best reflects the crux of the passage?`,
-//         options: [
-//             "There is an urgent need for a public policy to promote the consumption of cereal-based foods in wealthier societies.",
-//             "Animal-based food is far less efficient than grain/plant-based food in terms of production and utilization.",
-//             "Plant-based protein should replace the animal-based protein in our daily diets.",
-//             "Inequality in food production and consumption is inevitable in any fast changing society."
-//         ],
-//     },
-//     {
-//         id: 14,
-//         question: `With reference to the above passage, the following assumptions have been made:
+    {
+        id: 71,
+        question: `<p>There has been no democracy that has grown economically without corporate capitalism. It helps in modernizing the economy and enabling the transition from rural to urban, and agriculture to industry and services, which are inevitable with growth. It generates jobs and there is no other way to fix a country’s unemployment challenge without a further impetus to private business. Big companies can operate on a large scale and become competitive both domestically and externally. A vibrant corporate capitalist base also leads to additional revenues for the State which in turn, can be used for greater welfare for the marginalized and creating a more level playing field in terms of opportunities.</p>
+<p><strong>Which one of the following statements best reflects the critical message conveyed by the author of the passage?</strong></p>`,
+        options: [
+            { label: "Corporate capitalism is important for economic growth of a State and also for democracy.", isCorrect: false },
+            { label: "Corporate capitalism is imperative for a modern State to achieve its political objectives.", isCorrect: false },
+            { label: "No State can ensure its economic survival for long without the role of corporate capitalism.", isCorrect: false },
+            { label: "Corporate capitalism and democracy have mutual dependence for their continued existence.", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 72,
+        question: `<p>There has been no democracy that has grown economically without corporate capitalism. It helps in modernizing the economy and enabling the transition from rural to urban, and agriculture to industry and services, which are inevitable with growth. It generates jobs - and there is no other way to fix a country’s unemployment challenge without a further impetus to private business. Big companies can operate on a large scale and become competitive both domestically and externally. A vibrant corporate capitalist base also leads to additional revenues for the State - which in turn, can be used for greater welfare for the marginalized and creating a more level playing field in terms of opportunities.</p>
+<p>With reference to the above passage, the following assumptions have been made:</p>
+<ol style="list-style-type: upper-roman;">
+<li>Corporate capitalism promotes the growth of labour force and provides more employment opportunities.</li>
+<li>Poor and marginalized sections of population are benefited by corporate capitalism due to trickle-down effect.</li>
+</ol>
+<p>Which of the above assumptions is/are valid?</p>`,
+        options: [
+            { label: "I only", isCorrect: false },
+            { label: "II only", isCorrect: false },
+            { label: "Both I and II", isCorrect: false },
+            { label: "Neither I nor II", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 73,
+        question: `<p>“A network of voluntary associations stands as a ‘buffer’ between the relatively powerless individual and the potentially powerful State.”</p>
+<p><strong>Which one of the following statements reflects the best explanation of the above passage?</strong></p>`,
+        options: [
+            { label: "It emphasizes the inability of the State to enforce its will in practice against the opposition of certain groups within it.", isCorrect: false },
+            { label: "It is a cooperative organization for the promotion of the well-being and development of the personality of its members.", isCorrect: false },
+            { label: "It takes individuals out of a state of isolation and gives them a chance to participate in the common endeavour.", isCorrect: false },
+            { label: "It permits citizens to have a variety of loyalties and allegiance.", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 74,
+        question: `<p>Consider the following statements:</p>
+<ol style="list-style-type: upper-roman;">
+<li>There exists a natural number which when increased by 50% can have its number of factors unchanged.</li>
+<li>There exists a natural number which when increased by 150% can have its number of factors unchanged.</li>
+</ol>
+<p>Which of the statements given above is/are correct?</p>`,
+        options: [
+            { label: "I only", isCorrect: false },
+            { label: "II only", isCorrect: false },
+            { label: "Both I and II", isCorrect: false },
+            { label: "Neither I nor II", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 75,
+        question: `<p>There are 7 places A, B, C, D, E, F and G in a city connected by various roads AB, AC, CD, DE, BF, EG and FG. A is 6 km south of B. A is 10 km west of C. D is 5 km east of E. C is 6 km north of D. F is 9 km west of B. F is 12 km north of G. A person travels from D to F through these roads. What is the distance covered by the person?</p>`,
+        options: [
+            { label: "20 km", isCorrect: false },
+            { label: "25 km", isCorrect: false },
+            { label: "31 km", isCorrect: false },
+            { label: "37 km", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 76,
+        question: `<p>In a certain code if 64 is written as 343 and 216 is written as 729, then how is 512 written in that code?</p>`,
+        options: [
+            { label: "1000", isCorrect: false },
+            { label: "1331", isCorrect: false },
+            { label: "1728", isCorrect: false },
+            { label: "2197", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 77,
+        question: `<p>What is the remainder when 9³ + 9⁴ + 9⁵ + 9⁶ + … + 9¹⁰⁰ is divided by 6?</p>`,
+        options: [
+            { label: "0", isCorrect: false },
+            { label: "1", isCorrect: false },
+            { label: "2", isCorrect: false },
+            { label: "3", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 78,
+        question: `<p>A question is given followed by two Statements I and II. Consider the Question and the Statements and mark the correct option.</p>
+<p><strong>Question:</strong> What is the smallest 1-digit number having exactly 4 distinct factors?</p>
+<p><strong>Statement I:</strong> 2 is one of the factors.<br>
+<strong>Statement II:</strong> 3 is one of the factors.</p>
+<p>Which one of the following is correct in respect of the above Question and the Statements?</p>`,
+        options: [
+            { label: "The Question can be answered by using one of the Statements alone, but cannot be answered using the other statement alone.", isCorrect: false },
+            { label: "The Question can be answered by using either Statement alone.", isCorrect: false },
+            { label: "The Question can be answered by using both the Statements together, but cannot be answered using either Statement alone.", isCorrect: false },
+            { label: "The Question can be answered even without using any of the Statements.", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 79,
+        question: `<p>A question is given followed by two Statements I and II. Consider the Question and the Statements and mark the correct option.</p>
+<p><strong>Question:</strong> Let P, Q, R, S be distinct non-zero digits. If PP × PQ = RRSS, where P ≤ 3 and Q ≤ 4, then what is Q equal to?</p>
+<p><strong>Statement I:</strong> R = 1.<br>
+<strong>Statement II:</strong> S = 2.</p>
+<p>Which one of the following is correct in respect of the above Question and the Statements?</p>`,
+        options: [
+            { label: "The Question can be answered by using one of the Statements alone, but cannot be answered using the other statement alone.", isCorrect: false },
+            { label: "The Question can be answered by using either Statement alone.", isCorrect: false },
+            { label: "The Question can be answered by using both the Statements together, but cannot be answered using either Statement alone.", isCorrect: false },
+            { label: "The Question can be answered even without using any of the Statements.", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 80,
+        question: `<p>A question is given followed by two Statements I and II. Consider the Question and the Statements and mark the correct option.</p>
+<p><strong>Question:</strong> How is Q related to P?</p>
+<p><strong>Statement I:</strong> P has two sisters, R and S.<br>
+<strong>Statement II:</strong> R’s father is the brother of Q.</p>
+<p>Which one of the following is correct in respect of the above Question and the Statements?</p>`,
+        options: [
+            { label: "The Question can be answered by using one of the Statements alone, but cannot be answered using the other statement alone.", isCorrect: false },
+            { label: "The Question can be answered by using either Statement alone.", isCorrect: false },
+            { label: "The Question can be answered by using both the Statements together, but cannot be answered using either Statement alone.", isCorrect: false },
+            { label: "The Question cannot be answered even using any of the Statements.", isCorrect: false },
+        ],
+        solution: "",
+    },
 
-// I. The food manufacturing and processing industries in every country should align their objectives and processes in accordance with the changing needs of the societies.
-// II. Wealthier societies tend to incur great loss of calories of food materials due to indirect utilization of their agricultural produce.
+]
 
-// Which of the above assumptions is/are valid?`,
-//         options: ["I only", "II only", "Both I and II", "Neither I nor II"],
-//     },
-//     {
-//         id: 15,
-//         question: "What is the maximum value of n such that 7 × 343 × 385 × 1000 × 2401 × 77777 is divisible by 35ⁿ?",
-//         options: ["3", "4", "5", "7"],
-//     },
-//     {
-//         id: 16,
-//         question: "What is X in the sequence 24, X, 12, 18, 36, 90?",
-//         options: ["18", "12", "9", "6"],
-//     },
-//     {
-//         id: 17,
-//         question: "P and Q walk along a circular track. They start at 5:00 a.m. from the same point in opposite directions. P walks at an average speed of 5 rounds per hour and Q walks at an average speed of 3 rounds per hour. How many times will they cross each other between 5:20 a.m. and 7:00 a.m.?",
-//         options: ["12", "13", "14", "15"],
-//     },
-//     {
-//         id: 18,
-//         question: "If P = +, Q = -, R = ×, S = ÷, then insert the proper notations between the successive numbers in the equation 60 _ 15 _ 3 _ 20 _ 4 = 20:",
-//         options: ["SPRQ", "QRPS", "QRSP", "SPQR"],
-//     },
-//     {
-//         id: 19,
-//         question: "A tram overtakes 2 persons X and Y walking at an average speed of 3 km/hr and 4 km/hr in the same direction and completely passes them in 8 seconds and 9 seconds respectively. What is the length of the tram?",
-//         options: ["15 m", "18 m", "20 m", "24 m"],
-//     },
-//     {
-//         id: 20,
-//         question: "If N² = 12345678987654321, then how many digits does the number N have?",
-//         options: ["8", "9", "10", "11"],
-//     },
-//     {
-//         id: 21,
-//         question: `Maintaining an ecosystem just to conserve biodiversity will affect its commercial potential as well as the livelihoods dependent on the ecosystem. There is also a conflict between using an ecosystem only for livelihoods, for commercial exploitation, or strictly for conservation. Deforestation caused due to commercial exploitation will lead to indirect harm like floods, siltation problems and microclimatic instability, apart from adversely affecting livelihoods dependent on forests. These conflicts are particularly acute in developing countries where the dependence of people on the ecosystem is significant, and commercial exploitation has the potential to boost national income.
+const sectionsUPSCGS2: Section[] = [
+    {
+        id: 1,
+        name: "General Studies II",
+        questions: questionsUPSCGS2
+    }
+]
 
-// Which one of the following statements best reflects the critical message conveyed by the author of the passage?`,
-//         options: [
-//             "Conservation of biodiversity is not an issue to be worried about when some people depend on ecosystems for their livelihoods.",
-//             "Commercial exploitation of forests goes against the fundamental rights of the people dependent on forests for food and shelter.",
-//             "Sustenance of livelihood and degradation of ecosystem while being together exacerbate one another, leading to conflicts and imbalance.",
-//             "Commercial exploitation of ecosystems should be completely stopped."
-//         ],
-//         // answer: "Sustenance of livelihood and degradation of ecosystem while being together exacerbate one another, leading to conflicts and imbalance."
-//     },
-//     {
-//         id: 22,
-//         question: `Maintaining an ecosystem just to conserve biodiversity will affect its commercial potential as well as the livelihoods dependent on the ecosystem. There is also a conflict between using an ecosystem only for livelihoods, for commercial exploitation, or strictly for conservation. Deforestation caused due to commercial exploitation will lead to indirect harm like floods, siltation problems and microclimatic instability, apart from adversely affecting livelihoods dependent on forests. These conflicts are particularly acute in developing countries where the dependence of people on the ecosystem is significant, and commercial exploitation has the potential to boost national income.
+export const examDataUPSCGS2: ExamData = {
+    title: "UPSC CSAT Test Series 2026",
+    duration: 120, // 120 minutes
+    startTimestamp: "2025-09-16T15:25:00.0",
+    sections: sectionsUPSCGS2
+}
 
-// With reference to above passage, the following assumptions have been made:
-// I. No country needs to depend on ecosystems to boost national income.
-// II. Resource-rich countries need to share their resources with those of scant resources so as to prevent the degradation of ecosystems.
+/* SSC CGL */
 
-// Which of the above assumptions is/are valid?`,
-//         options: [
-//             "I only",
-//             "II only",
-//             "Both I and II",
-//             "Neither I nor II"
-//         ],
-//         // answer: "Neither I nor II"
-//     },
-//     {
-//         id: 23,
-//         question: `The history of renewable energy suggests there is a steep learning curve, meaning that, as more is produced, costs fall rapidly because of economies of scale and learning by doing. The firms’ green innovation is path-dependent the more a firm does, the more it is likely to do in the future. The strongest evidence for this is the collapse in the price of solar energy, which became about 90% cheaper during the 2010s, repeatedly beating forecasts. Moving early and gradually gives economies more time to adjust, allowing them to reap the benefits of path-dependent green investment without much disruption. A late, more chaotic transition is costlier.
+const questionsSSCCGL1: Question[] = [
+    {
+        id: 1,
+        question: `<p>In a certain code language, 'COMPUTER' is written as 'RFUVQNPC'. How will 'MACHINE' be written in that code?</p>`,
+        options: [
+            { label: "ZNBJGMF", isCorrect: false },
+            { label: "ZNBJFMG", isCorrect: false },
+            { label: "ZNBGFMJ", isCorrect: false },
+            { label: "ZNBFJMG", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 2,
+        question: `<p>If '+' means '×', '×' means '−', '−' means '÷' and '÷' means '+', then what is the value of 15 + 3 − 5 × 2 ÷ 4?</p>`,
+        options: [
+            { label: "7", isCorrect: false },
+            { label: "5", isCorrect: false },
+            { label: "9", isCorrect: false },
+            { label: "11", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 3,
+        question: `<p>Find the missing number in the series: 2, 6, 12, 20, 30, ?</p>`,
+        options: [
+            { label: "40", isCorrect: false },
+            { label: "42", isCorrect: false },
+            { label: "44", isCorrect: false },
+            { label: "46", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 4,
+        question: `<p>Which of the following is the odd one out?</p>`,
+        options: [
+            { label: "Triangle", isCorrect: false },
+            { label: "Square", isCorrect: false },
+            { label: "Rectangle", isCorrect: false },
+            { label: "Circle", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 5,
+        question: `<p>If FRIEND is coded as HUMJTK, then CANDLE will be coded as:</p>`,
+        options: [
+            { label: "EDRIRL", isCorrect: false },
+            { label: "ECQOKF", isCorrect: false },
+            { label: "ECRPKF", isCorrect: false },
+            { label: "ECOQKF", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 6,
+        question: `<p>If CAT is coded as DBU, then DOG will be coded as:</p>`,
+        options: [
+            { label: "EPH", isCorrect: false },
+            { label: "EPI", isCorrect: false },
+            { label: "FQH", isCorrect: false },
+            { label: "FPI", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 7,
+        question: `<p>Find the missing number: 7, 14, 28, 56, ?</p>`,
+        options: [
+            { label: "84", isCorrect: false },
+            { label: "100", isCorrect: false },
+            { label: "112", isCorrect: false },
+            { label: "120", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 8,
+        question: `<p>Which word does not belong to the group?</p>`,
+        options: [
+            { label: "Apple", isCorrect: false },
+            { label: "Banana", isCorrect: false },
+            { label: "Orange", isCorrect: false },
+            { label: "Potato", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 9,
+        question: `<p>If CLOCK is coded as DMPDL, how is WATCH coded?</p>`,
+        options: [
+            { label: "XBUJI", isCorrect: false },
+            { label: "XBVJI", isCorrect: false },
+            { label: "XBUKI", isCorrect: false },
+            { label: "XAUJI", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 10,
+        question: `<p>What comes next in the series: A, C, F, J, O, ?</p>`,
+        options: [
+            { label: "S", isCorrect: false },
+            { label: "T", isCorrect: false },
+            { label: "U", isCorrect: false },
+            { label: "V", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 11,
+        question: `<p>If 12 × 12 = 144 and 23 × 23 = 529, then 34 × 34 = ?</p>`,
+        options: [
+            { label: "1124", isCorrect: false },
+            { label: "1156", isCorrect: false },
+            { label: "1189", isCorrect: false },
+            { label: "1196", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 12,
+        question: `<p>Pointing to a man, a woman says, 'His mother is the only daughter of my father'. How is the man related to the woman?</p>`,
+        options: [
+            { label: "Son", isCorrect: false },
+            { label: "Brother", isCorrect: false },
+            { label: "Nephew", isCorrect: false },
+            { label: "Cousin", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 13,
+        question: `<p>If A = 1, B = 2, C = 3, …, Z = 26, then the code for 'DOG' is:</p>`,
+        options: [
+            { label: "26", isCorrect: false },
+            { label: "22", isCorrect: false },
+            { label: "24", isCorrect: false },
+            { label: "23", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 14,
+        question: `<p>Find the missing number: 1, 4, 9, 16, 25, ?</p>`,
+        options: [
+            { label: "36", isCorrect: false },
+            { label: "30", isCorrect: false },
+            { label: "40", isCorrect: false },
+            { label: "49", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 15,
+        question: `<p>Which is the odd one out?</p>`,
+        options: [
+            { label: "Pen", isCorrect: false },
+            { label: "Pencil", isCorrect: false },
+            { label: "Eraser", isCorrect: false },
+            { label: "Book", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 16,
+        question: `<p>If 3 × 4 = 25, 5 × 2 = 29, then 6 × 1 = ?</p>`,
+        options: [
+            { label: "30", isCorrect: false },
+            { label: "31", isCorrect: false },
+            { label: "32", isCorrect: false },
+            { label: "33", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 17,
+        question: `<p>What comes next in the series: 5, 11, 17, 23, ?</p>`,
+        options: [
+            { label: "29", isCorrect: false },
+            { label: "30", isCorrect: false },
+            { label: "31", isCorrect: false },
+            { label: "33", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 18,
+        question: `<p>If Delhi is coded as EFKMJ, then Mumbai will be coded as:</p>`,
+        options: [
+            { label: "NVOJCB", isCorrect: false },
+            { label: "NVOJBD", isCorrect: false },
+            { label: "MVOJCB", isCorrect: false },
+            { label: "NUPJCB", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 19,
+        question: `<p>Which of the following is different?</p>`,
+        options: [
+            { label: "Car", isCorrect: false },
+            { label: "Bus", isCorrect: false },
+            { label: "Train", isCorrect: false },
+            { label: "Road", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 20,
+        question: `<p>Find the odd one: 2, 4, 8, 16, 34</p>`,
+        options: [
+            { label: "2", isCorrect: false },
+            { label: "4", isCorrect: false },
+            { label: "16", isCorrect: false },
+            { label: "34", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 21,
+        question: `<p>If LION is coded as MJPO, then TIGER is coded as:</p>`,
+        options: [
+            { label: "UJHFS", isCorrect: false },
+            { label: "UJHFR", isCorrect: false },
+            { label: "UJIGS", isCorrect: false },
+            { label: "UJHGS", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 22,
+        question: `<p>Complete the series: 3, 9, 27, 81, ?</p>`,
+        options: [
+            { label: "121", isCorrect: false },
+            { label: "243", isCorrect: false },
+            { label: "225", isCorrect: false },
+            { label: "256", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 23,
+        question: `<p>Find the missing letter: A, C, F, J, O, ?</p>`,
+        options: [
+            { label: "S", isCorrect: false },
+            { label: "T", isCorrect: false },
+            { label: "U", isCorrect: false },
+            { label: "V", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 24,
+        question: `<p>If 8 + 2 = 36, 6 + 4 = 40, then 7 + 3 = ?</p>`,
+        options: [
+            { label: "45", isCorrect: false },
+            { label: "46", isCorrect: false },
+            { label: "47", isCorrect: false },
+            { label: "50", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 25,
+        question: `<p>Which of the following does not belong to the group?</p>`,
+        options: [
+            { label: "Paris", isCorrect: false },
+            { label: "London", isCorrect: false },
+            { label: "Tokyo", isCorrect: false },
+            { label: "River", isCorrect: false },
+        ],
+        solution: "",
+    },
+]
 
-// Which one of the following statements best reflects the central idea of the passage?`,
-//         options: [
-//             "Economies of scale is essential for transition to green growth.",
-//             "Modern technological progress is intensely linked to path-dependent innovations.",
-//             "Countries with large economies are in a better position to adopt green technologies.",
-//             "Timing plays a crucial role in the case of green technology development."
-//         ],
-//         // answer: "Timing plays a crucial role in the case of green technology development."
-//     },
-//     {
-//         id: 24,
-//         question: `The history of renewable energy suggests there is a steep learning curve, meaning that, as more is produced, costs fall rapidly because of economies of scale and learning by doing. The firms’ green innovation is path-dependent the more a firm does, the more it is likely to do in the future. The strongest evidence for this is the collapse in the price of solar energy, which became about 90% cheaper during the 2010s, repeatedly beating forecasts. Moving early and gradually gives economies more time to adjust, allowing them to reap the benefits of path-dependent green investment without much disruption. A late, more chaotic transition is costlier.
+const questionsSSCCGL2: Question[] = [
+    {
+        id: 26,
+        question: "Who is known as the 'Father of the Indian Constitution'?",
+        options: [
+            { label: "Mahatma Gandhi", isCorrect: false },
+            { label: "Dr. B.R. Ambedkar", isCorrect: true },
+            { label: "Jawaharlal Nehru", isCorrect: false },
+            { label: "Sardar Patel", isCorrect: false },
+        ],
+        solution: ""
+    },
+    {
+        id: 27,
+        question: "Which planet is known as the 'Red Planet'?",
+        options: [
+            { label: "Venus", isCorrect: false },
+            { label: "Jupiter", isCorrect: false },
+            { label: "Mars", isCorrect: true },
+            { label: "Saturn", isCorrect: false },
+        ],
+        solution: ""
+    },
+    {
+        id: 28,
+        question: "The currency of Japan is:",
+        options: [
+            { label: "Yuan", isCorrect: false },
+            { label: "Won", isCorrect: false },
+            { label: "Yen", isCorrect: true },
+            { label: "Ringgit", isCorrect: false },
+        ],
+        solution: ""
+    },
+    {
+        id: 29,
+        question: "Which is the longest river in the world?",
+        options: [
+            { label: "Amazon", isCorrect: false },
+            { label: "Nile", isCorrect: true },
+            { label: "Ganges", isCorrect: false },
+            { label: "Mississippi", isCorrect: false },
+        ],
+        solution: ""
+    },
+    {
+        id: 30,
+        question: "The headquarters of UNESCO is located in:",
+        options: [
+            { label: "New York", isCorrect: false },
+            { label: "Geneva", isCorrect: false },
+            { label: "Paris", isCorrect: true },
+            { label: "London", isCorrect: false },
+        ],
+        solution: ""
+    },
+]
 
-// With reference to the above passage, the following assumptions have been made:
-// I. Path-dependent green investments will eventually most likely benefit growth as well as public finances in a country like India.
-// II. If other green technologies follow the same pattern as that of solar energy, there will most likely be an easy green transition.
+const questionsSSCCGL3: Question[] = [
+    {
+        id: 31,
+        question: `<p>What is the value of (25% of 80) + (30% of 60)?</p>`,
+        options: [
+            { label: "35", isCorrect: false },
+            { label: "38", isCorrect: false },
+            { label: "40", isCorrect: true },
+            { label: "42", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 32,
+        question: `<p>If the area of a circle is 154 cm², what is its radius? (Take π = 22/7)</p>`,
+        options: [
+            { label: "7 cm", isCorrect: true },
+            { label: "14 cm", isCorrect: false },
+            { label: "21 cm", isCorrect: false },
+            { label: "28 cm", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 33,
+        question: `<p>A train travels 360 km in 4 hours. What is its speed in km/hr?</p>`,
+        options: [
+            { label: "80", isCorrect: true },
+            { label: "85", isCorrect: false },
+            { label: "90", isCorrect: false },
+            { label: "95", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 34,
+        question: `<p>The simple interest on ₹1000 for 2 years at 5% per annum is:</p>`,
+        options: [
+            { label: "₹50", isCorrect: false },
+            { label: "₹100", isCorrect: true },
+            { label: "₹150", isCorrect: false },
+            { label: "₹200", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 35,
+        question: `<p>What is the next number in the sequence: 1, 4, 9, 16, 25, ?</p>`,
+        options: [
+            { label: "30", isCorrect: false },
+            { label: "35", isCorrect: false },
+            { label: "36", isCorrect: true },
+            { label: "49", isCorrect: false },
+        ],
+        solution: "",
+    },
 
-// Which of the above assumptions is/are valid?`,
-//         options: [
-//             "I only",
-//             "II only",
-//             "Both I and II",
-//             "Neither I nor II"
-//         ],
-//         // answer: "I only"
-//     },
-//     {
-//         id: 25,
-//         question: "A natural number N is such that it can be expressed as N = p + q + r, where p, q and r are distinct factors of N. How many numbers below 50 have this property?",
-//         options: ["6", "7", "8", "9"],
-//     },
-//     {
-//         id: 26,
-//         question: "Three prime numbers p, q and r, each less than 20, are such that p - q = q - r. How many distinct possible values can we get for (p + q + r)?",
-//         options: ["4", "5", "6", "More than 6"],
-//     },
-//     {
-//         id: 27,
-//         question: "How many possible values of (p + q + r) are there satisfying, 1/p + 1/q + 1/r = 1 where p, q and r are natural numbers (not necessarily distinct)?",
-//         options: ["None", "One", "Three", "More than three"],
-//     },
-//     {
-//         id: 28,
-//         question: "What comes at X and Y respectively in the following sequence?\n\nJanuary, January, December, October, X, March, October, Y, September",
-//         options: ["July, May", "July, April", "June, May", "June, April"],
-//     },
-//     {
-//         id: 29,
-//         question: "Team X scored a total of N runs in 20 overs. Team Y tied the score in 10% less overs. Had team Y’s average run rate (runs per over) been 50% higher, the scores would have been tied in 12 overs. How many runs were scored by team X?",
-//         options: ["72", "144", "216", "Cannot be determined"],
-//     },
-//     {
-//         id: 30,
-//         question: "The price (p) of a commodity is first increased by k%; then decreased by k%; again increased by k%; and again decreased by k%. If the new price is q, then what is the relation between p and q?",
-//         options: [
-//             "p(10000-k²)² = q × 108",
-//             "p(10000-k²)² = q × 104",
-//             "p(10000-k²)  = q × 104",
-//             "p(10000-k²)  = q × 108",
-//         ],
-//     },
-//     {
-//         id: 31,
-//         question: `One of the dismal realities of the agricultural sector in independent India has been that it never experienced a high-growth phase, unlike the non-agricultural economy. The highest decadal growth (compound annual growth rate or CAGR) for agriculture has been just 3-5% in the 1980s. Also, after experiencing a spurt in decadal growth during the 1980s, agricultural growth suffered relative stagnation thereafter. This is in sharp contrast to non-agricultural growth, which consistently increased from the 1980s to 2000s.
+]
 
-// Which one of the following statements best reflects the corollary to the above passage?`,
-//         options: [
-//             "The benefit of economic reforms percolates down more slowly to the agriculture sector than in other sectors of the economy.",
-//             "For India, the green revolution was not as useful as it was expected to be.",
-//             "India lagged behind other countries in adapting mechanized and modern farming.",
-//             "Rural-to-urban migration resulted in the stagnant agriculture sector."
-//         ],
-//         //answer: "The benefit of economic reforms percolates down more slowly to the agriculture sector than in other sectors of the economy."
-//     },
-//     {
-//         id: 32,
-//         question: `With reference to the passage, the following assumptions have been made:
+const questionsSSCCGL4: Question[] = [
+    {
+        id: 36,
+        question: `<p>Choose the correct synonym for 'ABUNDANT':</p>`,
+        options: [
+            { label: "Scarce", isCorrect: false },
+            { label: "Plentiful", isCorrect: true },
+            { label: "Limited", isCorrect: false },
+            { label: "Rare", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 37,
+        question: `<p>Identify the grammatically correct sentence:</p>`,
+        options: [
+            { label: "He don't like coffee", isCorrect: false },
+            { label: "He doesn't likes coffee", isCorrect: false },
+            { label: "He doesn't like coffee", isCorrect: true },
+            { label: "He not like coffee", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 38,
+        question: `<p>Choose the correct antonym for 'OPTIMISTIC':</p>`,
+        options: [
+            { label: "Hopeful", isCorrect: false },
+            { label: "Positive", isCorrect: false },
+            { label: "Pessimistic", isCorrect: true },
+            { label: "Confident", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 39,
+        question: `<p>Fill in the blank: 'The meeting has been _____ to next week.'</p>`,
+        options: [
+            { label: "postponed", isCorrect: true },
+            { label: "preponed", isCorrect: false },
+            { label: "advanced", isCorrect: false },
+            { label: "delayed", isCorrect: false },
+        ],
+        solution: "",
+    },
+    {
+        id: 40,
+        question: `<p>Choose the correctly spelled word:</p>`,
+        options: [
+            { label: "Occassion", isCorrect: false },
+            { label: "Occasion", isCorrect: true },
+            { label: "Ocasion", isCorrect: false },
+            { label: "Occassion", isCorrect: false },
+        ],
+        solution: "",
+    },
 
-// The growing divergence between the fortunes of the agricultural and non-agricultural economy in India could have been reduced/contained by:
+]
 
-// I. adapting large-scale cultivation of commercial crops and viable corporate farming.
-// II. providing free insurance for all crops and heavily subsidizing seeds, fertilizers, electricity and farm machinery at par with developed countries.
+const sectionsSSC: Section[] = [
+    {
+        id: 1,
+        name: "General Intelligence & Reasoning",
+        questions: questionsSSCCGL1,
+    },
+    {
+        id: 2,
+        name: "General Awareness",
+        questions: questionsSSCCGL2,
+    },
+    {
+        id: 3,
+        name: "Quantitative Aptitude",
+        questions: questionsSSCCGL3,
+    },
+    {
+        id: 4,
+        name: "English Comprehension",
+        questions: questionsSSCCGL4,
+    },
+]
 
-// Which of the above assumptions is/are valid?`,
-//         options: ["I only", "II only", "Both I and II", "Neither I nor II"],
-//         //answer: "Neither I nor II"
-//     },
-//     {
-//         id: 33,
-//         question: `In our country, handlooms are equated with a culture that ensures a continuity of tradition. This idea has become part of the public policy-framing and provides a legitimate basis for the State to support the sector. But the notion of tradition as a single, linear entity is being strongly contested today. The narratives dominant in defining culture/tradition in a particular way are seen to have emerged as the identities and histories of large sections. The discounted and, at times, forcibly stifled identities are fighting for their rightful place in history, Against this backdrop, when we promote handloom as a traditional industry, it is not surprising that large sections of our population choose to ignore it.
-
-// Which one of the following statements best reflects the most logical and rational message conveyed by the author of the passage?`,
-//         options: [
-//             "We need to free the handloom industry from the limited narrative linked to preserving cultural heritage.",
-//             "Continued State support to the handloom industry ensures the preservation of some of our glorious art forms and old traditions.",
-//             "Household units of the handloom sector should be modernized and made an economically viable organized industry.",
-//             "Handloom products need to be converted to machine-made designer products so as to make them more popular."
-//         ],
-//         //answer: "We need to free the handloom industry from the limited narrative linked to preserving cultural heritage."
-//     },
-//     {
-//         id: 34,
-//         question: `With reference to the above passage, the following assumptions have been made:
-
-// I. There is no need for the State to be involved in any manner in the handloom sector.
-// II. Handloom products are no longer appealing and attractive in the rapidly changing modern world.
-
-// Which of the above assumptions is/are valid?`,
-//         options: ["I only", "II only", "Both I and II", "Neither I nor II"]
-//     },
-//     {
-//         id: 35,
-//         question: "Consider the first 100 natural numbers. How many of them are not divisible by any one of 2, 3, 5, 7 and 9?",
-//         options: ["20", "21", "22", "23"],
-//     },
-//     {
-//         id: 36,
-//         question: "If 4 ≤ x ≤ 8 and 2 ≤ y ≤ 7 then what is the ratio of maximum value of (x + y) to minimum value of (x - y)?",
-//         options: ["6", "15/2", "-15/2", "None of the above"],
-//     },
-//     {
-//         id: 37,
-//         question: "Let both p and k be prime numbers such that (p² + k) is also a prime number less than 30.\nWhat is the number of possible values of k?",
-//         options: ["4", "5", "6", "7"],
-//     },
-//     {
-//         id: 38,
-//         question: "There are n sets of numbers each having only three positive integers with LCM equal to 1001 and HCF equal to 1. What is the value of n?",
-//         options: ["6", "7", "8", "More than 8"],
-//     },
-//     {
-//         id: 39,
-//         question: "Let PQR be a 3-digit number, PPT be a 3-digit number and PS be a 2-digit number, where P, Q, R, S, T are distinct non-zero digits. Further, PQR - PS = PPT. If Q = 3 and T < 6, then what is the number of possible values of (R, S)?",
-//         options: ["2", "3", "4", "More than 4"],
-//     },
-//     {
-//         id: 40,
-//         question: "Consider the sequence AB_CC_A_BCCC_BBC_C that follows a certain pattern. Which one of the following completes the sequence?",
-//         options: ["B, C, B, C, A", "A, C, B, C, A", "B, C, B, A, C", "C, B, B, A, C"],
-//     },
-//     {
-//         id: 41,
-//         question: `It is hard to predict how changes in the climate and the atmosphere’s chemistry will affect the prevalence and virulence of agricultural diseases. But there is a risk that such changes will make some plant infections more common in all climatic zones, perhaps catastrophically so. Part of the problem is that centuries of selective breeding have refined the genomes of most high-value crops. They are spectacular at growing in today’s conditions but genetic variations that are not immediately useful to them have been bred out. This is good for yields but bad for coping with changes. A minor disease or even an unknown one could suddenly rampage through a genetically honed crop.
-
-// Which one of the following statements best reflects the central idea conveyed by the passage?`,
-//         options: [
-//             "Global climate change adversely affects the productivity of crops.",
-//             "Our total dependence on genetically honed crops entails possible food insecurity.",
-//             "Our food security should not depend on agricultural productivity alone.",
-//             "Genetically honed crops should be replaced with their wild varieties in our present cultivation practices."
-//         ],
-//         // answer: "Our total dependence on genetically honed crops entails possible food insecurity."
-//     },
-//     {
-//         id: 42,
-//         question: `With reference to the above passage, the following assumptions have been made:
-
-// I. Global climate change can result in the migration of several plant diseases to new areas.
-// II. Scientific understanding of the wild relatives of our present crops would enable us to strengthen food security.
-
-// Which of the above assumptions is/are valid?`,
-//         options: [
-//             "I only",
-//             "II only",
-//             "Both I and II",
-//             "Neither I nor II"
-//         ],
-//         // answer: "Both I and II"
-//     },
-//     {
-//         id: 43,
-//         question: `“A good statesman, like any other sensible human being, learns more from his opponents than from his fervent supporters. For his supporters will push him to disaster unless his opponents show him where the dangers are. So if he is wise he will often pray to be delivered from his friends, because they will ruin him. But, though it hurts, he ought also to pray never to be left without opponents; for they keep him on the path of reason and good sense. The national unity of free people depends upon a sufficiently even balance of political power to make it impracticable for the administration to be arbitrary and for opposition to be revolutionary and irreconcilable.”
-
-// Which one of the following statements best reflects the critical message conveyed by the author of the passage?`,
-//         options: [
-//             "Without opposition parties, the administration in a democracy gets to become more responsible.",
-//             "Democracy needs to have revolutionaries in opposition to keep the government alert.",
-//             "Rulers in a democracy need the support of opposition for their political survival.",
-//             "In a democracy, the opposition is indispensable for the balance of political power and good governance."
-//         ],
-//         // answer: "In a democracy, the opposition is indispensable for the balance of political power and good governance."
-//     },
-//     {
-//         id: 44,
-//         question: `With reference to the above passage, the following assumptions have been made:
-
-// I. In a democracy, a strong opposition is required only if the Head of Government is indifferent.
-// II. The more aggressive the opposition, the better is the governance in a democracy.
-
-// Which of the above assumptions is/are valid?`,
-//         options: [
-//             "I only",
-//             "II only",
-//             "Both I and II",
-//             "Neither I nor II"
-//         ],
-//         // answer: "Neither I nor II"
-//     },
-//     {
-//         id: 45,
-//         question: "P is the brother of Q and R. S is R’s mother. T is P’s father. How many of the following statements are definitely true?\n\nI. S and T are a couple.\nII. Q is T’s son.\nIII. T is Q’s father.\nIV. S is P’s mother.\nV. R is T’s daughter.\nVI. P is S’s son.",
-//         options: ["Only two", "Only three", "Only four", "Only five"],
-//     },
-//     {
-//         id: 46,
-//         question: "If NO is coded as 210, NOT is coded as 4200 and NOTE is coded as 21000, then how is NOTES coded?",
-//         options: ["399000", "420000", "440000", "630000"],
-//     },
-//     {
-//         id: 47,
-//         question: "If FRANCE is coded as 654321 and GERMANY is coded as 9158437, then how is YEMEN coded?",
-//         options: ["54321", "81913", "71913", "71813"],
-//     },
-//     {
-//         id: 48,
-//         question: "The 5-digit number PQRST (all distinct digits) is such that T ≠ 0. P is thrice T. S is greater than Q by 4, while Q is greater than R by 3. How many such 5-digit numbers are possible?",
-//         options: ["3", "4", "5", "6"],
-//     },
-//     {
-//         id: 49,
-//         question: "X can complete one-third of a certain work in 6 days, Y can complete one-third of the same work in 8 days and Z can complete three-fourth of the same work in 12 days. All of them work together for n days and then X and Z quit and Y alone finishes the remaining work in 26/3. What is n equal to?",
-//         options: ["3", "4", "5", "6"],
-//     },
-//     {
-//         id: 50,
-//         question: "What is X in the sequence 1, 3, 6, 11, 18, X, 42?",
-//         options: ["26", "27", "29", "30"],
-//     },
-//     {
-//         id: 51,
-//         question: `A single number for inflation is an aggregate across different commodities and services the price rise differs for different items of consumption. So, the single number is arrived at by assigning weights to different commodities and services. For WPI, the weights in production are used; for CPI, the consumption basket is used. But people are not homogeneous. The consumption basket is vastly different for the poor, the middle classes, and the rich. Hence, the CPI is different for each of these classes and a composite index requires averaging the baskets.
-
-// Which one of the following statements best reflects the most logical, rational and crucial message conveyed by the passage?`,
-//         options: [
-//             "We must use WPI exclusively in measuring price rise and CPI should be done away with.",
-//             "The present calculation of inflation rate does not correctly measure price rise of individual item/commodity.",
-//             "Inflation data under-presents services in the consumption basket.",
-//             "Knowledge of inflation rate is not really of any use to anybody in the country."
-//         ],
-//         // answer: "The present calculation of inflation rate does not correctly measure price rise of individual item/commodity."
-//     },
-//     {
-//         id: 52,
-//         question: `Trust stands commonly defined being vulnerable to others. As entrepreneurship implies trust in others and willingness to expose oneself to betrayal. Trust in expert systems is the essence of globalizing behaviour; trust itself emerges as a super-commodity in the social market and defines the characteristics of goods and services in a global market. Trusting conduct also means holding others in good esteem, and an optimism that they are, or will be, competent in certain respects.
-
-// Which one of the following statements best reflects the crux of the passage?`,
-//         options: [
-//             "Trustworthiness cannot be expected in entrepreneurship.",
-//             "Trustworthy people are the most vulnerable people.",
-//             "No economic activity is possible without being exposed to betrayal.",
-//             "Trust is important though it entails risk."
-//         ],
-//         // answer: "Trust is important though it entails risk."
-//     },
-//     {
-//         id: 53,
-//         question: `In a football match, team P playing against Q was behind by 3 goals with 10 minutes remaining. Does team P win the match?
-
-// Statement I: Team P scored 4 goals in the last 10 minutes.
-// Statement II: Team Q scored a total of 4 goals in the match.
-
-// Which one of the following is correct in respect of the above question and the Statements?`,
-//         options: [
-//             "The Question can be answered by using one of the Statements alone, but cannot be answered using the other statement alone.",
-//             "The Question can be answered by using either Statement alone.",
-//             "The Question can be answered by using both the Statements together, but cannot be answered using either Statement alone.",
-//             "The Question cannot be answered even using any of the Statements."
-//         ],
-//         // answer: "The Question can be answered by using one of the Statements alone, but cannot be answered using the other statement alone."
-//     },
-//     {
-//         id: 54,
-//         question: "A question is given followed by two Statements I and II. Consider the Question and the Statements and mark the correct option.\n\nQuestion:\nIs (p + q)² - 4pq, where p, q are natural numbers, positive?\n\nStatement I: p < q.\nStatement II: p > q.\n\nWhich one of the following is correct in respect of the above question and the Statements?",
-//         options: [
-//             "The Question can be answered by using one of the Statements alone, but cannot be answered using the other statement alone.",
-//             "The Question can be answered by using either Statement alone.",
-//             "The Question can be answered by using both the Statements together, but cannot be answered using either Statement alone.",
-//             "The Question can be answered even without using any of the Statements."
-//         ],
-//     },
-//     {
-//         id: 55,
-//         question: "In a T20 cricket match, three players X, Y and Z scored a total of 37 runs. The ratio of number of runs scored by X to the number of runs scored by Y is equal to ratio of number of runs scored by Y to number of runs scored by Z.\n\nValue-I = Runs scored by X\nValue-II = Runs scored by Y\nValue-III = Runs scored by Z\n\nWhich one of the following is correct?",
-//         options: [
-//             "Value-I < Value-II < Value-III",
-//             "Value-III < Value-II < Value-I",
-//             "Value-I < Value-III < Value-II",
-//             "Cannot be determined due insufficient data"
-//         ],
-//     },
-//     {
-//         id: 56,
-//         question: "Let p + q = 10 where p, q are integers.\n\nValue-I = Maximum value of p × q when p, q are positive integers.\nValue-II = Maximum value of p × q when p ≥ -6, q ≥ -4.\n\nWhich one of the following is correct?",
-//         options: [
-//             "Value-I < Value-II",
-//             "Value-II < Value-I",
-//             "Value-I = Value-II",
-//             "Cannot be determined due to insufficient data"
-//         ],
-//     },
-//     {
-//         id: 57,
-//         question: "Consider a set of 11 numbers:\n\nValue-I = Minimum value of the average of the numbers of the set when they are consecutive integers ≥ -5.\nValue-II = Minimum value of the product of the numbers of the set when they are consecutive non-negative integers.\n\nWhich one of the following is correct?",
-//         options: [
-//             "Value-I < Value-II",
-//             "Value-II < Value-I",
-//             "Value-I = Value-II",
-//             "Cannot be determined due to insufficient data"
-//         ],
-//     },
-//     {
-//         id: 58,
-//         question: "The average of three numbers p, q and r is k. p is as much more than the average as q is less than the average. What is the value of r?",
-//         options: ["k", "k-1", "k+1", "k/2"],
-//     },
-//     {
-//         id: 59,
-//         question: "Let x be a real number between 0 and 1. Which of the following statements is/are correct?\n\nI. x² > x³\nII. x > √x.\n\nSelect the correct answer using the code given below:",
-//         options: ["I only", "II only", "Both I and II", "Neither I nor II"],
-//     },
-//     {
-//         id: 60,
-//         question: "The difference between any two natural numbers is 10. What can be said about the natural numbers which are divisible by 5 and lie between these two numbers?",
-//         options: [
-//             "There is only one such number.",
-//             "There are only two such numbers.",
-//             "There can be more than one such number.",
-//             "No such number exists."
-//         ],
-//     },
-//     {
-//         id: 61,
-//         question: `Over the next 30 years, many countries are promising to move to net-zero carbon, implying that household emissions will have to be cut to close to nothing. A leading climate scientist reckons that, at best, half the reduction might be achieved through demand-side measures, such as behavioural changes by individuals and households. And even that would require companies and governments to provide more incentives to change through supply-side investments to make low-carbon options cheaper and more widely available.
-
-// Which one of the following statements best reflects the central idea conveyed by the passage?`,
-//         options: [
-//             "Moving to net-zero carbon is possible only by the reduction in household emissions.",
-//             "Low-carbon behaviour in people can be brought about by incentivising them.",
-//             "Cheaper goods and services can be made available to people by using low-carbon technologies.",
-//             "Manufacturing industries that use low-carbon technologies should be provided with subsidies."
-//         ],
-//         // answer: "Low-carbon behaviour in people can be brought about by incentivising them."
-//     },
-//     {
-//         id: 62,
-//         question: `Over the next 30 years, many countries are promising to move to net-zero carbon, implying that household emissions will have to be cut to close to nothing. A leading climate scientist reckons that, at best, half the reduction might be achieved through demand-side measures, such as behavioural changes by individuals and households. And even that would require companies and governments to provide more incentives to change through supply-side investments to make low-carbon options cheaper and more widely available.
-
-// With reference to the above passage, the following assumptions have been made:
-
-// I. Supply-side investments in companies can result in low-carbon behaviour in people.
-// II. People are not capable of adapting low-carbon behaviour without the involvement of Government and Companies.
-
-// Which of the above assumptions is/are valid?`,
-//         options: [
-//             "I only",
-//             "II only",
-//             "Both I and II",
-//             "Neither I nor II"
-//         ],
-//         // answer: "Both I and II"
-//     },
-//     {
-//         id: 63,
-//         question: `In only 50 years, the world’s consumption of raw materials has nearly quadrupled, to more than 100 billion tons. Less than 9% of this is reused. Batteries of old vehicles contain materials such as lithium, cobalt, manganese and nickel that are pricey and can be hard to obtain. Supply chains are long and complicated. Buyers’ risks are being aggravated by their suppliers’ poor environmental and labour standards. Reusing materials makes sense. Once batteries reach the ends of their lives, they should go back to a factory where their ingredients can be recovered and put into new batteries.
-
-// Which one of the following statements best reflects the most logical, rational and pragmatic message conveyed by the passage?`,
-//         options: [
-//             "Green economy is not possible without reusing critical minerals.",
-//             "Every sector of economy should adapt the reuse of material immediately. resources",
-//             "Circular economy can be beneficial for sustainable growth.",
-//             "Circular use of material resources is the only option for some industries for their survival."
-//         ],
-//         // answer: "Circular economy can be beneficial for sustainable growth."
-//     },
-//     {
-//         id: 64,
-//         question: `In only 50 years, the world’s consumption of raw materials has nearly quadrupled, to more than 100 billion tons. Less than 9% of this is reused. Batteries of old vehicles contain materials such as lithium, cobalt, manganese and nickel that are pricey and can be hard to obtain. Supply chains are long and complicated. Buyers’ risks are being aggravated by their suppliers’ poor environmental and labour standards. Reusing materials makes sense. Once batteries reach the ends of their lives, they should go back to a factory where their ingredients can be recovered and put into new batteries.
-
-// With reference to the above passage, the following assumptions have been made:
-
-// I. Automobile factories are examples of the circular economy.
-// II. Economic growth is compatible with circular use of mineral resources.
-
-// Which of the above assumptions is/are valid?`,
-//         options: [
-//             "I only",
-//             "II only",
-//             "Both I and II",
-//             "Neither I nor II"
-//         ],
-//         // answer: "II only"
-//     },
-//     {
-//         id: 65,
-//         question: "A set (X) of 20 pipes can fill 70% of a tank in 14 minutes. Another set (Y) of 10 pipes fills 3/8th of the tank in 6 minutes. A third set (Z) of 16 pipes can empty half of the tank in 20 minutes. If half of the pipes of set X are closed and only half of the pipes of set Y are open, and all pipes of the set (Z) are open, then how long will it take to fill 50% of the tank?",
-//         options: ["8 minutes", "10 minutes", "12 minutes", "16 minutes"],
-//     },
-//     {
-//         id: 66,
-//         question: "If n is a natural number, then what is the number of distinct remainders of (1ⁿ + 2ⁿ) when divided by 4?",
-//         options: ["0", "1", "2", "3"],
-//     },
-//     {
-//         id: 67,
-//         question: "Let P = QQQ be a 3-digit number. What is the HCF of P and 481?",
-//         options: ["1", "13", "37", "481"],
-//     },
-//     {
-//         id: 68,
-//         question: "What is the 489th digit in the number 123456789101112…?",
-//         options: ["0", "3", "6", "9"],
-//     },
-//     {
-//         id: 69,
-//         question: "A mobile phone has been stolen. There are 3 suspects P, Q and R. They were questioned knowing that only one of them is guilty. Their responses are as follows:\n\nP : I did not steal. Q stole it.\nQ : R did not steal. I did not steal.\nR : I did not steal. I do not know who did it.\n\nWho stole the mobile phone?",
-//         options: ["P", "Q", "R", "Cannot be concluded"],
-//     },
-//     {
-//         id: 70,
-//         question: "Three teams P, Q, R participated in a tournament in which the teams play with one another exactly once. A win fetches a team 2 points and a draw 1 point. A team gets no point for a loss. Each team scored exactly one goal in the tournament. The team P got 3 points, Q got 2 points and R got 1 point. Which of the following statements is/are correct?\n\nI. The result of the match between P and Q is a draw with the score 0 - 0.\nII. The number of goals scored by R against Q is 1.\n\nWhich of the statements given above is/are correct?",
-//         options: ["I only", "II only", "Both I and II", "Neither I nor II"],
-//     },
-//     {
-//         id: 71,
-//         question: `There has been no democracy that has grown economically without corporate capitalism. It helps in modernizing the economy and enabling the transition from rural to urban, and agriculture to industry and services, which are inevitable with growth. It generates jobs and there is no other way to fix a country’s unemployment challenge without a further impetus to private business, Big companies can operate on a large scale and become competitive both domestically and externally. A vibrant corporate capitalist base also leads to additional revenues for the State which in turn, can be used for greater welfare for the marginalized and creating a more level playing field in terms of opportunities.
-
-// Which one of the following statements best reflects the critical message conveyed by the author of the passage?`,
-//         options: [
-//             "Corporate capitalism is important for economic growth of a State and also for democracy.",
-//             "Corporate capitalism is imperative for a modern State to achieve its political objectives.",
-//             "No State can ensure its economic survival for long without the role of corporate capitalism.",
-//             "Corporate capitalism and democracy have mutual dependence for their continued existence."
-//         ],
-//         // answer: "Corporate capitalism is important for economic growth of a State and also for democracy."
-//     },
-//     {
-//         id: 72,
-//         question: `There has been no democracy that has grown economically without corporate capitalism. It helps in modernizing the economy and enabling the transition from rural to urban, and agriculture to industry and services, which are inevitable with growth. It generates jobs - and there is no other way to fix a country’s unemployment challenge without a further impetus to private business. Big companies can operate on a large scale and become competitive both domestically and externally. A vibrant corporate capitalist base also leads to additional revenues for the State - which in turn, can be used for greater welfare for the marginalized and creating a more level playing field in terms of opportunities.
-
-// With reference to the above passage, the following assumptions have been made:
-
-// I. Corporate capitalism promotes the growth of labour force and provides more employment opportunities.
-// II. Poor and marginalized sections of population are benefited by corporate capitalism due to trickle-down effect.
-
-// Which of the above assumptions is/are valid?`,
-//         options: [
-//             "I only",
-//             "II only",
-//             "Both I and II",
-//             "Neither I nor II"
-//         ],
-//         // answer: "I only"
-//     },
-//     {
-//         id: 73,
-//         question: `“A network of voluntary associations stands as a ‘buffer’ between the relatively powerless individual and the potentially powerful State.”
-
-// Which one of the following statements reflects the best explanation of the above passage?`,
-//         options: [
-//             "It emphasizes the inability of the State to enforce its will in practice against the opposition of certain groups within it.",
-//             "It is a cooperative organization for the promotion of the well-being and development of the personality of its members.",
-//             "It takes individuals out of a state of isolation and gives them a chance to participate in the common endeavour.",
-//             "It permits citizens to have a variety of loyalties and allegiance."
-//         ],
-//         // answer: "It takes individuals out of a state of isolation and gives them a chance to participate in the common endeavour."
-//     },
-//     {
-//         id: 74,
-//         question: "Consider the following statements:\n\nI. There exists a natural number which when increased by 50% can have its number of factors unchanged.\nII. There exists a natural number which when increased by 150% can have its number of factors unchanged.\n\nWhich of the statements given above is/are correct?",
-//         options: ["I only", "II only", "Both I and II", "Neither I nor II"],
-//     },
-//     {
-//         id: 75,
-//         question: "There are 7 places A, B, C, D, E, F and G in a city connected by various roads AB, AC, CD, DE, BF, EG and FG. A is 6 km south of B. A is 10 km west of C. D is 5 km east of E. C is 6 km north of D. F is 9 km west of B. F is 12 km north of G. A person travels from D to F through these roads. What is the distance covered by the person?",
-//         options: ["20 km", "25 km", "31 km", "37 km"],
-//     },
-//     {
-//         id: 76,
-//         question: "In a certain code if 64 is written as 343 and 216 is written as 729, then how is 512 written in that code?",
-//         options: ["1000", "1331", "1728", "2197"],
-//     },
-//     {
-//         id: 77,
-//         question: "What is the remainder when 9³ + 9⁴ + 9⁵ + 9⁶ + … + 9¹⁰⁰ is divided by 6?",
-//         options: ["0", "1", "2", "3"],
-//     },
-//     {
-//         id: 78,
-//         question: "A question is given followed by two Statements I and II. Consider the Question and the Statements and mark the correct option.\n\nQuestion:\nWhat is the smallest 1-digit number having exactly 4 distinct factors?\n\nStatement I: 2 is one of the factors.\nStatement II: 3 is one of the factors.\n\nWhich one of the following is correct in respect of the above Question and the Statements?",
-//         options: [
-//             "The Question can be answered by using one of the Statements alone, but cannot be answered using the other statement alone.",
-//             "The Question can be answered by using either Statement alone.",
-//             "The Question can be answered by using both the Statements together, but cannot be answered using either Statement alone.",
-//             "The Question can be answered even without using any of the Statements.",
-//         ],
-//     },
-//     {
-//         id: 79,
-//         question: "A question is given followed by two Statements I and II. Consider the Question and the Statements and mark the correct option.\n\nQuestion:\nLet P, Q, R, S be distinct non-zero digits. If PP × PQ = RRSS, where P ≤ 3 and Q ≤ 4, then what is Q equal to?\n\nStatement I: R = 1.\nStatement II: S = 2.\n\nWhich one of the following is correct in respect of the above Question and the Statements?",
-//         options: [
-//             "The Question can be answered by using one of the Statements alone, but cannot be answered using the other statement alone.",
-//             "The Question can be answered by using either Statement alone.",
-//             "The Question can be answered by using both the Statements together, but cannot be answered using either Statement alone.",
-//             "The Question can be answered even without using any of the Statements.",
-//         ],
-//     },
-//     {
-//         id: 80,
-//         question: "A question is given followed by two Statements I and II. Consider the Question and the Statements and mark the correct option.\n\nQuestion:\nHow is Q related to P?\n\nStatement I: P has two sisters, R and S.\nStatement II: R’s father is the brother of Q.\n\nWhich one of the following is correct in respect of the above Question and the Statements?",
-//         options: [
-//             "The Question can be answered by using one of the Statements alone, but cannot be answered using the other statement alone.",
-//             "The Question can be answered by using either Statement alone.",
-//             "The Question can be answered by using both the Statements together, but cannot be answered using either Statement alone.",
-//             "The Question cannot be answered even using any of the Statements.",
-//         ],
-//     },
-// ];
-
-
-// const sectionsUPSCGS2: Section[] = [
-//     {
-//         id: 1,
-//         name: "General Studies II",
-//         questions: questionsUPSCGS2
-//     }
-// ]
-
-// const sectionsSSC: Section[] = [
-//     {
-//         id: 1,
-//         name: "General Intelligence & Reasoning",
-//         questions: [
-//             {
-//                 id: 1,
-//                 question:
-//                     "In a certain code language, 'COMPUTER' is written as 'RFUVQNPC'. How will 'MACHINE' be written in that code?",
-//                 options: ["ZNBJGMF", "ZNBJFMG", "ZNBGFMJ", "ZNBFJMG"],
-//             },
-//             {
-//                 id: 2,
-//                 question:
-//                     "If '+' means '×', '×' means '−', '−' means '÷' and '÷' means '+', then what is the value of 15 + 3 − 5 × 2 ÷ 4?",
-//                 options: ["7", "5", "9", "11"],
-//             },
-//             {
-//                 id: 3,
-//                 question: "Find the missing number in the series: 2, 6, 12, 20, 30, ?",
-//                 options: ["40", "42", "44", "46"],
-//             },
-//             {
-//                 id: 4,
-//                 question: "Which of the following is the odd one out?",
-//                 options: ["Triangle", "Square", "Rectangle", "Circle"],
-//             },
-//             {
-//                 id: 5,
-//                 question: "If FRIEND is coded as HUMJTK, then CANDLE will be coded as:",
-//                 options: ["EDRIRL", "ECQOKF", "ECRPKF", "ECOQKF"],
-//             },
-//             {
-//                 id: 6,
-//                 question: "If CAT is coded as DBU, then DOG will be coded as:",
-//                 options: ["EPH", "EPI", "FQH", "FPI"],
-//             },
-//             {
-//                 id: 7,
-//                 question: "Find the missing number: 7, 14, 28, 56, ?",
-//                 options: ["84", "100", "112", "120"],
-//             },
-//             {
-//                 id: 8,
-//                 question: "Which word does not belong to the group?",
-//                 options: ["Apple", "Banana", "Orange", "Potato"],
-//             },
-//             {
-//                 id: 9,
-//                 question: "If CLOCK is coded as DMPDL, how is WATCH coded?",
-//                 options: ["XBUJI", "XBVJI", "XBUKI", "XAUJI"],
-//             },
-//             {
-//                 id: 10,
-//                 question: "What comes next in the series: A, C, F, J, O, ?",
-//                 options: ["S", "T", "U", "V"],
-//             },
-//             {
-//                 id: 11,
-//                 question: "If 12 × 12 = 144 and 23 × 23 = 529, then 34 × 34 = ?",
-//                 options: ["1124", "1156", "1189", "1196"],
-//             },
-//             {
-//                 id: 12,
-//                 question: "Pointing to a man, a woman says, 'His mother is the only daughter of my father'. How is the man related to the woman?",
-//                 options: ["Son", "Brother", "Nephew", "Cousin"],
-//             },
-//             {
-//                 id: 13,
-//                 question: "If A = 1, B = 2, C = 3, …, Z = 26, then the code for 'DOG' is:",
-//                 options: ["26", "22", "24", "23"],
-//             },
-//             {
-//                 id: 14,
-//                 question: "Find the missing number: 1, 4, 9, 16, 25, ?",
-//                 options: ["36", "30", "40", "49"],
-//             },
-//             {
-//                 id: 15,
-//                 question: "Which is the odd one out?",
-//                 options: ["Pen", "Pencil", "Eraser", "Book"],
-//             },
-//             {
-//                 id: 16,
-//                 question: "If 3 × 4 = 25, 5 × 2 = 29, then 6 × 1 = ?",
-//                 options: ["30", "31", "32", "33"],
-//             },
-//             {
-//                 id: 17,
-//                 question: "What comes next in the series: 5, 11, 17, 23, ?",
-//                 options: ["29", "30", "31", "33"],
-//             },
-//             {
-//                 id: 18,
-//                 question: "If Delhi is coded as EFKMJ, then Mumbai will be coded as:",
-//                 options: ["NVOJCB", "NVOJBD", "MVOJCB", "NUPJCB"],
-//             },
-//             {
-//                 id: 19,
-//                 question: "Which of the following is different?",
-//                 options: ["Car", "Bus", "Train", "Road"],
-//             },
-//             {
-//                 id: 20,
-//                 question: "Find the odd one: 2, 4, 8, 16, 34",
-//                 options: ["2", "4", "16", "34"],
-//             },
-//             {
-//                 id: 21,
-//                 question: "If LION is coded as MJPO, then TIGER is coded as:",
-//                 options: ["UJHFS", "UJHFR", "UJIGS", "UJHGS"],
-//             },
-//             {
-//                 id: 22,
-//                 question: "Complete the series: 3, 9, 27, 81, ?",
-//                 options: ["121", "243", "225", "256"],
-//             },
-//             {
-//                 id: 23,
-//                 question: "Find the missing letter: A, C, F, J, O, ?",
-//                 options: ["S", "T", "U", "V"],
-//             },
-//             {
-//                 id: 24,
-//                 question: "If 8 + 2 = 36, 6 + 4 = 40, then 7 + 3 = ?",
-//                 options: ["45", "46", "47", "50"],
-//             },
-//             {
-//                 id: 25,
-//                 question: "Which of the following does not belong to the group?",
-//                 options: ["Paris", "London", "Tokyo", "River"],
-//             },
-//         ],
-//     },
-//     {
-//         id: 2,
-//         name: "General Awareness",
-//         questions: [
-//             {
-//                 id: 26,
-//                 question: "Who is known as the 'Father of the Indian Constitution'?",
-//                 options: ["Mahatma Gandhi", "Dr. B.R. Ambedkar", "Jawaharlal Nehru", "Sardar Patel"],
-//             },
-//             {
-//                 id: 27,
-//                 question: "Which planet is known as the 'Red Planet'?",
-//                 options: ["Venus", "Jupiter", "Mars", "Saturn"],
-//             },
-//             {
-//                 id: 28,
-//                 question: "The currency of Japan is:",
-//                 options: ["Yuan", "Won", "Yen", "Ringgit"],
-//             },
-//             {
-//                 id: 29,
-//                 question: "Which is the longest river in the world?",
-//                 options: ["Amazon", "Nile", "Ganges", "Mississippi"],
-//             },
-//             {
-//                 id: 30,
-//                 question: "The headquarters of UNESCO is located in:",
-//                 options: ["New York", "Geneva", "Paris", "London"],
-//             },
-//         ],
-//     },
-//     {
-//         id: 3,
-//         name: "Quantitative Aptitude",
-//         questions: [
-//             {
-//                 id: 31,
-//                 question: "What is the value of (25% of 80) + (30% of 60)?",
-//                 options: ["35", "38", "40", "42"],
-//             },
-//             {
-//                 id: 32,
-//                 question: "If the area of a circle is 154 cm², what is its radius? (Take π = 22/7)",
-//                 options: ["7 cm", "14 cm", "21 cm", "28 cm"],
-//             },
-//             {
-//                 id: 33,
-//                 question: "A train travels 360 km in 4 hours. What is its speed in km/hr?",
-//                 options: ["80", "85", "90", "95"],
-//             },
-//             {
-//                 id: 34,
-//                 question: "The simple interest on ₹1000 for 2 years at 5% per annum is:",
-//                 options: ["₹50", "₹100", "₹150", "₹200"],
-//             },
-//             {
-//                 id: 35,
-//                 question: "What is the next number in the sequence: 1, 4, 9, 16, 25, ?",
-//                 options: ["30", "35", "36", "49"],
-//             },
-//         ],
-//     },
-//     {
-//         id: 4,
-//         name: "English Comprehension",
-//         questions: [
-//             {
-//                 id: 36,
-//                 question: "Choose the correct synonym for 'ABUNDANT':",
-//                 options: ["Scarce", "Plentiful", "Limited", "Rare"],
-//             },
-//             {
-//                 id: 37,
-//                 question: "Identify the grammatically correct sentence:",
-//                 options: [
-//                     "He don't like coffee",
-//                     "He doesn't likes coffee",
-//                     "He doesn't like coffee",
-//                     "He not like coffee",
-//                 ],
-//             },
-//             {
-//                 id: 38,
-//                 question: "Choose the correct antonym for 'OPTIMISTIC':",
-//                 options: ["Hopeful", "Positive", "Pessimistic", "Confident"],
-//             },
-//             {
-//                 id: 39,
-//                 question: "Fill in the blank: 'The meeting has been _____ to next week.'",
-//                 options: ["postponed", "preponed", "advanced", "delayed"],
-//             },
-//             {
-//                 id: 40,
-//                 question: "Choose the correctly spelled word:",
-//                 options: ["Occassion", "Occasion", "Ocasion", "Occassion"],
-//             },
-//         ],
-//     },
-// ]
-
-// export const examData: ExamData = {
-//     title: "SSC Combined Graduate Level Examination 2024",
-//     startTimestamp: "2025-09-16T08:26:56.0",
-//     duration: 120, // 120 minutes
-//     sections: sectionsUPSCGS1
-// }
-
-// export const examDataUPSCGS2: ExamData = {
-//     title: "UPSC CSAT Test Series 2026",
-//     duration: 120, // 120 minutes
-//     startTimestamp: "2025-09-16T15:25:00.0",
-//     sections: sectionsUPSCGS2
-// }
-
-// export const examDataSSCCGL: ExamData = {
-//     title: "SSC CGL Test Series 2026",
-//     duration: 120, // 120 minutes
-//     startTimestamp: "2025-09-16T08:26:56.0",
-//     sections: sectionsSSC
-// }
+export const examDataSSCCGL: ExamData = {
+    title: "SSC Combined Graduate Level Test Series 2026",
+    duration: 120, // 120 minutes
+    startTimestamp: "2025-09-16T15:25:00.0",
+    sections: sectionsSSC
+}
