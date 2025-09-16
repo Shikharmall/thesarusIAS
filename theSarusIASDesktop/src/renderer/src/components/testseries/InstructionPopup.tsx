@@ -1,3 +1,4 @@
+import { themeColor } from "@renderer/utils/constant/Color"
 import type { InstructionPopupProps } from "../../utils/types/testseries"
 import { Button } from "../common/Button"
 import { Card, CardContent, CardHeader, CardTitle } from "../common/Card"
@@ -9,7 +10,7 @@ export function InstructionPopup({ isOpen = true, onClose, onStartExam }: Instru
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       <Card className="w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-        <CardHeader className="bg-blue-600 text-white">
+        <CardHeader className="text-white" style={{ backgroundColor: themeColor?.primary }}>
           <div className="flex items-center justify-between">
             <CardTitle className="text-xl font-bold">SSC CGL Examination - Important Instructions</CardTitle>
             <Button variant="ghost" size="icon" onClick={onClose} className="text-white hover:bg-blue-700">

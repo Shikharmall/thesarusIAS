@@ -1590,7 +1590,7 @@ const sectionsUPSCGS1: Section[] = [
 
 export const examDataUPSCGS1: ExamData = {
     title: "UPSC Prelims PYQ Test Series 2025",
-    duration: 50, // (in minutes)
+    duration: 500, // (in minutes)
     startTimestamp: "2025-09-16T19:00:00.0",
     sections: sectionsUPSCGS1
 }
@@ -3170,7 +3170,7 @@ const sectionsSSC: Section[] = [
 
 export const examDataSSCCGL: ExamData = {
     title: "SSC Combined Graduate Level Test Series 2026",
-    duration: 120, // 120 minutes
-    startTimestamp: "2025-09-16T15:25:00.0",
+    duration: 500, // 120 minutes
+    startTimestamp: "2025-09-16T20:00:00.0",
     sections: sectionsSSC
 }

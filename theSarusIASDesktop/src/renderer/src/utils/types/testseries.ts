@@ -62,8 +62,8 @@ export interface QuestionPaperPopupProps {
 }
 
 export interface QuestionStatus {
-    answered: boolean,
-    flagged: boolean,
+    answered?: boolean,
+    flagged?: boolean,
     visited: boolean,
     selectedAnswer?: number,
 }

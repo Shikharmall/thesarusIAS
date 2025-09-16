@@ -35,7 +35,7 @@ export function QuestionPaperPopup({ isOpen, onClose, sections }: QuestionPaperP
                 <CardContent className="p-6 space-y-8">
                     {sections?.map((section, sectionIndex) => (
                         <div key={sectionIndex} className="space-y-4">
-                            <h2 className="text-lg font-semibold text-indigo-600 border-b pb-1">
+                            <h2 className="text-lg font-semibold text-indigo-600 border-b pb-1" style={{color: themeColor?.primary}}>
                                 {section?.name}
                             </h2>
                             <ol className="space-y-6">
@@ -43,8 +43,12 @@ export function QuestionPaperPopup({ isOpen, onClose, sections }: QuestionPaperP
                                     <li key={q?.id} className="space-y-2">
                                         {/* Question */}
                                         <p className="font-medium text-gray-800">
-                                            {qIndex + 1}. {q.question}
+                                            {qIndex + 1}
                                         </p>
+                                        <div
+                                            className="text-card-foreground leading-relaxed text-base"
+                                            dangerouslySetInnerHTML={{ __html: q?.question }}
+                                        />
 
                                         {/* Options */}
                                         <ul className="grid gap-2 ml-4 text-sm">
@@ -56,7 +60,7 @@ export function QuestionPaperPopup({ isOpen, onClose, sections }: QuestionPaperP
                                                     <span className="font-semibold">
                                                         {String.fromCharCode(65 + optIndex)}.
                                                     </span>
-                                                    <span>{option}</span>
+                                                    <span>{option?.label}</span>
                                                 </li>
                                             ))}
                                         </ul>

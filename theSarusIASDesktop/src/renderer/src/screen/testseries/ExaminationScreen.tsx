@@ -4,7 +4,7 @@ import { QuestionNavigator } from "../../components/testseries/QuestionNavigatio
 import { MCQQuestion } from "../../components/testseries/MCQQuestion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { examDataUPSCGS1 } from "../../data/examData"; //
+import { examDataSSCCGL } from "../../data/examData"; //
 import { themeColor } from "../../utils/constant/Color";
 import { ExamHeader } from "../../components/testseries/ExaminationHeader";
 import { ExamNavigation } from "../../components/testseries/ExaminationNavigation";
@@ -16,20 +16,20 @@ export default function ExaminationScreen() {
   const [currentSectionIndex, setCurrentSectionIndex] = useState<number>(0);
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(true);
   const [locked, setLocked] = useState<boolean>(false);
-  const [questionStatuses, setQuestionStatuses] = useState<
-    Record<number, QuestionStatus>
-  >({});
+  const [questionStatuses, setQuestionStatuses] = useState<Record<number, QuestionStatus>>({
+    1: { visited: true }, // Example: question 1 is visited
+  });
 
   const elementRef = useRef<HTMLDivElement>(null);
 
-  const allQuestions = examDataUPSCGS1?.sections?.flatMap(
+  const allQuestions = examDataSSCCGL?.sections?.flatMap(
     (section) => section?.questions
   );
 
   const totalQuestions = allQuestions?.length || 0;
 
   const currentQuestionData =
-    examDataUPSCGS1?.sections[currentSectionIndex]?.questions?.find(
+    examDataSSCCGL?.sections[currentSectionIndex]?.questions?.find(
       (q) => q?.id === currentQuestionId
     );
 
@@ -57,6 +57,13 @@ export default function ExaminationScreen() {
 
   const handleQuestionSelect = (questionId: number) => {
     setCurrentQuestionId(questionId);
+    setQuestionStatuses((prev) => ({
+      ...prev,
+      [questionId]: {
+        ...prev[questionId],
+        visited: true,
+      },
+    }));
   };
 
   const handleSectionSelect = (sectionId: number) => {
@@ -189,6 +196,9 @@ export default function ExaminationScreen() {
     };
   }, []);
 
+
+  console.log(questionStatuses)
+
   return (
     <div
       className="h-screen flex flex-col relative"
@@ -218,12 +228,12 @@ export default function ExaminationScreen() {
 
       {/* Header */}
       <ExamHeader
-        title={examDataUPSCGS1?.title}
+        title={examDataSSCCGL?.title}
         currentQuestionId={currentQuestionId}
-        sectionData={examDataUPSCGS1?.sections[currentSectionIndex]}
-        sections={examDataUPSCGS1?.sections}
-        startTimestamp={examDataUPSCGS1?.startTimestamp}
-        duration={examDataUPSCGS1?.duration}
+        sectionData={examDataSSCCGL?.sections[currentSectionIndex]}
+        sections={examDataSSCCGL?.sections}
+        startTimestamp={examDataSSCCGL?.startTimestamp}
+        duration={examDataSSCCGL?.duration}
         onTimeUp={handleTimeUp}
         onSubmit={handleSubmit}
       />
@@ -251,7 +261,7 @@ export default function ExaminationScreen() {
         {sidebarOpen && (
           <aside className="w-80 bg-sidebar border-r flex-shrink-0 overflow-y-auto">
             <QuestionNavigator
-              sections={examDataUPSCGS1?.sections}
+              sections={examDataSSCCGL?.sections}
               currentQuestionId={currentQuestionId}
               currentSectionIndex={currentSectionIndex}
               onSectionSelect={handleSectionSelect}
@@ -266,7 +276,7 @@ export default function ExaminationScreen() {
             {currentQuestionData && (
               <MCQQuestion
                 sectionName={
-                  examDataUPSCGS1?.sections[currentSectionIndex]?.name
+                  examDataSSCCGL?.sections[currentSectionIndex]?.name
                 }
                 questionStatus={questionStatuses[currentQuestionId]}
                 question={currentQuestionData}
@@ -276,9 +286,9 @@ export default function ExaminationScreen() {
 
             <ExamNavigation
               currentQuestionId={currentQuestionId}
-              sections={examDataUPSCGS1?.sections}
+              sections={examDataSSCCGL?.sections}
               questionStatuses={questionStatuses}
-              onQuestionChange={setCurrentQuestionId}
+              onQuestionChange={handleQuestionSelect}
               onSectionChange={setCurrentSectionIndex}
               onFlagSelect={handleFlagQuestion}
               onClearSelect={handleClearResponse}
