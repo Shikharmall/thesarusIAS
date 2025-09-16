@@ -7,7 +7,15 @@ const InstructionScreen: React.FC = () => {
   const [isAgreed, setIsAgreed] = useState<boolean>(false);
 
   const handleAgree = () => {
-    navigate("/exam/1"); // redirect to exam start page
+
+    const confirmed = confirm(
+      `Are you ready to give exam?`
+    );
+
+    if (confirmed) {
+      navigate("/exam/1"); // redirect to exam start page
+    }
+
   };
 
   return (
@@ -169,7 +177,7 @@ const InstructionScreen: React.FC = () => {
             className={`flex items-center gap-1 px-5 py-2 text-sm rounded-lg font-semibold transition shadow-md ${isAgreed
               ? "bg-blue-600 text-white hover:bg-blue-700 cursor-pointer"
               : "bg-gray-300 text-gray-500 cursor-not-allowed"
-            }`}
+              }`}
           >
             <CheckCircle className="w-4 h-4" /> I Agree & Start Exam
           </button>

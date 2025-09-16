@@ -88,7 +88,6 @@ export function ExamHeader({
             <InstructionPopup
                 isOpen={showInstructions}
                 onClose={() => setShowInstructions(false)}
-                onStartExam={() => setShowInstructions(false)}
             />
 
             {/* Question Paper Popup → using sections from examDataSSCCGL */}

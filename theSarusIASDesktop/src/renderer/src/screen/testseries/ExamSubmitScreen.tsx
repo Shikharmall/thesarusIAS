@@ -52,7 +52,7 @@ export default function ExamSubmitScreen() {
                     </button>
                     <button
                         className="flex-1 border border-gray-300 py-2 rounded-lg font-semibold text-gray-700 hover:bg-gray-100 transition cursor-pointer"
-                        onClick={() => navigate("/dashboard")}
+                        onClick={() => navigate("/home")}
                     >
                         Go to Home
                     </button>

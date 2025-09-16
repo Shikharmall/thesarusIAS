@@ -247,8 +247,8 @@ export default function ExaminationScreen() {
           onClick={() => setSidebarOpen(!sidebarOpen)}
           className={
             sidebarOpen
-              ? "absolute bottom-10 left-75 z-10 bg-white border shadow-sm"
-              : "absolute bottom-10 left-5 z-10 bg-white border shadow-sm"
+              ? "absolute bottom-30 left-75 z-10 bg-white border shadow-sm"
+              : "absolute bottom-30 left-5 z-10 bg-white border shadow-sm"
           }
         >
           {sidebarOpen ? (

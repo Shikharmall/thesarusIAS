@@ -4,7 +4,7 @@ import { Button } from "../common/Button"
 import { Card, CardContent, CardHeader, CardTitle } from "../common/Card"
 import { X, AlertCircle, Clock, CheckCircle } from "lucide-react"
 
-export function InstructionPopup({ isOpen = true, onClose, onStartExam }: InstructionPopupProps) {
+export function InstructionPopup({ isOpen = true, onClose }: InstructionPopupProps) {
   if (!isOpen) return null
 
   return (
@@ -147,15 +147,6 @@ export function InstructionPopup({ isOpen = true, onClose, onStartExam }: Instru
             </p>
           </div>
 
-          {/* Action Buttons */}
-          <div className="flex gap-4 pt-4 border-t">
-            <Button variant="outline" onClick={onClose} className="flex-1 bg-transparent">
-              Read Again
-            </Button>
-            <Button onClick={onStartExam} className="flex-1 bg-green-600 hover:bg-green-700">
-              I Understand - Start Examination
-            </Button>
-          </div>
         </CardContent>
       </Card>
     </div>

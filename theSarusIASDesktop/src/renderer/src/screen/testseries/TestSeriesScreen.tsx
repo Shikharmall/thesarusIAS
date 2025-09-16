@@ -185,15 +185,9 @@ const CardAttended: React.FC<CardProps> = ({ id, image, examName }) => {
             {/* Checkin + Buttons */}
             <div className="mt-5 flex justify-between items-center">
                 <div className="flex gap-2">
-                    <button
-                        onClick={() => navigate(`/exam/${id}`)}
-                        className="px-4 py-2 text-sm text-white cursor-pointer rounded-lg"
-                        style={{
-                            backgroundColor: 'green'
-                        }}
-                    >
+                    <span className="inline-block mt-3 px-3 py-1 text-xs font-medium text-green-700 bg-green-100 rounded-full">
                         Attended
-                    </button>
+                    </span>
                 </div>
                 <div className="flex gap-2">
                     <button
@@ -295,14 +289,6 @@ const TestSeriesScreen: React.FC = () => {
                 <div className="p-6">
                     {tabs.find((tab) => tab.id === activeTab)?.content}
                 </div>
-
-                {/* <div className="min-h-screen bg-gray-50 py-2">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {cards.map((card, index) => (
-                            <Card key={index} {...card} />
-                        ))}
-                    </div>
-                </div> */}
 
             </main>
         </div>

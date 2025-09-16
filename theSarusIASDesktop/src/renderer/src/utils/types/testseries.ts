@@ -52,7 +52,6 @@ export interface ExamData {
 export interface InstructionPopupProps {
     isOpen: boolean
     onClose: () => void
-    onStartExam: () => void
 }
 
 export interface QuestionPaperPopupProps {
