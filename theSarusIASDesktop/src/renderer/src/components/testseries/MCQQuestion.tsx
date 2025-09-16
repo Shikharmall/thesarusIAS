@@ -55,7 +55,6 @@ export function MCQQuestion({
         <div className="flex flex-col space-y-3">
           {(question?.options ?? []).map((option, index) => {
             const isSelected = selectedAnswer === index;
-
             return (
               <button
                 key={index}

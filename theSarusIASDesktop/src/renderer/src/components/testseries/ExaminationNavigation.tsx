@@ -72,11 +72,6 @@ export function ExamNavigation({
         </Button>
 
         <div className="flex gap-2 items-center">
-          {/* Status */}
-          {/* <span className="text-sm text-gray-600">
-            Answered: {answeredCount} | Flagged: {flaggedCount}
-          </span> */}
-
           {/* Clear */}
           <Button
             variant="outline"
@@ -92,7 +87,7 @@ export function ExamNavigation({
             variant="outline"
             onClick={() => onFlagSelect(currentQuestionId)}
             className={`flex items-center gap-2 ${isFlagged
-              ? "bg-orange-100 text-orange-800 border-orange-300"
+              ? "bg-orange-100 text-purple-800 border-purple-300"
               : ""
               }`}
           >

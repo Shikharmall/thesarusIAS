@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { CheckCircle, Clock, AlertCircle } from "lucide-react";
+import { CheckCircle, AlertCircle, SquareMenuIcon, Info } from "lucide-react";
+import { examDataSSCCGL } from "../../data/examData";
 
 const InstructionScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -35,17 +36,17 @@ const InstructionScreen: React.FC = () => {
         {/* General Instructions */}
         <div className="space-y-4">
           <div className="flex items-center gap-2 text-red-600">
-            <AlertCircle className="h-5 w-5" />
+            <Info className="h-5 w-5" />
             <h3 className="font-semibold text-lg">General Instructions</h3>
           </div>
           <ul className="space-y-2 text-sm">
             <li className="flex items-start gap-2">
               <span className="font-semibold text-blue-600">1.</span>
-              <span>Total duration of examination is <strong>60 minutes</strong>.</span>
+              <span>Total duration of examination is <strong>{examDataSSCCGL?.duration} minutes</strong>.</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="font-semibold text-blue-600">2.</span>
-              <span>The examination contains <strong>100 questions</strong> divided into 4 sections.</span>
+              <span>The examination contains <strong>{examDataSSCCGL?.duration} questions</strong> divided into {examDataSSCCGL?.sections?.length} sections.</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="font-semibold text-blue-600">3.</span>
@@ -59,6 +60,10 @@ const InstructionScreen: React.FC = () => {
               <span className="font-semibold text-blue-600">5.</span>
               <span>You can navigate between questions using the question palette.</span>
             </li>
+            <li className="flex items-start gap-2">
+              <span className="font-semibold text-blue-600">6.</span>
+              <span>The timer will be displayed at the right top of the screen. The examination will automatically submit when time expires.</span>
+            </li>
           </ul>
         </div>
 
@@ -66,22 +71,15 @@ const InstructionScreen: React.FC = () => {
         <div className="space-y-4">
           <h3 className="font-semibold text-lg text-green-600">Section Details</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="border rounded-lg p-3">
-              <h4 className="font-semibold text-blue-600">General Intelligence & Reasoning</h4>
-              <p className="text-sm text-gray-600">Questions 1-25 (25 Questions)</p>
-            </div>
-            <div className="border rounded-lg p-3">
-              <h4 className="font-semibold text-blue-600">General Awareness</h4>
-              <p className="text-sm text-gray-600">Questions 26-50 (25 Questions)</p>
-            </div>
-            <div className="border rounded-lg p-3">
-              <h4 className="font-semibold text-blue-600">Quantitative Aptitude</h4>
-              <p className="text-sm text-gray-600">Questions 51-75 (25 Questions)</p>
-            </div>
-            <div className="border rounded-lg p-3">
-              <h4 className="font-semibold text-blue-600">English Comprehension</h4>
-              <p className="text-sm text-gray-600">Questions 76-100 (25 Questions)</p>
-            </div>
+            {
+              examDataSSCCGL?.sections?.map((section, index) => (
+                <div className="border rounded-lg p-3" key={index}>
+                  <h4 className="font-semibold text-blue-600">{section?.name}</h4>
+                  <p className="text-sm text-gray-600">Questions {section?.questions[0]?.id}-{section?.questions[section?.questions?.length - 1]?.id} ({section?.questions?.length} questions)</p>
+                </div>
+
+              ))
+            }
           </div>
         </div>
 
@@ -131,18 +129,38 @@ const InstructionScreen: React.FC = () => {
               <div className="w-6 h-6 bg-purple-500 rounded"></div>
               <span className="text-sm">Flagged</span>
             </div>
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 bg-purple-500 rounded relative">
+                <div
+                  className="absolute bottom-0 right-0 w-4 h-4 rounded bg-green-600 flex items-center justify-center"
+                >
+                  <SquareMenuIcon size={12} color="white" />
+                </div>
+              </div>
+              <span className="text-sm">Answered & Flagged</span>
+            </div>
           </div>
         </div>
 
-        {/* Timer Warning */}
-        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-          <div className="flex items-center gap-2 text-yellow-800">
-            <Clock className="h-5 w-5" />
-            <h3 className="font-semibold">Time Management</h3>
+        {/* Switching Warning */}
+        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+          <div className="flex items-center gap-2 text-red-800">
+            <AlertCircle className="h-5 w-5" />
+            <h3 className="font-semibold">Strict Instructions & Exam Malpractices</h3>
           </div>
-          <p className="text-sm text-yellow-700 mt-2">
-            The timer will be displayed at the top of the screen. The examination will automatically submit when time
-            expires. Plan your time wisely - approximately 36 seconds per question.
+          <p className="text-sm text-red-700 mt-2">
+            Please follow all instructions carefully. Any of the following actions may be considered malpractices and lead to immediate disqualification:
+          </p>
+          <ul className="text-sm text-red-700 mt-2 list-disc list-inside space-y-1">
+            <li>Switching or refreshing the screen during the exam.</li>
+            <li>Using multiple devices or opening unauthorized applications.</li>
+            <li>Copying, sharing, or attempting to share answers with others.</li>
+            <li>Using any unfair means like notes, calculators, or external help where not allowed.</li>
+            <li>Recording or capturing screenshots of questions or answers.</li>
+            <li>Impersonation or allowing someone else to attempt the exam on your behalf.</li>
+          </ul>
+          <p className="text-sm text-red-700 mt-2 font-semibold">
+            Any violation will result in automatic submission and may lead to cancellation of your exam attempt.
           </p>
         </div>
 

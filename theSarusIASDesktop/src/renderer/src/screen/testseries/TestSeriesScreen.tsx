@@ -3,7 +3,7 @@ import SideBar from "../../components/common/Sidebar";
 import Header from "../../components/common/Header";
 import SubHeader from "../../components/common/SubHeader";
 import { useNavigate } from "react-router-dom";
-import { LaptopMinimalCheckIcon, LaptopMinimalIcon } from "lucide-react";
+import { CheckCircle, LaptopMinimalCheckIcon, LaptopMinimalIcon } from "lucide-react";
 import { motion } from "framer-motion";
 import type { CardProps, Tab } from "../../utils/types/testseries";
 import { themeColor } from "../../utils/constant/Color";
@@ -185,9 +185,7 @@ const CardAttended: React.FC<CardProps> = ({ id, image, examName }) => {
             {/* Checkin + Buttons */}
             <div className="mt-5 flex justify-between items-center">
                 <div className="flex gap-2">
-                    <span className="inline-block mt-3 px-3 py-1 text-xs font-medium text-green-700 bg-green-100 rounded-full">
-                        Attended
-                    </span>
+                    <CheckCircle className="w-8 h-8 text-green-500 mb-4" />
                 </div>
                 <div className="flex gap-2">
                     <button

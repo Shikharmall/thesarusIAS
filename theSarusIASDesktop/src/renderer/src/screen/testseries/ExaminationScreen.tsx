@@ -4,7 +4,7 @@ import { QuestionNavigator } from "../../components/testseries/QuestionNavigatio
 import { MCQQuestion } from "../../components/testseries/MCQQuestion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { examDataSSCCGL } from "../../data/examData"; //
+import { examDataSSCCGL } from "../../data/examData";
 import { themeColor } from "../../utils/constant/Color";
 import { ExamHeader } from "../../components/testseries/ExaminationHeader";
 import { ExamNavigation } from "../../components/testseries/ExaminationNavigation";

@@ -12,7 +12,7 @@ export function QuestionPaperPopup({ isOpen, onClose, sections }: QuestionPaperP
             <Card className="w-full max-w-5xl max-h-[90vh] overflow-y-auto shadow-2xl rounded-xl">
 
                 {/* Header */}
-                <div className="bg-indigo-600 text-white px-4 py-2" style={{
+                <div className="bg-indigo-600 text-white px-4 py-2 sticky top-0 z-50" style={{
                     backgroundColor: themeColor?.primary
                 }}>
                     <div className="flex items-center justify-between">
@@ -35,7 +35,7 @@ export function QuestionPaperPopup({ isOpen, onClose, sections }: QuestionPaperP
                 <CardContent className="p-6 space-y-8">
                     {sections?.map((section, sectionIndex) => (
                         <div key={sectionIndex} className="space-y-4">
-                            <h2 className="text-lg font-semibold text-indigo-600 border-b pb-1" style={{color: themeColor?.primary}}>
+                            <h2 className="text-lg font-semibold text-indigo-600 border-b pb-1" style={{ color: themeColor?.primary }}>
                                 {section?.name}
                             </h2>
                             <ol className="space-y-6">
