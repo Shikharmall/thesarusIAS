@@ -97,11 +97,12 @@ export default function ExamScreen() {
   );
 
   // Handlers
-  const handleTimeUp = () =>
+  const handleTimeUp = () => {
     router.push({
       pathname: "/(exam)/end",
       params: { userName, rollNum, examName, totalQuestions, answeredCount, flaggedCount },
     });
+  }
 
   const handleSubmit = () =>
     showAlert({
