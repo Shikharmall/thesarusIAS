@@ -21,26 +21,6 @@ export function QuestionNavigator({
     notVisited: 0,
   })
 
-  // useEffect(() => {
-  //   const currentSec = sections?.[currentSectionIndex]
-  //   if (!currentSec) return
-
-  //   const answered = currentSec?.questions?.filter(q => questionStatuses[q.id]?.answered)?.length
-  //   const answeredFlagged = currentSec?.questions?.filter(q => questionStatuses[q.id]?.answered && questionStatuses[q.id]?.flagged)?.length
-  //   const flagged = currentSec?.questions?.filter(q => questionStatuses[q.id]?.flagged)?.length
-  //   const visited = currentSec?.questions?.filter(q => questionStatuses[q.id]?.visited)?.length
-  //   const total = currentSec?.questions?.length
-
-  //   setCounts({
-  //     answered: answered - answeredFlagged,
-  //     answeredFlagged,
-  //     flagged: flagged - answeredFlagged,
-  //     visited,
-  //     notAnswered: visited - (answered + flagged - answeredFlagged),
-  //     notVisited: total - visited,
-  //   })
-  // }, [questionStatuses, currentSectionIndex, sections])
-
   useEffect(() => {
     const currentSec = sections?.[currentSectionIndex]
     if (!currentSec) return
@@ -104,28 +84,6 @@ export function QuestionNavigator({
             let bg = "bg-white"
             let border = "border border-gray-300"
             let text = "text-blue-500"
-
-            // if (isActive) {
-            //   bg = themeColor.primary
-            //   border = "border-0"
-            //   text = "text-white"
-            // } else if (status?.answered && status?.visited === undefined) {
-            //   bg = "bg-green-100"
-            //   border = "border border-green-300"
-            //   text = "text-green-800"
-            // } else if (status?.flagged) {
-            //   bg = "bg-purple-100"
-            //   border = "border border-purple-300"
-            //   text = "text-purple-800"
-            // } else if (status?.visited && status?.answered === undefined) {
-            //   bg = "bg-red-100"
-            //   border = "border border-red-300"
-            //   text = "text-red-700"
-            // } else if (status?.answered && status?.visited) {
-            //   bg = "bg-red-100"
-            //   border = "border border-red-300"
-            //   text = "text-red-700"
-            // }
 
             if (isActive) {
               bg = themeColor.primary

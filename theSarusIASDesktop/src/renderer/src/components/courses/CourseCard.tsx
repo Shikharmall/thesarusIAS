@@ -88,7 +88,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ item }) => {
             }}
             onClick={(e) => {
               e.stopPropagation();
-              //navigate("/buyNow");
+              navigate("/checkout");
             }}
           >
             BUY NOW

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Card } from "../common/Card";
 import type { MCQQuestionProps } from "../../utils/types/testseries";
+import DOMPurify from "dompurify";
 
 export function MCQQuestion({
   sectionName,
@@ -43,8 +44,10 @@ export function MCQQuestion({
           </div>
           {/* Render HTML question safely */}
           <div
-            className="text-card-foreground leading-relaxed text-base"
-            dangerouslySetInnerHTML={{ __html: question?.question }}
+            className="text-card-foreground leading-relaxed text-base
+              [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:pl-6
+              [&_li]:my-1 [&_li]:text-card-foreground"
+            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(question?.question) }}
           />
           {/* <p className="text-card-foreground leading-relaxed text-base">
             {question?.question}

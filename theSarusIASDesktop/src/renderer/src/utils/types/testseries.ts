@@ -20,8 +20,6 @@ export interface ExamTimerProps {
     onTimeUp: () => void
 }
 
-////////////////////////////////////////
-
 export interface Option {
     label: string
     isCorrect: boolean
@@ -46,8 +44,6 @@ export interface ExamData {
     duration: number
     sections: Section[]
 }
-
-////////////////////////////////////
 
 export interface InstructionPopupProps {
     isOpen: boolean
