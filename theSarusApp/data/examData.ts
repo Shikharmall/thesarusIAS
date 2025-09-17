@@ -3173,9 +3173,9 @@ const sectionsSSC: Section[] = [
 
 export const examDataSSCCGL: ExamData = {
   title: "SSC Combined Graduate Level Test Series 2026",
-  duration: 60, // (in minutes)
-  startTimestamp: "2025-09-17T12:00:00.0",
+  duration: 58, // (in minutes)
+  startTimestamp: "2025-09-18T01:30:00.0",
   sections: sectionsSSC
 }
 
-export const examData: ExamData = examDataUPSCGS1;
+export const examData: ExamData = examDataSSCCGL;

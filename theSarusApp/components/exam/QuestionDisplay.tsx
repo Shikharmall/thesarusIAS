@@ -1,51 +1,72 @@
+import { useMemo } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { Colors } from "../../utils/constant/Colors";
 import type { Question, QuestionDisplayProps } from "../../utils/types/exam";
 import MCQQuestion from "./MCQQuestion";
 
-export default function QuestionDisplay({ currentQuestionId, currentSection, sections, questionStatuses, onAnswerSelect, onFlagSelect,
-  onClearSelect, }: QuestionDisplayProps) {
+export default function QuestionDisplay({
+  currentQuestionId,
+  currentSection,
+  sections,
+  questionStatuses,
+  onAnswerSelect,
+  onFlagSelect,
+  onClearSelect,
+}: QuestionDisplayProps) {
 
-  // Get all questions from all sections
-  const allQuestions: Question[] = sections?.flatMap((section) => section?.questions);
-  const questionIndex: number = allQuestions?.findIndex(q => q?.id === currentQuestionId);
-  const question: Question = allQuestions[questionIndex];
+  // Memoized derived values
+  const allQuestions: Question[] = useMemo(
+    () => sections.flatMap((section) => section.questions),
+    [sections]
+  );
+
+  const questionIndex = useMemo(
+    () => allQuestions.findIndex((q) => q.id === currentQuestionId),
+    [allQuestions, currentQuestionId]
+  );
+
+  const question = allQuestions[questionIndex] || null;
+
+  const currentSectionName = useMemo(
+    () => sections.find((s) => s.id === currentSection)?.name ?? "",
+    [sections, currentSection]
+  );
 
   if (!question) {
     return (
       <View style={styles.container}>
         <Text style={styles.errorText}>Question not found</Text>
       </View>
-    )
+    );
   }
 
   return (
     <View style={styles.container}>
-      {/* Roll Number Watermark */}
+      {/* Watermark */}
       <View style={styles.watermark}>
         <Text style={styles.watermarkText}>UPSC202601234</Text>
       </View>
 
       {/* Section Header */}
       <View style={styles.sectionHeader}>
-        <Text style={styles.sectionTitle}>{sections?.find(section => section?.id === currentSection)?.name}</Text>
-        <Text style={styles.questionCounter}>
-          Question {questionIndex + 1} of {allQuestions?.length}
-        </Text>
+        <Text style={styles.sectionTitle}>{currentSectionName}</Text>
+        {/* <Text style={styles.questionCounter}>
+          Question {questionIndex + 1} of {allQuestions.length}
+        </Text> */}
       </View>
 
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         <MCQQuestion
           questionIndex={questionIndex}
           question={question}
-          questionStatus={questionStatuses[question?.id]}
+          questionStatus={questionStatuses[question.id]}
           onAnswerSelect={onAnswerSelect}
           onFlagQuestion={onFlagSelect}
           onClearResponse={onClearSelect}
         />
       </ScrollView>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -74,7 +95,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: Colors.border,
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "center",
   },
   sectionTitle: {
@@ -96,4 +117,4 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: 50,
   },
-})
+});

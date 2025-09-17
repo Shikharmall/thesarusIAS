@@ -2,7 +2,7 @@ import AlertCustomise from "@/components/ui/AlertCustomise";
 import { AlertProps } from "@/utils/types/alert";
 import { QuestionStatus } from "@/utils/types/exam";
 import { useFocusEffect, useLocalSearchParams, useRouter } from "expo-router";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { BackHandler, StyleSheet, View } from "react-native";
 import ExamHeader from "../../components/exam/ExamHeader";
 import ExamNavigation from "../../components/exam/ExamNavigation";
@@ -21,35 +21,56 @@ export default function ExamScreen() {
 
   const router = useRouter();
 
-  // Candidate details
-  const [examName, setExamName] = useState("");
-  const [rollNum, setRollNum] = useState("2025123456");
-  const [userName, setUserName] = useState("Shivam Singh");
+  // Candidate info
+  const examName = Array.isArray(title) ? title[0] : title ?? examData?.title ?? "";
+  const rollNum = Array.isArray(rollNumber) ? rollNumber[0] : rollNumber ?? "2025123456";
+  const userName = Array.isArray(name) ? name[0] : name ?? "Shivam Singh";
 
   // Exam state
   const [currentQuestionId, setCurrentQuestionId] = useState(1);
   const [showNavigator, setShowNavigator] = useState(false);
   const [currentSection, setCurrentSection] = useState(1);
   const [questionStatuses, setQuestionStatuses] = useState<Record<number, QuestionStatus>>({
-    1: { visited: true }, // Example: question 1 is visited
+    1: { visited: true },
   });
 
-  const allQuestions = examData?.sections?.flatMap((s) => s.questions) ?? [];
+  // Prevent multiple navigation on time up
+  const [timeUpTriggered, setTimeUpTriggered] = useState(false);
 
-  // Derived values (no need to store in state)
-  const { totalQuestions, answeredCount, flaggedCount } = useMemo(() => {
-    const total = allQuestions.length;
+  // Flatten all questions
+  const allQuestions = useMemo(
+    () => examData.sections?.flatMap((s) => s.questions) ?? [],
+    []
+  );
+
+  // Derived stats with mutually exclusive counts
+  const { totalQuestions, answeredCount, flaggedCount, answeredFlaggedCount } = useMemo(() => {
     let answered = 0,
-      flagged = 0;
+      flagged = 0,
+      answeredFlagged = 0;
 
     allQuestions.forEach((q) => {
-      const status = questionStatuses[q.id];
-      if (status?.answered) answered++;
-      if (status?.flagged) flagged++;
+      const status = questionStatuses[q?.id];
+
+      if (!status) return;
+
+      if (status.answered && status.flagged) {
+        answeredFlagged++;
+      } else if (status.answered) {
+        answered++;
+      } else if (status.flagged) {
+        flagged++;
+      }
     });
 
-    return { totalQuestions: total, answeredCount: answered, flaggedCount: flagged };
+    return {
+      totalQuestions: allQuestions.length,
+      answeredCount: answered,
+      flaggedCount: flagged,
+      answeredFlaggedCount: answeredFlagged,
+    };
   }, [allQuestions, questionStatuses]);
+
 
   // Alert state
   const [alertContent, setAlertContent] = useState<AlertProps>({
@@ -63,8 +84,7 @@ export default function ExamScreen() {
   const showAlert = (props: Partial<AlertProps>) =>
     setAlertContent((prev) => ({ ...prev, ...props, visible: true }));
 
-  const closeAlert = () =>
-    setAlertContent((prev) => ({ ...prev, visible: false }));
+  const closeAlert = () => setAlertContent((prev) => ({ ...prev, visible: false }));
 
   // Question status updater
   const updateQuestionStatus = (id: number, changes: Partial<QuestionStatus>) =>
@@ -73,7 +93,7 @@ export default function ExamScreen() {
       [id]: { ...prev[id], visited: true, ...changes },
     }));
 
-  // Answer handlers
+  // Handlers
   const handleAnswerSelect = (id: number, selectedAnswer: number) =>
     updateQuestionStatus(id, { answered: true, selectedAnswer });
 
@@ -83,28 +103,24 @@ export default function ExamScreen() {
   const handleClearResponse = (id: number) =>
     updateQuestionStatus(id, { answered: false, selectedAnswer: undefined });
 
-  // Candidate info initialization
-  useEffect(() => {
-    if (rollNumber) setRollNum(Array.isArray(rollNumber) ? rollNumber[0] : rollNumber);
-    if (name) setUserName(Array.isArray(name) ? name[0] : name);
-    if (title) setExamName(Array.isArray(title) ? title[0] : title);
-  }, [rollNumber, name, title]);
+  const handleQuestionSelect = (newQuestionIndex: number) => {
+    const questionId = allQuestions[newQuestionIndex]?.id;
+    if (questionId) {
+      setCurrentQuestionId(questionId);
+      updateQuestionStatus(questionId, { visited: true });
+    }
+  };
 
-  // Disable back button
-  useFocusEffect(
-    useCallback(() => {
-      const backHandler = BackHandler.addEventListener("hardwareBackPress", () => true);
-      return () => backHandler.remove();
-    }, [])
-  );
-
-  // Handlers
+  // Navigate to exam end screen (only once)
   const handleTimeUp = () => {
+    if (timeUpTriggered) return;
+    setTimeUpTriggered(true);
+
     router.push({
       pathname: "/(exam)/end",
-      params: { userName, rollNum, examName, totalQuestions, answeredCount, flaggedCount },
+      params: { userName, rollNum, examName, totalQuestions, answeredCount, flaggedCount, answeredFlaggedCount },
     });
-  }
+  };
 
   const handleSubmit = () =>
     showAlert({
@@ -112,30 +128,22 @@ export default function ExamScreen() {
       message: "Are you sure you want to submit your examination? This action cannot be undone.",
       confirmLabel: "Submit",
       cancelLabel: "Cancel",
-      onConfirm: () => {
-        closeAlert();
-        handleTimeUp();
-      },
+      onConfirm: handleTimeUp,
       onCancel: closeAlert,
     });
 
-  const handleQuestionSelect = (questionId: number) => {
-    setCurrentQuestionId(questionId);
-    setQuestionStatuses((prev) => ({
-      ...prev,
-      [questionId]: {
-        ...prev[questionId],
-        visited: true,
-      },
-    }));
-  };
-
-  // console.log(questionStatuses);
+  // Disable hardware back button
+  useFocusEffect(
+    useCallback(() => {
+      const backHandler = BackHandler.addEventListener("hardwareBackPress", () => true);
+      return () => backHandler.remove();
+    }, [])
+  );
 
   return (
     <View style={styles.container}>
       <ExamHeader
-        examName={examData?.title}
+        examName={examName}
         onToggleNavigator={() => setShowNavigator((prev) => !prev)}
         showNavigator={showNavigator}
         startTimestamp={examData?.startTimestamp}
@@ -155,7 +163,7 @@ export default function ExamScreen() {
             onQuestionSelect={handleQuestionSelect}
             onQuestionCloseSelect={(index) => {
               handleQuestionSelect(index);
-              setShowNavigator(false); // Auto-close on mobile
+              setShowNavigator(false);
             }}
           />
         }
