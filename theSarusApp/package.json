@@ -1,6 +1,7 @@
 {
-  "name": "thesarusiasapp",
+  "name": "thesarusapp",
   "main": "expo-router/entry",
+  "author": "Shikhar Mall",
   "version": "1.0.0",
   "scripts": {
     "start": "expo start",
