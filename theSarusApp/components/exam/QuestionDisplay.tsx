@@ -3,13 +3,13 @@ import { Colors } from "../../utils/constant/Colors";
 import type { Question, QuestionDisplayProps } from "../../utils/types/exam";
 import MCQQuestion from "./MCQQuestion";
 
-export default function QuestionDisplay({ currentQuestion, currentSection, sections, questionStatuses, onAnswerSelect, onFlagSelect,
+export default function QuestionDisplay({ currentQuestionId, currentSection, sections, questionStatuses, onAnswerSelect, onFlagSelect,
   onClearSelect, }: QuestionDisplayProps) {
-  // const [questionStatuses, setQuestionStatuses] = useState<Record<number, QuestionStatus>>({});
 
   // Get all questions from all sections
-  const allQuestions: Question[] = sections.flatMap((section) => section.questions);
-  const question = allQuestions[currentQuestion];
+  const allQuestions: Question[] = sections?.flatMap((section) => section?.questions);
+  const questionIndex: number = allQuestions?.findIndex(q => q?.id === currentQuestionId);
+  const question: Question = allQuestions[questionIndex];
 
   if (!question) {
     return (
@@ -18,43 +18,6 @@ export default function QuestionDisplay({ currentQuestion, currentSection, secti
       </View>
     )
   }
-
-  // const handleAnswerSelect = (questionId: number, selectedAnswer: number) => {
-  //   onQuestionStatusesChange((prev) => ({
-  //     ...prev,
-  //     [questionId]: {
-  //       ...prev[questionId],
-  //       answered: true,
-  //       visited: true,
-  //       selectedAnswer,
-  //     },
-  //   }))
-  // }
-
-  // const handleFlagQuestion = (questionId: number) => {
-  //   setQuestionStatuses((prev) => ({
-  //     ...prev,
-  //     [questionId]: {
-  //       ...prev[questionId],
-  //       flagged: !prev[questionId]?.flagged,
-  //       visited: true,
-  //     },
-  //   }))
-  // }
-
-  // const handleClearResponse = (questionId: number) => {
-  //   setQuestionStatuses((prev) => ({
-  //     ...prev,
-  //     [questionId]: {
-  //       ...prev[questionId],
-  //       answered: false,
-  //       selectedAnswer: undefined,
-  //       visited: true,
-  //     },
-  //   }))
-  // }
-
-  // console.log(questionStatuses);
 
   return (
     <View style={styles.container}>
@@ -67,14 +30,15 @@ export default function QuestionDisplay({ currentQuestion, currentSection, secti
       <View style={styles.sectionHeader}>
         <Text style={styles.sectionTitle}>{sections?.find(section => section?.id === currentSection)?.name}</Text>
         <Text style={styles.questionCounter}>
-          Question {currentQuestion + 1} of {allQuestions.length}
+          Question {questionIndex + 1} of {allQuestions?.length}
         </Text>
       </View>
 
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         <MCQQuestion
+          questionIndex={questionIndex}
           question={question}
-          questionStatus={questionStatuses[question.id]}
+          questionStatus={questionStatuses[question?.id]}
           onAnswerSelect={onAnswerSelect}
           onFlagQuestion={onFlagSelect}
           onClearResponse={onClearSelect}

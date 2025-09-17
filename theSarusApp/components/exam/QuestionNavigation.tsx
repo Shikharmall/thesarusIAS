@@ -6,7 +6,7 @@ import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-nati
 
 export default function QuestionNavigator({
     sections,
-    currentQuestion,
+    currentQuestionId,
     onSectionSelect,
     onQuestionSelect,
     onQuestionCloseSelect,
@@ -18,26 +18,51 @@ export default function QuestionNavigator({
         return sections?.[index]?.questions?.[0]?.id;
     };
 
-    const [answeredCount, setAnsweredCount] = useState<number>(0);
-    const [notAnsweredCount, setNotAnsweredCount] = useState<number>(0);
-    const [flaggedCount, setFlaggedCount] = useState<number>(0);
-    const [visitedCount, setVisitedCount] = useState<number>(0);
-    const [notVisitedCount, setNotVisitedCount] = useState<number>(0);
+    const [counts, setCounts] = useState({
+        answered: 0,
+        answeredFlagged: 0,
+        flagged: 0,
+        visited: 0,
+        notAnswered: 0,
+        notVisited: 0,
+    });
 
     useEffect(() => {
+
         const currentSec = sections?.find(section => section?.id === currentSection);
-        if (!currentSec) return;
+        if (!currentSec) return
 
-        const answered = currentSec.questions?.filter(q => questionStatuses[q.id]?.answered)?.length || 0;
-        const flagged = currentSec.questions?.filter(q => questionStatuses[q.id]?.flagged)?.length || 0;
-        const visited = currentSec.questions?.filter(q => questionStatuses[q.id]?.visited)?.length || 0;
-        const total = currentSec.questions?.length || 0;
+        const answeredFlagged = currentSec.questions.filter(
+            q => questionStatuses[q.id]?.answered && questionStatuses[q.id]?.flagged
+        ).length
 
-        setAnsweredCount(answered);
-        setFlaggedCount(flagged);
-        setVisitedCount(visited);
-        setNotAnsweredCount(total - answered);
-        setNotVisitedCount(total - visited);
+        const answeredOnly = currentSec.questions.filter(
+            q => questionStatuses[q.id]?.answered && !questionStatuses[q.id]?.flagged
+        ).length
+
+        const flaggedOnly = currentSec.questions.filter(
+            q => questionStatuses[q.id]?.flagged && !questionStatuses[q.id]?.answered
+        ).length
+
+        const visitedNotAnswered = currentSec.questions.filter(
+            q => questionStatuses[q.id]?.visited && !questionStatuses[q.id]?.answered
+        ).length
+
+        // const visitedNotAnswered = currentSec.questions.filter(
+        //     q => questionStatuses[q.id]?.visited && !questionStatuses[q.id]?.answered && !questionStatuses[q.id]?.flagged
+        // ).length
+
+        const total = currentSec?.questions?.length || 0;
+
+        setCounts({
+            answered: answeredOnly,
+            answeredFlagged,
+            flagged: flaggedOnly,
+            visited: visitedNotAnswered,
+            notAnswered: visitedNotAnswered,
+            notVisited: total - (answeredOnly + answeredFlagged + flaggedOnly + visitedNotAnswered)
+        })
+
     }, [questionStatuses, currentSection, sections]);
 
     return (
@@ -83,35 +108,37 @@ export default function QuestionNavigator({
                         {sections
                             ?.find(section => section?.id === currentSection)
                             ?.questions
-                            ?.map((question) => {
+                            ?.map((question, index) => {
                                 const status = questionStatuses[question?.id];
-                                const isActive = currentQuestion + 1 === question?.id;
+                                const isActive = currentQuestionId === question?.id;
 
                                 let backgroundColor = "white";
                                 let borderColor = "#d1d5db";
                                 let textColor = themeColor?.secondary;
-                                let icon: keyof typeof MaterialIcons.glyphMap | null = null;
-                                let iconColor = "transparent";
 
                                 if (isActive) {
                                     backgroundColor = themeColor?.primary;
                                     textColor = "white";
+                                } else if (status?.answered && status?.flagged) {
+                                    backgroundColor = "#f9d4f9ff";
+                                    borderColor = "#c012c0ff";
+                                    textColor = "#800080";
                                 } else if (status?.answered) {
                                     backgroundColor = "#dcfce7";
                                     borderColor = "#86efac";
                                     textColor = "#065f46";
-                                    icon = "check-circle";
-                                    iconColor = "green";
                                 } else if (status?.flagged) {
                                     backgroundColor = "#ffedd5";
                                     borderColor = "#fdba74";
                                     textColor = "#92400e";
-                                    icon = "flag";
-                                    iconColor = "orange";
                                 } else if (status?.visited) {
-                                    backgroundColor = "#f3f4f6";
-                                    borderColor = "#d1d5db";
-                                    textColor = "#374151";
+                                    backgroundColor = "#fcdcdcff";
+                                    borderColor = "#f82b2bff";
+                                    textColor = "#FF0000";
+                                } else {
+                                    textColor = "#92400e";
+                                    backgroundColor = "bg-white"
+                                    textColor = "#2196F3"
                                 }
 
                                 return (
@@ -125,15 +152,11 @@ export default function QuestionNavigator({
                                                 borderWidth: isActive ? 0 : 1,
                                             }
                                         ]}
-                                        onPress={() => onQuestionCloseSelect(question?.id - 1)}
+                                        onPress={() => onQuestionCloseSelect(question?.id)}
                                     >
-                                        {icon ? (
-                                            <MaterialIcons name={icon} size={18} color={iconColor} />
-                                        ) : (
-                                            <Text style={[styles.questionText, { color: textColor }]}>
-                                                {question?.id}
-                                            </Text>
-                                        )}
+                                        <Text style={[styles.questionText, { color: textColor }]}>
+                                            {index + 1}
+                                        </Text>
                                     </TouchableOpacity>
                                 );
                             })}
@@ -149,31 +172,31 @@ export default function QuestionNavigator({
                     <View style={styles.legendItem}>
                         <MaterialIcons name="check-circle" size={25} color="green" />
                         <Text style={styles.legendText}>
-                            Answered (<Text style={styles.legendCount}>{answeredCount}</Text>)
+                            Answered (<Text style={styles.legendCount}>{counts?.answered}</Text>)
                         </Text>
                     </View>
                     <View style={styles.legendItem}>
                         <MaterialIcons name="check-circle" size={25} color="red" />
                         <Text style={styles.legendText}>
-                            Not Answered (<Text style={styles.legendCount}>{notAnsweredCount}</Text>)
+                            Not Answered (<Text style={styles.legendCount}>{counts?.notAnswered}</Text>)
                         </Text>
                     </View>
                     <View style={styles.legendItem}>
                         <MaterialIcons name="check-circle" size={25} color="orange" />
                         <Text style={styles.legendText}>
-                            Mark for Review (<Text style={styles.legendCount}>{flaggedCount}</Text>)
+                            Mark for Review (<Text style={styles.legendCount}>{counts?.flagged}</Text>)
                         </Text>
                     </View>
                     <View style={styles.legendItem}>
                         <MaterialIcons name="check-circle" size={25} color="gray" />
                         <Text style={styles.legendText}>
-                            Not Visited (<Text style={styles.legendCount}>{notVisitedCount}</Text>)
+                            Not Visited (<Text style={styles.legendCount}>{counts?.notVisited}</Text>)
                         </Text>
                     </View>
                     <View style={styles.legendItem}>
-                        <MaterialIcons name="check-circle" size={25} color="gray" />
+                        <MaterialIcons name="check-circle" size={25} color="purple" />
                         <Text style={styles.legendText}>
-                            Answered & Marked (<Text style={styles.legendCount}>{notVisitedCount}</Text>)
+                            Answered & Marked (<Text style={styles.legendCount}>{counts?.answeredFlagged}</Text>)
                         </Text>
                     </View>
                 </View>

@@ -27,10 +27,12 @@ export default function ExamScreen() {
   const [userName, setUserName] = useState("Shivam Singh");
 
   // Exam state
-  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [currentQuestionId, setCurrentQuestionId] = useState(1);
   const [showNavigator, setShowNavigator] = useState(false);
   const [currentSection, setCurrentSection] = useState(1);
-  const [questionStatuses, setQuestionStatuses] = useState<Record<number, QuestionStatus>>({});
+  const [questionStatuses, setQuestionStatuses] = useState<Record<number, QuestionStatus>>({
+    1: { visited: true }, // Example: question 1 is visited
+  });
 
   const allQuestions = examData?.sections?.flatMap((s) => s.questions) ?? [];
 
@@ -117,6 +119,19 @@ export default function ExamScreen() {
       onCancel: closeAlert,
     });
 
+  const handleQuestionSelect = (questionId: number) => {
+    setCurrentQuestionId(questionId);
+    setQuestionStatuses((prev) => ({
+      ...prev,
+      [questionId]: {
+        ...prev[questionId],
+        visited: true,
+      },
+    }));
+  };
+
+  // console.log(questionStatuses);
+
   return (
     <View style={styles.container}>
       <ExamHeader
@@ -134,19 +149,19 @@ export default function ExamScreen() {
           <QuestionNavigator
             sections={examData?.sections}
             currentSection={currentSection}
-            currentQuestion={currentQuestion}
+            currentQuestionId={currentQuestionId}
             questionStatuses={questionStatuses}
             onSectionSelect={setCurrentSection}
-            onQuestionSelect={setCurrentQuestion}
+            onQuestionSelect={handleQuestionSelect}
             onQuestionCloseSelect={(index) => {
-              setCurrentQuestion(index);
+              handleQuestionSelect(index);
               setShowNavigator(false); // Auto-close on mobile
             }}
           />
         }
       >
         <QuestionDisplay
-          currentQuestion={currentQuestion}
+          currentQuestionId={currentQuestionId}
           currentSection={currentSection}
           sections={examData?.sections}
           questionStatuses={questionStatuses}
@@ -155,9 +170,9 @@ export default function ExamScreen() {
           onClearSelect={handleClearResponse}
         />
         <ExamNavigation
-          currentQuestion={currentQuestion}
+          currentQuestionId={currentQuestionId}
           sections={examData?.sections}
-          onQuestionChange={setCurrentQuestion}
+          onQuestionChange={handleQuestionSelect}
           onSectionChange={setCurrentSection}
           onSubmit={handleSubmit}
         />

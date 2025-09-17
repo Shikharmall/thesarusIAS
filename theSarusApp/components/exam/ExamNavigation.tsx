@@ -1,11 +1,12 @@
-import { ExamNavigationProps } from "@/utils/types/exam";
+import { ExamNavigationProps, Question } from "@/utils/types/exam";
 import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Colors, themeColor } from "../../utils/constant/Colors";
-export default function ExamNavigation({ currentQuestion, onQuestionChange, onSectionChange, sections, onSubmit }: ExamNavigationProps) {
+export default function ExamNavigation({ currentQuestionId, onQuestionChange, onSectionChange, sections, onSubmit }: ExamNavigationProps) {
 
-  const allQuestions = sections.flatMap((section) => section?.questions);
-  const totalQuestions = allQuestions?.length;
+  const allQuestions: Question[] = sections?.flatMap((section) => section?.questions);
+  const questionIndex: number = allQuestions?.findIndex(q => q?.id === currentQuestionId);
+  const totalQuestions: number = allQuestions?.length;
 
   const getCurrentSectionForIndex = (index: number): number => {
     let questionCount = 0
@@ -19,16 +20,16 @@ export default function ExamNavigation({ currentQuestion, onQuestionChange, onSe
   }
 
   const handlePrevious = () => {
-    if (currentQuestion > 0) {
-      const newIndex = currentQuestion - 1;
+    if (currentQuestionId > 0) {
+      const newIndex = currentQuestionId - 1;
       onQuestionChange(newIndex);
       onSectionChange(getCurrentSectionForIndex(newIndex));
     }
   }
 
   const handleNext = () => {
-    if (currentQuestion < totalQuestions - 1) {
-      const newIndex = currentQuestion + 1;
+    if (currentQuestionId < totalQuestions - 1) {
+      const newIndex = currentQuestionId + 1;
       onQuestionChange(newIndex);
       onSectionChange(getCurrentSectionForIndex(newIndex));
     }
@@ -38,37 +39,37 @@ export default function ExamNavigation({ currentQuestion, onQuestionChange, onSe
     <View style={styles.container}>
       <View style={styles.navigationButtons}>
         <TouchableOpacity
-          style={[styles.navButton, currentQuestion === 0 && styles.navButtonDisabled]}
+          style={[styles.navButton, questionIndex === 0 && styles.navButtonDisabled]}
           onPress={handlePrevious}
-          disabled={currentQuestion === 0}
+          disabled={questionIndex === 0}
         >
           <Ionicons
             name="chevron-back"
             size={20}
-            color={currentQuestion === 0 ? Colors.textSecondary : themeColor?.primary}
+            color={questionIndex === 0 ? Colors.textSecondary : themeColor?.primary}
           />
-          <Text style={[styles.navButtonText, currentQuestion === 0 && styles.navButtonTextDisabled]}>Previous</Text>
+          <Text style={[styles.navButtonText, questionIndex === 0 && styles.navButtonTextDisabled]}>Previous</Text>
         </TouchableOpacity>
 
         <View style={styles.questionInfo}>
           <Text style={styles.questionCounter}>
-            {currentQuestion + 1} of {totalQuestions}
+            {questionIndex + 1} of {totalQuestions}
           </Text>
           <Text style={styles.sectionName}>Questions</Text>
         </View>
 
         <TouchableOpacity
-          style={[styles.navButton, currentQuestion === totalQuestions - 1 && styles.navButtonDisabled]}
+          style={[styles.navButton, questionIndex === totalQuestions - 1 && styles.navButtonDisabled]}
           onPress={handleNext}
-          disabled={currentQuestion === totalQuestions - 1}
+          disabled={questionIndex === totalQuestions - 1}
         >
-          <Text style={[styles.navButtonText, currentQuestion === totalQuestions - 1 && styles.navButtonTextDisabled]}>
+          <Text style={[styles.navButtonText, questionIndex === totalQuestions - 1 && styles.navButtonTextDisabled]}>
             Next
           </Text>
           <Ionicons
             name="chevron-forward"
             size={20}
-            color={currentQuestion === totalQuestions - 1 ? Colors.textSecondary : themeColor?.primary}
+            color={questionIndex === totalQuestions - 1 ? Colors.textSecondary : themeColor?.primary}
           />
         </TouchableOpacity>
       </View>

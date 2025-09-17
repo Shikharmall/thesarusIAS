@@ -6,6 +6,7 @@ import type { MCQQuestionProps } from "../../utils/types/exam";
 import TouchableScale from "./TouchableScale";
 
 export default function MCQQuestion({
+  questionIndex,
   question,
   questionStatus,
   onAnswerSelect,
@@ -19,9 +20,9 @@ export default function MCQQuestion({
     <View style={styles.container}>
       {/* Question Header */}
       <View style={styles.questionHeader}>
-        <Text style={styles.questionNumber}>Q.{question.id}</Text>
+        <Text style={styles.questionNumber}>Q.{questionIndex + 1}</Text>
         <TouchableScale
-          onPress={() => onFlagQuestion(question.id)}
+          onPress={() => onFlagQuestion(question?.id)}
           style={[styles.flagButton, questionStatus?.flagged && styles.flagButtonActive]}
         >
           <Ionicons

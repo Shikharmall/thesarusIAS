@@ -24,8 +24,8 @@ export interface ExamData {
 }
 
 export interface QuestionStatus {
-  answered: boolean,
-  flagged: boolean,
+  answered?: boolean,
+  flagged?: boolean,
   visited: boolean,
   selectedAnswer?: number,
 }
@@ -47,7 +47,7 @@ export interface ExamHeaderProps {
 
 export interface QuestionNavigatorProps {
   sections: Section[],
-  currentQuestion: number,
+  currentQuestionId: number,
   onSectionSelect: (sectionId: number) => void,
   onQuestionSelect: (questionId: number) => void,
   onQuestionCloseSelect: (questionId: number) => void,
@@ -61,7 +61,7 @@ export interface InstructionModalProps {
 }
 
 export interface ExamNavigationProps {
-  currentQuestion: number,
+  currentQuestionId: number,
   onQuestionChange: (questionIndex: number) => void,
   onSectionChange: (sectionId: number) => void,
   onSubmit: () => void,
@@ -69,7 +69,7 @@ export interface ExamNavigationProps {
 }
 
 export interface QuestionDisplayProps {
-  currentQuestion: number,
+  currentQuestionId: number,
   currentSection: number,
   sections: Section[],
   onAnswerSelect: (questionId: number, selectedAnswer: number) => void,
@@ -79,6 +79,7 @@ export interface QuestionDisplayProps {
 }
 
 export interface MCQQuestionProps {
+  questionIndex: number,
   question: Question,
   questionStatus?: QuestionStatus,
   onAnswerSelect: (questionId: number, selectedAnswer: number) => void,

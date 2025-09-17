@@ -18,7 +18,7 @@ export default function MyTestSeriesComponent({ testseries }: TestSeriesProps) {
         <TouchableOpacity style={styles.card}
             onPress={() => {
                 router.push({
-                    pathname: "/(exam)/instructions",
+                    pathname: "/(exam)/instruction",
                     params: { title: item?.title, },
                 });
             }}
