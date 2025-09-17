@@ -1,21 +1,77 @@
 
 import { Colors, themeColor } from "@/utils/constant/Colors";
+import { FeatureItems } from "@/utils/types/testseries";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function TestSeriesDetailsScreen() {
     const router = useRouter();
-    const featureItems = [
-        { id: 1, title: "10 Tests", icon: "library-outline", color: "#4A90E2", url: "/(course)/video" },
-        { id: 2, title: "Demo Test", icon: "play-outline", color: "#50C878", url: "/(course)/video" },
-        { id: 3, title: "Solutions", icon: "document-text-outline", color: "#E67E22", url: "/(course)/video" },
-        { id: 4, title: "Submit Feedback", icon: "star-outline", color: "#FF6B6B", url: "/(course)/video" },
-        { id: 5, title: "Schedule & Syllabus", icon: "calendar-outline", color: "#4ECDC4", url: "/(course)/video" },
-        { id: 6, title: "My Class", icon: "folder-outline", color: "#95A5A6", url: "/(course)/video" },
-        { id: 7, title: "FAQs", icon: "help-circle-outline", color: "#FFB347", url: "/(course)/video" },
-        { id: 8, title: "Submit Answer", icon: "checkmark-circle-outline", color: "#9B59B6", url: "/(course)/video" },
-        { id: 9, title: "Class Test", icon: "clipboard-outline", color: "#3498DB", url: "/(course)/video" },
+
+    const featureItems: FeatureItems[] = [
+        {
+            id: 1,
+            title: "10 Tests",
+            icon: "library-outline",
+            color: "#4A90E2",
+            url: "/(course)/video"
+        },
+        {
+            id: 2,
+            title: "Demo Test",
+            icon: "play-outline",
+            color: "#50C878",
+            url: "/(course)/video"
+        },
+        {
+            id: 3,
+            title: "Solutions",
+            icon: "document-text-outline",
+            color: "#E67E22",
+            url: "/(course)/video"
+        },
+        {
+            id: 4,
+            title: "Submit Feedback",
+            icon: "star-outline",
+            color: "#FF6B6B",
+            url: "/(course)/video"
+        },
+        {
+            id: 5,
+            title: "Schedule & Syllabus",
+            icon: "calendar-outline",
+            color: "#4ECDC4",
+            url: "/(course)/video"
+        },
+        {
+            id: 6,
+            title: "My Class",
+            icon: "folder-outline",
+            color: "#95A5A6",
+            url: "/(course)/video"
+        },
+        {
+            id: 7,
+            title: "FAQs",
+            icon: "help-circle-outline",
+            color: "#FFB347",
+            url: "/(course)/video"
+        },
+        {
+            id: 8,
+            title: "Submit Answer",
+            icon: "checkmark-circle-outline",
+            color: "#9B59B6",
+            url: "/(course)/video"
+        },
+        {
+            id: 9,
+            title: "Class Test",
+            icon: "clipboard-outline",
+            color: "#3498DB",
+            url: "/(course)/video"
+        },
     ]
 
     const FeatureCard = ({ item }: { item: any }) => (

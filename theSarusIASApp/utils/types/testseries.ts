@@ -8,6 +8,14 @@ export interface TestSeries {
     image: string;
 }
 
+export interface FeatureItems {
+    id: number;
+    title: string;
+    icon: string;
+    color: string;
+    url: string;
+}
+
 export interface TestSeriesProps {
     testseries: TestSeries[];
 }

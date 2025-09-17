@@ -3,6 +3,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { examData } from "../../data/examData";
 
 export default function InstructionScreen() {
     const router = useRouter();
@@ -25,7 +26,7 @@ export default function InstructionScreen() {
                 {/* Header */}
                 <View style={styles.header}>
                     {/* <Text style={styles.title}>SSC CGL Examination Instructions</Text> */}
-                    <Text style={styles.title}>{examName} Instructions</Text>
+                    <Text style={styles.title}>{examData?.title} Instructions</Text>
                     <Text style={styles.subtitle}>Please read carefully before starting</Text>
                 </View>
 
@@ -35,12 +36,12 @@ export default function InstructionScreen() {
                         <Text style={styles.sectionTitle}>General Instructions</Text>
                         <View style={styles.instructionItem}>
                             <Ionicons name="time-outline" size={16} color={Colors.primary} />
-                            <Text style={styles.instructionText}>Total duration of examination is 60 minutes (1 hour)</Text>
+                            <Text style={styles.instructionText}>Total duration of examination is {examData?.duration} minutes (1 hour)</Text>
                         </View>
                         <View style={styles.instructionItem}>
                             <Ionicons name="document-text-outline" size={16} color={Colors.primary} />
                             <Text style={styles.instructionText}>
-                                The examination consists of 20 questions divided into 4 sections
+                                The examination consists of 20 questions divided into {examData?.sections?.length} sections
                             </Text>
                         </View>
                         <View style={styles.instructionItem}>
@@ -56,22 +57,15 @@ export default function InstructionScreen() {
                     {/* Sections */}
                     <View style={styles.section}>
                         <Text style={styles.sectionTitle}>Examination Sections</Text>
-                        <View style={styles.sectionItem}>
-                            <Text style={styles.sectionName}>1. General Intelligence & Reasoning</Text>
-                            <Text style={styles.sectionDetails}>Questions 1-5 (5 questions)</Text>
-                        </View>
-                        <View style={styles.sectionItem}>
-                            <Text style={styles.sectionName}>2. General Awareness</Text>
-                            <Text style={styles.sectionDetails}>Questions 6-10 (5 questions)</Text>
-                        </View>
-                        <View style={styles.sectionItem}>
-                            <Text style={styles.sectionName}>3. Quantitative Aptitude</Text>
-                            <Text style={styles.sectionDetails}>Questions 11-15 (5 questions)</Text>
-                        </View>
-                        <View style={styles.sectionItem}>
-                            <Text style={styles.sectionName}>4. English Comprehension</Text>
-                            <Text style={styles.sectionDetails}>Questions 16-20 (5 questions)</Text>
-                        </View>
+                        {
+                            examData?.sections?.map((section) => (
+                                <View style={styles.sectionItem} key={section?.id}>
+                                    <Text style={styles.sectionName}>{section?.id}. {section?.name}</Text>
+                                    <Text style={styles.sectionDetails}>Questions {section?.questions[0]?.id}-{section?.questions[section?.questions?.length - 1]?.id} ({section?.questions?.length} questions)</Text>
+                                </View>
+
+                            ))
+                        }
                     </View>
 
                     {/* Navigation Instructions */}

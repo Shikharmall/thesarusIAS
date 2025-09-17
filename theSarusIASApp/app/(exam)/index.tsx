@@ -113,7 +113,13 @@ export default function ExamScreen() {
 
   return (
     <View style={styles.container}>
-      <ExamHeader onToggleNavigator={() => setShowNavigator(!showNavigator)} showNavigator={showNavigator} examName={examName} duration={examData?.duration} />
+      <ExamHeader
+        examName={examData?.title}
+        onToggleNavigator={() => setShowNavigator(!showNavigator)}
+        showNavigator={showNavigator}
+        startTimestamp={examData?.startTimestamp}
+        duration={examData?.duration}
+      />
 
       <ResponsiveLayout
         showSidebar={showNavigator}
@@ -124,6 +130,9 @@ export default function ExamScreen() {
             onSectionSelect={handleChangeSection}
             currentQuestion={currentQuestion}
             onQuestionSelect={(index: number) => {
+              setCurrentQuestion(index)
+            }}
+            onQuestionCloseSelect={(index: number) => {
               setCurrentQuestion(index)
               setShowNavigator(false) // Auto-close on mobile after selection
             }}

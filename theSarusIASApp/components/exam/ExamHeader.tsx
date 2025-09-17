@@ -2,15 +2,9 @@ import { StyleSheet, Text, View } from "react-native"
 import { Colors, themeColor } from "../../utils/constant/Colors"
 import AnimatedHamburger from "../ui/AnimatedHamburger"
 import { ExamTimer } from "./ExamTimer"
+import { ExamHeaderProps } from "@/utils/types/exam"
 
-interface ExamHeaderProps {
-    onToggleNavigator: () => void
-    showNavigator: boolean
-    examName: string
-    duration: number
-}
-
-export default function ExamHeader({ onToggleNavigator, showNavigator, examName, duration }: ExamHeaderProps) {
+export default function ExamHeader({ onToggleNavigator, showNavigator, examName, startTimestamp, duration }: ExamHeaderProps) {
     const handleTimeUp = () => {
         // Handle exam submission when time is up
         console.log("[v0] Exam time completed - auto submitting")
@@ -23,7 +17,7 @@ export default function ExamHeader({ onToggleNavigator, showNavigator, examName,
             </View>
 
             <View style={styles.rightSection}>
-                <ExamTimer duration={duration} onTimeUp={handleTimeUp} />
+                <ExamTimer duration={duration} startTimestamp={startTimestamp} onTimeUp={handleTimeUp} />
                 <AnimatedHamburger
                     isOpen={showNavigator}
                     onPress={onToggleNavigator}

@@ -1,5 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from "react-native";
+import RenderHTML from "react-native-render-html";
 import { Colors, themeColor } from "../../utils/constant/Colors";
 import type { MCQQuestionProps } from "../../utils/types/exam";
 import TouchableScale from "./TouchableScale";
@@ -11,7 +12,8 @@ export default function MCQQuestion({
   onFlagQuestion,
   onClearResponse,
 }: MCQQuestionProps) {
-  const selectedAnswer = questionStatus?.selectedAnswer
+  const selectedAnswer = questionStatus?.selectedAnswer;
+  const { width } = useWindowDimensions();
 
   return (
     <View style={styles.container}>
@@ -31,7 +33,17 @@ export default function MCQQuestion({
       </View>
 
       {/* Question Text */}
-      <Text style={styles.questionText}>{question.question}</Text>
+      {/* <Text style={styles.questionText}>{question.question}</Text> */}
+      <RenderHTML
+        contentWidth={width}
+        source={{ html: question?.question || "" }}
+        baseStyle={{
+          color: "#1f2937",       // text-card-foreground → adjust to your theme
+          fontSize: 16,        // text-base
+          lineHeight: 22,      // leading-relaxed
+          marginBottom: 20,
+        }}
+      />
 
       {/* Options */}
       <View style={styles.optionsContainer}>
@@ -61,7 +73,7 @@ export default function MCQQuestion({
                 numberOfLines={0}   // wrap text (multi-line)
                 ellipsizeMode="tail"
               >
-                {option}
+                {option?.label}
               </Text>
             </View>
           </TouchableOpacity>

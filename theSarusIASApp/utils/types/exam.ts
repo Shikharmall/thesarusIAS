@@ -1,21 +1,26 @@
+export interface Option {
+  label: string
+  isCorrect: boolean
+}
+
 export interface Question {
-  id: number,
-  question: string,
-  options: string[],
-  correctAnswer?: number,
+  id: number
+  question: string
+  options: Option[]
+  solution: string
 }
 
 export interface Section {
-  id: number,
-  name: string,
-  questions: Question[],
-  timeLimit?: number,
+  id: number
+  name: string
+  questions: Question[]
 }
 
 export interface ExamData {
-  title: string,
-  duration: number,
-  sections: Section[],
+  title: string
+  startTimestamp: string
+  duration: number
+  sections: Section[]
 }
 
 export interface QuestionStatus {
@@ -25,11 +30,26 @@ export interface QuestionStatus {
   selectedAnswer?: number,
 }
 
+export interface ExamTimerProps {
+  duration: number; // duration in minutes
+  startTimestamp: string;
+  onTimeUp: () => void;
+}
+
+export interface ExamHeaderProps {
+  onToggleNavigator: () => void
+  showNavigator: boolean
+  examName: string
+  startTimestamp: string
+  duration: number
+}
+
 export interface QuestionNavigatorProps {
   sections: Section[],
   currentQuestion: number,
   onSectionSelect: (sectionId: number) => void,
   onQuestionSelect: (questionId: number) => void,
+  onQuestionCloseSelect: (questionId: number) => void,
   currentSection?: number,
   questionStatuses: Record<number, QuestionStatus>
 }

@@ -9,6 +9,7 @@ export default function QuestionNavigator({
     currentQuestion,
     onSectionSelect,
     onQuestionSelect,
+    onQuestionCloseSelect,
     currentSection,
     questionStatuses
 }: QuestionNavigatorProps) {
@@ -59,7 +60,7 @@ export default function QuestionNavigator({
                                 }}
                             >
                                 <Text style={[styles.sectionText, isActive && styles.sectionTextActive]}>
-                                    Part-{index + 1}
+                                    Part {String.fromCharCode(65 + index)}
                                 </Text>
                             </TouchableOpacity>
                         );
@@ -123,7 +124,7 @@ export default function QuestionNavigator({
                                             borderWidth: isActive ? 0 : 1,
                                         }
                                     ]}
-                                    onPress={() => onQuestionSelect(question?.id - 1)}
+                                    onPress={() => onQuestionCloseSelect(question?.id - 1)}
                                 >
                                     {icon ? (
                                         <MaterialIcons name={icon} size={18} color={iconColor} />

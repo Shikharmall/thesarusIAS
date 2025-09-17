@@ -1,31 +1,72 @@
 import { themeColor } from "@/utils/constant/Colors";
+import { ExamTimerProps } from "@/utils/types/exam";
 import { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-interface ExamTimerProps {
-    duration: number; // duration in minutes
-    onTimeUp: () => void;
-}
+export function ExamTimer({ duration, startTimestamp, onTimeUp }: ExamTimerProps) {
+    const totalSeconds = duration * 60
 
-export function ExamTimer({ duration, onTimeUp }: ExamTimerProps) {
-    const [timeLeft, setTimeLeft] = useState(duration * 60); // convert to seconds
-
-    useEffect(() => {
-        if (timeLeft <= 0) {
-            onTimeUp();
-            return;
+    const calculateTimeLeft = () => {
+        const start = new Date(startTimestamp).getTime() // fetch current time from local system
+        if (isNaN(start)) {
+            console.error("Invalid startTimestamp:", startTimestamp)
+            return totalSeconds
         }
 
+        const now = Date.now()
+        const elapsedSeconds = Math.floor((now - start) / 1000)
+
+        if (elapsedSeconds < 0) {
+            // Exam hasn't started yet
+            return null
+        }
+
+        return Math.max(totalSeconds - elapsedSeconds, 0)
+    }
+
+    const [timeLeft, setTimeLeft] = useState(calculateTimeLeft)
+
+    useEffect(() => {
         const timer = setInterval(() => {
-            setTimeLeft((prev) => prev - 1);
-        }, 1000);
+            setTimeLeft(() => {
+                const newTime = calculateTimeLeft()
+                if (newTime !== null && newTime <= 0) {
+                    clearInterval(timer)
+                    onTimeUp()
+                    return 0
+                }
+                return newTime
+            })
+        }, 1000)
 
-        return () => clearInterval(timer);
-    }, [timeLeft, onTimeUp]);
+        return () => clearInterval(timer)
+    }, [startTimestamp, duration, onTimeUp])
 
-    const minutes = Math.floor(timeLeft / 60);
-    const seconds = timeLeft % 60;
-    const isLowTime = timeLeft <= 300; // 5 minutes
+    if (timeLeft === null) {
+        return (
+            <View
+                style={{
+                    flexDirection: "column",
+                    alignItems: "center",
+                    paddingHorizontal: 16,
+                    paddingVertical: 8,
+                }}
+            >
+                <Text
+                    style={{
+                        fontWeight: "bold",
+                        fontSize: 16,
+                    }}
+                >
+                    Exam not started yet
+                </Text>
+            </View>
+        )
+    }
+
+    const minutes = Math.floor(timeLeft / 60)
+    const seconds = timeLeft % 60
+    const isLowTime = timeLeft <= 300
 
     return (
         <View

@@ -63,8 +63,8 @@ export default function EndScreen() {
       <View style={styles.header}>
         <Text style={styles.title}>{exam}</Text>
         <Text style={styles.subtitle}>Examination Completed</Text>
-        {name && <Text style={styles.rollNumber}>Name: {name}</Text>}
-        {rollNumber && <Text style={styles.rollNumber}>Roll Number: {rollNumber}</Text>}
+        {/* {name && <Text style={styles.rollNumber}>Name: {name}</Text>}
+        {rollNumber && <Text style={styles.rollNumber}>Roll Number: {rollNumber}</Text>} */}
       </View>
 
       {/* Submission Confirmation */}
