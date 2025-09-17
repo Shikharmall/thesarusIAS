@@ -1593,8 +1593,8 @@ const sectionsUPSCGS1: Section[] = [
 
 export const examDataUPSCGS1: ExamData = {
   title: "UPSC Prelims PYQ Test Series 2025",
-  duration: 500, // (in minutes)
-  startTimestamp: "2025-09-16T19:00:00.0",
+  duration: 60, // (in minutes)
+  startTimestamp: "2025-09-17T12:00:00.0",
   sections: sectionsUPSCGS1
 }
 
@@ -3178,4 +3178,4 @@ export const examDataSSCCGL: ExamData = {
   sections: sectionsSSC
 }
 
-export const examData: ExamData = examDataSSCCGL;
+export const examData: ExamData = examDataUPSCGS1;

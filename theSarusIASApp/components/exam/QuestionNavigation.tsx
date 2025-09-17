@@ -41,132 +41,151 @@ export default function QuestionNavigator({
     }, [questionStatuses, currentSection, sections]);
 
     return (
-        <View style={styles.wrapper}>
-            {/* Section Selector */}
-            {sections?.length > 1 && (
-                <View style={styles.sectionRow}>
-                    {sections?.map((section, index) => {
-                        const isActive = currentSection === section?.id;
-                        return (
-                            <TouchableOpacity
-                                key={index}
-                                style={[
-                                    styles.sectionButton,
-                                    isActive ? styles.sectionActive : styles.sectionInactive,
-                                ]}
-                                onPress={() => {
-                                    onSectionSelect(index + 1);
-                                    onQuestionSelect(getFirstQuestionFormIndex(index) - 1);
-                                }}
-                            >
-                                <Text style={[styles.sectionText, isActive && styles.sectionTextActive]}>
-                                    Part {String.fromCharCode(65 + index)}
-                                </Text>
-                            </TouchableOpacity>
-                        );
-                    })}
-                </View>
-            )}
-
-            {/* Section Name */}
-            <View style={styles.sectionTitleContainer}>
-                <Text style={styles.sectionTitle}>
-                    {sections?.find(section => section?.id === currentSection)?.name}
-                </Text>
-            </View>
-
-            <ScrollView showsVerticalScrollIndicator={false}>
-
-                {/* Questions Grid */}
-                <View style={styles.questionsContainer}>
-                    {sections
-                        ?.find(section => section?.id === currentSection)
-                        ?.questions
-                        ?.map((question) => {
-                            const status = questionStatuses[question?.id];
-                            const isActive = currentQuestion + 1 === question?.id;
-
-                            let backgroundColor = "white";
-                            let borderColor = "#d1d5db";
-                            let textColor = themeColor?.secondary;
-                            let icon: keyof typeof MaterialIcons.glyphMap | null = null;
-                            let iconColor = "transparent";
-
-                            if (isActive) {
-                                backgroundColor = themeColor?.primary;
-                                textColor = "white";
-                            } else if (status?.answered) {
-                                backgroundColor = "#dcfce7";
-                                borderColor = "#86efac";
-                                textColor = "#065f46";
-                                icon = "check-circle";
-                                iconColor = "green";
-                            } else if (status?.flagged) {
-                                backgroundColor = "#ffedd5";
-                                borderColor = "#fdba74";
-                                textColor = "#92400e";
-                                icon = "flag";
-                                iconColor = "orange";
-                            } else if (status?.visited) {
-                                backgroundColor = "#f3f4f6";
-                                borderColor = "#d1d5db";
-                                textColor = "#374151";
-                            }
-
+        <>
+            <View style={styles.wrapper}>
+                {/* Section Selector */}
+                {sections?.length > 1 && (
+                    <View style={styles.sectionRow}>
+                        {sections?.map((section, index) => {
+                            const isActive = currentSection === section?.id;
                             return (
                                 <TouchableOpacity
-                                    key={question?.id}
+                                    key={index}
                                     style={[
-                                        styles.questionButton,
-                                        {
-                                            backgroundColor,
-                                            borderColor,
-                                            borderWidth: isActive ? 0 : 1,
-                                        }
+                                        styles.sectionButton,
+                                        isActive ? styles.sectionActive : styles.sectionInactive,
                                     ]}
-                                    onPress={() => onQuestionCloseSelect(question?.id - 1)}
+                                    onPress={() => {
+                                        onSectionSelect(index + 1);
+                                        onQuestionSelect(getFirstQuestionFormIndex(index) - 1);
+                                    }}
                                 >
-                                    {icon ? (
-                                        <MaterialIcons name={icon} size={18} color={iconColor} />
-                                    ) : (
-                                        <Text style={[styles.questionText, { color: textColor }]}>
-                                            {question?.id}
-                                        </Text>
-                                    )}
+                                    <Text style={[styles.sectionText, isActive && styles.sectionTextActive]}>
+                                        Part {String.fromCharCode(65 + index)}
+                                    </Text>
                                 </TouchableOpacity>
                             );
                         })}
+                    </View>
+                )}
+
+                {/* Section Name */}
+                <View style={styles.sectionTitleContainer}>
+                    <Text style={styles.sectionTitle}>
+                        {sections?.find(section => section?.id === currentSection)?.name}
+                    </Text>
                 </View>
 
-                {/* Legend */}
-                <View style={styles.legendContainer}>
+                <ScrollView showsVerticalScrollIndicator={false}>
+
+                    {/* Questions Grid */}
+                    <View style={styles.questionsContainer}>
+                        {sections
+                            ?.find(section => section?.id === currentSection)
+                            ?.questions
+                            ?.map((question) => {
+                                const status = questionStatuses[question?.id];
+                                const isActive = currentQuestion + 1 === question?.id;
+
+                                let backgroundColor = "white";
+                                let borderColor = "#d1d5db";
+                                let textColor = themeColor?.secondary;
+                                let icon: keyof typeof MaterialIcons.glyphMap | null = null;
+                                let iconColor = "transparent";
+
+                                if (isActive) {
+                                    backgroundColor = themeColor?.primary;
+                                    textColor = "white";
+                                } else if (status?.answered) {
+                                    backgroundColor = "#dcfce7";
+                                    borderColor = "#86efac";
+                                    textColor = "#065f46";
+                                    icon = "check-circle";
+                                    iconColor = "green";
+                                } else if (status?.flagged) {
+                                    backgroundColor = "#ffedd5";
+                                    borderColor = "#fdba74";
+                                    textColor = "#92400e";
+                                    icon = "flag";
+                                    iconColor = "orange";
+                                } else if (status?.visited) {
+                                    backgroundColor = "#f3f4f6";
+                                    borderColor = "#d1d5db";
+                                    textColor = "#374151";
+                                }
+
+                                return (
+                                    <TouchableOpacity
+                                        key={question?.id}
+                                        style={[
+                                            styles.questionButton,
+                                            {
+                                                backgroundColor,
+                                                borderColor,
+                                                borderWidth: isActive ? 0 : 1,
+                                            }
+                                        ]}
+                                        onPress={() => onQuestionCloseSelect(question?.id - 1)}
+                                    >
+                                        {icon ? (
+                                            <MaterialIcons name={icon} size={18} color={iconColor} />
+                                        ) : (
+                                            <Text style={[styles.questionText, { color: textColor }]}>
+                                                {question?.id}
+                                            </Text>
+                                        )}
+                                    </TouchableOpacity>
+                                );
+                            })}
+                    </View>
+
+
+                </ScrollView>
+            </View>
+
+            {/* Fixed Legend */}
+            <View style={styles.legendFixed}>
+                <View style={styles.legendGrid}>
                     <View style={styles.legendItem}>
                         <MaterialIcons name="check-circle" size={25} color="green" />
-                        <Text style={styles.legendText}>Answered (<Text style={styles.legendCount}>{answeredCount}</Text>)</Text>
+                        <Text style={styles.legendText}>
+                            Answered (<Text style={styles.legendCount}>{answeredCount}</Text>)
+                        </Text>
                     </View>
                     <View style={styles.legendItem}>
                         <MaterialIcons name="check-circle" size={25} color="red" />
-                        <Text style={styles.legendText}>Not Answered (<Text style={styles.legendCount}>{notAnsweredCount}</Text>)</Text>
+                        <Text style={styles.legendText}>
+                            Not Answered (<Text style={styles.legendCount}>{notAnsweredCount}</Text>)
+                        </Text>
                     </View>
                     <View style={styles.legendItem}>
                         <MaterialIcons name="check-circle" size={25} color="orange" />
-                        <Text style={styles.legendText}>Mark for Review (<Text style={styles.legendCount}>{flaggedCount}</Text>)</Text>
+                        <Text style={styles.legendText}>
+                            Mark for Review (<Text style={styles.legendCount}>{flaggedCount}</Text>)
+                        </Text>
                     </View>
                     <View style={styles.legendItem}>
                         <MaterialIcons name="check-circle" size={25} color="gray" />
-                        <Text style={styles.legendText}>Not Visited (<Text style={styles.legendCount}>{notVisitedCount}</Text>)</Text>
+                        <Text style={styles.legendText}>
+                            Not Visited (<Text style={styles.legendCount}>{notVisitedCount}</Text>)
+                        </Text>
+                    </View>
+                    <View style={styles.legendItem}>
+                        <MaterialIcons name="check-circle" size={25} color="gray" />
+                        <Text style={styles.legendText}>
+                            Not Visited (<Text style={styles.legendCount}>{notVisitedCount}</Text>)
+                        </Text>
                     </View>
                 </View>
-
-            </ScrollView>
-        </View>
+            </View>
+        </>
     );
 }
 
 const styles = StyleSheet.create({
     wrapper: {
         marginHorizontal: 25,
-        marginBottom: 70
+        marginBottom: 200
     },
     sectionRow: {
         flexDirection: "row",
@@ -222,17 +241,27 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: "500",
     },
-    legendContainer: {
+    legendFixed: {
+        position: "absolute",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        backgroundColor: "white",
         borderTopWidth: 0.3,
-        borderTopColor: 'gray',
-        paddingTop: 10,
-        marginTop: 20,
+        borderTopColor: "#eee",
+        padding: 10,
+    },
+    legendGrid: {
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "space-between",
     },
     legendItem: {
         flexDirection: "row",
         alignItems: "center",
+        width: "48%", // 2 per row
         marginVertical: 5,
-        gap: 10,
+        gap: 8,
     },
     legendText: {
         fontSize: 14,
