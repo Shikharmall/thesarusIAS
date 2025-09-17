@@ -1,101 +1,196 @@
-import { themeColor } from "@/utils/constant/Colors";
-import { ExamTimerProps } from "@/utils/types/exam";
-import { useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+// import { themeColor } from "@/utils/constant/Colors";
+// import { ExamTimerProps } from "@/utils/types/exam";
+// import { useEffect, useState } from "react";
+// import { StyleSheet, Text, View } from "react-native";
+
+// export function ExamTimer({ duration, startTimestamp, onTimeUp }: ExamTimerProps) {
+//     const totalSeconds = duration * 60
+
+//     const calculateTimeLeft = () => {
+//         const start = new Date(startTimestamp)?.getTime() // fetch current time from local system
+//         if (isNaN(start)) {
+//             console.error("Invalid startTimestamp:", startTimestamp)
+//             return totalSeconds
+//         }
+
+//         const now = Date.now()
+//         const elapsedSeconds = Math.floor((now - start) / 1000)
+
+//         if (elapsedSeconds < 0) {
+//             // Exam hasn't started yet
+//             return null
+//         }
+
+//         return Math.max(totalSeconds - elapsedSeconds, 0)
+//     }
+
+//     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft)
+
+//     useEffect(() => {
+//         const timer = setInterval(() => {
+//             setTimeLeft(() => {
+//                 const newTime = calculateTimeLeft()
+//                 if (newTime !== null && newTime <= 0) {
+//                     clearInterval(timer)
+//                     onTimeUp()
+//                     return 0
+//                 }
+//                 return newTime
+//             })
+//         }, 1000)
+
+//         return () => clearInterval(timer)
+//     }, [startTimestamp, duration, onTimeUp])
+
+//     if (timeLeft === null) {
+//         return (
+//             <View
+//                 style={{
+//                     flexDirection: "column",
+//                     alignItems: "center",
+//                     paddingHorizontal: 16,
+//                     paddingVertical: 8,
+//                 }}
+//             >
+//                 <Text
+//                     style={{
+//                         fontWeight: "bold",
+//                         fontSize: 16,
+//                     }}
+//                 >
+//                     Exam not started yet
+//                 </Text>
+//             </View>
+//         )
+//     }
+
+//     const minutes = Math.floor(timeLeft / 60)
+//     const seconds = timeLeft % 60
+//     const isLowTime = timeLeft <= 300
+
+//     return (
+//         <View
+//             style={[
+//                 styles.container,
+//                 { backgroundColor: isLowTime ? "red" : themeColor?.primary },
+//             ]}
+//         >
+//             <Text style={styles.timerText}>
+//                 {String(minutes).padStart(2, "0")}:{String(seconds).padStart(2, "0")}
+//             </Text>
+//         </View>
+//     );
+// }
+
+// const styles = StyleSheet.create({
+//     container: {
+//         flexDirection: "row",
+//         alignItems: "center",
+//         justifyContent: "center",
+//         paddingVertical: 4,
+//         paddingHorizontal: 20,
+//         borderRadius: 50,
+//         fontWeight: "600",
+//     },
+//     timerText: {
+//         fontSize: 16,
+//         fontFamily: "monospace",
+//         color: "white",
+//         fontWeight: "bold",
+//     },
+// });
+
+
+import { themeColor } from "@/utils/constant/Colors"
+import { ExamTimerProps } from "@/utils/types/exam"
+import { useEffect, useMemo, useState } from "react"
+import { StyleSheet, Text, View } from "react-native"
 
 export function ExamTimer({ duration, startTimestamp, onTimeUp }: ExamTimerProps) {
-    const totalSeconds = duration * 60
+  const totalSeconds = duration * 60
 
-    const calculateTimeLeft = () => {
-        const start = new Date(startTimestamp)?.getTime() // fetch current time from local system
-        if (isNaN(start)) {
-            console.error("Invalid startTimestamp:", startTimestamp)
-            return totalSeconds
+  // Pre-compute exam start timestamp
+  const examStart = useMemo(() => new Date(startTimestamp).getTime(), [startTimestamp])
+
+  const calculateTimeLeft = () => {
+    if (isNaN(examStart)) return totalSeconds
+
+    const now = Date.now()
+    const elapsedSeconds = Math.floor((now - examStart) / 1000)
+
+    if (elapsedSeconds < 0) return null // Exam not started
+    return Math.max(totalSeconds - elapsedSeconds, 0)
+  }
+
+  const [timeLeft, setTimeLeft] = useState<number | null>(calculateTimeLeft)
+
+  useEffect(() => {
+    if (timeLeft === 0) return
+
+    const timer = setInterval(() => {
+      const newTime = calculateTimeLeft()
+      setTimeLeft((prev) => {
+        if (newTime !== prev) {
+          if (newTime === 0) {
+            clearInterval(timer)
+            onTimeUp()
+          }
+          return newTime
         }
+        return prev
+      })
+    }, 1000)
 
-        const now = Date.now()
-        const elapsedSeconds = Math.floor((now - start) / 1000)
+    return () => clearInterval(timer)
+  }, [examStart, totalSeconds, onTimeUp])
 
-        if (elapsedSeconds < 0) {
-            // Exam hasn't started yet
-            return null
-        }
-
-        return Math.max(totalSeconds - elapsedSeconds, 0)
-    }
-
-    const [timeLeft, setTimeLeft] = useState(calculateTimeLeft)
-
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setTimeLeft(() => {
-                const newTime = calculateTimeLeft()
-                if (newTime !== null && newTime <= 0) {
-                    clearInterval(timer)
-                    onTimeUp()
-                    return 0
-                }
-                return newTime
-            })
-        }, 1000)
-
-        return () => clearInterval(timer)
-    }, [startTimestamp, duration, onTimeUp])
-
-    if (timeLeft === null) {
-        return (
-            <View
-                style={{
-                    flexDirection: "column",
-                    alignItems: "center",
-                    paddingHorizontal: 16,
-                    paddingVertical: 8,
-                }}
-            >
-                <Text
-                    style={{
-                        fontWeight: "bold",
-                        fontSize: 16,
-                    }}
-                >
-                    Exam not started yet
-                </Text>
-            </View>
-        )
-    }
-
-    const minutes = Math.floor(timeLeft / 60)
-    const seconds = timeLeft % 60
-    const isLowTime = timeLeft <= 300
-
+  if (timeLeft === null) {
     return (
-        <View
-            style={[
-                styles.container,
-                { backgroundColor: isLowTime ? "red" : themeColor?.primary },
-            ]}
-        >
-            <Text style={styles.timerText}>
-                {String(minutes).padStart(2, "0")}:{String(seconds).padStart(2, "0")}
-            </Text>
-        </View>
-    );
+      <View style={[styles.container, styles.notStarted]}>
+        <Text style={styles.notStartedText}>Not started</Text>
+      </View>
+    )
+  }
+
+  const minutes = Math.floor(timeLeft / 60)
+  const seconds = timeLeft % 60
+  const isLowTime = timeLeft <= 300
+
+  return (
+    <View
+      style={[
+        styles.container,
+        { backgroundColor: isLowTime ? "red" : themeColor.primary },
+      ]}
+    >
+      <Text style={styles.timerText}>
+        {String(minutes).padStart(2, "0")}:{String(seconds).padStart(2, "0")}
+      </Text>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-        paddingVertical: 4,
-        paddingHorizontal: 20,
-        borderRadius: 50,
-        fontWeight: "600",
-    },
-    timerText: {
-        fontSize: 16,
-        fontFamily: "monospace",
-        color: "white",
-        fontWeight: "bold",
-    },
-});
+  container: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 4,
+    paddingHorizontal: 20,
+    borderRadius: 50,
+  },
+  timerText: {
+    fontSize: 16,
+    fontFamily: "monospace",
+    color: "white",
+    fontWeight: "bold",
+  },
+  notStarted: {
+    backgroundColor: "#ccc",
+  },
+  notStartedText: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: "#333",
+  },
+})

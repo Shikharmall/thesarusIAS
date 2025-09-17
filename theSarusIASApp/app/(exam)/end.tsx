@@ -137,8 +137,7 @@ export default function EndScreen() {
       {/* Footer */}
       <View style={styles.footer}>
         <Text style={styles.footerText}>
-          Staff Selection Commission{"\n"}
-          Government of India
+          The SARUS
         </Text>
       </View>
     </ScrollView>
