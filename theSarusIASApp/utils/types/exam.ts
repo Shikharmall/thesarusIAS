@@ -37,11 +37,12 @@ export interface ExamTimerProps {
 }
 
 export interface ExamHeaderProps {
-  onToggleNavigator: () => void
   showNavigator: boolean
   examName: string
   startTimestamp: string
   duration: number
+  onTimeUp: () => void
+  onToggleNavigator: () => void
 }
 
 export interface QuestionNavigatorProps {
@@ -63,11 +64,8 @@ export interface ExamNavigationProps {
   currentQuestion: number,
   onQuestionChange: (questionIndex: number) => void,
   onSectionChange: (sectionId: number) => void,
+  onSubmit: () => void,
   sections: Section[],
-  userName: string,
-  rollNum: string,
-  examName: string
-  questionStatuses: Record<number, QuestionStatus>
 }
 
 export interface QuestionDisplayProps {

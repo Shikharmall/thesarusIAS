@@ -1,7 +1,7 @@
 import AlertCustomise from "@/components/ui/AlertCustomise";
 import { AlertProps } from "@/utils/types/alert";
 import { QuestionStatus } from "@/utils/types/exam";
-import { useFocusEffect, useLocalSearchParams } from "expo-router";
+import { useFocusEffect, useLocalSearchParams, useRouter } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
 import { BackHandler, StyleSheet, View } from "react-native";
 import ExamHeader from "../../components/exam/ExamHeader";
@@ -18,6 +18,7 @@ export default function ExamScreen() {
     name?: string | string[];
     title?: string | string[];
   }>();
+  const router = useRouter();
   const [examName, setExamName] = useState<string>("");
   const [rollNum, setRollNum] = useState<string>("2025123456");
   const [userName, setUserName] = useState<string>("Shivam Singh");
@@ -25,6 +26,12 @@ export default function ExamScreen() {
   const [showNavigator, setShowNavigator] = useState<boolean>(false);
   const [currentSection, setCurrentSection] = useState<number>(1);
   const [questionStatuses, setQuestionStatuses] = useState<Record<number, QuestionStatus>>({});
+
+  const allQuestions = examData?.sections?.flatMap((section) => section?.questions);
+  const [totalQuestions, setTotalQuestions] = useState<number>(0);
+  const [answeredCount, setAnsweredCount] = useState<number>(0);
+  const [flaggedCount, setFlaggedCount] = useState<number>(0);
+
   const [alertContent, setAlertContent] = useState<AlertProps>({
     visible: false,
     title: "",
@@ -111,6 +118,40 @@ export default function ExamScreen() {
     }, [])
   );
 
+  const handleTimeUp = () => {
+    // Handle exam submission when time is up
+    console.log("[v0] Exam time completed - auto submitting");
+    router.push({
+      pathname: "/(exam)/end",
+      params: { userName, rollNum, totalQuestions, answeredCount, flaggedCount, examName },
+    });
+  }
+
+  const handleSubmit = () => {
+    showAlert({
+      title: "Submit Examination",
+      message: "Are you sure you want to submit your examination? This action cannot be undone.",
+      confirmLabel: "Submit",
+      cancelLabel: "Cancel",
+      onConfirm: () => {
+        router.push({
+          pathname: "/(exam)/end",
+          params: { userName, rollNum, totalQuestions, answeredCount, flaggedCount, examName },
+        });
+      },
+    })
+  }
+
+  useEffect(() => {
+    if (allQuestions?.length > 0) {
+      const answered = allQuestions?.filter(q => questionStatuses[q.id]?.answered)?.length || 0;
+      const flagged = allQuestions?.filter(q => questionStatuses[q.id]?.flagged)?.length || 0;
+      setTotalQuestions(allQuestions?.length);
+      setAnsweredCount(answered);
+      setFlaggedCount(flagged);
+    }
+  }, [allQuestions]);
+
   return (
     <View style={styles.container}>
       <ExamHeader
@@ -119,6 +160,7 @@ export default function ExamScreen() {
         showNavigator={showNavigator}
         startTimestamp={examData?.startTimestamp}
         duration={examData?.duration}
+        onTimeUp={handleTimeUp}
       />
 
       <ResponsiveLayout
@@ -154,10 +196,7 @@ export default function ExamScreen() {
           onQuestionChange={setCurrentQuestion}
           onSectionChange={setCurrentSection}
           sections={examData?.sections}
-          userName={userName}
-          rollNum={rollNum}
-          questionStatuses={questionStatuses}
-          examName={examName}
+          onSubmit={handleSubmit}
         />
       </ResponsiveLayout>
 
@@ -185,6 +224,5 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.background,
     paddingBottom: 40
-    //paddingTop: 30,
   },
 })

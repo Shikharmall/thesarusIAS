@@ -173,7 +173,7 @@ export default function QuestionNavigator({
                     <View style={styles.legendItem}>
                         <MaterialIcons name="check-circle" size={25} color="gray" />
                         <Text style={styles.legendText}>
-                            Not Visited (<Text style={styles.legendCount}>{notVisitedCount}</Text>)
+                            Answered & Marked (<Text style={styles.legendCount}>{notVisitedCount}</Text>)
                         </Text>
                     </View>
                 </View>

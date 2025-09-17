@@ -4,11 +4,8 @@ import AnimatedHamburger from "../ui/AnimatedHamburger"
 import { ExamTimer } from "./ExamTimer"
 import { ExamHeaderProps } from "@/utils/types/exam"
 
-export default function ExamHeader({ onToggleNavigator, showNavigator, examName, startTimestamp, duration }: ExamHeaderProps) {
-    const handleTimeUp = () => {
-        // Handle exam submission when time is up
-        console.log("[v0] Exam time completed - auto submitting")
-    }
+export default function ExamHeader({ onToggleNavigator, showNavigator, examName, startTimestamp, duration,
+    onTimeUp }: ExamHeaderProps) {
 
     return (
         <View style={styles.header}>
@@ -17,7 +14,7 @@ export default function ExamHeader({ onToggleNavigator, showNavigator, examName,
             </View>
 
             <View style={styles.rightSection}>
-                <ExamTimer duration={duration} startTimestamp={startTimestamp} onTimeUp={handleTimeUp} />
+                <ExamTimer duration={duration} startTimestamp={startTimestamp} onTimeUp={onTimeUp} />
                 <AnimatedHamburger
                     isOpen={showNavigator}
                     onPress={onToggleNavigator}

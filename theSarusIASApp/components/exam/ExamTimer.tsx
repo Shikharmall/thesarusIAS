@@ -7,7 +7,7 @@ export function ExamTimer({ duration, startTimestamp, onTimeUp }: ExamTimerProps
     const totalSeconds = duration * 60
 
     const calculateTimeLeft = () => {
-        const start = new Date(startTimestamp).getTime() // fetch current time from local system
+        const start = new Date(startTimestamp)?.getTime() // fetch current time from local system
         if (isNaN(start)) {
             console.error("Invalid startTimestamp:", startTimestamp)
             return totalSeconds

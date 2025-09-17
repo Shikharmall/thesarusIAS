@@ -1,39 +1,11 @@
-import { AlertProps } from "@/utils/types/alert";
 import { ExamNavigationProps } from "@/utils/types/exam";
 import { Ionicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
-import { useEffect, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Colors, themeColor } from "../../utils/constant/Colors";
-import AlertCustomise from "../ui/AlertCustomise";
+export default function ExamNavigation({ currentQuestion, onQuestionChange, onSectionChange, sections, onSubmit }: ExamNavigationProps) {
 
-export default function ExamNavigation({ currentQuestion, onQuestionChange, onSectionChange, sections, userName, rollNum,
-  questionStatuses, examName }: ExamNavigationProps) {
-
-  const [alertContent, setAlertContent] = useState<AlertProps>({
-    visible: false,
-    title: "",
-    message: "",
-    confirmLabel: "",
-    cancelLabel: ""
-  });
-  const [answeredCount, setAnsweredCount] = useState<number>(0);
-  const [flaggedCount, setFlaggedCount] = useState<number>(0);
-  const router = useRouter();
   const allQuestions = sections.flatMap((section) => section?.questions);
   const totalQuestions = allQuestions?.length;
-
-  const showAlert = (props: Partial<AlertProps>) => {
-    setAlertContent({
-      visible: true,
-      title: props.title ?? "",
-      message: props.message ?? "",
-      confirmLabel: props.confirmLabel ?? "Ok",
-      cancelLabel: props.cancelLabel ?? "",
-      onConfirm: props.onConfirm,
-      onCancel: props.onCancel,
-    })
-  }
 
   const getCurrentSectionForIndex = (index: number): number => {
     let questionCount = 0
@@ -61,53 +33,6 @@ export default function ExamNavigation({ currentQuestion, onQuestionChange, onSe
       onSectionChange(getCurrentSectionForIndex(newIndex));
     }
   }
-
-  const handleSubmit = () => {
-    showAlert({
-      title: "Submit Examination",
-      message: "Are you sure you want to submit your examination? This action cannot be undone.",
-      confirmLabel: "Submit",
-      cancelLabel: "Cancel",
-      onConfirm: () => {
-        router.push({
-          pathname: "/(exam)/end",
-          params: { userName, rollNum, totalQuestions, answeredCount, flaggedCount, examName },
-        });
-      },
-    })
-
-    // Alert.alert(
-    //   "Submit Examination",
-    //   "Are you sure you want to submit your examination? This action cannot be undone.",
-    //   [
-    //     {
-    //       text: "Cancel",
-    //       style: "cancel",
-    //     },
-    //     {
-    //       text: "Submit",
-    //       style: "destructive",
-    //       onPress: () => {
-    //         // Handle exam submission
-    //         // Alert.alert("Submitted", "Your examination has been submitted successfully!")
-    //         router.push({
-    //           pathname: "/(exam)/end",
-    //           params: { userName, rollNum, totalQuestions, answeredCount, flaggedCount, examName },
-    //         });
-    //       },
-    //     },
-    //   ],
-    // )
-  }
-
-  useEffect(() => {
-    if (allQuestions?.length > 0) {
-      const answered = allQuestions?.filter(q => questionStatuses[q.id]?.answered)?.length || 0;
-      const flagged = allQuestions?.filter(q => questionStatuses[q.id]?.flagged)?.length || 0;
-      setAnsweredCount(answered);
-      setFlaggedCount(flagged);
-    }
-  }, [allQuestions]);
 
   return (
     <View style={styles.container}>
@@ -148,26 +73,10 @@ export default function ExamNavigation({ currentQuestion, onQuestionChange, onSe
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
+      <TouchableOpacity style={styles.submitButton} onPress={onSubmit}>
         <Ionicons name="checkmark-circle" size={20} color={Colors.background} />
         <Text style={styles.submitButtonText}>Submit Examination</Text>
       </TouchableOpacity>
-
-      <AlertCustomise
-        visible={alertContent?.visible}
-        title={alertContent?.title}
-        message={alertContent?.message}
-        confirmLabel={alertContent?.confirmLabel}
-        cancelLabel={alertContent?.cancelLabel}
-        onConfirm={() => {
-          if (alertContent.onConfirm) alertContent.onConfirm()
-          setAlertContent((prev) => ({ ...prev, visible: false }))
-        }}
-        onCancel={() => {
-          if (alertContent.onCancel) alertContent.onCancel()
-          setAlertContent((prev) => ({ ...prev, visible: false }))
-        }}
-      />
 
     </View>
   )
