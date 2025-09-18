@@ -6,7 +6,7 @@ import { SquareMenuIcon } from "lucide-react"
 
 export function QuestionNavigator({
   sections,
-  currentQuestionId,
+  currentQuestionIndex,
   currentSectionIndex,
   onSectionSelect,
   onQuestionSelect,
@@ -79,7 +79,7 @@ export function QuestionNavigator({
         <div className="flex flex-wrap gap-2">
           {sections[currentSectionIndex]?.questions?.map((question, quesIndex) => {
             const status = questionStatuses[question.id]
-            const isActive = currentQuestionId === question.id
+            const isActive = currentQuestionIndex === question.id
 
             let bg = "bg-white"
             let border = "border border-gray-300"

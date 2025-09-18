@@ -17,7 +17,6 @@ import HelpSupportScreen from "./screen/miscellaneous/HelpSupportScreen";
 import SettingsScreen from "./screen/miscellaneous/SettingsScreen";
 import QuestionBankScreen from "./screen/questionbank/QuestionBankScreen";
 import QuestionBankListScreen from "./screen/questionbank/QuestionBankListScreen";
-import AddQuestionScreen from "./screen/questionbank/AddQuestionScreen";
 import DisplayQuestionPaperScreen from "./screen/exampaper/DisplayQuestionPaperScreen";
 import ExamPaperScreen from "./screen/exampaper/ExamPaperScreen";
 import TestSeriesScreen from "./screen/testseries/TestSeriesScreen";
@@ -28,6 +27,8 @@ import InstructionScreen from "./screen/testseries/InstructionScreen";
 import ConductScreen from "./screen/conduct/ConductScreen";
 import ExamSubmitScreen from "./screen/testseries/ExamSubmitScreen";
 import CheckoutScreen from "./screen/checkout/CheckoutScreen";
+import ExamResultPage from "./screen/testseries/ExamResultScreen";
+import AddQuestionScreen from "./screen/questionbank/AddQuestionScreen";
 // import TicketScreen from "./screen/ticket/TicketScreen";
 
 function App() {
@@ -74,7 +75,8 @@ function App() {
       <Route path="/testSeries" element={<TestSeriesScreen />} />
       <Route path="/instructionPage/:id" element={<InstructionScreen />} />
       <Route path="/exam/:id" element={<ExaminationScreen />} />
-      <Route path="/examSubmit/:total/:answered/:marked" element={<ExamSubmitScreen />} />
+      <Route path="/examSubmit/:total/:answered/:flagged/:answeredFlagged" element={<ExamSubmitScreen />} />
+      <Route path="/examResult" element={<ExamResultPage />} />
 
       {/* Conduct Exam Routes */}
       <Route path="/conduct" element={<ConductScreen />} />

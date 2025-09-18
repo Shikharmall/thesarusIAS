@@ -9,7 +9,7 @@ import profile from "../../../../../resources/profile.png"
 
 export function ExamHeader({
     title,
-    currentQuestionId,
+    currentQuestionIndex,
     sectionData,
     sections,
     startTimestamp,
@@ -23,7 +23,7 @@ export function ExamHeader({
     if (!sectionData) return null
 
     const { questions, name } = sectionData
-    const questionIndex = questions?.findIndex((q) => q?.id === currentQuestionId)
+    const questionIndex = questions?.findIndex((q) => q?.id === currentQuestionIndex)
 
     return (
         <>

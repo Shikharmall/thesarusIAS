@@ -1,16 +1,37 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { Card } from "../common/Card";
 import type { MCQQuestionProps } from "../../utils/types/testseries";
 import DOMPurify from "dompurify";
+import { Question } from "@renderer/utils/types/testseries";
 
 export function MCQQuestion({
-  sectionName,
+  sections,
+  currentSectionIndex,
   questionStatus,
-  question,
+  currentQuestionIndex,
   onAnswerSelect,
 }: MCQQuestionProps) {
   const selectedAnswer = questionStatus?.selectedAnswer;
   const topAnchorRef = useRef<HTMLDivElement | null>(null);
+
+
+  // Memoized derived values
+  const allQuestions: Question[] = useMemo(
+    () => sections?.flatMap((section) => section?.questions),
+    [sections]
+  );
+
+  const questionIndex = useMemo(
+    () => allQuestions.findIndex((q) => q?.id === currentQuestionIndex),
+    [allQuestions, currentQuestionIndex]
+  );
+
+  const question: Question = allQuestions[questionIndex] || null;
+
+  const currentSectionName = useMemo(
+    () => sections.find((s) => s.id === currentSectionIndex)?.name ?? "",
+    [sections, currentSectionIndex]
+  );
 
   // Snap this component to the top of the nearest scrollable container
   useEffect(() => {
@@ -22,7 +43,7 @@ export function MCQQuestion({
         behavior: "auto",
       });
     });
-  }, [question?.id]);
+  }, [currentQuestionIndex]);
 
   return (
     <Card className="p-6 bg-[#fefce8] border border-gray-300">
@@ -34,11 +55,11 @@ export function MCQQuestion({
         <div className="space-y-3">
           <div className="flex items-center gap-2">
             <span className="text-lg font-bold text-card-foreground">
-              Q.{question?.id}
+              Q.{questionIndex + 1}
             </span>
-            {sectionName && (
+            {currentSectionName && (
               <span className="text-sm text-blue-600 bg-blue-50 px-2 py-1 rounded">
-                {sectionName}
+                {currentSectionName}
               </span>
             )}
           </div>
@@ -78,10 +99,11 @@ export function MCQQuestion({
 
                 <span
                   className={`flex-1 text-[15px] leading-[22px] ${isSelected ? "text-blue-600 font-medium" : "text-gray-800"
-                    }`}
-                >
-                  {option?.label}
-                </span>
+                    } text-card-foreground leading-relaxed text-base
+     [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:pl-6
+     [&_li]:my-1 [&_li]:text-card-foreground`}
+                  dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(option?.label) }}
+                />
               </button>
             );
           })}

@@ -5,7 +5,7 @@ import { Flag, ChevronLeft, ChevronRight, RotateCcw, Send } from "lucide-react";
 import { useMemo } from "react";
 
 export function ExamNavigation({
-  currentQuestionId,
+  currentQuestionIndex,
   sections,
   questionStatuses,
   onQuestionChange,
@@ -24,12 +24,12 @@ export function ExamNavigation({
 
   const totalQuestions = allQuestions.length;
   const currentIndex = allQuestions.findIndex(
-    (q) => q.id === currentQuestionId
+    (q) => q.id === currentQuestionIndex
   );
 
   const isFirst = currentIndex <= 0;
   const isLast = currentIndex === totalQuestions - 1;
-  const isFlagged = questionStatuses[currentQuestionId]?.flagged;
+  const isFlagged = questionStatuses[currentQuestionIndex]?.flagged;
 
   // const answeredCount = useMemo(
   //   () => allQuestions.filter((q) => questionStatuses[q.id]?.answered).length,
@@ -75,7 +75,7 @@ export function ExamNavigation({
           {/* Clear */}
           <Button
             variant="outline"
-            onClick={() => onClearSelect(currentQuestionId)}
+            onClick={() => onClearSelect(currentQuestionIndex)}
             className="flex items-center gap-2 bg-transparent"
           >
             <RotateCcw className="h-4 w-4" />
@@ -85,7 +85,7 @@ export function ExamNavigation({
           {/* Flag */}
           <Button
             variant="outline"
-            onClick={() => onFlagSelect(currentQuestionId)}
+            onClick={() => onFlagSelect(currentQuestionIndex)}
             className={`flex items-center gap-2 ${isFlagged
               ? "bg-orange-100 text-purple-800 border-purple-300"
               : ""

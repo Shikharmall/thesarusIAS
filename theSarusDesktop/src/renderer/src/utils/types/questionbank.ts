@@ -7,13 +7,25 @@ export interface CardProps {
     time: string;
 }
 
+export interface Option {
+    label: string
+    isCorrect: boolean
+}
+
+// export interface Question {
+//     id: number
+//     question: string
+//     options: Option[]
+//     solution: string
+// }
+
 export interface Question {
-    id: number;
-    text: string;
-    type: string;
-    difficulty: "Easy" | "Medium" | "Hard";
-    reviewers: string[];
-    createdAt: string;
+    id?: number;
+    question: string;
+    topic?: string;
+    difficulty: "easy" | "medium" | "hard";
+    options: Option[]
+    solution: string;
 }
 
 export interface QuestionTypes {

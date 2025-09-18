@@ -64,14 +64,15 @@ export interface QuestionStatus {
 }
 
 export interface MCQQuestionProps {
-    question: Question
-    sectionName: string
-    questionStatus?: QuestionStatus,
-    onAnswerSelect: (questionId: number, selectedAnswer: number) => void,
+    sections: Section[]
+    currentSectionIndex: number
+    currentQuestionIndex: number
+    questionStatus?: QuestionStatus
+    onAnswerSelect: (questionId: number, selectedAnswer: number) => void
 }
 
 export interface ExamNavigationProps {
-    currentQuestionId: number,
+    currentQuestionIndex: number,
     onQuestionChange: (questionIndex: number) => void,
     onSectionChange: (sectionId: number) => void,
     onFlagSelect: (questionId: number) => void,
@@ -82,7 +83,7 @@ export interface ExamNavigationProps {
 
 export interface ExamHeaderProps {
     title: string
-    currentQuestionId: number
+    currentQuestionIndex: number
     totalQuestions?: number
     currentSection?: number
     sectionData: Section
@@ -95,7 +96,7 @@ export interface ExamHeaderProps {
 
 export interface QuestionNavigatorProps {
     sections: Section[],
-    currentQuestionId: number,
+    currentQuestionIndex: number,
     currentSectionIndex: number,
     onSectionSelect: (sectionId: number) => void
     onQuestionSelect: (questionId: number) => void
