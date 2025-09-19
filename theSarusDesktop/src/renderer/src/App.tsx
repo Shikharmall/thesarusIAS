@@ -27,8 +27,6 @@ import ExamSectionPaperScreen from "./screen/testpaper/ExamSectionPaperScreen";
 import CreateExamPaperScreen from "./screen/testpaper/CreateExamPaperScreen";
 import InstructionScreen from "./screen/testseries/InstructionScreen";
 
-
-import ConductScreen from "./screen/conduct/ConductScreen";
 import ExamSubmitScreen from "./screen/testseries/ExamSubmitScreen";
 import CheckoutScreen from "./screen/checkout/CheckoutScreen";
 import ExamResultPage from "./screen/testseries/ExamResultScreen";
@@ -36,6 +34,7 @@ import AddQuestionScreen from "./screen/questionbank/AddQuestionScreen";
 import QuestionBankScreen from "./screen/questionbank/QuestionBankScreen";
 import AddTestScreen from "./screen/testpaper/AddTestScreen";
 import AddCourseDetailsScreen from "./screen/courses/AddCourseDetailsScreen";
+import TestDetailsScreen from "./screen/testpaper/TestDetailsScreen";
 // import TicketScreen from "./screen/ticket/TicketScreen";
 
 function App() {
@@ -72,8 +71,9 @@ function App() {
       <Route path="/questionBankList/:id" element={<QuestionBankListScreen />} />
       <Route path="/addQuestion/:id" element={<AddQuestionScreen />} />
 
-      {/* Exam Paper Routes */}
+      {/* Online Test Routes */}
       <Route path="/testPapers" element={<AddTestScreen />} />
+      <Route path="/testDetails/:id" element={<TestDetailsScreen />} />
       <Route path="/examSectionPaper/:id" element={<ExamSectionPaperScreen />} />
       <Route path="/createExamPaper" element={<CreateExamPaperScreen />} />
       <Route path="/questionPaper/:id" element={<QuestionPaperScreen />} />
@@ -85,9 +85,6 @@ function App() {
       <Route path="/exam/:id" element={<ExaminationScreen />} />
       <Route path="/examSubmit/:total/:answered/:flagged/:answeredFlagged" element={<ExamSubmitScreen />} />
       <Route path="/examResult" element={<ExamResultPage />} />
-
-      {/* Conduct Exam Routes */}
-      <Route path="/conduct" element={<ConductScreen />} />
 
       {/* Miscellaneous Routes */}
       <Route path="/helpSupport" element={<HelpSupportScreen />} />

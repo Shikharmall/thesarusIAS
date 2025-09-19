@@ -7,6 +7,7 @@ import { themeColor } from "@renderer/utils/constant/Color";
 import { QuestionBank } from "@renderer/utils/types/questionbank";
 import { useNavigate } from "react-router-dom";
 import AddTestModal from "@renderer/components/testpaper/AddTestModal";
+import DeleteModal from "@renderer/components/common/DeleteModal";
 
 interface Course {
     id: number;
@@ -18,7 +19,8 @@ interface Course {
 
 export default function AddTestScreen() {
     const navigate = useNavigate();
-    const [courses, setCourses] = useState<Course[]>([
+    const [isDelete, setIsDelete] = useState(false);
+    const [courses] = useState<Course[]>([
         { id: 3, status: "Active", name: "Testing Course", candidates: 1, createdBy: "demo@justexam.in" },
         { id: 2, status: "Active", name: "Class VI", candidates: 3, createdBy: "demo@justexam.in" },
         { id: 1, status: "Active", name: "NEET UG", candidates: 13, createdBy: "demo@justexam.in" },
@@ -106,90 +108,6 @@ export default function AddTestScreen() {
                 <Header />
                 <SubHeader title="Online Tests" isBack={false} isAdd={false} />
 
-                {/* <div className="p-4">
-                    <table className="w-full border border-gray-300 text-sm">
-                        <thead>
-                            <tr className="bg-gray-100 text-left">
-                                <th className="border border-gray-300 px-2 py-1">SN</th>
-                                <th className="border border-gray-300 px-2 py-1">Online Test</th>
-                                <th className="border border-gray-300 px-2 py-1">##</th>
-                                <th className="border border-gray-300 px-2 py-1">Questions</th>
-                                <th className="border border-gray-300 px-2 py-1">Validate</th>
-                                <th className="border border-gray-300 px-2 py-1">Created By</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td className="border border-gray-300 px-2 py-2 text-center">4</td>
-
-                                <td className="border border-gray-300 px-2 py-2">
-                                    <div className="space-y-1">
-                                        <div className="flex items-center gap-2">
-                                            <span className="bg-green-600 text-white text-xs px-2 py-0.5 rounded">
-                                                MCQ
-                                            </span>
-                                            <span className="text-red-600 font-medium">Class VI</span>
-                                            <span className="text-gray-700">» Life Process</span>
-                                            <Pencil className="w-4 h-4 text-blue-600 cursor-pointer" />
-                                            <Trash2 className="w-4 h-4 text-red-600 cursor-pointer" />
-                                            <span className="bg-green-200 text-green-700 text-xs px-2 py-0.5 rounded">
-                                                Active
-                                            </span>
-                                        </div>
-
-                                        <div className="text-gray-700">
-                                            Section 1 (10)
-                                        </div>
-
-                                        <div className="text-gray-800">
-                                            <span className="font-bold">TM</span> - 10 |{" "}
-                                            <span className="font-bold">TT</span> - 50 Mins |{" "}
-                                            <span className="font-bold">TQ</span> - 10{" "}
-                                            <span className="text-blue-600 cursor-pointer">(0 Ques.)</span>
-                                        </div>
-
-                                        <div>
-                                            <span className="text-blue-600 cursor-pointer font-medium">ENGLISH</span>{" "}
-                                            <span className="text-gray-500">
-                                                Duration:- 05/10/2020, 17:39 - 01/01/2021, 17:39
-                                            </span>
-                                        </div>
-                                    </div>
-                                </td>
-
-                                <td className="border border-gray-300 px-2 py-2 space-y-1 text-blue-600">
-                                    <div className="cursor-pointer">🖼 Images (0)</div>
-                                    <div className="cursor-pointer">📘 Comprehensions (0)</div>
-                                    <div className="cursor-pointer">📊 Charts</div>
-                                </td>
-
-                                <td className="border border-gray-300 px-2 py-2 space-y-1">
-                                    <div className="flex items-center gap-1 text-blue-600 cursor-pointer">
-                                        <Plus className="w-4 h-4" /> Add
-                                    </div>
-                                    <div className="flex items-center gap-1 text-blue-600 cursor-pointer">
-                                        <FileSpreadsheet className="w-4 h-4" /> Excel
-                                    </div>
-                                    <div className="flex items-center gap-1 text-red-600 cursor-pointer">
-                                        <FileText className="w-4 h-4" /> Word
-                                    </div>
-                                </td>
-
-                                <td className="border border-gray-300 px-2 py-2">
-                                    <span className="text-orange-600 font-semibold cursor-pointer">
-                                        Validate!
-                                    </span>
-                                </td>
-
-                                <td className="border border-gray-300 px-2 py-2">
-                                    <div>demo@justexam.in</div>
-                                    <div className="text-gray-500">05/10/2020</div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div> */}
-
                 {/* Content */}
                 <div className="my-5">
 
@@ -264,8 +182,8 @@ export default function AddTestScreen() {
                                                     </span>
                                                     <span className="text-red-600 font-medium">Class VI</span>
                                                     <span className="text-gray-700">» Life Process</span>
-                                                    <Pencil className="w-4 h-4 text-blue-600 cursor-pointer" />
-                                                    <Trash2 className="w-4 h-4 text-red-600 cursor-pointer" />
+                                                    <Pencil className="w-4 h-4 text-blue-600 cursor-pointer" onClick={() => navigate(`/testDetails/${questionbank?.id}`)} />
+                                                    <Trash2 className="w-4 h-4 text-red-600 cursor-pointer" onClick={() => setIsDelete(true)} />
                                                     <span className="bg-green-200 text-green-700 text-xs px-2 py-0.5 rounded">
                                                         Active
                                                     </span>
@@ -372,6 +290,7 @@ export default function AddTestScreen() {
                     </div>
                 </div>
 
+                <DeleteModal isOpen={isDelete} onClose={() => setIsDelete(false)} onDelete={() => { }} />
                 <AddTestModal
                     isOpen={isOpen}
                     setIsOpen={setIsOpen}

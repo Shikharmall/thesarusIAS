@@ -3,6 +3,7 @@ import { Card, CardContent } from "../common/Card"
 import { X, FileText } from "lucide-react"
 import { themeColor } from "../../utils/constant/Color"
 import type { QuestionPaperPopupProps } from "../../utils/types/testseries"
+import DOMPurify from "dompurify"
 
 export function QuestionPaperPopup({ isOpen, onClose, sections }: QuestionPaperPopupProps) {
     if (!isOpen) return null
@@ -46,8 +47,10 @@ export function QuestionPaperPopup({ isOpen, onClose, sections }: QuestionPaperP
                                             {qIndex + 1}
                                         </p>
                                         <div
-                                            className="text-card-foreground leading-relaxed text-base"
-                                            dangerouslySetInnerHTML={{ __html: q?.question }}
+                                            className="text-card-foreground leading-relaxed text-base
+              [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:pl-6
+              [&_li]:my-1 [&_li]:text-card-foreground"
+                                            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(q?.question) }}
                                         />
 
                                         {/* Options */}
@@ -60,7 +63,12 @@ export function QuestionPaperPopup({ isOpen, onClose, sections }: QuestionPaperP
                                                     <span className="font-semibold">
                                                         {String.fromCharCode(65 + optIndex)}.
                                                     </span>
-                                                    <span>{option?.label}</span>
+                                                    <div
+                                                        className="text-card-foreground leading-relaxed text-base
+              [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:list-decimal [&_ol]:pl-6
+              [&_li]:my-1 [&_li]:text-card-foreground"
+                                                        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(option?.label) }}
+                                                    />
                                                 </li>
                                             ))}
                                         </ul>
