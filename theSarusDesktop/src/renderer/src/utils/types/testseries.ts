@@ -30,6 +30,7 @@ export interface Question {
     question: string
     options: Option[]
     solution: string
+    difficulty?: "easy" | "moderate" | "hard"
 }
 
 export interface Section {

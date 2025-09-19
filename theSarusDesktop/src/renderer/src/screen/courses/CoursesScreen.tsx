@@ -12,7 +12,7 @@ const CoursesScreen = () => {
       <main className="flex-1 ml-50 mt-15">
         <Header />
 
-        <SubHeader title="Courses" isBack={false} isAdd={true} route={'/addCourse'} />
+        <SubHeader title="Courses" isBack={false} isAdd={true} route={'/addCourse'} tooltip={'Add Course'} />
 
         {
           courseData?.length === 0 && (

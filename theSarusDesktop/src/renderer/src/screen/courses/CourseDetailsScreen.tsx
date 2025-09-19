@@ -31,7 +31,7 @@ const CourseDetailsScreen: React.FC = () => {
             <main className="flex-1 ml-50 mt-15">
 
                 <Header />
-                <SubHeader title={course?.title} isBack={true} isAdd={true} />
+                <SubHeader title={course?.title} isBack={true} isAdd={false} />
 
                 <div className="flex flex-row w-full">
                     <div

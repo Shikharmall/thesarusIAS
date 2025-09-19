@@ -4,9 +4,6 @@ import {
   Line,
   BarChart,
   Bar,
-  PieChart,
-  Pie,
-  Cell,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -24,28 +21,18 @@ const ChartsPage: React.FC = () => {
     { week: "Week 4", score: 90 },
   ];
 
-  const subjectData = [
-    { subject: "Math", marks: 85 },
-    { subject: "Science", marks: 75 },
-    { subject: "History", marks: 65 },
-    { subject: "English", marks: 95 },
+  const onlineTestData = [
+    { month: "June", tests: 10 },
+    { month: "July", tests: 12 },
+    { month: "August", tests: 13 },
+    { month: "September", tests: 5 },
   ];
-
-  const pieData = [
-    { name: "Completed", value: 8 },
-    { name: "Pending", value: 4 },
-    { name: "Skipped", value: 2 },
-  ];
-
-  const pieColors = ["#34d399", "#fbbf24", "#f87171"];
 
   return (
-    <div className="min-h-screen bg-gray-50 px-6 py-10">
-      <h1 className="text-2xl font-bold text-gray-800 mb-8">Analytics Dashboard</h1>
-
+    <div className="px-6 py-10 bg-gray-100">
       <div className="grid gap-8 md:grid-cols-2">
         {/* Line Chart */}
-        <div className="bg-white rounded-2xl shadow-md p-6">
+        <div className="bg-white rounded-sm shadow-md p-6">
           <h2 className="text-lg font-semibold mb-4">Weekly Progress</h2>
           <ResponsiveContainer width="100%" height={300}>
             <LineChart data={progressData}>
@@ -60,42 +47,17 @@ const ChartsPage: React.FC = () => {
         </div>
 
         {/* Bar Chart */}
-        <div className="bg-white rounded-2xl shadow-md p-6">
-          <h2 className="text-lg font-semibold mb-4">Subject Performance</h2>
+        <div className="bg-white rounded-sm shadow-md p-6">
+          <h2 className="text-lg font-semibold mb-4">Online Tests Statistics</h2>
           <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={subjectData}>
+            <BarChart data={onlineTestData}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="subject" />
+              <XAxis dataKey="month" />
               <YAxis />
               <Tooltip />
               <Legend />
-              <Bar dataKey="marks" fill="#10b981" radius={[8, 8, 0, 0]} />
+              <Bar dataKey="tests" fill="#10b981" radius={[8, 8, 0, 0]} />
             </BarChart>
-          </ResponsiveContainer>
-        </div>
-
-        {/* Pie Chart */}
-        <div className="bg-white rounded-2xl shadow-md p-6 md:col-span-2">
-          <h2 className="text-lg font-semibold mb-4">Course Completion</h2>
-          <ResponsiveContainer width="100%" height={300}>
-            <PieChart>
-              <Pie
-                data={pieData}
-                cx="50%"
-                cy="50%"
-                labelLine={false}
-                label={({ name, value }) => `${name}: ${value}`}
-                outerRadius={120}
-                fill="#8884d8"
-                dataKey="value"
-              >
-                {pieData?.map((_, index) => (
-                  <Cell key={`cell-${index}`} fill={pieColors[index % pieColors.length]} />
-                ))}
-              </Pie>
-              <Tooltip />
-              <Legend />
-            </PieChart>
           </ResponsiveContainer>
         </div>
       </div>

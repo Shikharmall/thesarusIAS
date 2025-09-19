@@ -1,4 +1,4 @@
-import { Calendar, File, Folder, GraduationCap, HelpCircle, Home, LayoutList } from "lucide-react";
+import { File, Folder, GraduationCap, HelpCircle, Home, LayoutList, User, Users } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
@@ -17,10 +17,11 @@ export default function SideBar() {
     const navItems = [
         { to: "/home", label: "Home", icon: Home },
         { to: "/courses", label: "Courses", icon: GraduationCap, match: ["/courses", "/courseDetails", "/addCourse"] },
-        ...(isAdmin ? [{ to: "/questionBank", label: "Question Bank", icon: Folder }] : []),
-        ...(isAdmin ? [{ to: "/examPaper", label: "Exam Papers", icon: File, match: ["/examPaper", "/examSectionPaper"] }] : []),
+        ...(isAdmin ? [{ to: "/questionBanks", label: "Question Banks", icon: Folder, match: ["/questionBanks", "/questionBankList"] }] : []),
+        ...(isAdmin ? [{ to: "/testPapers", label: "Online Tests", icon: File, match: ["/testPapers", "/examSectionPaper"] }] : []),
+        // ...(isAdmin ? [{ to: "/testPapers", label: "Staffs", icon: Users, match: ["/testPapers", "/examSectionPaper"] }] : []),
+        // ...(isAdmin ? [{ to: "/testPapers", label: "Candidates", icon: User, match: ["/testPapers", "/examSectionPaper"] }] : []),
         { to: "/testSeries", label: "Test Series", icon: LayoutList },
-        ...(isAdmin ? [{ to: "/conduct", label: "Conduct Exam", icon: Calendar, match: ["/conduct"] }] : []),
         { to: "/helpSupport", label: "Help & Support", icon: HelpCircle }
     ];
 

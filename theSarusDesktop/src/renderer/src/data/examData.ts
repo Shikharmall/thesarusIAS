@@ -2,7 +2,7 @@ import { Question, Section, ExamData } from "@renderer/utils/types/testseries"
 
 /* UPSC GS 1 */
 
-const questionsUPSCGS1: Question[] = [
+export const questionsUPSCGS1: Question[] = [
     {
         id: 1,
         question: `<p>Consider the following types of vehicles:</p>
@@ -1579,7 +1579,7 @@ const questionsUPSCGS1: Question[] = [
     },
 ]
 
-const sectionsUPSCGS1: Section[] = [
+export const sectionsUPSCGS1: Section[] = [
     {
         id: 1,
         name: "General Studies I",
@@ -1590,13 +1590,13 @@ const sectionsUPSCGS1: Section[] = [
 export const examDataUPSCGS1: ExamData = {
     title: "UPSC Prelims PYQ Test Series 2025",
     duration: 60, // (in minutes)
-    startTimestamp: "2025-09-18T20:00:00.0",
+    startTimestamp: "2025-09-19T18:00:00.0",
     sections: sectionsUPSCGS1
 }
 
 /* UPSC GS 2 */
 
-const questionsUPSCGS2: Question[] = [
+export const questionsUPSCGS2: Question[] = [
     {
         id: 1,
         question: `<p>Consider the following types of vehicles:</p>
@@ -1613,6 +1613,7 @@ const questionsUPSCGS2: Question[] = [
             { label: `<p>None</p>`, isCorrect: false },
         ],
         solution: "",
+        difficulty: "easy"
     },
     {
         id: 2,
@@ -1760,18 +1761,6 @@ const questionsUPSCGS2: Question[] = [
             { label: `<p>Both Statement II and Statement III are correct but only one of them explains Statement I</p>`, isCorrect: false },
             { label: `<p>Only one of the Statements II and III is correct and that explains Statement I</p>`, isCorrect: false },
             { label: `<p>Neither Statement II nor Statement III is correct</p>`, isCorrect: false },
-        ],
-        solution: "",
-    },
-    {
-        id: 11,
-        question: `<p>In our country, regrettably, teaching and learning for the examination have been our forte but the new demands of society and the future of work require critical and independent thinking, learning through doing, asking questions from multiple disciplinary perspectives on the same issue, using evidence for building arguments, and reflecting and articulation. Higher education should not “either be a mere servant of the government policy or a passive respondent to public mood.” Higher learning is all about how to think rather than what to think. Teaching has to be re-invented.</p>
-<p>Which one of the following statements best reflects the central idea conveyed by the passage?</p>`,
-        options: [
-            { label: "India does not have enough resources for promoting quality education in its universities.", isCorrect: false },
-            { label: "The institutions of higher learning in the country should not be under the control of the Government.", isCorrect: false },
-            { label: "Classroom approach to higher education should be done away with.", isCorrect: false },
-            { label: "Classroom needs to be reimagined and teaching needs to be re-invented.", isCorrect: false },
         ],
         solution: "",
     },
@@ -2680,7 +2669,7 @@ const questionsUPSCGS2: Question[] = [
     },
 ]
 
-const sectionsUPSCGS2: Section[] = [
+export const sectionsUPSCGS2: Section[] = [
     {
         id: 1,
         name: "General Studies II",
@@ -2697,7 +2686,7 @@ export const examDataUPSCGS2: ExamData = {
 
 /* SSC CGL */
 
-const questionsSSCCGL1: Question[] = [
+export const questionsSSCCGL1: Question[] = [
     {
         id: 1,
         question: `<p>In a certain code language, 'COMPUTER' is written as 'RFUVQNPC'. How will 'MACHINE' be written in that code?</p>`,

@@ -38,3 +38,17 @@ export interface Option {
     isCorrect: boolean;
     image?: string;
 }
+
+export interface TotalQuestion {
+    easy: number;
+    moderate: number;
+    hard: number;
+}
+
+export interface QuestionBank {
+    id?: number;
+    image?: string;
+    name: string;
+    createdBy: string;
+    totalQuestions: TotalQuestion
+}

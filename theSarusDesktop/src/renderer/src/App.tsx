@@ -6,29 +6,36 @@ import RegisterScreen from "./screen/authentication/RegisterScreen";
 
 import Dashboard from "./screen/home/DashboardScreen";
 
+
 import CoursesScreen from "./screen/courses/CoursesScreen";
 import AddCourseScreen from "./screen/courses/AddCourseScreen";
 import CourseDetailsScreen from "./screen/courses/CourseDetailsScreen";
 import VideoPlayerScreen from "./screen/courses/VideoPlayerScreen";
 
+
 import ExaminationScreen from "./screen/testseries/ExaminationScreen";
 import NotificationScreen from "./screen/miscellaneous/NotificationScreen";
 import HelpSupportScreen from "./screen/miscellaneous/HelpSupportScreen";
 import SettingsScreen from "./screen/miscellaneous/SettingsScreen";
-import QuestionBankScreen from "./screen/questionbank/QuestionBankScreen";
 import QuestionBankListScreen from "./screen/questionbank/QuestionBankListScreen";
-import DisplayQuestionPaperScreen from "./screen/exampaper/DisplayQuestionPaperScreen";
-import ExamPaperScreen from "./screen/exampaper/ExamPaperScreen";
+import DisplayQuestionPaperScreen from "./screen/testpaper/DisplayQuestionPaperScreen";
+
+
 import TestSeriesScreen from "./screen/testseries/TestSeriesScreen";
-import QuestionPaperScreen from "./screen/exampaper/QuestionPaperScreen";
-import ExamSectionPaperScreen from "./screen/exampaper/ExamSectionPaperScreen";
-import CreateExamPaperScreen from "./screen/exampaper/CreateExamPaperScreen";
+import QuestionPaperScreen from "./screen/testpaper/QuestionPaperScreen";
+import ExamSectionPaperScreen from "./screen/testpaper/ExamSectionPaperScreen";
+import CreateExamPaperScreen from "./screen/testpaper/CreateExamPaperScreen";
 import InstructionScreen from "./screen/testseries/InstructionScreen";
+
+
 import ConductScreen from "./screen/conduct/ConductScreen";
 import ExamSubmitScreen from "./screen/testseries/ExamSubmitScreen";
 import CheckoutScreen from "./screen/checkout/CheckoutScreen";
 import ExamResultPage from "./screen/testseries/ExamResultScreen";
 import AddQuestionScreen from "./screen/questionbank/AddQuestionScreen";
+import QuestionBankScreen from "./screen/questionbank/QuestionBankScreen";
+import AddTestScreen from "./screen/testpaper/AddTestScreen";
+import AddCourseDetailsScreen from "./screen/courses/AddCourseDetailsScreen";
 // import TicketScreen from "./screen/ticket/TicketScreen";
 
 function App() {
@@ -56,16 +63,17 @@ function App() {
       {/* Courses Routes */}
       <Route path="/courses" element={<CoursesScreen />} />
       <Route path="/addCourse" element={<AddCourseScreen />} />
+      <Route path="/addCourseDetails/:id" element={<AddCourseDetailsScreen />} />
       <Route path="/courseDetails/:id" element={<CourseDetailsScreen />} />
       <Route path="/video" element={<VideoPlayerScreen />} />
 
       {/* Question Bank Routes */}
-      <Route path="/questionBank" element={<QuestionBankScreen />} />
+      <Route path="/questionBanks" element={<QuestionBankScreen />} />
       <Route path="/questionBankList/:id" element={<QuestionBankListScreen />} />
-      <Route path="/addQuestion" element={<AddQuestionScreen />} />
+      <Route path="/addQuestion/:id" element={<AddQuestionScreen />} />
 
       {/* Exam Paper Routes */}
-      <Route path="/examPaper" element={<ExamPaperScreen />} />
+      <Route path="/testPapers" element={<AddTestScreen />} />
       <Route path="/examSectionPaper/:id" element={<ExamSectionPaperScreen />} />
       <Route path="/createExamPaper" element={<CreateExamPaperScreen />} />
       <Route path="/questionPaper/:id" element={<QuestionPaperScreen />} />

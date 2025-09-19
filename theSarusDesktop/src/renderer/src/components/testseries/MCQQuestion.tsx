@@ -50,9 +50,14 @@ export function MCQQuestion({
       {/* Invisible anchor that we scroll into view */}
       <div ref={topAnchorRef} aria-hidden="true" />
 
+
       <div className="space-y-6">
+
         {/* Question Header */}
-        <div className="space-y-3">
+        <div className="space-y-3 relative">
+          <div className="absolute top-[120%] left-[30%] -translate-x-[100px] -translate-y-[50px] -rotate-45 z-0 opacity-10 pointer-events-none select-none">
+            <span className="text-[60px] font-bold text-gray-500">UPSC202601234</span>
+          </div>
           <div className="flex items-center gap-2">
             <span className="text-lg font-bold text-card-foreground">
               Q.{questionIndex + 1}
