@@ -11,7 +11,7 @@ const questionRouter: Router = express.Router();
 
 // ---------------- Add multiple questions ----------------
 // Protected route
-questionRouter.post("/add", authMiddleware, addQuestions);
+questionRouter.post("/add", addQuestions); //authMiddleware, 
 
 // ---------------- Get all questions with optional filters ----------------
 questionRouter.get("/all", getQuestions);
