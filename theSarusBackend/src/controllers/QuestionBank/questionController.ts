@@ -1,25 +1,7 @@
-// questionController.ts
 import { Request, Response } from "express";
 import Question from "../../models/QuestionBank/questionModel";
-
-// Extend Express Request to include `user` if needed
-interface AuthRequest extends Request {
-  user?: {
-    _id: string;
-  };
-}
-
-// ---------------- Types for input ----------------
-interface QuestionInput {
-  question: string;
-  option1: string;
-  option2: string;
-  option3: string;
-  option4: string;
-  level: "easy" | "moderate" | "hard";
-  language: string;
-  questionBankId: string;
-}
+import { AuthRequest } from "../../middleware/authMiddleware";
+import { QuestionInput } from "../../utils/types/questionBank";
 
 // ---------------- Add multiple questions ----------------
 export const addQuestions = async (req: AuthRequest, res: Response) => {

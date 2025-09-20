@@ -1,23 +1,6 @@
-// responseModel.ts
-import mongoose, { Schema, Document, Model } from "mongoose";
+import mongoose, { Schema, Model } from "mongoose";
+import { IResponse } from "../../utils/types/response";
 
-// -------------------- Interfaces --------------------
-export interface IAnswer {
-  questionId: mongoose.Types.ObjectId;
-  selectedOption: string; // could also be ObjectId if options are separate documents
-  timeTaken?: number; // in seconds
-}
-
-export interface IResponse extends Document {
-  examId: mongoose.Types.ObjectId;
-  userId: mongoose.Types.ObjectId;
-  responses: IAnswer[];
-  startedAt: Date;
-  submittedAt?: Date;
-  score: number;
-  createdAt: Date;
-  updatedAt: Date;
-}
 
 // -------------------- Schema --------------------
 const responseSchema: Schema<IResponse> = new Schema(

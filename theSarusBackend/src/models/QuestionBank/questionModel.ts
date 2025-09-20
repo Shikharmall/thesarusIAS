@@ -1,22 +1,5 @@
-// questionModel.ts
-import mongoose, { Schema, Document, Model } from "mongoose";
-
-// -------------------- Interfaces --------------------
-export interface IOption {
-  label: string; // HTML allowed
-  isCorrect?: boolean;
-}
-
-export interface IQuestion extends Document {
-  questionBank: mongoose.Types.ObjectId;
-  question: string;
-  options: IOption[];
-  solution?: string;
-  difficulty: "easy" | "moderate" | "hard";
-  language: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
+import mongoose, { Schema, Model } from "mongoose";
+import { IQuestion } from "../../utils/types/questionBank";
 
 // -------------------- Schema --------------------
 const questionSchema: Schema<IQuestion> = new Schema(

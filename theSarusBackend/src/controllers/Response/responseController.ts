@@ -1,7 +1,7 @@
-// responseController.ts
 import { Request, Response as ExResponse } from "express";
 import mongoose from "mongoose";
-import ResponseModel, { IAnswer } from "../../models/Response/responseModel";
+import ResponseModel from "../../models/Response/responseModel";
+import { IAnswer } from "../../utils/types/response";
 
 // ---------------- Add user response ----------------
 export const addResponseToUser = async (req: Request, res: ExResponse) => {

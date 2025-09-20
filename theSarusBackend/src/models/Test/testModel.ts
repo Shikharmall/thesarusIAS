@@ -1,23 +1,5 @@
-// testModel.ts
-import mongoose, { Schema, Document, Model } from "mongoose";
-
-// -------------------- Interfaces --------------------
-export interface ITest extends Document {
-    name: string;
-    description?: string;
-    questionBank: mongoose.Types.ObjectId;
-    questions: mongoose.Types.ObjectId[];
-    duration: number; // in minutes
-    totalMarks: number;
-    negativeMarking: number;
-    createdBy: mongoose.Types.ObjectId;
-    startTime: Date;
-    endTime: Date;
-    isPublished: boolean;
-    language: string;
-    createdAt: Date;
-    updatedAt: Date;
-}
+import mongoose, { Schema, Model } from "mongoose";
+import { ITest } from "../../utils/types/test";
 
 // -------------------- Schema --------------------
 const testSchema: Schema<ITest> = new Schema(

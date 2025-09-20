@@ -1,30 +1,9 @@
 // userModel.ts
-import mongoose, { Schema, Document, Model, Types } from "mongoose";
+import mongoose, { Schema, Model } from "mongoose";
+import { IUser } from "../../utils/types/user";
 
 // -------------------- Interfaces --------------------
-export interface IPhone {
-  value?: string;
-  isVerified: boolean;
-}
 
-export interface IEmail {
-  value: string;
-  isVerified: boolean;
-}
-
-export interface IUser extends Document {
-  _id: Types.ObjectId,
-  name: string;
-  phone?: IPhone;
-  email: IEmail;
-  password: string;
-  isAdmin: boolean;
-  image?: string;
-  lastLogin?: Date;
-  status: "active" | "inactive" | "banned";
-  createdAt: Date;
-  updatedAt: Date;
-}
 
 // -------------------- Schema --------------------
 const userSchema: Schema<IUser> = new Schema(

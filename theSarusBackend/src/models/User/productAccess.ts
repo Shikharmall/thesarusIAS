@@ -1,19 +1,6 @@
 // productAccessModel.ts
 import mongoose, { Schema, Document, Model } from "mongoose";
-
-// -------------------- Interfaces --------------------
-export interface IProductItem {
-  id: mongoose.Types.ObjectId;
-  model: "Course" | "Test";
-  grantedAt?: Date;
-}
-
-export interface IProductAccess extends Document {
-  user: mongoose.Types.ObjectId;
-  productAccess: IProductItem[];
-  createdAt: Date;
-  updatedAt: Date;
-}
+import { IProductAccess } from "../../utils/types/user";
 
 // -------------------- Schema --------------------
 const productAccessSchema: Schema<IProductAccess> = new Schema(

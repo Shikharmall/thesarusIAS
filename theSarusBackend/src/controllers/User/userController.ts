@@ -1,8 +1,9 @@
 // userController.ts
 import { Request, Response } from "express";
 import { validationResult } from "express-validator";
-import User, { IUser } from "../../models/User/userModel";
-import generateToken from "../../utils/generateToken";
+import User from "../../models/User/userModel";
+import generateToken from "../../utils/helperFunction/generateToken";
+import { IUser } from "../../utils/types/user";
 
 // -------------------- Register User --------------------
 export const registerUser = async (req: Request, res: Response) => {

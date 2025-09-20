@@ -1,34 +1,7 @@
-// questionBankController.ts
 import { Request, Response } from "express";
-import QuestionBank, { IQuestionBank } from "../../models/QuestionBank/questionBankModel";
-
-// Extend Express Request to include `user` (set by auth middleware)
-interface AuthRequest extends Request {
-  user?: {
-    _id: string; // or mongoose.Types.ObjectId
-  };
-}
-
-// ---------------- Types for input ----------------
-interface QuestionInput {
-  question: string;
-  option1: string;
-  option2: string;
-  option3: string;
-  option4: string;
-  level: "easy" | "moderate" | "hard";
-  language: string;
-}
-
-interface AddQuestionBankBody {
-  questions: QuestionInput[];
-}
-
-interface UpdateQuestionBankBody {
-  name?: string;
-  language?: string;
-  isPublished?: boolean;
-}
+import QuestionBank from "../../models/QuestionBank/questionBankModel";
+import { AddQuestionBankBody, UpdateQuestionBankBody } from "../../utils/types/questionBank";
+import { AuthRequest } from "../../middleware/authMiddleware";
 
 // ---------------- Add multiple question banks ----------------
 export const addQuestionBank = async (req: AuthRequest, res: Response) => {

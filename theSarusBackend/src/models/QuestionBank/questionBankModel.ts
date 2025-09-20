@@ -1,24 +1,5 @@
-// questionBankModel.ts
 import mongoose, { Schema, Document, Model, Types } from "mongoose";
-
-// -------------------- Interfaces --------------------
-export interface ITotalQuestions {
-  easy: number;
-  moderate: number;
-  hard: number;
-}
-
-export interface IQuestionBank extends Document {
-  _id: Types.ObjectId;
-  image?: string;
-  name: string;
-  createdBy: Types.ObjectId;
-  totalQuestions: ITotalQuestions;
-  language: string;
-  isPublished: boolean;
-  createdAt: Date;
-  updatedAt: Date;
-}
+import { IQuestionBank } from "../../utils/types/questionBank";
 
 // -------------------- Schema --------------------
 const questionBankSchema: Schema<IQuestionBank> = new Schema(

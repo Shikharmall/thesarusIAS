@@ -1,7 +1,6 @@
-// testController.ts
 import { Request, Response } from "express";
 import mongoose from "mongoose";
-import Test, { ITest } from "../../models/Test/testModel";
+import Test from "../../models/Test/testModel";
 
 // Extend Express Request to include `user`
 declare global {
