@@ -1,31 +1,43 @@
 // questionController.ts
-import { Request, Response } from "express"; // assuming you export IQuestion interface from model
-import { IQuestion } from "../../models/QuestionBank/questionModel";
+import { Request, Response } from "express";
+import Question from "../../models/QuestionBank/questionModel";
 
-// ---------------- Add multiple questions at once ----------------
-export const addQuestion = async (req: Request, res: Response) => {
+// Extend Express Request to include `user` if needed
+interface AuthRequest extends Request {
+  user?: {
+    _id: string;
+  };
+}
+
+// ---------------- Types for input ----------------
+interface QuestionInput {
+  question: string;
+  option1: string;
+  option2: string;
+  option3: string;
+  option4: string;
+  level: "easy" | "moderate" | "hard";
+  language: string;
+  questionBankId: string;
+}
+
+// ---------------- Add multiple questions ----------------
+export const addQuestions = async (req: AuthRequest, res: Response) => {
   try {
-    const questions: {
-      question: string;
-      option1: string;
-      option2: string;
-      option3: string;
-      option4: string;
-      level: string;
-      language: string;
-    }[] = req.body.questions;
+    const { questions } = req.body as { questions: QuestionInput[] };
 
-    if (!questions || questions.length === 0) {
-      return res.status(400).json({ status: "failed", message: "Please add some questions" });
+    if (!questions || !questions.length) {
+      return res.status(400).json({ status: "failed", message: "Please provide questions" });
     }
 
-    const docs: Partial<IQuestion>[] = questions.map((q) => ({
+    const docs = questions.map((q) => ({
+      questionBank: q.questionBankId,
       question: q.question,
       options: [
         { label: q.option1, isCorrect: true },
-        { label: q.option2, isCorrect: false },
-        { label: q.option3, isCorrect: false },
-        { label: q.option4, isCorrect: false },
+        { label: q.option2 },
+        { label: q.option3 },
+        { label: q.option4 },
       ],
       difficulty: q.level,
       language: q.language,
@@ -36,52 +48,65 @@ export const addQuestion = async (req: Request, res: Response) => {
     return res.status(201).json({ status: "success", message: "Questions added successfully" });
   } catch (error: any) {
     console.error(error);
-    res.status(500).json({ status: "failed", message: error.message });
+    return res.status(500).json({ status: "failed", message: error.message });
   }
 };
 
-// ---------------- Get all questions with filtering ----------------
+// ---------------- Get questions with optional filters ----------------
 export const getQuestions = async (req: Request, res: Response) => {
   try {
-    const language = req.query.language as string;
-    const difficulty = req.query.difficulty as string;
+    const { language, difficulty, questionBankId } = req.query as {
+      language?: string;
+      difficulty?: string;
+      questionBankId?: string;
+    };
 
-    const query: Partial<IQuestion> = {};
+    const query: Record<string, any> = {};
 
     if (language && language !== "all") query.language = language;
     if (difficulty && difficulty !== "all") query.difficulty = difficulty;
+    if (questionBankId) query.questionBank = questionBankId;
 
-    const questionsData = await Question.find(query).lean();
+    const questions = await Question.find(query).lean();
 
-    return res.status(200).json({ status: "success", data: questionsData });
+    return res.status(200).json({ status: "success", data: questions });
   } catch (error: any) {
     console.error(error);
-    res.status(500).json({ status: "failed", message: error.message });
+    return res.status(500).json({ status: "failed", message: error.message });
   }
 };
 
-// ---------------- Get a question by ID ----------------
+// ---------------- Get a single question by ID ----------------
 export const getQuestionByID = async (req: Request, res: Response) => {
   try {
-    const question_id = req.query.question_id as string;
+    const { question_id } = req.query as { question_id?: string };
 
-    const questionData = await Question.findById(question_id).lean();
-    if (!questionData) {
+    if (!question_id) {
+      return res.status(400).json({ status: "failed", message: "Question ID is required" });
+    }
+
+    const question = await Question.findById(question_id).lean();
+
+    if (!question) {
       return res.status(404).json({ status: "failed", message: "Question not found" });
     }
 
-    return res.status(200).json({ status: "success", data: questionData });
+    return res.status(200).json({ status: "success", data: question });
   } catch (error: any) {
     console.error(error);
-    res.status(500).json({ status: "failed", message: error.message });
+    return res.status(500).json({ status: "failed", message: error.message });
   }
 };
 
 // ---------------- Update question by ID ----------------
 export const updateQuestion = async (req: Request, res: Response) => {
   try {
-    const question_id = req.query.question_id as string;
-    const { question, option1, option2, option3, option4, level, language } = req.body;
+    const { question_id } = req.query as { question_id?: string };
+    const { question, option1, option2, option3, option4, level, language } = req.body as QuestionInput;
+
+    if (!question_id) {
+      return res.status(400).json({ status: "failed", message: "Question ID is required" });
+    }
 
     const updated = await Question.findByIdAndUpdate(
       question_id,
@@ -90,9 +115,9 @@ export const updateQuestion = async (req: Request, res: Response) => {
           question,
           options: [
             { label: option1, isCorrect: true },
-            { label: option2, isCorrect: false },
-            { label: option3, isCorrect: false },
-            { label: option4, isCorrect: false },
+            { label: option2 },
+            { label: option3 },
+            { label: option4 },
           ],
           difficulty: level,
           language,
@@ -108,6 +133,6 @@ export const updateQuestion = async (req: Request, res: Response) => {
     return res.status(200).json({ status: "success", data: updated });
   } catch (error: any) {
     console.error(error);
-    res.status(500).json({ status: "failed", message: error.message });
+    return res.status(500).json({ status: "failed", message: error.message });
   }
 };

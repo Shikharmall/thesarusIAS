@@ -1,5 +1,5 @@
 // userModel.ts
-import mongoose, { Schema, Document, Model } from "mongoose";
+import mongoose, { Schema, Document, Model, Types } from "mongoose";
 
 // -------------------- Interfaces --------------------
 export interface IPhone {
@@ -13,6 +13,7 @@ export interface IEmail {
 }
 
 export interface IUser extends Document {
+  _id: Types.ObjectId,
   name: string;
   phone?: IPhone;
   email: IEmail;
@@ -94,6 +95,6 @@ const userSchema: Schema<IUser> = new Schema(
 userSchema.index({ "email.value": 1, "phone.value": 1 });
 
 // -------------------- Model --------------------
-const User: Model<IUser> = mongoose.model < IUser > ("User", userSchema);
+const User: Model<IUser> = mongoose.model<IUser>("User", userSchema);
 
 export default User;

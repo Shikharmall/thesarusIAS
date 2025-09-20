@@ -22,62 +22,20 @@ export interface ITest extends Document {
 // -------------------- Schema --------------------
 const testSchema: Schema<ITest> = new Schema(
     {
-        name: {
-            type: String,
-            required: true,
-            trim: true,
-        },
-        description: {
-            type: String,
-        },
-        questionBank: {
-            type: Schema.Types.ObjectId,
-            ref: "QuestionBank",
-            required: true,
-            index: true,
-        },
+        name: { type: String, required: true, trim: true },
+        description: { type: String, trim: true },
+        questionBank: { type: Schema.Types.ObjectId, ref: "QuestionBank", required: true, index: true },
         questions: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: "Question",
-                required: true,
-            },
+            { type: Schema.Types.ObjectId, ref: "Question", required: true }
         ],
-        duration: {
-            type: Number,
-            required: true,
-        },
-        totalMarks: {
-            type: Number,
-            required: true,
-        },
-        negativeMarking: {
-            type: Number,
-            default: 0,
-        },
-        createdBy: {
-            type: Schema.Types.ObjectId,
-            ref: "User",
-            required: true,
-            index: true,
-        },
-        startTime: {
-            type: Date,
-            required: true,
-        },
-        endTime: {
-            type: Date,
-            required: true,
-        },
-        isPublished: {
-            type: Boolean,
-            default: false,
-            index: true,
-        },
-        language: {
-            type: String,
-            default: "English",
-        },
+        duration: { type: Number, required: true },
+        totalMarks: { type: Number, required: true },
+        negativeMarking: { type: Number, default: 0 },
+        createdBy: { type: Schema.Types.ObjectId, ref: "User", required: true, index: true },
+        startTime: { type: Date, required: true },
+        endTime: { type: Date, required: true },
+        isPublished: { type: Boolean, default: false, index: true },
+        language: { type: String, default: "English", trim: true },
     },
     { timestamps: true }
 );

@@ -1,94 +1,120 @@
-const Question = require("../../models/Question/questionModel");
+// questionBankController.ts
+import { Request, Response } from "express";
+import QuestionBank, { IQuestionBank } from "../../models/QuestionBank/questionBankModel";
 
-// ---------------- Add multiple questions at once ----------------
-const addQuestionBank = async (req, res) => {
+// Extend Express Request to include `user` (set by auth middleware)
+interface AuthRequest extends Request {
+  user?: {
+    _id: string; // or mongoose.Types.ObjectId
+  };
+}
+
+// ---------------- Types for input ----------------
+interface QuestionInput {
+  question: string;
+  option1: string;
+  option2: string;
+  option3: string;
+  option4: string;
+  level: "easy" | "moderate" | "hard";
+  language: string;
+}
+
+interface AddQuestionBankBody {
+  questions: QuestionInput[];
+}
+
+interface UpdateQuestionBankBody {
+  name?: string;
+  language?: string;
+  isPublished?: boolean;
+}
+
+// ---------------- Add multiple question banks ----------------
+export const addQuestionBank = async (req: AuthRequest, res: Response) => {
   try {
-    const { questions } = req.body;
+    const { questions } = req.body as AddQuestionBankBody;
 
     if (!questions || !questions.length) {
       return res.status(400).json({ status: "failed", message: "Please add some questions" });
     }
 
-    // Prepare documents
+    const userId = req.user?._id;
+    if (!userId) {
+      return res.status(401).json({ status: "failed", message: "Unauthorized" });
+    }
+
+    // Prepare QuestionBank documents
     const docs = questions.map((q) => ({
-      question: q.question,
-      options: [
-        { label: q.option1, isCorrect: true },
-        { label: q.option2 },
-        { label: q.option3 },
-        { label: q.option4 },
-      ],
-      difficulty: q.level,
+      name: q.question,
+      totalQuestions: { easy: 0, moderate: 0, hard: 0 },
       language: q.language,
+      isPublished: false,
+      image: undefined,
+      createdBy: userId,
     }));
 
-    // Insert all at once (faster than looping save)
-    await Question.insertMany(docs, { ordered: false }); // ordered:false allows partial insert if some fail
+    await QuestionBank.insertMany(docs, { ordered: false });
 
     return res.status(201).json({ status: "success", message: "Questions added successfully" });
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
-    res.status(500).json({ status: "failed", message: error.message });
+    return res.status(500).json({ status: "failed", message: error.message });
   }
 };
 
-// ---------------- Get all questions with filtering ----------------
-const getQuestionBanks = async (req, res) => {
+// ---------------- Get all question banks with optional filtering ----------------
+export const getQuestionBanks = async (req: Request, res: Response) => {
   try {
-    const { language, difficulty } = req.query;
-    const query = {};
+    const { language } = req.query as { language?: string };
+    const query: Record<string, any> = {};
 
     if (language && language !== "all") query.language = language;
-    if (difficulty && difficulty !== "all") query.difficulty = difficulty;
 
-    // Use lean() for performance
-    const questionsData = await Question.find(query).lean();
+    const questionBanks = await QuestionBank.find(query).lean();
 
-    return res.status(200).json({ status: "success", data: questionsData });
-  } catch (error) {
+    return res.status(200).json({ status: "success", data: questionBanks });
+  } catch (error: any) {
     console.error(error);
-    res.status(500).json({ status: "failed", message: error.message });
+    return res.status(500).json({ status: "failed", message: error.message });
   }
 };
 
-// ---------------- Get a question by ID ----------------
-const getQuestionBankByID = async (req, res) => {
+// ---------------- Get a single question bank by ID ----------------
+export const getQuestionBankByID = async (req: Request, res: Response) => {
   try {
-    const { question_id } = req.query;
+    const { question_id } = req.query as { question_id?: string };
 
-    const questionData = await Question.findById(question_id).lean();
-    if (!questionData) {
+    if (!question_id) {
+      return res.status(400).json({ status: "failed", message: "Question ID is required" });
+    }
+
+    const questionBank = await QuestionBank.findById(question_id).lean();
+
+    if (!questionBank) {
       return res.status(404).json({ status: "failed", message: "Question not found" });
     }
 
-    return res.status(200).json({ status: "success", data: questionData });
-  } catch (error) {
+    return res.status(200).json({ status: "success", data: questionBank });
+  } catch (error: any) {
     console.error(error);
-    res.status(500).json({ status: "failed", message: error.message });
+    return res.status(500).json({ status: "failed", message: error.message });
   }
 };
 
-// ---------------- Update question by ID ----------------
-const updateQuestionBank = async (req, res) => {
+// ---------------- Update question bank by ID ----------------
+export const updateQuestionBank = async (req: Request, res: Response) => {
   try {
-    const { question_id } = req.query;
-    const { question, option1, option2, option3, option4, level, language } = req.body;
+    const { question_id } = req.query as { question_id?: string };
+    const { name, language, isPublished } = req.body as UpdateQuestionBankBody;
 
-    const updated = await Question.findByIdAndUpdate(
+    if (!question_id) {
+      return res.status(400).json({ status: "failed", message: "Question ID is required" });
+    }
+
+    const updated = await QuestionBank.findByIdAndUpdate(
       question_id,
-      {
-        $set: {
-          question,
-          options: [
-            { label: option1, isCorrect: true },
-            { label: option2 },
-            { label: option3 },
-            { label: option4 },
-          ],
-          difficulty: level,
-          language,
-        },
-      },
+      { $set: { name, language, isPublished } },
       { new: true, runValidators: true }
     ).lean();
 
@@ -97,15 +123,8 @@ const updateQuestionBank = async (req, res) => {
     }
 
     return res.status(200).json({ status: "success", data: updated });
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
-    res.status(500).json({ status: "failed", message: error.message });
+    return res.status(500).json({ status: "failed", message: error.message });
   }
-};
-
-module.exports = {
-  addQuestionBank,
-  getQuestionBanks,
-  getQuestionBankByID,
-  updateQuestionBank,
 };

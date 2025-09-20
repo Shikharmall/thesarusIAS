@@ -1,5 +1,5 @@
 // questionBankModel.ts
-import mongoose, { Schema, Document, Model } from "mongoose";
+import mongoose, { Schema, Document, Model, Types } from "mongoose";
 
 // -------------------- Interfaces --------------------
 export interface ITotalQuestions {
@@ -9,9 +9,10 @@ export interface ITotalQuestions {
 }
 
 export interface IQuestionBank extends Document {
+  _id: Types.ObjectId;
   image?: string;
   name: string;
-  createdBy: mongoose.Types.ObjectId;
+  createdBy: Types.ObjectId;
   totalQuestions: ITotalQuestions;
   language: string;
   isPublished: boolean;
@@ -22,37 +23,16 @@ export interface IQuestionBank extends Document {
 // -------------------- Schema --------------------
 const questionBankSchema: Schema<IQuestionBank> = new Schema(
   {
-    image: {
-      type: String,
-      trim: true,
-    },
-    name: {
-      type: String,
-      required: true,
-      trim: true,
-      index: true, // speed up searches by name
-    },
-    createdBy: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-      index: true, // quickly find all question banks by user
-    },
+    image: { type: String, trim: true },
+    name: { type: String, required: true, trim: true, index: true },
+    createdBy: { type: Schema.Types.ObjectId, ref: "User", required: true, index: true },
     totalQuestions: {
       easy: { type: Number, default: 0 },
       moderate: { type: Number, default: 0 },
       hard: { type: Number, default: 0 },
     },
-    language: {
-      type: String,
-      default: "English",
-      index: true,
-    },
-    isPublished: {
-      type: Boolean,
-      default: false,
-      index: true,
-    },
+    language: { type: String, default: "English", index: true },
+    isPublished: { type: Boolean, default: false, index: true },
   },
   { timestamps: true }
 );
