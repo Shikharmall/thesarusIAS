@@ -1,7 +1,5 @@
-// routes/index.ts
 import express, { Router } from "express";
 
-// Import individual routers
 import userRouter from "./userRouter";
 import testRouter from "./testRouter";           // if you have a testRouter
 import questionBankRouter from "./questionBankRouter"; // if you have a questionBankRouter
@@ -10,7 +8,6 @@ import responseRouter from "./responseRouter";     // if you have a responseRout
 
 const router: Router = express.Router();
 
-// Mount routers under specific paths
 router.use("/users", userRouter);
 router.use("/tests", testRouter);
 router.use("/questionBanks", questionBankRouter);

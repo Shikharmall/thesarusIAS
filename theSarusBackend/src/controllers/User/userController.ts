@@ -1,4 +1,3 @@
-// userController.ts
 import { Request, Response } from "express";
 import { validationResult } from "express-validator";
 import User from "../../models/User/userModel";

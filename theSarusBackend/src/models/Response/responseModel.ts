@@ -1,7 +1,6 @@
 import mongoose, { Schema, Model } from "mongoose";
 import { IResponse } from "../../utils/types/response";
 
-
 // -------------------- Schema --------------------
 const responseSchema: Schema<IResponse> = new Schema(
   {
