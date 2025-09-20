@@ -14,20 +14,25 @@ export default function QuestionNavigator({
     questionStatuses
 }: QuestionNavigatorProps) {
 
-    // Global index of first question in a section
     const getFirstQuestionFormIndex = (sectionIndex: number): number => {
         if (!sections?.[sectionIndex]?.questions?.length) return -1;
-        return sections
+
+        // count total questions in previous sections
+        const offset = sections
             .slice(0, sectionIndex)
             .reduce((sum, s) => sum + (s?.questions?.length ?? 0), 0);
+
+        return offset; // index of the first question in that section
     };
 
-    // Local index of a question inside its section
+
+
     const getQuestionFromIndex = (sectionIndex: number, questionId: number): number => {
         return sections?.[sectionIndex]?.questions?.findIndex(
             (q: any) => q.id === questionId
         ) ?? -1;
     };
+
 
     const [counts, setCounts] = useState({
         answered: 0,
@@ -39,24 +44,29 @@ export default function QuestionNavigator({
     });
 
     useEffect(() => {
+
         const currentSec = sections?.find(section => section?.id === currentSection);
-        if (!currentSec) return;
+        if (!currentSec) return
 
         const answeredFlagged = currentSec.questions.filter(
             q => questionStatuses[q.id]?.answered && questionStatuses[q.id]?.flagged
-        ).length;
+        ).length
 
         const answeredOnly = currentSec.questions.filter(
             q => questionStatuses[q.id]?.answered && !questionStatuses[q.id]?.flagged
-        ).length;
+        ).length
 
         const flaggedOnly = currentSec.questions.filter(
             q => questionStatuses[q.id]?.flagged && !questionStatuses[q.id]?.answered
-        ).length;
+        ).length
 
         const visitedNotAnswered = currentSec.questions.filter(
             q => questionStatuses[q.id]?.visited && !questionStatuses[q.id]?.answered
-        ).length;
+        ).length
+
+        // const visitedNotAnswered = currentSec.questions.filter(
+        //     q => questionStatuses[q.id]?.visited && !questionStatuses[q.id]?.answered && !questionStatuses[q.id]?.flagged
+        // ).length
 
         const total = currentSec?.questions?.length || 0;
 
@@ -67,7 +77,7 @@ export default function QuestionNavigator({
             visited: visitedNotAnswered,
             notAnswered: visitedNotAnswered,
             notVisited: total - (answeredOnly + answeredFlagged + flaggedOnly + visitedNotAnswered)
-        });
+        })
 
     }, [questionStatuses, currentSection, sections]);
 
@@ -88,7 +98,7 @@ export default function QuestionNavigator({
                                     ]}
                                     onPress={() => {
                                         onSectionSelect(index + 1);
-                                        onQuestionSelect(getFirstQuestionFormIndex(index)); // fixed
+                                        onQuestionSelect(getFirstQuestionFormIndex(index) - 1);
                                     }}
                                 >
                                     <Text style={[styles.sectionText, isActive && styles.sectionTextActive]}>
@@ -108,6 +118,7 @@ export default function QuestionNavigator({
                 </View>
 
                 <ScrollView showsVerticalScrollIndicator={false}>
+
                     {/* Questions Grid */}
                     <View style={styles.questionsContainer}>
                         {sections
@@ -141,14 +152,10 @@ export default function QuestionNavigator({
                                     borderColor = "#f82b2bff";
                                     textColor = "#FF0000";
                                 } else {
-                                    backgroundColor = "white";
-                                    textColor = "#2196F3";
+                                    textColor = "#92400e";
+                                    backgroundColor = "bg-white"
+                                    textColor = "#2196F3"
                                 }
-
-                                // global numbering
-                                const globalIndex = getFirstQuestionFormIndex(
-                                    sections.findIndex(s => s.id === currentSection)
-                                ) + index;
 
                                 return (
                                     <TouchableOpacity
@@ -161,15 +168,17 @@ export default function QuestionNavigator({
                                                 borderWidth: isActive ? 0 : 1,
                                             }
                                         ]}
-                                        onPress={() => onQuestionCloseSelect(globalIndex)}
+                                        onPress={() => onQuestionCloseSelect(index)}
                                     >
                                         <Text style={[styles.questionText, { color: textColor }]}>
-                                            {globalIndex + 1}
+                                            {index + 1}
                                         </Text>
                                     </TouchableOpacity>
                                 );
                             })}
                     </View>
+
+
                 </ScrollView>
             </View>
 
@@ -256,6 +265,8 @@ const styles = StyleSheet.create({
     questionsContainer: {
         flexDirection: "row",
         flexWrap: "wrap",
+        // justifyContent: 'center',
+        // alignItems: 'center'
     },
     questionButton: {
         width: 50,

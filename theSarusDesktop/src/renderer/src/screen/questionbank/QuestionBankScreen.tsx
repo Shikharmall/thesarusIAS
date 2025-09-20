@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Pencil, Trash2, PlusCircle, Search, Eye, Smile, Meh, Frown, CheckCircle, PlusSquare, Upload } from "lucide-react";
+import { Trash2, Search, Eye, Smile, Meh, Frown, CheckCircle, PlusSquare, Upload } from "lucide-react";
 import SideBar from "../../components/common/Sidebar";
 import Header from "../../components/common/Header";
 import SubHeader from "../../components/common/SubHeader";
@@ -9,23 +9,23 @@ import { useNavigate } from "react-router-dom";
 import { QuestionBank } from "@renderer/utils/types/questionbank";
 import DeleteModal from "@renderer/components/common/DeleteModal";
 
-interface Course {
-    id: number;
-    name: string;
-    candidates: number;
-    createdBy: string;
-}
+// interface Course {
+//     id: number;
+//     name: string;
+//     candidates: number;
+//     createdBy: string;
+// }
 
 export default function QuestionBankScreen() {
     const navigate = useNavigate();
     const [isDelete, setIsDelete] = useState<boolean>(false);
-    const [courses, setCourses] = useState<Course[]>([
-        { id: 3, name: "Testing Course", candidates: 1, createdBy: "demo@justexam.in" },
-        { id: 2, name: "Class VI", candidates: 3, createdBy: "demo@justexam.in" },
-        { id: 1, name: "NEET UG", candidates: 13, createdBy: "demo@justexam.in" },
-    ]);
+    // const [courses, setCourses] = useState<Course[]>([
+    //     { id: 3, name: "Testing Course", candidates: 1, createdBy: "demo@justexam.in" },
+    //     { id: 2, name: "Class VI", candidates: 3, createdBy: "demo@justexam.in" },
+    //     { id: 1, name: "NEET UG", candidates: 13, createdBy: "demo@justexam.in" },
+    // ]);
 
-    const [questionbanks, setQuestionBanks] = useState<QuestionBank[]>([
+    const [questionbanks] = useState<QuestionBank[]>([
         {
             id: 1,
             image: "https://res.cloudinary.com/drb1ds8e3/image/upload/v1756030769/upsc_pzkoyq.png", // replace with icon
@@ -84,44 +84,44 @@ export default function QuestionBankScreen() {
             totalQuestions: { easy: 0, moderate: 0, hard: 0 },
         }]);
 
-    const [newCourse, setNewCourse] = useState("");
+    // const [newCourse, setNewCourse] = useState("");
     const [search, setSearch] = useState("");
     const [isOpen, setIsOpen] = useState(false);
 
-    const handleAddBank = () => {
-        if (!newCourse.trim()) return;
-        const newId = courses.length ? Math.max(...courses.map(c => c.id)) + 1 : 1;
-        const course: Course = {
-            id: newId,
-            name: newCourse,
-            candidates: 0,
-            createdBy: "demo@justexam.in",
-        };
-        setCourses([course, ...courses]);
-        setNewCourse("");
-    };
+    // const handleAddBank = () => {
+    //     if (!newCourse.trim()) return;
+    //     const newId = courses.length ? Math.max(...courses.map(c => c.id)) + 1 : 1;
+    //     const course: Course = {
+    //         id: newId,
+    //         name: newCourse,
+    //         candidates: 0,
+    //         createdBy: "demo@justexam.in",
+    //     };
+    //     setCourses([course, ...courses]);
+    //     setNewCourse("");
+    // };
 
-    const handleDelete = (id: number) => {
-        setCourses(courses.filter(c => c.id !== id));
-    };
+    // const handleDelete = (id: number) => {
+    //     setCourses(courses.filter(c => c.id !== id));
+    // };
 
-    const handleEdit = (id: number, newName: string) => {
-        setCourses(courses.map(c => (c.id === id ? { ...c, name: newName } : c)));
-    };
+    // const handleEdit = (id: number, newName: string) => {
+    //     setCourses(courses.map(c => (c.id === id ? { ...c, name: newName } : c)));
+    // };
 
-    const [currentPage, setCurrentPage] = useState(1);
-    const rowsPerPage = 5;
+    // const [currentPage, setCurrentPage] = useState(1);
+    // const rowsPerPage = 5;
 
-    // Filtered + Paginated Data
-    const filteredCourses = courses.filter(course =>
-        course.name.toLowerCase().includes(search.toLowerCase())
-    );
+    // // Filtered + Paginated Data
+    // const filteredCourses = courses.filter(course =>
+    //     course.name.toLowerCase().includes(search.toLowerCase())
+    // );
 
-    const totalPages = Math.ceil(filteredCourses.length / rowsPerPage);
-    const paginatedCourses = filteredCourses.slice(
-        (currentPage - 1) * rowsPerPage,
-        currentPage * rowsPerPage
-    );
+    // const totalPages = Math.ceil(filteredCourses.length / rowsPerPage);
+    // const paginatedCourses = filteredCourses.slice(
+    //     (currentPage - 1) * rowsPerPage,
+    //     currentPage * rowsPerPage
+    // );
 
     return (
         <div className="min-h-screen bg-gray-50 p-6 flex">

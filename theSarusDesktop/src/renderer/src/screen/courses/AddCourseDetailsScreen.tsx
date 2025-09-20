@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Pencil, Trash2, Search, Eye, Printer, Upload, PlusSquare, Save } from "lucide-react";
+import { Trash2, Search, Eye, PlusSquare, Save } from "lucide-react";
 import SideBar from "../../components/common/Sidebar";
 import Header from "../../components/common/Header";
 import SubHeader from "../../components/common/SubHeader";

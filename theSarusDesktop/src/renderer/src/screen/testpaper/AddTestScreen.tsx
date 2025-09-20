@@ -9,22 +9,9 @@ import { useNavigate } from "react-router-dom";
 import AddTestModal from "@renderer/components/testpaper/AddTestModal";
 import DeleteModal from "@renderer/components/common/DeleteModal";
 
-interface Course {
-    id: number;
-    status: "Active" | "Inactive";
-    name: string;
-    candidates: number;
-    createdBy: string;
-}
-
 export default function AddTestScreen() {
     const navigate = useNavigate();
     const [isDelete, setIsDelete] = useState(false);
-    const [courses] = useState<Course[]>([
-        { id: 3, status: "Active", name: "Testing Course", candidates: 1, createdBy: "demo@justexam.in" },
-        { id: 2, status: "Active", name: "Class VI", candidates: 3, createdBy: "demo@justexam.in" },
-        { id: 1, status: "Active", name: "NEET UG", candidates: 13, createdBy: "demo@justexam.in" },
-    ]);
 
     const [questionbanks] = useState<QuestionBank[]>([{
         id: 1,
@@ -87,19 +74,19 @@ export default function AddTestScreen() {
     const [search, setSearch] = useState("");
     const [isOpen, setIsOpen] = useState(false);
 
-    const [currentPage, setCurrentPage] = useState(1);
-    const rowsPerPage = 5;
+    // const [currentPage, setCurrentPage] = useState(1);
+    // const rowsPerPage = 5;
 
-    // Filtered + Paginated Data
-    const filteredCourses = courses.filter(course =>
-        course.name.toLowerCase().includes(search.toLowerCase())
-    );
+    // // Filtered + Paginated Data
+    // const filteredCourses = courses.filter(course =>
+    //     course.name.toLowerCase().includes(search.toLowerCase())
+    // );
 
-    const totalPages = Math.ceil(filteredCourses.length / rowsPerPage);
-    const paginatedCourses = filteredCourses.slice(
-        (currentPage - 1) * rowsPerPage,
-        currentPage * rowsPerPage
-    );
+    // const totalPages = Math.ceil(filteredCourses.length / rowsPerPage);
+    // const paginatedCourses = filteredCourses.slice(
+    //     (currentPage - 1) * rowsPerPage,
+    //     currentPage * rowsPerPage
+    // );
 
     return (
         <div className="min-h-screen bg-gray-50 p-6 flex">

@@ -1,4 +1,4 @@
-import { File, Folder, GraduationCap, HelpCircle, Home, LayoutList, User, Users } from "lucide-react";
+import { File, Folder, GraduationCap, HelpCircle, Home, LayoutList } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";

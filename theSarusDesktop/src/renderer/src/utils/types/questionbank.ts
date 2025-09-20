@@ -12,13 +12,6 @@ export interface Option {
     isCorrect: boolean
 }
 
-// export interface Question {
-//     id: number
-//     question: string
-//     options: Option[]
-//     solution: string
-// }
-
 export interface Question {
     id?: number;
     question: string;
@@ -31,12 +24,6 @@ export interface Question {
 export interface QuestionTypes {
     type: string;
     label: string;
-}
-
-export interface Option {
-    label: string;
-    isCorrect: boolean;
-    image?: string;
 }
 
 export interface TotalQuestion {

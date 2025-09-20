@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Pencil, Trash2, Search, Eye, Printer, Upload, PlusSquare } from "lucide-react";
+import { Trash2, Search, Eye, Printer, Upload, PlusSquare } from "lucide-react";
 import SideBar from "../../components/common/Sidebar";
 import Header from "../../components/common/Header";
 import SubHeader from "../../components/common/SubHeader";
@@ -45,9 +45,9 @@ export default function AddCourseScreen() {
         setCourses(courses.filter(c => c.id !== id));
     };
 
-    const handleEdit = (id: number, newName: string) => {
-        setCourses(courses.map(c => (c.id === id ? { ...c, name: newName } : c)));
-    };
+    // const handleEdit = (id: number, newName: string) => {
+    //     setCourses(courses.map(c => (c.id === id ? { ...c, name: newName } : c)));
+    // };
 
     // const [currentPage, setCurrentPage] = useState(1);
     // const rowsPerPage = 5;
