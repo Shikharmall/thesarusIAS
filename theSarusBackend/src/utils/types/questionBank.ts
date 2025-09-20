@@ -34,18 +34,8 @@ export interface IQuestion extends Document {
   updatedAt: Date;
 }
 
-// ---------------- Types for input ----------------
-export interface QuestionInput {
-  questionBankId: mongoose.Types.ObjectId;
-  question: string;
-  options: IOption[];
-  solution?: string;
-  difficulty: "easy" | "moderate" | "hard";
-  language: string;
-}
-
 export interface AddQuestionBankBody {
-  questions: QuestionInput[];
+  questions: IQuestion[];
 }
 
 export interface UpdateQuestionBankBody {
