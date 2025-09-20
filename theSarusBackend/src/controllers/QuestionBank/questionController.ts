@@ -21,7 +21,7 @@ export const addQuestions = async (req: AuthRequest, res: Response) => {
         { label: q.option3 },
         { label: q.option4 },
       ],
-      difficulty: q.level,
+      difficulty: q.difficulty,
       language: q.language,
     }));
 
@@ -84,7 +84,7 @@ export const getQuestionByID = async (req: Request, res: Response) => {
 export const updateQuestion = async (req: Request, res: Response) => {
   try {
     const { question_id } = req.query as { question_id?: string };
-    const { question, option1, option2, option3, option4, level, language } = req.body as QuestionInput;
+    const { question, option1, option2, option3, option4, difficulty, language } = req.body as QuestionInput;
 
     if (!question_id) {
       return res.status(400).json({ status: "failed", message: "Question ID is required" });
@@ -101,7 +101,7 @@ export const updateQuestion = async (req: Request, res: Response) => {
             { label: option3 },
             { label: option4 },
           ],
-          difficulty: level,
+          difficulty: difficulty,
           language,
         },
       },

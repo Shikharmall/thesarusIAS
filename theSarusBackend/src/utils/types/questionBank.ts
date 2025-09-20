@@ -34,23 +34,14 @@ export interface IQuestion extends Document {
   updatedAt: Date;
 }
 
-// Extend Express Request to include `user` if needed
-interface AuthRequest extends Request {
-  user?: {
-    _id: string;
-  };
-}
-
 // ---------------- Types for input ----------------
 export interface QuestionInput {
+  questionBankId: mongoose.Types.ObjectId;
   question: string;
-  option1: string;
-  option2: string;
-  option3: string;
-  option4: string;
-  level: "easy" | "moderate" | "hard";
+  options: IOption[];
+  solution?: string;
+  difficulty: "easy" | "moderate" | "hard";
   language: string;
-  questionBankId: string;
 }
 
 export interface AddQuestionBankBody {

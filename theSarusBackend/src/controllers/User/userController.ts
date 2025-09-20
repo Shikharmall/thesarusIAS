@@ -3,6 +3,7 @@ import { validationResult } from "express-validator";
 import User from "../../models/User/userModel";
 import generateToken from "../../utils/helperFunction/generateToken";
 import { IUser } from "../../utils/types/user";
+import { matchPassword, securePasswordGenerate } from "../../utils/helperFunction/securePassword";
 
 // -------------------- Register User --------------------
 export const registerUser = async (req: Request, res: Response) => {
@@ -26,18 +27,20 @@ export const registerUser = async (req: Request, res: Response) => {
       return res.status(422).json({ status: "failed", message: "Passwords do not match" });
     }
 
+    const spassword = await securePasswordGenerate(password);
+
     // Create user (password hashing handled by schema pre-save hook)
     const userData = new User({
       name,
       email: { value: email },
-      password,
+      password: spassword,
       isAdmin: false,
       image: "N/A",
     });
 
     const savedUser = await userData.save();
 
-    return res.status(201).json({ status: "success", data: savedUser });
+    return res.status(201).json({ status: "success", data: savedUser._id });
   } catch (error: any) {
     return res.status(500).json({ status: "failed", message: error.message });
   }
@@ -58,8 +61,10 @@ export const loginUser = async (req: Request, res: Response) => {
     }
 
     // Use schema method to compare password
-    const matchPassword = await userData.comparePassword(password);
-    if (!matchPassword) {
+    const matched = matchPassword(password, userData.password);
+
+    // const matchPassword = await userData.comparePassword(password);
+    if (!matched) {
       return res.status(401).json({ status: "failed", message: "Password is incorrect" });
     }
 
@@ -84,7 +89,7 @@ export const loginUser = async (req: Request, res: Response) => {
 };
 
 
-// -------------------- Get User Details --------------------
+// -------------------- Get User Details (approx ~650 req in 10.04s, 0 kb read)--------------------
 export const getUserDetails = async (req: Request, res: Response) => {
   try {
     const { user_id } = req.query;
@@ -93,7 +98,7 @@ export const getUserDetails = async (req: Request, res: Response) => {
       return res.status(400).json({ status: "failed", message: "User ID is required" });
     }
 
-    const userData = await User.findById(user_id);
+    const userData = await User.findById(user_id).lean();
     if (!userData) {
       return res.status(404).json({ status: "failed", message: "User not found" });
     }
@@ -104,10 +109,10 @@ export const getUserDetails = async (req: Request, res: Response) => {
   }
 };
 
-// -------------------- Get All Users --------------------
+// -------------------- Get All Users (approx ~1000 req in 10.09s, 900 kb read) --------------------
 export const getAllUserDetails = async (_req: Request, res: Response) => {
   try {
-    const users = await User.find().sort({ createdAt: -1 });
+    const users = await User.find().sort({ createdAt: -1 }).lean();
     return res.status(200).json({ status: "success", data: users });
   } catch (error: any) {
     return res.status(500).json({ status: "failed", message: error.message });

@@ -8,7 +8,6 @@ import cors from "cors";
 import mongoose from "mongoose";
 import indexRouter from "./routes/indexRouter";
 
-
 const app: Application = express();
 const port: number = Number(process.env.PORT) || 5174;
 

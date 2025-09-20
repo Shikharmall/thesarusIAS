@@ -1,11 +1,6 @@
-import { Request, Response, NextFunction } from "express";
+import { Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-
-interface AuthRequest extends Request {
-  user?: {
-    _id: string;
-  };
-}
+import { AuthRequest } from "./isAdminMiddleware";
 
 const authMiddleware = (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
