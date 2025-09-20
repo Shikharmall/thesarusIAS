@@ -1,103 +1,111 @@
 import { Request, Response } from "express";
 import QuestionBank from "../../models/QuestionBank/questionBankModel";
-import { AddQuestionBankBody, UpdateQuestionBankBody } from "../../utils/types/questionBank";
 import { AuthRequest } from "../../middleware/authMiddleware";
 
-// ---------------- Add multiple question banks ----------------
-export const addQuestionBank = async (req: AuthRequest, res: Response) => {
+// ---------------- Create Question Bank ----------------
+export const createQuestionBank = async (req: AuthRequest, res: Response) => {
   try {
-    const { questions } = req.body as AddQuestionBankBody;
+    const { name, image, language, isPublished } = req.body;
 
-    if (!questions || !questions.length) {
-      return res.status(400).json({ status: "failed", message: "Please add some questions" });
+    if (!name || !language) {
+      return res.status(400).json({ status: "failed", message: "Name and language are required" });
     }
 
-    const userId = req.user?._id;
-    if (!userId) {
-      return res.status(401).json({ status: "failed", message: "Unauthorized" });
-    }
+    const questionBank = await QuestionBank.create({
+      name,
+      image,
+      language,
+      isPublished: isPublished ?? false,
+      totalQuestions: {
+        easy: 0,
+        moderate: 0,
+        hard: 0
+      },
+      createdBy: req.user?._id, // from AuthRequest
+      // createdBy: "68cea111ddadb572267f5b2b", // from AuthRequest
+    });
 
-    // Prepare QuestionBank documents
-    const docs = questions.map((q) => ({
-      name: q.question,
-      totalQuestions: { easy: 0, moderate: 0, hard: 0 },
-      language: q.language,
-      isPublished: false,
-      image: undefined,
-      createdBy: userId,
-    }));
-
-    await QuestionBank.insertMany(docs, { ordered: false });
-
-    return res.status(201).json({ status: "success", message: "Questions added successfully" });
+    return res.status(201).json({ status: "success", data: questionBank });
   } catch (error: any) {
     console.error(error);
     return res.status(500).json({ status: "failed", message: error.message });
   }
 };
 
-// ---------------- Get all question banks with optional filtering ----------------
-export const getQuestionBanks = async (req: Request, res: Response) => {
+// ---------------- Get All Question Banks ----------------
+export const getAllQuestionBanks = async (_req: Request, res: Response) => {
   try {
-    const { language } = req.query as { language?: string };
-    const query: Record<string, any> = {};
-
-    if (language && language !== "all") query.language = language;
-
-    const questionBanks = await QuestionBank.find(query).lean();
-
-    return res.status(200).json({ status: "success", data: questionBanks });
+    const banks = await QuestionBank.find().sort({ createdAt: -1 }).lean();
+    return res.status(200).json({ status: "success", data: banks });
   } catch (error: any) {
-    console.error(error);
     return res.status(500).json({ status: "failed", message: error.message });
   }
 };
 
-// ---------------- Get a single question bank by ID ----------------
-export const getQuestionBankByID = async (req: Request, res: Response) => {
+// ---------------- Get Single Question Bank ----------------
+export const getQuestionBankById = async (req: Request, res: Response) => {
   try {
-    const { question_id } = req.query as { question_id?: string };
+    const { bank_id } = req.params; // ✅ use params
 
-    if (!question_id) {
-      return res.status(400).json({ status: "failed", message: "Question ID is required" });
+    if (!bank_id) {
+      return res.status(400).json({ status: "failed", message: "Bank ID is required" });
     }
 
-    const questionBank = await QuestionBank.findById(question_id).lean();
+    const bank = await QuestionBank.findById(bank_id).lean();
 
-    if (!questionBank) {
-      return res.status(404).json({ status: "failed", message: "Question not found" });
+    if (!bank) {
+      return res.status(404).json({ status: "failed", message: "Question bank not found" });
     }
 
-    return res.status(200).json({ status: "success", data: questionBank });
+    return res.status(200).json({ status: "success", data: bank });
   } catch (error: any) {
-    console.error(error);
     return res.status(500).json({ status: "failed", message: error.message });
   }
 };
 
-// ---------------- Update question bank by ID ----------------
+// ---------------- Update Question Bank ----------------
 export const updateQuestionBank = async (req: Request, res: Response) => {
   try {
-    const { question_id } = req.query as { question_id?: string };
-    const { name, language, isPublished } = req.body as UpdateQuestionBankBody;
+    const { bank_id } = req.params;
+    const { name, image, language, isPublished, totalQuestions } = req.body;
 
-    if (!question_id) {
-      return res.status(400).json({ status: "failed", message: "Question ID is required" });
+    if (!bank_id) {
+      return res.status(400).json({ status: "failed", message: "Bank ID is required" });
     }
 
     const updated = await QuestionBank.findByIdAndUpdate(
-      question_id,
-      { $set: { name, language, isPublished } },
+      bank_id,
+      { $set: { name, image, language, isPublished, totalQuestions } },
       { new: true, runValidators: true }
     ).lean();
 
     if (!updated) {
-      return res.status(404).json({ status: "failed", message: "Question not found" });
+      return res.status(404).json({ status: "failed", message: "Question bank not found" });
     }
 
     return res.status(200).json({ status: "success", data: updated });
   } catch (error: any) {
-    console.error(error);
+    return res.status(500).json({ status: "failed", message: error.message });
+  }
+};
+
+// ---------------- Delete Question Bank ----------------
+export const deleteQuestionBank = async (req: Request, res: Response) => {
+  try {
+    const { bank_id } = req.params;
+
+    if (!bank_id) {
+      return res.status(400).json({ status: "failed", message: "Bank ID is required" });
+    }
+
+    const deleted = await QuestionBank.findByIdAndDelete(bank_id);
+
+    if (!deleted) {
+      return res.status(404).json({ status: "failed", message: "Question bank not found" });
+    }
+
+    return res.status(200).json({ status: "success", message: "Question bank deleted successfully" });
+  } catch (error: any) {
     return res.status(500).json({ status: "failed", message: error.message });
   }
 };
