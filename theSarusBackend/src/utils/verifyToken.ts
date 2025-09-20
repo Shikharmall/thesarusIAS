@@ -1,6 +1,6 @@
 // verifyToken.ts
 import jwt, { JwtPayload } from "jsonwebtoken";
-import config from "../../config/config";
+import config from "../config/config";
 
 const verifyToken = (token: string): JwtPayload | false => {
   try {
