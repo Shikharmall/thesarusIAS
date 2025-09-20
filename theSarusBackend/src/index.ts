@@ -4,7 +4,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import userRouter from "./routes/userRoute";
+import indexRouter from "./routes/indexRouter";
 
 dotenv.config();
 
@@ -32,7 +32,7 @@ app.use(
   })
 );
 
-app.use("/", userRouter);
+app.use("/", indexRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
