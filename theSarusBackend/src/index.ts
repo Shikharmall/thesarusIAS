@@ -32,7 +32,7 @@ app.use(
   })
 );
 
-app.use("/", indexRouter);
+app.use("/api/", indexRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
