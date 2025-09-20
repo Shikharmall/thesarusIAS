@@ -1,4 +1,3 @@
-// verifyToken.ts
 import jwt, { JwtPayload } from "jsonwebtoken";
 import config from "../config/config";
 

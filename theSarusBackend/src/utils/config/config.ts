@@ -1,4 +1,3 @@
-// config.ts
 const jwtSecret: string = process.env.CONFIG_SECRET_KEY || "";
 
 if (!jwtSecret) {

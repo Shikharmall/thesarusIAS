@@ -1,4 +1,3 @@
-// getTokenFromCookie.ts
 import { Request } from "express";
 
 type TokenResult = string | { status: "Failed"; message: string };

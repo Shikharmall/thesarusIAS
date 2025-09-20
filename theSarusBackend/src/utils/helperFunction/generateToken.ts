@@ -1,4 +1,3 @@
-// generateToken.ts
 import jwt, { SignOptions } from "jsonwebtoken";
 import config from "../config/config";
 
