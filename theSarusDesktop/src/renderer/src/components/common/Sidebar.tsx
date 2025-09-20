@@ -18,7 +18,7 @@ export default function SideBar() {
         { to: "/home", label: "Home", icon: Home },
         { to: "/courses", label: "Courses", icon: GraduationCap, match: ["/courses", "/courseDetails", "/addCourse"] },
         ...(isAdmin ? [{ to: "/questionBanks", label: "Question Banks", icon: Folder, match: ["/questionBanks", "/questionBankList"] }] : []),
-        ...(isAdmin ? [{ to: "/testPapers", label: "Online Tests", icon: File, match: ["/testPapers", "/examSectionPaper"] }] : []),
+        ...(isAdmin ? [{ to: "/testPapers", label: "Online Tests", icon: File, match: ["/testPapers", "/testDetails"] }] : []),
         // ...(isAdmin ? [{ to: "/testPapers", label: "Staffs", icon: Users, match: ["/testPapers", "/examSectionPaper"] }] : []),
         // ...(isAdmin ? [{ to: "/testPapers", label: "Candidates", icon: User, match: ["/testPapers", "/examSectionPaper"] }] : []),
         { to: "/testSeries", label: "Test Series", icon: LayoutList },
