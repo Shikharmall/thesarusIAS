@@ -1,12 +1,14 @@
+import dotenv from "dotenv";
+import path from "path";
+dotenv.config();
+
 import express from "express";
 import type { Application } from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import dotenv from "dotenv";
 import mongoose from "mongoose";
 import indexRouter from "./routes/indexRouter";
 
-dotenv.config();
 
 const app: Application = express();
 const port: number = Number(process.env.PORT) || 5174;
@@ -32,7 +34,7 @@ app.use(
   })
 );
 
-app.use("/api/", indexRouter);
+app.use("/api/v1/", indexRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
